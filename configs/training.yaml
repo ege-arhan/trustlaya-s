@@ -1,0 +1,8 @@
+seed: 42
+examples: 10000
+supervised_steps: 150
+distillation_steps: 80
+batch_size: 32
+learning_rate: 0.0003
+distillation_learning_rate: 0.00005
+teacher_weight: 0.05

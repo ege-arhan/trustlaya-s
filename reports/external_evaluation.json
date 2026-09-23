@@ -1,0 +1,54 @@
+{
+  "deepset_prompt_injection": {
+    "source": "https://huggingface.co/datasets/deepset/prompt-injections",
+    "task": "prompt_injection",
+    "metrics": {
+      "n": 116,
+      "positives": 60,
+      "accuracy": 0.7241379310344828,
+      "precision": 0.6842105263157895,
+      "recall": 0.8666666666666667,
+      "f1": 0.7647058823529411,
+      "false_positive_rate": 0.42857142857142855,
+      "false_negative_rate": 0.13333333333333333
+    }
+  },
+  "rogue_real_benign": {
+    "source": "https://huggingface.co/datasets/rogue-security/real-world-benign-use-cases",
+    "task": "prompt_injection false positives on hard production benign cases",
+    "n": 178,
+    "false_positives": 43,
+    "false_positive_rate": 0.24157303370786518
+  },
+  "turkish_toxicity_proxy": {
+    "source": "https://huggingface.co/datasets/Overfit-GM/turkish-toxic-language",
+    "task": "ethics_risk as a NON-EQUIVALENT toxicity proxy; diagnostic only",
+    "metrics": {
+      "n": 2000,
+      "positives": 1020,
+      "accuracy": 0.489,
+      "precision": 0.42857142857142855,
+      "recall": 0.0058823529411764705,
+      "f1": 0.01160541586073501,
+      "false_positive_rate": 0.00816326530612245,
+      "false_negative_rate": 0.9941176470588236
+    },
+    "source_distribution": {
+      "jigsaw": 877,
+      "bully": 82,
+      "told": 1038,
+      "troff": 3
+    }
+  },
+  "reviewed_real_incidents": {
+    "source": "https://huggingface.co/datasets/emmanuelgjr/genai-incidents",
+    "task": "risk detection on real-world reviewed incidents; positive-only coverage, NOT F1",
+    "n": 300,
+    "categories": {
+      "security": 284,
+      "ai-harm": 16
+    },
+    "any_risk_recall_at_05": 1.0,
+    "review_or_block_rate": 1.0
+  }
+}

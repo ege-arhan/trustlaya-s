@@ -1,0 +1,163 @@
+{
+  "examples": 128,
+  "teacher": {
+    "tasks": {
+      "pii": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.2327375
+      },
+      "secret": {
+        "f1": 0.547945205479452,
+        "recall": 1.0,
+        "ece": 0.2835867187500001
+      },
+      "prompt_injection": {
+        "f1": 0.3448275862068966,
+        "recall": 0.4166666666666667,
+        "ece": 0.13483125
+      },
+      "dangerous_instruction": {
+        "f1": 0.2222222222222222,
+        "recall": 0.25,
+        "ece": 0.13915625
+      },
+      "privacy_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.11545703124999998
+      },
+      "security_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.5188476562500001
+      },
+      "ethics_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.10584921875
+      },
+      "oversight_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.19868515625000002
+      },
+      "data_governance_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.0829140625
+      }
+    },
+    "macro_f1": 0.12388833487873008,
+    "macro_recall": 0.1851851851851852,
+    "mean_ece": 0.20134053819444447
+  },
+  "student": {
+    "tasks": {
+      "pii": {
+        "f1": 1.0,
+        "recall": 1.0,
+        "ece": 0.046259224007371806
+      },
+      "secret": {
+        "f1": 1.0,
+        "recall": 1.0,
+        "ece": 1.3586964290200127e-06
+      },
+      "prompt_injection": {
+        "f1": 0.5,
+        "recall": 0.5833333333333334,
+        "ece": 0.09537518051014812
+      },
+      "dangerous_instruction": {
+        "f1": 0.4,
+        "recall": 0.25,
+        "ece": 0.13756224914686754
+      },
+      "privacy_risk": {
+        "f1": 0.6857142857142857,
+        "recall": 0.631578947368421,
+        "ece": 0.0632165511342464
+      },
+      "security_risk": {
+        "f1": 0.7647058823529411,
+        "recall": 0.9285714285714286,
+        "ece": 0.24697396997362375
+      },
+      "ethics_risk": {
+        "f1": 0.21052631578947367,
+        "recall": 0.11764705882352941,
+        "ece": 0.08033654507016763
+      },
+      "oversight_risk": {
+        "f1": 1.0,
+        "recall": 1.0,
+        "ece": 0.15469444752670825
+      },
+      "data_governance_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.14476090716198087
+      }
+    },
+    "macro_f1": 0.6178829426507445,
+    "macro_recall": 0.6123478631218569,
+    "mean_ece": 0.10768671480306038
+  },
+  "rules": {
+    "tasks": {
+      "pii": {
+        "f1": 1.0,
+        "recall": 1.0,
+        "ece": 0.0
+      },
+      "secret": {
+        "f1": 1.0,
+        "recall": 1.0,
+        "ece": 0.0
+      },
+      "prompt_injection": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.09375
+      },
+      "dangerous_instruction": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.0625
+      },
+      "privacy_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.1484375
+      },
+      "security_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.546875
+      },
+      "ethics_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.1328125
+      },
+      "oversight_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.203125
+      },
+      "data_governance_risk": {
+        "f1": 0.0,
+        "recall": 0.0,
+        "ece": 0.125
+      }
+    },
+    "macro_f1": 0.2222222222222222,
+    "macro_recall": 0.2222222222222222,
+    "mean_ece": 0.14583333333333334
+  },
+  "latency_p50_ms": {
+    "teacher_cpu": 118.42745798639953,
+    "student_mps": 12.71112501854077
+  }
+}

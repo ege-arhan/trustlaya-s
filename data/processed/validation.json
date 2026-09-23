@@ -1,0 +1,8 @@
+{
+  "counts": {
+    "train": 6972,
+    "val": 1053,
+    "test": 1975
+  },
+  "family_overlap": 0
+}

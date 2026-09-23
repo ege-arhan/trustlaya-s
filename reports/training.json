@@ -1,0 +1,10 @@
+{
+  "backbone": "/Users/egearhany/trustlaya/models/base",
+  "steps": 80,
+  "training_examples_seen": 2560,
+  "last_loss": 0.02715247869491577,
+  "parameters": 42138641,
+  "trainable_parameters": 19185681,
+  "teacher_used": true,
+  "teacher_examples": 73
+}

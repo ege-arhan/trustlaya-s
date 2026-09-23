@@ -1,0 +1,108 @@
+{
+  "examples": 1975,
+  "tasks": {
+    "pii": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "support": 356
+    },
+    "secret": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "support": 201
+    },
+    "prompt_injection": {
+      "accuracy": 0.8521518987341772,
+      "precision": 0.4827586206896552,
+      "recall": 0.6523297491039427,
+      "f1": 0.5548780487804879,
+      "false_positive_rate": 0.11497641509433962,
+      "false_negative_rate": 0.34767025089605735,
+      "support": 279
+    },
+    "dangerous_instruction": {
+      "accuracy": 0.949873417721519,
+      "precision": 1.0,
+      "recall": 0.49489795918367346,
+      "f1": 0.6621160409556314,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.5051020408163265,
+      "support": 196
+    },
+    "privacy_risk": {
+      "accuracy": 0.8688607594936709,
+      "precision": 0.6336206896551724,
+      "recall": 0.45794392523364486,
+      "f1": 0.5316455696202531,
+      "false_positive_rate": 0.051390568319226115,
+      "false_negative_rate": 0.5420560747663551,
+      "support": 321
+    },
+    "security_risk": {
+      "accuracy": 0.6982278481012658,
+      "precision": 0.675341574495771,
+      "recall": 0.9145374449339208,
+      "f1": 0.7769461077844312,
+      "false_positive_rate": 0.594047619047619,
+      "false_negative_rate": 0.08546255506607929,
+      "support": 1135
+    },
+    "ethics_risk": {
+      "accuracy": 0.8764556962025316,
+      "precision": 1.0,
+      "recall": 0.2844574780058651,
+      "f1": 0.4429223744292237,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.7155425219941349,
+      "support": 341
+    },
+    "oversight_risk": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "support": 369
+    },
+    "data_governance_risk": {
+      "accuracy": 0.9134177215189874,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "support": 171
+    }
+  },
+  "baseline_rules": {
+    "pii": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "support": 356
+    },
+    "secret": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "support": 201
+    }
+  },
+  "macro_f1": 0.6631675712855586,
+  "accuracy": 0.9065541490857947
+}

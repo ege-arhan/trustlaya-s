@@ -1,0 +1,22 @@
+{
+  "original": {
+    "synthetic": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "external_internal_val": {
+      "f1": 0.7755102040816326,
+      "false_positive_rate": 0.2753623188405797
+    }
+  },
+  "language_aware": {
+    "synthetic": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0
+    },
+    "external_internal_val": {
+      "f1": 0.7628865979381443,
+      "false_positive_rate": 0.2753623188405797
+    }
+  }
+}

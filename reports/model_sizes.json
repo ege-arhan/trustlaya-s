@@ -1,0 +1,6 @@
+{
+  "student_fp32_bytes": 168571188,
+  "onnx_fp32_bytes": 167661320,
+  "onnx_int8_bytes": 42507021,
+  "student_fp16_bytes": 84293722
+}

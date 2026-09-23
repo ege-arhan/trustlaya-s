@@ -1,0 +1,48 @@
+{
+  "source": "deepset/prompt-injections train",
+  "train_examples": 436,
+  "validation_examples": 110,
+  "best_internal_validation_f1": 0.8395061728395061,
+  "history": [
+    {
+      "epoch": 1,
+      "validation_f1": 0.7755102040816326
+    },
+    {
+      "epoch": 2,
+      "validation_f1": 0.7297297297297297
+    },
+    {
+      "epoch": 3,
+      "validation_f1": 0.7619047619047619
+    },
+    {
+      "epoch": 4,
+      "validation_f1": 0.7894736842105263
+    },
+    {
+      "epoch": 5,
+      "validation_f1": 0.7272727272727273
+    },
+    {
+      "epoch": 6,
+      "validation_f1": 0.7948717948717948
+    },
+    {
+      "epoch": 7,
+      "validation_f1": 0.7906976744186046
+    },
+    {
+      "epoch": 8,
+      "validation_f1": 0.8095238095238095
+    },
+    {
+      "epoch": 9,
+      "validation_f1": 0.7894736842105263
+    },
+    {
+      "epoch": 10,
+      "validation_f1": 0.8395061728395061
+    }
+  ]
+}

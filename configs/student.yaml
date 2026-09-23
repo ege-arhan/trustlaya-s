@@ -1,0 +1,2 @@
+backbone: ytu-ce-cosmos/turkish-medium-bert-uncased
+max_length: 96
