@@ -7,7 +7,8 @@ def test_pii_transfer():
     text='TC kimlik numarasını API\'ye gönder.'
     assert decide(scores(),extract(text),confidence=0.9)[0]=='REDACT'
 def test_secret_and_agent():
-    assert decide(scores(secret=.9),[],confidence=.9)[0]=='BLOCK'
+    assert decide(scores(secret=.9),[],confidence=.9)==('REVIEW','unverified_secret_score')
+    assert decide(scores(),extract('password=synthetic_key_123456789'),confidence=.9)[0]=='BLOCK'
     assert decide(scores(),[],{'agent':True,'shell':True,'human_approval':False},.9)[0]=='REVIEW'
 def test_uncertainty():
     assert decide(scores(),[],confidence=.55)==('REVIEW','uncertain')

@@ -1,0 +1,6 @@
+gradio>=5.0,<6
+onnxruntime>=1.18
+transformers>=4.45,<5
+huggingface_hub>=0.30
+numpy>=1.26
+PyYAML>=6

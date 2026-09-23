@@ -1,0 +1,5 @@
+pii: 0.65
+secret: 0.65
+prompt_injection: 0.70
+dangerous_instruction: 0.75
+confidence: 0.60

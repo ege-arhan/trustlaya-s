@@ -81,3 +81,7 @@ Risk score is not a legal or ethical verdict. Probabilities are task-model outpu
 ## Independent evaluation update (2026-09-24)
 
 See `docs/external_evaluation.md` and `reports/external_evaluation.json`. Held-out deepset prompt injection F1 is 0.765 with false-positive rate 0.429. A hard benign set from real coding-agent traffic had false-positive rate 0.242. Turkish toxicity proxy performance is near zero; toxicity is not the same as this model's ethics-risk task. A reviewed incident set is positive-only, so its 1.000 any-risk coverage cannot establish discrimination. Extra training and real-data head fine-tuning were evaluated on development splits and rejected because they did not improve the combined quality gate. The baseline student remains the published checkpoint.
+
+## Further independent diagnostics and policy change
+
+An independent Turkish privacy dataset gave PII model F1 0.803 and regex-plus-model F1 0.880 on 2,000 balanced, supported-category examples. An independent multilingual secret benchmark gave model F1 0.676 with a 0.949 false-positive rate on 2,000 balanced synthetic/augmented examples. The rule detector alone had 0.073 false-positive rate but 0.403 recall. Because model-only secret scores overfire on benign technical strings, the policy now sends those hits to REVIEW; explicit secret pattern evidence still BLOCKs. This policy change does not change model weights or the recorded synthetic test metrics. Sources, sampling and per-type results: `docs/external_evaluation.md` and `reports/external_privacy_secret.json`.

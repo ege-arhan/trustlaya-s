@@ -12,9 +12,11 @@ def decide(scores, evidence, metadata=None, confidence=1.0, config=None):
     if has_secret: return "BLOCK", "secret_evidence"
     if has_pii and transfer: return "REDACT", "pii_external_transfer"
     if should_abstain(confidence,t["confidence"]): return "REVIEW", "uncertain"
-    if scores["secret"]>=t["secret"]: return "BLOCK", "secret"
     if scores["prompt_injection"]>=t["prompt_injection"]: return "BLOCK", "prompt_injection"
     if scores["dangerous_instruction"]>=t["dangerous_instruction"]: return "BLOCK", "dangerous_instruction"
+    # A shifted secret-only score is too noisy to justify an automatic block.
+    # Verified pattern evidence above can still block; model-only hits go to review.
+    if scores["secret"]>=t["secret"]: return "REVIEW", "unverified_secret_score"
     if scores["pii"]>=t["pii"] and transfer: return "REDACT", "pii_external_transfer"
     if m.get("agent") and (m.get("shell") or m.get("credential_access") or (m.get("database") and m.get("network"))) and not m.get("human_approval"):
         return "REVIEW", "agent_permissions"
