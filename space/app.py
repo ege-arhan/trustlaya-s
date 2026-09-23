@@ -13,6 +13,16 @@ from transformers import AutoTokenizer
 
 from evidence import extract, PII_TYPES, SECRET_TYPES
 
+try:
+    import spaces
+except ImportError:  # Local CPU test environment.
+    spaces = None
+if spaces is not None:
+    @spaces.GPU
+    def _zerogpu_registration():
+        """Required by ZeroGPU startup; actual inference remains on ONNX CPU."""
+        return None
+
 REPO = "xzwq/TrustLaya-S"
 HERE = Path(__file__).resolve().parent
 TASKS = ["pii", "secret", "prompt_injection", "dangerous_instruction", "privacy_risk", "security_risk", "ethics_risk", "oversight_risk", "data_governance_risk"]

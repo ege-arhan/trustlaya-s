@@ -85,3 +85,5 @@ See `docs/external_evaluation.md` and `reports/external_evaluation.json`. Held-o
 ## Further independent diagnostics and policy change
 
 An independent Turkish privacy dataset gave PII model F1 0.803 and regex-plus-model F1 0.880 on 2,000 balanced, supported-category examples. An independent multilingual secret benchmark gave model F1 0.676 with a 0.949 false-positive rate on 2,000 balanced synthetic/augmented examples. The rule detector alone had 0.073 false-positive rate but 0.403 recall. Because model-only secret scores overfire on benign technical strings, the policy now sends those hits to REVIEW; explicit secret pattern evidence still BLOCKs. This policy change does not change model weights or the recorded synthetic test metrics. Sources, sampling and per-type results: `docs/external_evaluation.md` and `reports/external_privacy_secret.json`.
+
+A further independent development/test secret threshold check gave test ROC AUC 0.536; the development-selected threshold near 1.0 still yielded FPR 0.837. Threshold adjustment did not justify restoring model-only auto-blocking. See `reports/secret_threshold_diagnostic.json`.
