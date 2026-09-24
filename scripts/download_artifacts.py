@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import urllib.request
+import time
 from pathlib import Path
 from huggingface_hub import hf_hub_download
 ROOT=Path(__file__).resolve().parents[1]
@@ -48,16 +49,22 @@ def main():
             if target.exists() and sha256_file(target)==expected['sha256']:
                 continue
             temporary=target.with_suffix(target.suffix+'.partial')
-            try:
-                digest=hashlib.sha256()
-                with urllib.request.urlopen(base+name,timeout=60) as remote, temporary.open('wb') as out:
-                    for chunk in iter(lambda:remote.read(4*1024*1024),b''):
-                        digest.update(chunk);out.write(chunk)
-                if digest.hexdigest()!=expected['sha256']:
-                    raise ValueError(f'Checksum mismatch for {name}')
-                temporary.replace(target)
-            finally:
-                temporary.unlink(missing_ok=True)
+            for attempt in range(5):
+                try:
+                    digest=hashlib.sha256()
+                    request=urllib.request.Request(base+name,headers={'User-Agent':'trustlaya-artifact-downloader/1'})
+                    with urllib.request.urlopen(request,timeout=120) as remote, temporary.open('wb') as out:
+                        for chunk in iter(lambda:remote.read(4*1024*1024),b''):
+                            digest.update(chunk);out.write(chunk)
+                    if digest.hexdigest()!=expected['sha256']:
+                        raise ValueError(f'Checksum mismatch for {name}')
+                    temporary.replace(target)
+                    break
+                except (OSError, ValueError):
+                    if attempt==4:raise
+                    time.sleep(min(2**attempt,8))
+                finally:
+                    temporary.unlink(missing_ok=True)
             print(target)
         return
     for remote,local in FILES.items():
