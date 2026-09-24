@@ -5,6 +5,7 @@
   "file_sha256": "fb5432035fdd8453d61f6593bfe78ee2970403c5ea59959b642a6708e2bef670",
   "license": "Apache-2.0; source-level terms may vary",
   "scope": "Broad prompt injection and jailbreak versus benign, not strict tool-return injection",
+  "interpretation_warning": "HarmBench positives include standalone harmful requests without instruction override; their injection-head false negatives are not adjudicated prompt-injection misses.",
   "rows": 942,
   "label_counts": {
     "0": 390,

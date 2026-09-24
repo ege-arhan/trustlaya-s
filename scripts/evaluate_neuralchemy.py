@@ -42,6 +42,7 @@ def main():
         "file_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "license": "Apache-2.0; source-level terms may vary",
         "scope": "Broad prompt injection and jailbreak versus benign, not strict tool-return injection",
+        "interpretation_warning": "HarmBench positives include standalone harmful requests without instruction override; their injection-head false negatives are not adjudicated prompt-injection misses.",
         "rows": len(rows), "label_counts": dict(Counter(labels)),
         "excluded_exact_or_normalized_training_overlap": len(excluded),
         "excluded_label_counts": dict(Counter(int(row["label"]) for row in excluded)),

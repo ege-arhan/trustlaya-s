@@ -37,4 +37,6 @@ The Bordair live subset was first evaluated after the agentic candidate was froz
 
 The NeurAlchemy test was also opened after the agentic candidate was frozen. It combines several upstream sources, including HackAPrompt and a project-original source, under broad prompt injection/jailbreak labels. Zero normalized exact overlap does not exclude near duplicates, shared templates or semantic-family leakage across public corpora. Its measured F1 should not be merged with strict agent/tool-output datasets.
 
+The HarmBench subset contains standalone harmful requests labeled positive by NeurAlchemy's broad adversarial task. They are not necessarily prompt-injection attempts. A low prompt-injection score on one of these is a source-label mismatch rather than proof of a missed injection; dangerous-content performance must be assessed with its own task label and matched negatives.
+
 No actual credentials or real personal data are intentionally published in our generated benchmark files. Public source datasets should be fetched from their own repositories with their stated licenses. Do not treat teacher probabilities or generated labels as ground truth.

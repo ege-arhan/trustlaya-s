@@ -26,7 +26,7 @@ An additional [Bordair live-game diagnostic](reports/live_redteam_diagnostic.jso
 
 A new [NeurAlchemy grouped test](reports/neuralchemy_cross_source.json), opened after selection, had 552 broad attack/jailbreak examples and 390 benign examples. No normalized exact text overlapped the candidate's BPI, agentic or original synthetic train/development sets. It increased candidate F1 from 0.632 to 0.805 versus v2 at their configured thresholds, with the same 0.110 benign FPR. The source mixes jailbreak and prompt injection, has only 942 examples and may share semantic families with other public data, so this is not a strict tool-result security score.
 
-The aggregate hides important source effects. Among 200 NeurAlchemy-origin attacks, false-negative rate fell 0.730→0.180. Among 16 HarmBench-labeled positives, it rose 0.438→0.938; among 13 WildGuard/JudgeComparison positives, it rose 0.077→0.385. Those small and broader-label subsets cannot establish strict injection skill, but they prevent presenting the aggregate as universal improvement. Full per-source confusion matrices are in the JSON report.
+The aggregate hides important source effects. Among 200 NeurAlchemy-origin attacks, false-negative rate fell 0.730→0.180. Among 16 HarmBench-labeled positives, it rose 0.438→0.938; among 13 WildGuard/JudgeComparison positives, it rose 0.077→0.385. Direct inspection found the HarmBench positives are mostly harmful content requests without instruction override, so counting them as missed **prompt injections** would be a label mismatch. These small, broader-label subsets prevent presenting the aggregate as universal improvement. Full per-source confusion matrices are in the JSON report.
 
 ## Export and use
 
