@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 780" role="img" aria-label="TrustLaya-S per-task reliability diagrams">
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<text x="30" y="30" font-family="sans-serif" font-size="19" font-weight="bold">TrustLaya-S v2 — validation reliability</text>
+<text x="30" y="49" font-family="sans-serif" font-size="11" fill="#475569">Synthetic English-labeled validation; raw blue, calibrated orange. Empty bins omitted.</text>
+<text x="52" y="83" font-family="sans-serif" font-size="12" font-weight="bold">pii</text>
+<rect x="52" y="95" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M52 245 L202 95" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="52.44,244.72 72.88,215.76 87.83,217.30 101.08,189.85 121.73,95.00 135.56,95.00 202.00,95.00" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="52.44" cy="244.72" r="2.5" fill="#2563eb"/>
+<circle cx="72.88" cy="215.76" r="2.5" fill="#2563eb"/>
+<circle cx="87.83" cy="217.30" r="2.5" fill="#2563eb"/>
+<circle cx="101.08" cy="189.85" r="2.5" fill="#2563eb"/>
+<circle cx="121.73" cy="95.00" r="2.5" fill="#2563eb"/>
+<circle cx="135.56" cy="95.00" r="2.5" fill="#2563eb"/>
+<circle cx="202.00" cy="95.00" r="2.5" fill="#2563eb"/>
+<polyline points="53.24,245.00 81.46,245.00 88.91,214.75 102.93,215.44 117.08,123.57 132.25,95.00 201.99,95.00" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="53.24" cy="245.00" r="2.5" fill="#ea580c"/>
+<circle cx="81.46" cy="245.00" r="2.5" fill="#ea580c"/>
+<circle cx="88.91" cy="214.75" r="2.5" fill="#ea580c"/>
+<circle cx="102.93" cy="215.44" r="2.5" fill="#ea580c"/>
+<circle cx="117.08" cy="123.57" r="2.5" fill="#ea580c"/>
+<circle cx="132.25" cy="95.00" r="2.5" fill="#ea580c"/>
+<circle cx="201.99" cy="95.00" r="2.5" fill="#ea580c"/>
+<text x="52" y="261" font-family="sans-serif" font-size="10">0</text>
+<text x="196" y="261" font-family="sans-serif" font-size="10">1</text>
+<text x="357" y="83" font-family="sans-serif" font-size="12" font-weight="bold">secret</text>
+<rect x="357" y="95" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M357 245 L507 95" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="357.35,245.00 505.96,95.00" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="357.35" cy="245.00" r="2.5" fill="#2563eb"/>
+<circle cx="505.96" cy="95.00" r="2.5" fill="#2563eb"/>
+<polyline points="357.00,245.00 507.00,95.00" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="357.00" cy="245.00" r="2.5" fill="#ea580c"/>
+<circle cx="507.00" cy="95.00" r="2.5" fill="#ea580c"/>
+<text x="357" y="261" font-family="sans-serif" font-size="10">0</text>
+<text x="501" y="261" font-family="sans-serif" font-size="10">1</text>
+<text x="662" y="83" font-family="sans-serif" font-size="12" font-weight="bold">prompt injection</text>
+<rect x="662" y="95" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M662 245 L812 95" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="663.00,245.00 679.85,245.00 811.16,95.00" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="663.00" cy="245.00" r="2.5" fill="#2563eb"/>
+<circle cx="679.85" cy="245.00" r="2.5" fill="#2563eb"/>
+<circle cx="811.16" cy="95.00" r="2.5" fill="#2563eb"/>
+<polyline points="662.01,245.00 812.00,95.00" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="662.01" cy="245.00" r="2.5" fill="#ea580c"/>
+<circle cx="812.00" cy="95.00" r="2.5" fill="#ea580c"/>
+<text x="662" y="261" font-family="sans-serif" font-size="10">0</text>
+<text x="806" y="261" font-family="sans-serif" font-size="10">1</text>
+<text x="52" y="308" font-family="sans-serif" font-size="12" font-weight="bold">dangerous instruction</text>
+<rect x="52" y="320" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M52 470 L202 320" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="52.62,453.72 67.19,470.00" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="52.62" cy="453.72" r="2.5" fill="#2563eb"/>
+<circle cx="67.19" cy="470.00" r="2.5" fill="#2563eb"/>
+<polyline points="65.29,470.00 70.15,447.16 98.25,470.00" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="65.29" cy="470.00" r="2.5" fill="#ea580c"/>
+<circle cx="70.15" cy="447.16" r="2.5" fill="#ea580c"/>
+<circle cx="98.25" cy="470.00" r="2.5" fill="#ea580c"/>
+<text x="52" y="486" font-family="sans-serif" font-size="10">0</text>
+<text x="196" y="486" font-family="sans-serif" font-size="10">1</text>
+<text x="357" y="308" font-family="sans-serif" font-size="12" font-weight="bold">privacy risk</text>
+<rect x="357" y="320" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M357 470 L507 320" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="358.75,454.17 504.83,320.00" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="358.75" cy="454.17" r="2.5" fill="#2563eb"/>
+<circle cx="504.83" cy="320.00" r="2.5" fill="#2563eb"/>
+<polyline points="365.10,470.00 375.25,395.74 491.39,320.00 494.62,320.00" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="365.10" cy="470.00" r="2.5" fill="#ea580c"/>
+<circle cx="375.25" cy="395.74" r="2.5" fill="#ea580c"/>
+<circle cx="491.39" cy="320.00" r="2.5" fill="#ea580c"/>
+<circle cx="494.62" cy="320.00" r="2.5" fill="#ea580c"/>
+<text x="357" y="486" font-family="sans-serif" font-size="10">0</text>
+<text x="501" y="486" font-family="sans-serif" font-size="10">1</text>
+<text x="662" y="308" font-family="sans-serif" font-size="12" font-weight="bold">security risk</text>
+<rect x="662" y="320" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M662 470 L812 320" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="664.81,416.35 695.87,470.00 810.60,346.36" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="664.81" cy="416.35" r="2.5" fill="#2563eb"/>
+<circle cx="695.87" cy="470.00" r="2.5" fill="#2563eb"/>
+<circle cx="810.60" cy="346.36" r="2.5" fill="#2563eb"/>
+<polyline points="684.21,470.00 701.22,409.45 709.01,399.32 726.20,470.00 775.69,346.36" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="684.21" cy="470.00" r="2.5" fill="#ea580c"/>
+<circle cx="701.22" cy="409.45" r="2.5" fill="#ea580c"/>
+<circle cx="709.01" cy="399.32" r="2.5" fill="#ea580c"/>
+<circle cx="726.20" cy="470.00" r="2.5" fill="#ea580c"/>
+<circle cx="775.69" cy="346.36" r="2.5" fill="#ea580c"/>
+<text x="662" y="486" font-family="sans-serif" font-size="10">0</text>
+<text x="806" y="486" font-family="sans-serif" font-size="10">1</text>
+<text x="52" y="533" font-family="sans-serif" font-size="12" font-weight="bold">ethics risk</text>
+<rect x="52" y="545" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M52 695 L202 545" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="54.66,676.94 119.71,545.00 134.88,695.00" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="54.66" cy="676.94" r="2.5" fill="#2563eb"/>
+<circle cx="119.71" cy="545.00" r="2.5" fill="#2563eb"/>
+<circle cx="134.88" cy="695.00" r="2.5" fill="#2563eb"/>
+<polyline points="63.91,695.00 73.32,665.27 123.49,545.00 130.80,695.00" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="63.91" cy="695.00" r="2.5" fill="#ea580c"/>
+<circle cx="73.32" cy="665.27" r="2.5" fill="#ea580c"/>
+<circle cx="123.49" cy="545.00" r="2.5" fill="#ea580c"/>
+<circle cx="130.80" cy="695.00" r="2.5" fill="#ea580c"/>
+<text x="52" y="711" font-family="sans-serif" font-size="10">0</text>
+<text x="196" y="711" font-family="sans-serif" font-size="10">1</text>
+<text x="357" y="533" font-family="sans-serif" font-size="12" font-weight="bold">oversight risk</text>
+<rect x="357" y="545" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M357 695 L507 545" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="357.97,677.06 380.63,545.00 437.63,695.00" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="357.97" cy="677.06" r="2.5" fill="#2563eb"/>
+<circle cx="380.63" cy="545.00" r="2.5" fill="#2563eb"/>
+<circle cx="437.63" cy="695.00" r="2.5" fill="#2563eb"/>
+<polyline points="368.59,695.00 375.15,695.00 388.01,545.00 407.75,545.00 434.26,695.00" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="368.59" cy="695.00" r="2.5" fill="#ea580c"/>
+<circle cx="375.15" cy="695.00" r="2.5" fill="#ea580c"/>
+<circle cx="388.01" cy="545.00" r="2.5" fill="#ea580c"/>
+<circle cx="407.75" cy="545.00" r="2.5" fill="#ea580c"/>
+<circle cx="434.26" cy="695.00" r="2.5" fill="#ea580c"/>
+<text x="357" y="711" font-family="sans-serif" font-size="10">0</text>
+<text x="501" y="711" font-family="sans-serif" font-size="10">1</text>
+<text x="662" y="533" font-family="sans-serif" font-size="12" font-weight="bold">data governance risk</text>
+<rect x="662" y="545" width="150" height="150" fill="white" stroke="#94a3b8"/>
+<path d="M662 695 L812 545" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+<polyline points="663.03,681.18" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="663.03" cy="681.18" r="2.5" fill="#2563eb"/>
+<polyline points="671.46,695.00 681.55,656.91" fill="none" stroke="#ea580c" stroke-width="2"/>
+<circle cx="671.46" cy="695.00" r="2.5" fill="#ea580c"/>
+<circle cx="681.55" cy="656.91" r="2.5" fill="#ea580c"/>
+<text x="662" y="711" font-family="sans-serif" font-size="10">0</text>
+<text x="806" y="711" font-family="sans-serif" font-size="10">1</text>
+</svg>

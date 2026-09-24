@@ -5,6 +5,8 @@ __pycache__/
 logs/
 publish/
 data/**/*.jsonl
+!data/benchmarks/trustlaya_adversarial.jsonl
+!data/benchmarks/trustlaya_tr_benchmark.jsonl
 models/candidates/
 models/teacher/
 models/base/model.safetensors
@@ -17,5 +19,6 @@ models/student/tokenizer_config.json
 models/student/special_tokens_map.json
 models/student/calibration.json
 models/exported/
+models/trustlaya-s-v*/
 
 src/*.egg-info/

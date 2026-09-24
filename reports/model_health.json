@@ -1,0 +1,133 @@
+{
+  "model": "TrustLaya-S v2 PII candidate",
+  "test": {
+    "scope": "original 1975-row synthetic mixed-only test",
+    "macro_f1": 0.6631675712855586,
+    "mean_task_accuracy": 0.9065541490857947,
+    "security_f1": 0.7769461077844312,
+    "pii_f1": 1.0,
+    "injection_f1": 0.5548780487804879
+  },
+  "calibration": {
+    "scope": "original synthetic validation, 1053 English-labeled rows",
+    "raw_mean": {
+      "ece": 0.10506136789167744,
+      "brier": 0.1027253399127957,
+      "nll": 0.4243050182936851
+    },
+    "calibrated_mean": {
+      "ece": 0.08897572586499537,
+      "brier": 0.0852602650156848,
+      "nll": 0.27142013215999217
+    }
+  },
+  "adversarial": {
+    "scope": "TrustLaya-Adversarial",
+    "clean_f1": 0.7,
+    "transformed_f1": 0.75,
+    "worst_variant": "encoding",
+    "worst_variant_f1": 0.0
+  },
+  "independent_pii": {
+    "scope": "Test split, seed-42 stratified 125 per eight PII categories and 500 each of date and secret task-specific negatives. Entire source is synthetic; no raw examples redistributed. Date and secret are not globally benign.",
+    "rule_f1": 0.48024316109422494,
+    "v1_f1": 0.7374732334047109,
+    "v2_f1": 0.7837338262476895,
+    "v2_false_positive_rate": 0.316
+  },
+  "edge": {
+    "size_mib": 159.894,
+    "onnx_cpu_p50_ms": 5.94,
+    "int8_final_action_disagreement": 0.05078125
+  },
+  "uncertainty": {
+    "confidence_distribution": {
+      "min": 0.5252,
+      "median": 0.9988,
+      "max": 0.9999,
+      "bins": {
+        "0.0-0.1": 0,
+        "0.1-0.2": 0,
+        "0.2-0.3": 0,
+        "0.3-0.4": 0,
+        "0.4-0.5": 0,
+        "0.5-0.6": 4,
+        "0.6-0.7": 15,
+        "0.7-0.8": 24,
+        "0.8-0.9": 39,
+        "0.9-1.0": 1893
+      }
+    },
+    "abstention_rate": 0.0020253164556962027,
+    "coverage_risk": {
+      "0.5": {
+        "coverage": 1.0,
+        "action_error_on_covered": 0.3635443037974684
+      },
+      "0.6": {
+        "coverage": 0.9979746835443037,
+        "action_error_on_covered": 0.36428209030948755
+      },
+      "0.7": {
+        "coverage": 0.990379746835443,
+        "action_error_on_covered": 0.36707566462167684
+      },
+      "0.8": {
+        "coverage": 0.9782278481012658,
+        "action_error_on_covered": 0.37163561076604557
+      },
+      "0.9": {
+        "coverage": 0.9584810126582278,
+        "action_error_on_covered": 0.37929212889593233
+      }
+    },
+    "note": "High categorical confidence does not predict lower synthetic action error in this run; do not treat it as correctness probability."
+  },
+  "independent_agent_injection": {
+    "scope": "Published benchmark tool_result text; second view appends advertised tool descriptions. Third view uses parameter-free overlapping 94-token windows and maximum score. This is prompt-injection text classification, NOT agent attack success rate. Some cases are multi-turn; default model truncates concatenated tool results to 96 tokens.",
+    "single_window": {
+      "n": 182,
+      "positive": 142,
+      "threshold": 0.5,
+      "precision": 0.6666666666666666,
+      "recall": 0.38028169014084506,
+      "f1": 0.484304932735426,
+      "balanced_accuracy": 0.35264084507042254,
+      "mcc": -0.24557157151603842,
+      "false_positive_rate": 0.675,
+      "false_negative_rate": 0.6197183098591549,
+      "confusion_matrix": [
+        [
+          13,
+          27
+        ],
+        [
+          88,
+          54
+        ]
+      ]
+    },
+    "sliding_max": {
+      "n": 182,
+      "positive": 142,
+      "threshold": 0.5,
+      "precision": 0.7244897959183674,
+      "recall": 0.5,
+      "f1": 0.5916666666666667,
+      "balanced_accuracy": 0.4125,
+      "mcc": -0.14536489390823487,
+      "false_positive_rate": 0.675,
+      "false_negative_rate": 0.5,
+      "confusion_matrix": [
+        [
+          13,
+          27
+        ],
+        [
+          71,
+          71
+        ]
+      ]
+    }
+  }
+}

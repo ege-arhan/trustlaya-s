@@ -1,0 +1,195 @@
+{
+  "source": "BTX24/turkish-privacy-pii-ner",
+  "source_revision": "45a8e18edb57224b14368c910f701e064dbb1326",
+  "license": "CC-BY-4.0",
+  "scope": "Test split, seed-42 stratified 125 per eight PII categories and 500 each of date and secret task-specific negatives. Entire source is synthetic; no raw examples redistributed. Date and secret are not globally benign.",
+  "n": 2000,
+  "positive": 1000,
+  "negative": 1000,
+  "results": {
+    "rule_only": {
+      "n": 2000,
+      "positive": 1000,
+      "precision": 1.0,
+      "recall": 0.316,
+      "f1": 0.48024316109422494,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.684,
+      "confusion_matrix": [
+        [
+          1000,
+          0
+        ],
+        [
+          684,
+          316
+        ]
+      ]
+    },
+    "v1": {
+      "at_0_5": {
+        "n": 2000,
+        "positive": 1000,
+        "threshold": 0.5,
+        "model_f1": 0.7363909129875696,
+        "hybrid_f1": 0.7374732334047109,
+        "recall": 0.861,
+        "false_positive_rate": 0.474,
+        "calibration": {
+          "ece": 0.2255595659762621,
+          "brier": 0.20999576151371002,
+          "nll": 0.6229190826416016
+        }
+      },
+      "dev_tuned": {
+        "n": 2000,
+        "positive": 1000,
+        "threshold": 0.5,
+        "model_f1": 0.7363909129875696,
+        "hybrid_f1": 0.7374732334047109,
+        "recall": 0.861,
+        "false_positive_rate": 0.474,
+        "calibration": {
+          "ece": 0.2255595659762621,
+          "brier": 0.20999576151371002,
+          "nll": 0.6229190826416016
+        }
+      },
+      "by_category": {
+        "account_number": {
+          "n": 125,
+          "predicted_positive": 115,
+          "rule_positive": 0
+        },
+        "private_phone": {
+          "n": 125,
+          "predicted_positive": 125,
+          "rule_positive": 102
+        },
+        "tckn": {
+          "n": 125,
+          "predicted_positive": 124,
+          "rule_positive": 2
+        },
+        "private_email": {
+          "n": 125,
+          "predicted_positive": 125,
+          "rule_positive": 125
+        },
+        "vkn": {
+          "n": 125,
+          "predicted_positive": 123,
+          "rule_positive": 8
+        },
+        "private_address": {
+          "n": 125,
+          "predicted_positive": 124,
+          "rule_positive": 0
+        },
+        "iban": {
+          "n": 125,
+          "predicted_positive": 124,
+          "rule_positive": 79
+        },
+        "private_person": {
+          "n": 125,
+          "predicted_positive": 1,
+          "rule_positive": 0
+        },
+        "private_date": {
+          "n": 500,
+          "predicted_positive": 398,
+          "rule_positive": 0
+        },
+        "secret": {
+          "n": 500,
+          "predicted_positive": 76,
+          "rule_positive": 0
+        }
+      }
+    },
+    "v2": {
+      "at_0_5": {
+        "n": 2000,
+        "positive": 1000,
+        "threshold": 0.5,
+        "model_f1": 0.7747440273037542,
+        "hybrid_f1": 0.7783921735431731,
+        "recall": 0.915,
+        "false_positive_rate": 0.436,
+        "calibration": {
+          "ece": 0.18112821990624067,
+          "brier": 0.20736388862133026,
+          "nll": 0.7259936332702637
+        }
+      },
+      "dev_tuned": {
+        "n": 2000,
+        "positive": 1000,
+        "threshold": 0.8,
+        "model_f1": 0.7746741154562383,
+        "hybrid_f1": 0.7837338262476895,
+        "recall": 0.848,
+        "false_positive_rate": 0.316,
+        "calibration": {
+          "ece": 0.18112821990624067,
+          "brier": 0.20736388862133026,
+          "nll": 0.7259936332702637
+        }
+      },
+      "by_category": {
+        "account_number": {
+          "n": 125,
+          "predicted_positive": 68,
+          "rule_positive": 0
+        },
+        "private_phone": {
+          "n": 125,
+          "predicted_positive": 125,
+          "rule_positive": 102
+        },
+        "tckn": {
+          "n": 125,
+          "predicted_positive": 116,
+          "rule_positive": 2
+        },
+        "private_email": {
+          "n": 125,
+          "predicted_positive": 125,
+          "rule_positive": 125
+        },
+        "vkn": {
+          "n": 125,
+          "predicted_positive": 113,
+          "rule_positive": 8
+        },
+        "private_address": {
+          "n": 125,
+          "predicted_positive": 125,
+          "rule_positive": 0
+        },
+        "iban": {
+          "n": 125,
+          "predicted_positive": 114,
+          "rule_positive": 79
+        },
+        "private_person": {
+          "n": 125,
+          "predicted_positive": 62,
+          "rule_positive": 0
+        },
+        "private_date": {
+          "n": 500,
+          "predicted_positive": 312,
+          "rule_positive": 0
+        },
+        "secret": {
+          "n": 500,
+          "predicted_positive": 4,
+          "rule_positive": 0
+        }
+      }
+    }
+  },
+  "selection_note": "This dataset was not used for training, calibration or threshold selection. After inspection, it is no longer a fresh future holdout."
+}

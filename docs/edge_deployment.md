@@ -1,0 +1,7 @@
+# Edge deployment
+
+The evaluated v2 ONNX FP32 file is `models/exported/v2/trustlaya_s.onnx` (159.9 MiB). Experimental INT8 is about 40.5 MiB and FP16 weights about 80.4 MiB. FP32 ONNX batch-1 CPU median was 7.388 ms in the latest saved MacBook run; the measurement is machine-specific. INT8 changed 5.1% of final policy actions in a 256-row synthetic comparison and should not be substituted without a device-specific regression gate. See `reports/onnx_v2_parity.json`, `reports/model_sizes_v2.json`, and `benchmarks/results.json`.
+
+Run `python scripts/export_onnx.py`, `python scripts/evaluate_onnx_v2.py`, and `python scripts/benchmark.py`. The local HTTP service starts with `python scripts/serve_api.py` and binds to 127.0.0.1 by default. `/analyze` accepts text and optional agent metadata and session identifier. It limits request size, stores bounded session metadata in memory, and does not log raw text in its optional audit log. It has no authentication or transport security; put a suitable gateway in front of it before network exposure.
+
+[Arduino UNO Q](https://docs.arduino.cc/hardware/uno-q) has a Linux-capable application processor and a microcontroller. The model belongs on the Linux application-processor side, subject to memory and runtime verification; it cannot fit in the microcontroller's small SRAM. No physical UNO Q was tested. Deployment needs measured memory, thermal behavior, startup, tokenizer support, ONNX Runtime availability, and policy tests on the target image.

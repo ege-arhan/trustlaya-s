@@ -1,4 +1,4 @@
-# TrustLaya-S final report
+# TrustLaya-S final report (v1 historical run and v2 experimental update)
 
 ## Problem and goal
 
@@ -10,13 +10,13 @@ Pretrained Turkish BERT shared encoder, mean pooling, nine independent binary ri
 
 ## Teacher and distillation
 
-[convaiinnovations/laya](https://huggingface.co/convaiinnovations/laya), multilingual checkpoint, Apache-2.0 license; approximately 322M parameters. 128 training rows were queried for nine typed `noul` probabilities. There were 73 unique text keys in the teacher file. Student loss is binary cross-entropy for risk heads plus 0.3 severity cross-entropy plus 0.3 action cross-entropy; the weak teacher binary cross-entropy term has weight 0.05 only when teacher's binary side agrees with synthetic label. Teacher predictions are not ground truth. Training: 150 supervised steps and 80 resumed weak-distillation steps, batch 32. Logs: `logs/final_training.log` and `logs/final_distillation.log`.
+[convaiinnovations/laya-multilingual](https://huggingface.co/convaiinnovations/laya-multilingual), Apache-2.0 license; 321,908,998 local parameters. Local model and tokenizer SHA-256 match the public multilingual checkpoint. 128 training rows were queried for nine typed `noul` probabilities. There were 73 unique text keys in the teacher file. Student loss is binary cross-entropy for risk heads plus 0.3 severity cross-entropy plus 0.3 action cross-entropy; the weak teacher binary cross-entropy term has weight 0.05 only when teacher's binary side agrees with synthetic label. Teacher predictions are not ground truth. Training: 150 supervised steps and 80 resumed weak-distillation steps, batch 32. Logs: `logs/final_training.log` and `logs/final_distillation.log`.
 
 ## Dataset
 
 10,000 synthetic samples, eleven categories, Turkish/English/mixed templates. Train 6972, validation 1053, test 1975. Template families and exact texts do not cross splits. Synthetic examples are controlled, but many examples share a small set of templates; results are not evidence of open-world robustness.
 
-Published dataset: [xzwq/TrustLaya-S-synthetic](https://huggingface.co/datasets/xzwq/TrustLaya-S-synthetic). A fresh `datasets.load_dataset` call verified all three split counts and schema after upload. Independent evaluation corpora are linked and cited but not redistributed.
+Published dataset: [ege-arhan/TrustLaya-S-synthetic](https://huggingface.co/datasets/ege-arhan/TrustLaya-S-synthetic). A fresh `datasets.load_dataset` call verified all three split counts and schema after upload. Independent evaluation corpora are linked and cited but not redistributed.
 
 ## Full held-out synthetic test (1975 examples)
 
@@ -74,9 +74,9 @@ RSS deltas were measured sequentially in one process; allocator reuse and alread
 
 ## Test and verification
 
-`pytest`: 11 passed. ONNX checker and ONNX CPU inference passed. CLI produced REDACT for the requested Turkish PII transfer example. Stage outcomes are in `logs/final_check.log`. No Arduino UNO Q board was connected or measured.
+The original v1 run passed 11 pytest tests. ONNX checker and ONNX CPU inference passed. CLI produced REDACT for the requested Turkish PII transfer example. Stage outcomes are in `logs/final_check.log`. No Arduino UNO Q board was connected or measured.
 
-Published [GitHub source](https://github.com/ege-arhan/trustlaya-s), [Hugging Face model](https://huggingface.co/xzwq/TrustLaya-S), and [live Space](https://huggingface.co/spaces/xzwq/TrustLaya-S-demo). The live Space was manually checked with PII transfer (REDACT), prompt injection (BLOCK), and benign text (ALLOW).
+Published [GitHub source](https://github.com/ege-arhan/trustlaya-s), [Hugging Face v1 model](https://huggingface.co/ege-arhan/TrustLaya-S), and [Space](https://huggingface.co/spaces/ege-arhan/TrustLaya-S-demo). The v1 Space was manually checked with PII transfer (REDACT), prompt injection (BLOCK), and benign text (ALLOW).
 
 ## Limitations and next work
 
@@ -91,3 +91,31 @@ See `docs/external_evaluation.md` and `reports/external_evaluation.json`. Held-o
 An independent Turkish privacy dataset gave PII model F1 0.803 and regex-plus-model F1 0.880 on 2,000 balanced, supported-category examples. An independent multilingual secret benchmark gave model F1 0.676 with a 0.949 false-positive rate on 2,000 balanced synthetic/augmented examples. The rule detector alone had 0.073 false-positive rate but 0.403 recall. Because model-only secret scores overfire on benign technical strings, the policy now sends those hits to REVIEW; explicit secret pattern evidence still BLOCKs. This policy change does not change model weights or the recorded synthetic test metrics. Sources, sampling and per-type results: `docs/external_evaluation.md` and `reports/external_privacy_secret.json`.
 
 A further independent development/test secret threshold check gave test ROC AUC 0.536; the development-selected threshold near 1.0 still yielded FPR 0.837. Threshold adjustment did not justify restoring model-only auto-blocking. See `reports/secret_threshold_diagnostic.json`.
+
+## Advanced v2 candidate update
+
+The versioned advanced candidate preserves v1 and updates only the PII head using frozen encoder features from disjoint Turkish privacy scenarios. A distinct 2,000-row synthetic Turkish PII test gave v2 F1 0.784 and false-positive rate 0.316. The original 1,975-row synthetic mixed test remains macro F1 0.663; injection F1 0.555 and data-governance F1 zero. Current confidence fails selective-risk testing. A 24-family adversarial suite found F1 zero for encoded attacks. FP32 ONNX remains 159.9 MiB; INT8 changed 5.1% of policy actions on 256 rows. A local session-aware API and agent risk policy are implemented. The complete scoped evidence, methods, and limitations are in `reports/research_report.md`, `MODEL_CARD.md`, and `DATA_CARD.md`. `scripts/final_check.sh` passed all stages, including 17 pytest tests, in the advanced branch. No production readiness or UNO Q hardware validation is claimed.
+
+## Latest independent diagnostic and release verification
+
+On the same 2,000-row Turkish PII mapping, rules alone reached F1 0.480 and FPR 0; v1/v2 hybrid F1 was 0.737/0.784, but v2 FPR was 0.316. The source is synthetic. A separate 182-case, hand-crafted agentic prompt-injection benchmark gave v2 tool-result classification F1 0.484, recall 0.380, FPR 0.675 and false-negative rate 0.620. Overlapping 94-token windows improved F1 to 0.592, with FPR still 0.675. This measures text detection only, not attack success. These failures rule out autonomous enforcement. The policy now requires REVIEW for declared lower-trust tool output entering an unapproved privileged agent; callers must provide truthful metadata and pause execution. Full scopes, pinned source revisions and breakdowns are in `reports/independent_pii_v2.json` and `reports/agent_injection_independent.json`.
+
+The latest saved Mac batch-one warm p50 was 13.864 ms PyTorch CPU, 7.311 ms PyTorch MPS and 7.388 ms ONNX CPU FP32; measurements vary between runs. The pinned PII training data reproduced the published v2 safetensors SHA-256 exactly in a separate candidate directory. The [experimental GitHub prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.0.0-rc1) was downloaded with SHA-256 verification and run from a clean checkout. The [advanced Hugging Face repository](https://huggingface.co/ege-arhan/TrustLaya-S-Advanced) now hosts v2 safetensors, FP32/INT8 ONNX, tokenizer, calibration and policy. The three large Hugging Face file hashes match `models/advanced_manifest.json`; nine files were redownloaded and checksum-verified, and INT8 CLI inference returned `REDACT` for the Turkish PII-transfer example. See `reports/release_verification.md`. Latest `scripts/final_check.sh` passed all stages, including independent diagnostics, ONNX parity, 18 tests and CLI inference.
+
+## Injection-head improvement experiments
+
+An isolated BPI-only head reached F1 0.870 on its 2,961-row transformed test versus released v2 0.561. Joint training with legacy synthetic anchors reached 0.869. On a newly reserved 550-row Turkish/English PolyGuardBench check, the joint head reached F1 0.868 versus 0.486, with attack recall 0.989 versus 0.563 and benign FPR 0.153 versus 0.397. However, the joint head reduced the original mixed-only synthetic injection F1 from 0.555 to 0.464 and raised benign AgentInjectionBench tool-output FPR from 0.675 to 0.800. High F1 on that attack-heavy agent test hides the false alarms. The improvement is therefore domain-specific; no new injection checkpoint was promoted or uploaded. Exact test scopes, pinned source revisions and limitations are in `reports/injection_experiments.md`.
+
+Adding a separate paired agentic training source improved its untouched 545-row synthetic test: F1 **0.628→0.872**, attack recall **0.832→0.929**, and benign FPR **0.864→0.211**. The candidate missed 20 attacks and flagged 56 benign cases there. On the independent broad PromptWall diagnostic, recall fell **0.723→0.698** while FPR fell **0.231→0.062**. Previously inspected AgentInjectionBench benign FPR stayed **0.800**. This candidate also remains unpromoted. The released v2 model and GitHub prerelease weights are unchanged.
+
+A new pinned Bordair live-game source contains real human-written red-team submissions. On its 855 recorded bypass strings, v2 flagged 71.3% and the agentic candidate 36.4% at their own thresholds. Since the source is attack-intent-only and includes conversational strings, these fractions are not recall or F1. This diagnostic strengthens the decision not to promote the synthetic-data winner; see `reports/live_redteam_diagnostic.json`.
+
+On a separate untouched 942-row NeurAlchemy grouped test with broad injection/jailbreak labels and benign examples, agentic candidate F1 was 0.805 versus v2 0.632, recall 0.726 versus 0.498, and both benign FPR 0.110. No normalized exact text overlapped our training/development sets, but semantic-family overlap remains unverified. This stronger broad-label result does not cancel the negative human-game diagnostic or 0.800 AgentInjectionBench benign FPR. See `reports/neuralchemy_cross_source.json`.
+
+A separate pinned AgentDojo check paired 25 clean and injected tool outputs from recorded agent runs. The normal 96-token v2 path scored F1 0.478, recall 0.440, benign FPR 0.400; the agentic candidate scored 0.746, 1.000, 0.680. A parameter-free sliding window lifted v2 to F1 0.833 and recall 1.000, but left FPR at 0.400. All 25 attacks use the benchmark-specific `<INFORMATION>` tag, giving a trivial marker detector perfect classification; this small templated sample is a truncation diagnostic, not a credible production score. The candidate is still unpromoted. See `reports/agentdojo_paired.json`.
+
+## Separate AI firewall gateway prototype
+
+A trusted tool adapter now sends the exact pending text to the local decision API and invokes the protected sender only for `ALLOW`. It holds `REDACT`, `REVIEW`, `BLOCK` and service errors. This adds an executable control point without changing model weights or benchmark scores. The adapter cannot stop a process that bypasses it; an UNO Q installation needs an independently enforced routing or tool-permission boundary. The board and physical enforcement remain untested. End-to-end ONNX demos and **26 passing pytest tests** are recorded in `reports/gateway_verification.md`.
+
+The [agentic INT8-only experimental prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.1.0-agentic-rc1) contains nine checksum-pinned assets. A fresh checkout downloaded them and completed ONNX INT8 CLI inference. FP32 **agentic** candidate weights and ONNX are local reproducible artifacts, not in that prerelease because large-file GitHub uploads stalled. The Hugging Face Advanced repository contains the separate **v2** model, not this unpromoted agentic head. See `reports/release_verification.md`.
