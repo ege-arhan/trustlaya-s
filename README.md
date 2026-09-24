@@ -1,5 +1,28 @@
 # TrustLaya-S
 
+## External-data v3 experiment (not deployed)
+
+The frozen v2 external baseline and the independent v3 experiment are documented in [v2 freeze](reports/v2_external_baseline_frozen.md), [v3 scorecard](reports/v3_external_scorecard.md), and [v3 model card](reports/v3_model_card.md). V3 adds TAB DIRECT PERSON/CODE BIO token and Gandalf/prompt-library attack heads on the frozen v2 encoder. The PII head improves ranking but has poor exact-span recall; the attack head fails to transfer to JailbreakLLMs. **V3 is NO-GO and is not wired into the default CLI, API, policy, or authorization gateway.** The published v2 model and its full-cohort external results remain unchanged.
+
+To reproduce locally from the pinned v2 artifacts and permitted external corpora:
+
+```bash
+git clone https://github.com/NorskRegnesentral/text-anonymization-benchmark.git benchmarks/external/raw/tab
+git -C benchmarks/external/raw/tab checkout 558e09e26d6b36f5f78440074e6a233946d98bd9
+git clone https://github.com/TrustAIRLab/JailbreakLLMs.git benchmarks/external/raw/jailbreakllms
+git -C benchmarks/external/raw/jailbreakllms checkout 2dbd7bbc25f1b156552678f451bddbc787cd679f
+PYTHONPATH=src .venv/bin/python scripts/run_external_real.py
+PYTHONPATH=src .venv/bin/python scripts/prepare_v3_baseline.py
+PYTHONPATH=src .venv/bin/python scripts/fetch_v3_external_data.py
+PYTHONPATH=src .venv/bin/python scripts/train_v3_external.py
+PYTHONPATH=src .venv/bin/python scripts/check_v3_leakage.py
+PYTHONPATH=src .venv/bin/python scripts/run_v3_external_eval.py
+PYTHONPATH=src .venv/bin/python scripts/analyze_v3_errors.py
+PYTHONPATH=src .venv/bin/python scripts/plot_v3_reliability.py
+```
+
+The v3 scripts require the [frozen local v2 predictions](reports/v2_external_baseline_frozen.md) from `scripts/run_external_real.py` and the pinned v2 checkpoint. Training/test corpora, row predictions, and head weights are gitignored; reports contain aggregates and hashes. The v3 head files remain local because the independent jailbreak result failed the promotion criteria. A fresh source-separated blind test is required before publication.
+
 **Küçük model. Ölçülen risk. Ayrı politika kararı.**
 
 Turkish-first, compact encoder-based AI safety decision MVP. A 42.1M-parameter pretrained Turkish BERT backbone feeds nine risk logits, severity and action heads. Rules extract evidence and a separate policy engine decides the final action. This is a research prototype, not a production safety gate.
