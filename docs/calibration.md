@@ -1,0 +1,11 @@
+# Calibration and uncertainty
+
+TrustLaya-S emits task logits. A sigmoid converts each logit into a model score; it does **not** make that score a real-world probability of harm. Each task uses a stored temperature fitted to labeled development data. Evidence rules can raise the final PII or secret score independently of temperature scaling. Policy thresholds therefore operate on a hybrid signal, and their behavior must be validated separately.
+
+The original 1,053-row synthetic validation set contains English examples only. Eight v1 temperatures were fitted on it. The v2 PII temperature was fitted on separate Turkish privacy development scenarios. `reports/calibration_v2.json` measures the original validation set, so its aggregate metrics are partly in-sample: mean raw/calibrated ECE 0.1051/0.0890, Brier 0.1027/0.0853, NLL 0.4243/0.2714. PII calibration actually worsened on that English set (ECE 0.0238 to 0.0566). The [reliability plot](../reports/reliability_v2.svg) displays this narrow diagnostic; it is not a deployment calibration certificate.
+
+On the separate 2,000-row Turkish PII benchmark, v2 ECE was 0.181, Brier 0.207 and NLL 0.726. At the development-selected 0.8 threshold, PII F1 was 0.784 with false-positive rate 0.316. Its source is synthetic, and test inspection precludes treating later tuning on it as an untouched holdout.
+
+The current `confidence` field is the sharpness of the categorical action prediction. On 1,975 synthetic test rows its median was 0.9988, while the policy-action error on covered cases rose from 0.364 at full coverage to 0.379 when requiring confidence >=0.9. It is **not calibrated correctness confidence**. `abstain` and REVIEW can still be triggered by configured thresholds and explicit policy rules, but this confidence measure should not authorize autonomous irreversible actions. A future version needs separate correctness labels, a held-out calibration split, and selective-risk testing under distribution shift.
+
+Reproduce the candidate fit with `python scripts/calibrate.py`; it writes `models/candidates/recalibration/calibration.json` and `reports/recalibration_candidate.json`, preserving the evaluated v2 file. Recreate diagnostics with `python scripts/plot_reliability.py` and `python scripts/model_health.py`.

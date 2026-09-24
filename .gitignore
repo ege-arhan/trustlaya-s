@@ -6,6 +6,7 @@ logs/
 publish/
 data/**/*.jsonl
 !data/benchmarks/trustlaya_adversarial.jsonl
+!data/benchmarks/trustlaya_tr_benchmark.jsonl
 models/candidates/
 models/teacher/
 models/base/model.safetensors

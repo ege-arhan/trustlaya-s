@@ -64,6 +64,8 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None):
                 metadata = payload.get("agent_state") or {}
                 if not isinstance(metadata, dict) or any(not isinstance(v, bool) for v in metadata.values()):
                     raise ValueError("agent_state must contain boolean values")
+                if "policy" in payload:
+                    raise ValueError("policy overrides are not accepted by the public API")
                 session_id = payload.get("session_id")
                 if session_id is not None and (not isinstance(session_id, str) or
                                                not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", session_id)):
@@ -73,8 +75,7 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None):
                     if session_id not in sessions and len(sessions) >= 128:
                         sessions.pop(next(iter(sessions)))
                     tracker = sessions.setdefault(session_id, SessionRisk())
-                result = engine.analyze(text, metadata, session=tracker,
-                                        policy_override=payload.get("policy"))
+                result = engine.analyze(text, metadata, session=tracker)
                 if audit_path is not None:
                     audit_path.parent.mkdir(parents=True, exist_ok=True)
                     with audit_path.open("a") as out:

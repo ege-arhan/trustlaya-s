@@ -69,7 +69,7 @@ def main():
     target = ROOT / "benchmarks"
     (target / "results.json").write_text(json.dumps(rows, indent=2))
     with (target / "results.csv").open("w", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(file, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     lines = ["# Edge benchmark comparison", "", "Batch 1 warm p50 from 20 timed calls. V1 latency comes from the fresh frozen baseline run; v2 latency from this run. F1 scopes differ for INT8 and are identified in the CSV/JSON. ECE is available only for a 256-row v2 subset. Sequential RSS deltas are approximate.", "", "| Model | Backend | Size MiB | Macro F1 | Security F1 | PII F1 | Injection F1 | ECE | p50 ms |", "|---|---|---:|---:|---:|---:|---:|---:|---:|"]

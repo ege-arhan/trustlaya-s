@@ -8,11 +8,12 @@ from trustlaya.inference import Analyzer
 
 
 def main():
+    root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8765)
-    parser.add_argument("--model-dir", type=Path)
-    parser.add_argument("--onnx", type=Path)
+    parser.add_argument("--model-dir", type=Path, default=root / "models/trustlaya-s-v2")
+    parser.add_argument("--onnx", type=Path, default=root / "models/exported/v2/trustlaya_s.onnx")
     parser.add_argument("--audit-log", type=Path, help="opt-in redacted JSONL audit path")
     args = parser.parse_args()
     backend = "onnx" if args.onnx or not args.model_dir else "torch_cpu"

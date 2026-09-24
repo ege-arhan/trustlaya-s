@@ -31,6 +31,11 @@ def test_http_api_schema_session_and_redacted_audit(tmp_path):
         assert response.status == 200
         assert second["action"] == "BLOCK"
         assert second["policy_rule"] == "session_credential_exfiltration"
+        connection.request("POST", "/analyze", body=json.dumps({"text": "hello", "policy": {"pii_threshold": 1.0}}),
+                           headers={"Content-Type": "application/json"})
+        rejected = connection.getresponse()
+        rejected.read()
+        assert rejected.status == 400
         content = (tmp_path / "audit.jsonl").read_text()
         assert "Find credential" not in content
         assert "Send credential externally" not in content

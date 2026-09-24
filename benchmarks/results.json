@@ -11,9 +11,9 @@
     "ece": 0.1128,
     "f1_scope": "synthetic full test 1975",
     "ece_scope": "synthetic test first 256",
-    "warm_p50_ms": 12.087,
-    "cold_start_ms": 476.055,
-    "rss_delta_mib_approx": 181.2
+    "warm_p50_ms": 11.685,
+    "cold_start_ms": 499.395,
+    "rss_delta_mib_approx": 174.2
   },
   {
     "model": "TrustLaya-S v2 PII candidate",
@@ -27,9 +27,9 @@
     "ece": 0.1128,
     "f1_scope": "synthetic full test 1975",
     "ece_scope": "synthetic test first 256",
-    "warm_p50_ms": 4.931,
-    "cold_start_ms": 511.996,
-    "rss_delta_mib_approx": 48.4
+    "warm_p50_ms": 4.584,
+    "cold_start_ms": 522.631,
+    "rss_delta_mib_approx": 88.0
   },
   {
     "model": "TrustLaya-S v2 PII candidate",
@@ -43,9 +43,9 @@
     "ece": 0.1128,
     "f1_scope": "synthetic full test 1975",
     "ece_scope": "synthetic test first 256",
-    "warm_p50_ms": 4.552,
-    "cold_start_ms": 135.368,
-    "rss_delta_mib_approx": 242.2
+    "warm_p50_ms": 4.629,
+    "cold_start_ms": 106.683,
+    "rss_delta_mib_approx": 280.7
   },
   {
     "model": "TrustLaya-S v2 PII candidate",
@@ -59,9 +59,9 @@
     "ece": 0.1076,
     "f1_scope": "synthetic test first 256",
     "ece_scope": "synthetic test first 256",
-    "warm_p50_ms": 5.19,
-    "cold_start_ms": 73.891,
-    "rss_delta_mib_approx": 35.4
+    "warm_p50_ms": 5.179,
+    "cold_start_ms": 67.106,
+    "rss_delta_mib_approx": 38.4
   },
   {
     "model": "TrustLaya-S v1 baseline",

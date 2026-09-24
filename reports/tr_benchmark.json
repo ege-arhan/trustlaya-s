@@ -1,0 +1,217 @@
+{
+  "dataset": "TrustLaya-TR-Benchmark",
+  "rows": 33,
+  "provenance": "researcher_authored_synthetic_not_human_verified",
+  "warning": "Only three examples per category; scores have high sampling uncertainty and are not generalization estimates.",
+  "languages": {
+    "tr": {
+      "n": 11,
+      "macro_f1": 0.9692307692307693,
+      "tasks": {
+        "pii": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "secret": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        },
+        "prompt_injection": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        },
+        "dangerous_instruction": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        },
+        "privacy_risk": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "security_risk": {
+          "f1": 0.9230769230769231,
+          "recall": 1.0,
+          "support": 6
+        },
+        "ethics_risk": {
+          "f1": 0.8,
+          "recall": 1.0,
+          "support": 2
+        },
+        "oversight_risk": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "data_governance_risk": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        }
+      }
+    },
+    "en": {
+      "n": 11,
+      "macro_f1": 0.9544159544159544,
+      "tasks": {
+        "pii": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "secret": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        },
+        "prompt_injection": {
+          "f1": 0.6666666666666666,
+          "recall": 1.0,
+          "support": 1
+        },
+        "dangerous_instruction": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        },
+        "privacy_risk": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "security_risk": {
+          "f1": 0.9230769230769231,
+          "recall": 1.0,
+          "support": 6
+        },
+        "ethics_risk": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "oversight_risk": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "data_governance_risk": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        }
+      }
+    },
+    "mixed": {
+      "n": 11,
+      "macro_f1": 0.7582010582010582,
+      "tasks": {
+        "pii": {
+          "f1": 0.8,
+          "recall": 1.0,
+          "support": 2
+        },
+        "secret": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        },
+        "prompt_injection": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        },
+        "dangerous_instruction": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 1
+        },
+        "privacy_risk": {
+          "f1": 1.0,
+          "recall": 1.0,
+          "support": 2
+        },
+        "security_risk": {
+          "f1": 0.8571428571428571,
+          "recall": 1.0,
+          "support": 6
+        },
+        "ethics_risk": {
+          "f1": 0.5,
+          "recall": 0.5,
+          "support": 2
+        },
+        "oversight_risk": {
+          "f1": 0.6666666666666666,
+          "recall": 0.5,
+          "support": 2
+        },
+        "data_governance_risk": {
+          "f1": 0.0,
+          "recall": 0.0,
+          "support": 1
+        }
+      }
+    }
+  },
+  "tasks": {
+    "pii": {
+      "precision": 0.8571428571428571,
+      "recall": 1.0,
+      "f1": 0.9230769230769231,
+      "support": 6
+    },
+    "secret": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    "prompt_injection": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571428571428571,
+      "support": 3
+    },
+    "dangerous_instruction": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    "privacy_risk": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 6
+    },
+    "security_risk": {
+      "precision": 0.8181818181818182,
+      "recall": 1.0,
+      "f1": 0.9,
+      "support": 18
+    },
+    "ethics_risk": {
+      "precision": 0.7142857142857143,
+      "recall": 0.8333333333333334,
+      "f1": 0.7692307692307693,
+      "support": 6
+    },
+    "oversight_risk": {
+      "precision": 1.0,
+      "recall": 0.8333333333333334,
+      "f1": 0.9090909090909091,
+      "support": 6
+    },
+    "data_governance_risk": {
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "support": 3
+    }
+  }
+}

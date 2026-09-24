@@ -4,10 +4,10 @@ Batch 1 warm p50 from 20 timed calls. V1 latency comes from the fresh frozen bas
 
 | Model | Backend | Size MiB | Macro F1 | Security F1 | PII F1 | Injection F1 | ECE | p50 ms |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
-| TrustLaya-S v2 PII candidate | PyTorch CPU | 160.8 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | 0.1128 | 12.087 |
-| TrustLaya-S v2 PII candidate | PyTorch MPS | 160.8 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | 0.1128 | 4.931 |
-| TrustLaya-S v2 PII candidate | ONNX CPU FP32 | 159.9 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | 0.1128 | 4.552 |
-| TrustLaya-S v2 PII candidate | ONNX CPU INT8 | 40.5 | 0.6320 | 0.7943 | 1.0000 | 0.5758 | 0.1076 | 5.190 |
+| TrustLaya-S v2 PII candidate | PyTorch CPU | 160.8 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | 0.1128 | 11.685 |
+| TrustLaya-S v2 PII candidate | PyTorch MPS | 160.8 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | 0.1128 | 4.584 |
+| TrustLaya-S v2 PII candidate | ONNX CPU FP32 | 159.9 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | 0.1128 | 4.629 |
+| TrustLaya-S v2 PII candidate | ONNX CPU INT8 | 40.5 | 0.6320 | 0.7943 | 1.0000 | 0.5758 | 0.1076 | 5.179 |
 | TrustLaya-S v1 baseline | PyTorch CPU | 160.8 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | NOT MEASURED | 12.656 |
 | TrustLaya-S v1 baseline | PyTorch MPS | 160.8 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | NOT MEASURED | 5.541 |
 | TrustLaya-S v1 baseline | ONNX CPU FP32 | 159.9 | 0.6632 | 0.7769 | 1.0000 | 0.5549 | NOT MEASURED | 5.140 |

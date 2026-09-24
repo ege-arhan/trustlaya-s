@@ -6,7 +6,7 @@
   "architecture": "arm64",
   "python": "3.12.10",
   "ram_gib": 24.0,
-  "free_disk_gib": 121.55,
+  "free_disk_gib": 119.53,
   "mps_available": true,
   "device": "mps",
   "packages": {
