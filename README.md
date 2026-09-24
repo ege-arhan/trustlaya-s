@@ -106,3 +106,19 @@ harness verifies that the agent cannot reach the target network directly:
 `.venv/bin/python scripts/verify_isolated_deployment.py`. See
 `docs/isolated-deployment.md` and `docs/security_boundary.md`. This is a
 prototype deployment test, not an Arduino UNO Q hardware test.
+
+## Independent external evaluation (frozen v2)
+
+The [external real-world report](reports/external_real_world_benchmark.md) measures
+the unchanged TrustLaya-S v2 checkpoint on public ECHR case text (TAB) and
+community-collected jailbreak prompts. It keeps clinical PHI, secrets,
+constructed agent tests and internal synthetic regression results separate.
+The [dataset audit](reports/external_benchmark_dataset_audit.md) records source,
+license and access limits. The current external results expose substantial
+missed direct identifiers and jailbreak false alarms; do not treat internal
+synthetic scores as field performance.
+
+With the project's `.venv` installed, reproduce the public-data suite with
+`bash scripts/run_external_all.sh`. Raw source corpora and per-row prediction
+archives stay in gitignored `benchmarks/external/`; aggregate reports are in
+`reports/`. The clinical note run is unlabeled and reports flag counts only.

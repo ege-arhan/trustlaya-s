@@ -17,3 +17,15 @@ On a separate 182-case agentic injection benchmark, tool-result text F1 was 0.48
 Experimental BPI-trained injection heads improved some Turkish/English diagnostics but worsened the mixed-only legacy test and raised benign agent-tool-output false-positive rate to 0.800. BPI labels include broader jailbreak/adversarial content, so those scores do not establish strict prompt-injection detection. These candidates are not promoted.
 
 A later agentic-data candidate improved a paired synthetic scenario test, yet still missed 20 of 280 attacks and flagged 56 of 265 benign examples. On a different broad attack corpus its recall declined, and the previously inspected agent tool-output false-positive rate stayed 0.800. It remains an opt-in research artifact only.
+# Frozen v2 external evaluation (2026-09-25)
+
+The [independent external report](../reports/external_real_world_benchmark.md)
+found low transfer to narrow direct-identifier detection in ECHR legal text
+(TAB F1 0.107, recall 0.096) and a high false-positive rate on
+community-collected jailbreak prompts (FPR 0.900 at the unchanged 0.50 raw
+score threshold). These are different tasks; no combined score is meaningful.
+The clinical note corpus has no PHI gold, and SecretBench/i2b2 access was not
+available. The reported clinical flag rate is not a false-positive rate.
+Neither these scores nor internally calibrated outputs establish production
+readiness. See the [baseline provenance notes](../reports/external_baselines.md)
+before interpreting model comparisons.

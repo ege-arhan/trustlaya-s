@@ -20,5 +20,7 @@ models/student/special_tokens_map.json
 models/student/calibration.json
 models/exported/
 models/trustlaya-s-v*/
+benchmarks/external/raw/
+benchmarks/external/predictions/
 
 src/*.egg-info/

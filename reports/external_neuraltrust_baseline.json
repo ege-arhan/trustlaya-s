@@ -1,0 +1,25 @@
+{
+  "model": "NeuralTrust/prompt-guard-oss-small",
+  "revision": "40e5c56b68a1b081484c3e56c9bee726e2749138",
+  "license": "MIT",
+  "metrics": {
+    "n": 5888,
+    "positive": 636,
+    "tp": 433,
+    "fp": 1409,
+    "tn": 3843,
+    "fn": 203,
+    "precision": 0.23507057546145493,
+    "recall": 0.6808176100628931,
+    "f1": 0.34947538337368844,
+    "fpr": 0.26827875095201825,
+    "fnr": 0.3191823899371069,
+    "accuracy": 0.7262228260869565,
+    "roc_auc": 0.7645750106578146,
+    "pr_auc": 0.24034606136555292,
+    "ece": 0.25146806231267044,
+    "brier": 0.24824606930635748,
+    "nll": 1.5691717874150455
+  },
+  "training_contamination_status": "UNKNOWN: model card states private fine-tuning dataset; cannot verify overlap with this benchmark"
+}

@@ -1,0 +1,52 @@
+{
+  "baseline_training_dataset": "jackhhao/jailbreak-classification",
+  "revision": "2f2ceeb39658696fd3f462403562b6eea5306287",
+  "training_rows_loaded": 2642,
+  "overlap": {
+    "training_near_0.85": 64,
+    "training_exact": 616,
+    "candidate": 5888,
+    "retained": 5208
+  },
+  "caveat": "Both baseline training and evaluation derive partly from the same TrustAIRLab source; nonoverlap is not source-independent.",
+  "same_clean_rows": {
+    "TrustLaya-S": {
+      "n": 5208,
+      "positive": 13,
+      "tp": 12,
+      "fp": 4671,
+      "tn": 524,
+      "fn": 1,
+      "precision": 0.0025624599615631004,
+      "recall": 0.9230769230769231,
+      "f1": 0.005110732538330494,
+      "fpr": 0.8991337824831569,
+      "fnr": 0.07692307692307693,
+      "accuracy": 0.10291858678955453,
+      "roc_auc": 0.5741171244539869,
+      "pr_auc": 0.007432215762297469,
+      "ece": 0.8318883201594168,
+      "brier": 0.7509512107011066,
+      "nll": 2.5141112360316407
+    },
+    "BERT": {
+      "n": 5208,
+      "positive": 13,
+      "tp": 12,
+      "fp": 4411,
+      "tn": 784,
+      "fn": 1,
+      "precision": 0.0027130906624463036,
+      "recall": 0.9230769230769231,
+      "f1": 0.005410279531109108,
+      "fpr": 0.8490856592877767,
+      "fnr": 0.07692307692307693,
+      "accuracy": 0.15284178187403993,
+      "roc_auc": 0.7959798622936255,
+      "pr_auc": 0.019761414663029678,
+      "ece": 0.8472606784945923,
+      "brier": 0.8379555461961057,
+      "nll": 5.540529442085107
+    }
+  }
+}
