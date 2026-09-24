@@ -5,31 +5,40 @@ from transformers import AutoTokenizer
 from .model import TrustLaya,BACKBONE
 from .labels import TASKS,ACTIONS,SEVERITIES
 from .evidence import extract,PII_TYPES,SECRET_TYPES
-from .policy import decide
+from .policy import decide, DEFAULT
 from .calibration import apply
-from .uncertainty import should_abstain
 from .utils import device,normalize
 from .agent_risk import analyze_agent
 from .risk_fusion import fuse
 ROOT=Path(__file__).resolve().parents[2]
 class Analyzer:
-    def __init__(self,backend="torch",model_dir=None):
+    def __init__(self,backend="torch",model_dir=None,onnx_path=None):
         self.model_dir=Path(model_dir or ROOT/"models/student")
         self.tokenizer=AutoTokenizer.from_pretrained(self.model_dir)
         self.temperatures=json.loads((self.model_dir/"calibration.json").read_text()) if (self.model_dir/"calibration.json").exists() else {t:1.0 for t in TASKS}
+        import yaml
+        policy_file=self.model_dir/"policy.yaml"
+        self.policy=yaml.safe_load((policy_file if policy_file.exists() else DEFAULT).read_text())
         self.backend=backend
         if backend in ("onnx","onnx_int8","onnx_int8_pc"):
             import onnxruntime as ort
-            self.session=ort.InferenceSession(str(ROOT/("models/exported/trustlaya_int8_pc.onnx" if backend=="onnx_int8_pc" else "models/exported/trustlaya_int8.onnx" if backend=="onnx_int8" else "models/exported/trustlaya.onnx")),providers=["CPUExecutionProvider"])
+            path=onnx_path or ROOT/("models/exported/trustlaya_int8_pc.onnx" if backend=="onnx_int8_pc" else "models/exported/trustlaya_int8.onnx" if backend=="onnx_int8" else "models/exported/trustlaya.onnx")
+            self.session=ort.InferenceSession(str(path),providers=["CPUExecutionProvider"])
         else:
             self.torch_device=torch.device("cpu") if backend=="torch_cpu" else device()
             self.model=TrustLaya(BACKBONE,pretrained=False)
             self.model.load(self.model_dir/"model.safetensors")
             self.model.to(self.torch_device).eval()
-    def analyze(self,text,metadata=None,session=None):
+    def analyze(self,text,metadata=None,session=None,policy_override=None):
         if not isinstance(text, str): raise TypeError("text must be a string")
         if metadata is not None and not isinstance(metadata, dict): raise TypeError("metadata must be a mapping")
+        if policy_override is not None and not isinstance(policy_override,dict): raise TypeError("policy_override must be a mapping")
         metadata=metadata or {}
+        policy=self.policy.copy()
+        for key,value in (policy_override or {}).items():
+            if key not in policy or isinstance(value,bool) or not isinstance(value,(int,float)) or not 0<=value<=1:
+                raise ValueError(f"Invalid policy threshold: {key}")
+            policy[key]=float(value)
         tokens=self.tokenizer(normalize(text),return_tensors="pt",truncation=True,max_length=96,padding="max_length")
         if self.backend in ("onnx","onnx_int8","onnx_int8_pc"):
             output=self.session.run(None,{k:v.numpy() for k,v in tokens.items() if k in ("input_ids","attention_mask")})
@@ -54,7 +63,7 @@ class Analyzer:
         agent_risk=analyze_agent(metadata)
         fusion=fuse(scores,evidence,metadata,agent_risk)
         session_assessment=session.preview(text,scores,evidence,metadata) if session is not None else None
-        action,reason=decide(scores,evidence,metadata,conf,agent_risk=agent_risk,fusion=fusion,session=session_assessment)
+        action,reason=decide(scores,evidence,metadata,conf,config=policy,agent_risk=agent_risk,fusion=fusion,session=session_assessment)
         if session is not None: session.record(session_assessment,action)
         public_session={k:v for k,v in session_assessment.items() if k!="_summary"} if session_assessment else None
         out={**scores,"raw_scores":raw_scores,"calibrated_scores":calibrated_scores,
