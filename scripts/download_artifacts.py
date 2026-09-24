@@ -1,9 +1,18 @@
 """Download public TrustLaya-S model artifacts into repository layout."""
 import shutil
 import argparse
+import hashlib
+import json
+import urllib.request
 from pathlib import Path
 from huggingface_hub import hf_hub_download
 ROOT=Path(__file__).resolve().parents[1]
+def sha256_file(path):
+    digest=hashlib.sha256()
+    with path.open('rb') as stream:
+        for chunk in iter(lambda:stream.read(4*1024*1024),b''):
+            digest.update(chunk)
+    return digest.hexdigest()
 FILES={
     'model.safetensors':'models/student/model.safetensors',
     'vocab.txt':'models/student/vocab.txt',
@@ -16,7 +25,32 @@ FILES={
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--onnx-only',action='store_true',help='Skip PyTorch weights and INT8 for CI smoke tests')
+    parser.add_argument('--advanced',action='store_true',help='Download versioned experimental v2 release')
     args=parser.parse_args()
+    if args.advanced:
+        manifest=json.loads((ROOT/'models/advanced_manifest.json').read_text())
+        base='https://github.com/ege-arhan/trustlaya-s/releases/download/'+manifest['version']+'/'
+        for name, expected in manifest['files'].items():
+            if args.onnx_only and name in ('model.safetensors','trustlaya_s_int8.onnx'):
+                continue
+            folder=ROOT/('models/exported/v2' if name.endswith('.onnx') else 'models/trustlaya-s-v2')
+            folder.mkdir(parents=True,exist_ok=True)
+            target=folder/name
+            if target.exists() and sha256_file(target)==expected['sha256']:
+                continue
+            temporary=target.with_suffix(target.suffix+'.partial')
+            try:
+                digest=hashlib.sha256()
+                with urllib.request.urlopen(base+name,timeout=60) as remote, temporary.open('wb') as out:
+                    for chunk in iter(lambda:remote.read(4*1024*1024),b''):
+                        digest.update(chunk);out.write(chunk)
+                if digest.hexdigest()!=expected['sha256']:
+                    raise ValueError(f'Checksum mismatch for {name}')
+                temporary.replace(target)
+            finally:
+                temporary.unlink(missing_ok=True)
+            print(target)
+        return
     for remote,local in FILES.items():
         if args.onnx_only and remote in ('model.safetensors','trustlaya_int8.onnx'):
             continue

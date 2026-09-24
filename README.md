@@ -68,6 +68,8 @@ The synthetic test figures above are not production estimates. Independent evalu
 
 Versioned weights are excluded from Git. The original published Hugging Face model remains v1; local v2 results are **experimental**. On a distinct 2,000-row synthetic Turkish PII benchmark, v2 F1 is 0.784 with false-positive rate 0.316. Synthetic full-test macro F1 is 0.663. Encoded injection attacks failed in the small adversarial suite. Current `confidence` does not predict policy correctness well. See [model card](MODEL_CARD.md), [data card](DATA_CARD.md), [research report](reports/research_report.md), [calibration](docs/calibration.md), and [limitations](docs/limitations.md).
 
+For a clean clone, download the experimental candidate from the [GitHub prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.0.0-rc1) using `.venv/bin/python scripts/download_artifacts.py --advanced`. The downloader checks SHA-256 against `models/advanced_manifest.json`. The separate [Hugging Face advanced model card](https://huggingface.co/ege-arhan/TrustLaya-S-Advanced) currently documents the candidate; model files are pending upload there.
+
 ## Decision path
 
 ```mermaid
