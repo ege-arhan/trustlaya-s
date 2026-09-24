@@ -76,7 +76,7 @@ A separate [human-written live-game diagnostic](reports/live_redteam_diagnostic.
 
 The separately versioned agentic candidate can be fetched with `.venv/bin/python scripts/download_artifacts.py --agentic-candidate`; its manifest verifies the **INT8 ONNX**, tokenizer, calibration and policy files. The full FP32 candidate is reproducible locally from the v2 release and `scripts/train_injection_agentic.py` but its large release assets are pending. The default demo and API continue to use the established model unless a model path is explicitly provided.
 
-For a clean clone, switch to `feature/trustlaya-advanced`, then download the experimental candidate from the [GitHub prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.0.0-rc1) using `.venv/bin/python scripts/download_artifacts.py --advanced`. The downloader checks SHA-256 against `models/advanced_manifest.json`. The separate [Hugging Face advanced model card](https://huggingface.co/ege-arhan/TrustLaya-S-Advanced) currently documents the candidate; model files are pending upload there.
+For a clean clone, switch to `feature/trustlaya-advanced`, then download the experimental candidate from the [GitHub prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.0.0-rc1) using `.venv/bin/python scripts/download_artifacts.py --advanced`. The downloader checks SHA-256 against `models/advanced_manifest.json`. The same v2 safetensors, FP32/INT8 ONNX, tokenizer, calibration and policy files are also in the [Hugging Face advanced model repository](https://huggingface.co/ege-arhan/TrustLaya-S-Advanced). Their large-file SHA-256 values match the manifest, and a fresh Hugging Face INT8 download passed nine-file checksum verification and CLI inference.
 
 ## Decision path
 

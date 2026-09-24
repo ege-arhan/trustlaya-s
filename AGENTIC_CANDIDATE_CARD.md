@@ -25,7 +25,7 @@ An additional [Bordair live-game diagnostic](reports/live_redteam_diagnostic.jso
 
 ## Export and use
 
-In a clean clone, checkout `feature/trustlaya-advanced` first. `python scripts/download_artifacts.py --agentic-candidate` downloads the tokenizer, calibration, policy and **INT8 ONNX** with SHA-256 verification against `models/agentic_candidate_manifest.json`. The full FP32 candidate remains local because its large-file upload stalled; reproduce it using `python scripts/download_artifacts.py --advanced` followed by `python scripts/train_injection_agentic.py`. `--onnx-only` is equivalent for this INT8-only prerelease. Local inference:
+In a clean clone, checkout `feature/trustlaya-advanced` first. `python scripts/download_artifacts.py --agentic-candidate` downloads the tokenizer, calibration, policy and **INT8 ONNX** from the [experimental GitHub prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.1.0-agentic-rc1) with SHA-256 verification against `models/agentic_candidate_manifest.json`. The full FP32 candidate remains local because its large-file upload stalled; reproduce it using `python scripts/download_artifacts.py --advanced` followed by `python scripts/train_injection_agentic.py`. `--onnx-only` is equivalent for this INT8-only prerelease. Local inference:
 
 ```bash
 .venv/bin/python demo/cli_demo.py --backend onnx_int8 \
