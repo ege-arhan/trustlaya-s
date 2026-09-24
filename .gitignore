@@ -17,5 +17,6 @@ models/student/tokenizer_config.json
 models/student/special_tokens_map.json
 models/student/calibration.json
 models/exported/
+models/trustlaya-s-v*/
 
 src/*.egg-info/
