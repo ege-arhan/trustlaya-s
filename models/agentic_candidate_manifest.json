@@ -1,16 +1,8 @@
 {
   "version": "v2.1.0-agentic-rc1",
   "release": "https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.1.0-agentic-rc1",
-  "status": "experimental_candidate_not_default",
+  "status": "experimental_int8_only_not_default",
   "files": {
-    "model.safetensors": {
-      "bytes": 168571188,
-      "sha256": "59988e1cc364964e6ac34b0a9c63d6674819e3e23458623d85f0140aba9bc05b"
-    },
-    "trustlaya_s.onnx": {
-      "bytes": 167661320,
-      "sha256": "d4d0798d0aa5a1b69ed14826ae7f4ffd43519789865e9049619fcf2052f77bcb"
-    },
     "trustlaya_s_int8.onnx": {
       "bytes": 42507021,
       "sha256": "d93102d148710531fccfea05e681acf174a4c353511c232eda672d51ad9f3060"

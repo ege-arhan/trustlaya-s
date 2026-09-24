@@ -35,7 +35,9 @@ def main():
         manifest=json.loads((ROOT/manifest_name).read_text())
         base='https://github.com/ege-arhan/trustlaya-s/releases/download/'+manifest['version']+'/'
         for name, expected in manifest['files'].items():
-            if args.onnx_only and name in ('model.safetensors','trustlaya_s_int8.onnx'):
+            if args.onnx_only and name=='model.safetensors':
+                continue
+            if args.onnx_only and not args.agentic_candidate and name=='trustlaya_s_int8.onnx':
                 continue
             if args.agentic_candidate:
                 folder=ROOT/('models/base' if name=='config.json' else 'models/exported/injection_agentic' if name.endswith('.onnx') else 'models/candidates/injection_agentic')
