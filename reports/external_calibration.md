@@ -36,13 +36,13 @@ The existing temperature does not change 0.50 classifications here. On this doma
 
 ## Post-baseline TAB dev experiment
 
-A temperature of 2.827 was fitted on 2138 official TAB dev windows after training-data contamination and exact dev/test-overlap filtering. Near dev/test overlap was not screened. This did not modify deployed model files.
+A temperature of 2.252 was fitted on 1896 official TAB dev windows after training-data and test-window exact/near overlap filtering. 12 exact and 242 near dev/test matches were removed without consulting test labels. This did not modify deployed model files.
 
 | Split | Score | ECE | Brier | NLL |
 |---|---|---:|---:|---:|
-| Dev | Raw | 0.142 | 0.147 | 0.679 |
-| Dev | Dev-fitted | 0.103 | 0.131 | 0.431 |
+| Dev | Raw | 0.094 | 0.102 | 0.486 |
+| Dev | Dev-fitted | 0.110 | 0.098 | 0.352 |
 | Test | Raw | 0.148 | 0.147 | 0.688 |
-| Test | Dev-fitted | 0.108 | 0.133 | 0.434 |
+| Test | Dev-fitted | 0.091 | 0.133 | 0.444 |
 
 JailbreakLLMs has no official held-out calibration split, so no new external temperature was fitted there. TAB test labels were never used to fit the dev-only calibrator.

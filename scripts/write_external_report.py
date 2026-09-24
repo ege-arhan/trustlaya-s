@@ -154,7 +154,7 @@ def main():
     if dev_path.exists():
         d=json.loads(dev_path.read_text())
         cal += ["","## Post-baseline TAB dev experiment","",
-                f"A temperature of {d['temperature']:.3f} was fitted on {d['dev_n_after_test_overlap']} official TAB dev windows after training-data contamination and exact dev/test-overlap filtering. Near dev/test overlap was not screened. This did not modify deployed model files.","",
+                f"A temperature of {d['temperature']:.3f} was fitted on {d['dev_n_after_test_overlap']} official TAB dev windows after training-data and test-window exact/near overlap filtering. {d['dev_test_overlap'].get('training_exact',0)} exact and {d['dev_test_overlap'].get('training_near_0.85',0)} near dev/test matches were removed without consulting test labels. This did not modify deployed model files.","",
                 "| Split | Score | ECE | Brier | NLL |","|---|---|---:|---:|---:|"]
         for split,label,key in (("Dev","Raw","dev_raw"),("Dev","Dev-fitted","dev_fitted"),("Test","Raw","test_raw"),("Test","Dev-fitted","test_dev_fitted")):
             m=d[key];cal.append(f"| {split} | {label} | {f(m['ece'])} | {f(m['brier'])} | {f(m['nll'])} |")

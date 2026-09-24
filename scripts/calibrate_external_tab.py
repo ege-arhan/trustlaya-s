@@ -6,7 +6,7 @@ from scipy.special import logit
 
 from trustlaya.calibration import apply, fit_temperature
 from trustlaya.inference import Analyzer
-from run_external_real import ROOT, RAW, LOCAL, REPORT, tab_samples, train_texts, contamination, evaluate, metrics, save_json
+from run_external_real import ROOT, LOCAL, REPORT, tab_samples, train_texts, contamination, evaluate, metrics, save_json
 
 
 def main():
@@ -17,9 +17,10 @@ def main():
     dev,source_stats=tab_samples(analyzer.tokenizer,"dev")
     training,_=train_texts()
     dev,contam=contamination(dev,training)
-    # Exclude exact dev/test overlap without consulting test labels.
-    test_hashes={r["text_hash"] for r in json.loads((LOCAL/"tab_predictions.json").read_text())}
-    dev=[s for s in dev if s["text_hash"] not in test_hashes]
+    # Screen official dev windows against official test windows without using
+    # test labels. Legal boilerplate can repeat across distinct cases.
+    test_windows,_=tab_samples(analyzer.tokenizer,"test")
+    dev,test_overlap=contamination(dev,[s["text"] for s in test_windows])
     rows,_=evaluate(dev,analyzer,"pii")
     y=np.array([r["gold"] for r in rows]);p=np.array([r["raw_score"] for r in rows])
     temp=fit_temperature(y,logit(np.clip(p,1e-7,1-1e-7)))
@@ -27,7 +28,7 @@ def main():
     test=json.loads((LOCAL/"tab_predictions.json").read_text())
     for r in test:r["dev_fitted_score"]=float(apply(r["raw_score"],temp))
     result={"temperature":temp,"dev_source_stats":source_stats,"dev_contamination":contam,
-            "dev_n_after_test_overlap":len(rows),
+            "dev_test_overlap":test_overlap,"dev_n_after_test_overlap":len(rows),
             "dev_raw":metrics(rows),"dev_fitted":metrics(rows,"dev_fitted_score"),
             "test_raw":metrics(test),"test_dev_fitted":metrics(test,"dev_fitted_score"),
             "note":"Post-baseline exploratory calibration; no model or deployed temperature changed."}
