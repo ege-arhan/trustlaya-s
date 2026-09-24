@@ -1,4 +1,5 @@
 import json
+import time
 from pathlib import Path
 import torch
 from transformers import AutoTokenizer
@@ -31,6 +32,7 @@ class Analyzer:
             self.model.load(self.model_dir/"model.safetensors")
             self.model.to(self.torch_device).eval()
     def analyze(self,text,metadata=None,session=None,policy_override=None):
+        analysis_started=time.perf_counter()
         if not isinstance(text, str): raise TypeError("text must be a string")
         if metadata is not None and not isinstance(metadata, dict): raise TypeError("metadata must be a mapping")
         if policy_override is not None and not isinstance(policy_override,dict): raise TypeError("policy_override must be a mapping")
@@ -41,6 +43,7 @@ class Analyzer:
                 raise ValueError(f"Invalid policy threshold: {key}")
             policy[key]=float(value)
         tokens=self.tokenizer(normalize(text),return_tensors="pt",truncation=True,max_length=96,padding="max_length")
+        model_started=time.perf_counter()
         if self.backend in ("onnx","onnx_int8","onnx_int8_pc"):
             output=self.session.run(None,{k:v.numpy() for k,v in tokens.items() if k in ("input_ids","attention_mask")})
             raw=output[0][0]; sev=output[1][0]; act=output[2][0]
@@ -50,6 +53,7 @@ class Analyzer:
             with torch.inference_mode():
                 output=self.model(tokens["input_ids"].to(self.torch_device),tokens["attention_mask"].to(self.torch_device))
             prob=torch.sigmoid(output[0])[0].cpu().numpy(); sev=output[1][0].cpu().numpy(); act=output[2][0].cpu().numpy()
+        model_ms=(time.perf_counter()-model_started)*1000
         raw_scores={task:float(prob[i]) for i,task in enumerate(TASKS)}
         calibrated_scores={task:float(apply(prob[i],self.temperatures.get(task,1.0))) for i,task in enumerate(TASKS)}
         scores=calibrated_scores.copy()
@@ -64,12 +68,16 @@ class Analyzer:
         agent_risk=analyze_agent(metadata)
         fusion=fuse(scores,evidence,metadata,agent_risk)
         session_assessment=session.preview(text,scores,evidence,metadata) if session is not None else None
+        policy_started=time.perf_counter()
         action,reason=decide(scores,evidence,metadata,conf,config=policy,agent_risk=agent_risk,fusion=fusion,session=session_assessment)
+        policy_ms=(time.perf_counter()-policy_started)*1000
         if session is not None: session.record(session_assessment,action)
         public_session={k:v for k,v in session_assessment.items() if k!="_summary"} if session_assessment else None
         out={**scores,"raw_scores":raw_scores,"calibrated_scores":calibrated_scores,
              "risk_fusion":fusion,"agent_risk":agent_risk,"session_risk":public_session,
              "severity":SEVERITIES[int(sev.argmax())],"model_action":ACTIONS[int(act.argmax())],
              "action":action,"policy_reason":reason,"confidence":round(conf,4),
-             "abstain":reason=="uncertain","evidence":evidence}
+             "abstain":reason=="uncertain","evidence":evidence,
+             "timing_ms":{"model_inference":model_ms,"policy":policy_ms,
+                          "analysis_total":(time.perf_counter()-analysis_started)*1000}}
         return out

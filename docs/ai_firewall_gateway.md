@@ -1,5 +1,11 @@
 # AI firewall gateway prototype
 
+This page describes the **earlier decision-only adapter**. Side-effecting
+tools should now use the request-bound, single-use
+[authorization protocol](authorization_protocol.md) and
+[security boundary](security_boundary.md). The older adapter remains for
+backward compatibility.
+
 The gateway adapter in `src/trustlaya/gateway.py` is a fail-closed **application-level**
 gate for a protected agent tool. It is not a transparent packet firewall. The agent
 submits the exact text that would be forwarded; the adapter calls the local
