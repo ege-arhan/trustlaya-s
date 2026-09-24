@@ -17,6 +17,10 @@ def decide(scores, evidence, metadata=None, confidence=1.0, config=None, agent_r
         return "BLOCK", "agent_credential_external_channel"
     if session and "filesystem_shell_external_chain" in session.get("triggers", ()):
         return "REVIEW", "session_tool_chain"
+    if (m.get("agent") and m.get("untrusted_tool_output") and not m.get("human_approval")
+            and any(m.get(key) for key in ("shell", "filesystem", "network", "database",
+                                           "email", "external_api", "credential_access"))):
+        return "REVIEW", "untrusted_tool_output_privileged_agent"
     if should_abstain(confidence,t["confidence"]): return "REVIEW", "uncertain"
     if scores["prompt_injection"]>=t["prompt_injection"]: return "BLOCK", "prompt_injection"
     if scores["dangerous_instruction"]>=t["dangerous_instruction"]: return "BLOCK", "dangerous_instruction"

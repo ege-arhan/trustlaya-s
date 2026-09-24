@@ -1,8 +1,8 @@
 model,backend,parameters,size_mib,macro_f1,security_f1,pii_f1,injection_f1,ece,f1_scope,ece_scope,warm_p50_ms,cold_start_ms,rss_delta_mib_approx
-TrustLaya-S v2 PII candidate,PyTorch CPU,42138641,160.762,0.6632,0.7769,1.0,0.5549,0.1128,synthetic full test 1975,synthetic test first 256,14.427,707.755,177.9
-TrustLaya-S v2 PII candidate,PyTorch MPS,42138641,160.762,0.6632,0.7769,1.0,0.5549,0.1128,synthetic full test 1975,synthetic test first 256,7.534,731.314,44.5
-TrustLaya-S v2 PII candidate,ONNX CPU FP32,42138641,159.894,0.6632,0.7769,1.0,0.5549,0.1128,synthetic full test 1975,synthetic test first 256,6.185,186.249,292.5
-TrustLaya-S v2 PII candidate,ONNX CPU INT8,42138641,40.538,0.632,0.7943,1.0,0.5758,0.1076,synthetic test first 256,synthetic test first 256,6.833,101.798,36.3
+TrustLaya-S v2 PII candidate,PyTorch CPU,42138641,160.762,0.6632,0.7769,1.0,0.5549,0.1128,synthetic full test 1975,synthetic test first 256,13.864,701.076,174.2
+TrustLaya-S v2 PII candidate,PyTorch MPS,42138641,160.762,0.6632,0.7769,1.0,0.5549,0.1128,synthetic full test 1975,synthetic test first 256,7.311,729.653,37.1
+TrustLaya-S v2 PII candidate,ONNX CPU FP32,42138641,159.894,0.6632,0.7769,1.0,0.5549,0.1128,synthetic full test 1975,synthetic test first 256,7.388,170.611,252.9
+TrustLaya-S v2 PII candidate,ONNX CPU INT8,42138641,40.538,0.632,0.7943,1.0,0.5758,0.1076,synthetic test first 256,synthetic test first 256,7.485,111.717,36.9
 TrustLaya-S v1 baseline,PyTorch CPU,42138641,160.762,0.6632,0.7769,1.0,0.5549,,synthetic full test 1975,NOT MEASURED on same 256 subset,12.656,471.891,148.7
 TrustLaya-S v1 baseline,PyTorch MPS,42138641,160.762,0.6632,0.7769,1.0,0.5549,,synthetic full test 1975,NOT MEASURED on same 256 subset,5.541,647.419,31.3
 TrustLaya-S v1 baseline,ONNX CPU FP32,42138641,159.894,0.6632,0.7769,1.0,0.5549,,synthetic full test 1975,NOT MEASURED on same 256 subset,5.14,117.981,356.4

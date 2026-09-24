@@ -1,0 +1,359 @@
+{
+  "polyguard_source": "fevziegeyurtsevenler/PolyGuardBench",
+  "polyguard_revision": "45886b8e3ee89db4a08de767b304779995a2b26e",
+  "polyguard_license": "CC-BY-4.0",
+  "polyguard_sha256": "49ecf3de9abc004f94529c9c1dbf1e9128f82f3c6b9faaa82982bf0b2d7a26db",
+  "polyguard_excluded_exact_training_overlap": 0,
+  "polyguard_scope": "Only prompt-injection attack rows and over-refusal benign rows. They come from different axes, so combined F1 is a cross-axis diagnostic, not a matched injection benchmark. Report attack recall and benign FPR separately.",
+  "bpi_source": "MelikeErdogan/bpi-guard-dataset",
+  "bpi_revision": "a029afd7b0ed3979d1a3446b0e7c54870ff1a63d",
+  "bpi_test_sha256": "72bf3afe1c279997d8093429be5c02369955342a5e65c612cf87cc8ef14c2c99",
+  "bpi_excluded_test_overlap": {
+    "original_text_overlap": 8,
+    "exact_text_overlap": 4
+  },
+  "agent_source": "ppradyoth/AgentInjectionBench",
+  "agent_revision": "ef230359966c4d87b1c925aa56b8bf6e3f6ffed3",
+  "agent_source_sha256": "606cb74f5ce874dba45d9cdf591af678d7c6bd8a92ff3189d0f522fb39fb941e",
+  "selection_note": "All candidate choices and thresholds were frozen on development splits before loading PolyGuardBench. BPI, legacy, and agent test metrics were already inspected in earlier experiments and are regression diagnostics, not fresh confirmation. A rejected blend with no saved weights is omitted.",
+  "results": {
+    "polyguard_cross_axis": {
+      "released_v2": {
+        "n": 550,
+        "positive": 190,
+        "threshold": 0.5,
+        "f1": 0.4863636363636364,
+        "precision": 0.428,
+        "recall": 0.5631578947368421,
+        "false_positive_rate": 0.3972222222222222,
+        "false_negative_rate": 0.4368421052631579,
+        "confusion_matrix": [
+          [
+            217,
+            143
+          ],
+          [
+            83,
+            107
+          ]
+        ],
+        "calibration": {
+          "ece": 0.3736869620963592,
+          "brier": 0.37135234475135803,
+          "nll": 3.2670845985412598
+        },
+        "language": {
+          "tr": {
+            "attack_recall": 0.5161290322580645,
+            "benign_false_positive_rate": 0.12222222222222222
+          },
+          "en": {
+            "attack_recall": 0.6082474226804123,
+            "benign_false_positive_rate": 0.6722222222222223
+          }
+        }
+      },
+      "bpi_head": {
+        "n": 550,
+        "positive": 190,
+        "threshold": 0.5500000000000002,
+        "f1": 0.8683602771362586,
+        "precision": 0.7736625514403292,
+        "recall": 0.9894736842105263,
+        "false_positive_rate": 0.1527777777777778,
+        "false_negative_rate": 0.010526315789473684,
+        "confusion_matrix": [
+          [
+            305,
+            55
+          ],
+          [
+            2,
+            188
+          ]
+        ],
+        "calibration": {
+          "ece": 0.11691657292233273,
+          "brier": 0.08405478298664093,
+          "nll": 0.28147855401039124
+        },
+        "language": {
+          "tr": {
+            "attack_recall": 0.978494623655914,
+            "benign_false_positive_rate": 0.11666666666666667
+          },
+          "en": {
+            "attack_recall": 1.0,
+            "benign_false_positive_rate": 0.18888888888888888
+          }
+        }
+      },
+      "joint_head": {
+        "n": 550,
+        "positive": 190,
+        "threshold": 0.49999999999999994,
+        "f1": 0.8683602771362586,
+        "precision": 0.7736625514403292,
+        "recall": 0.9894736842105263,
+        "false_positive_rate": 0.1527777777777778,
+        "false_negative_rate": 0.010526315789473684,
+        "confusion_matrix": [
+          [
+            305,
+            55
+          ],
+          [
+            2,
+            188
+          ]
+        ],
+        "calibration": {
+          "ece": 0.10927669808945872,
+          "brier": 0.08234423398971558,
+          "nll": 0.29354777932167053
+        },
+        "language": {
+          "tr": {
+            "attack_recall": 0.978494623655914,
+            "benign_false_positive_rate": 0.1111111111111111
+          },
+          "en": {
+            "attack_recall": 1.0,
+            "benign_false_positive_rate": 0.19444444444444445
+          }
+        }
+      }
+    },
+    "bpi_test": {
+      "released_v2": {
+        "n": 2961,
+        "positive": 1403,
+        "threshold": 0.5,
+        "f1": 0.5610749185667753,
+        "precision": 0.654320987654321,
+        "recall": 0.49109052031361367,
+        "false_positive_rate": 0.2336328626444159,
+        "false_negative_rate": 0.5089094796863863,
+        "confusion_matrix": [
+          [
+            1194,
+            364
+          ],
+          [
+            714,
+            689
+          ]
+        ],
+        "calibration": {
+          "ece": 0.328880445390678,
+          "brier": 0.3378278315067291,
+          "nll": 3.0944743156433105
+        }
+      },
+      "bpi_head": {
+        "n": 2961,
+        "positive": 1403,
+        "threshold": 0.5500000000000002,
+        "f1": 0.8699485672299779,
+        "precision": 0.8976497346474602,
+        "recall": 0.8439059158945118,
+        "false_positive_rate": 0.08664955070603338,
+        "false_negative_rate": 0.15609408410548825,
+        "confusion_matrix": [
+          [
+            1423,
+            135
+          ],
+          [
+            219,
+            1184
+          ]
+        ],
+        "calibration": {
+          "ece": 0.019493545955679217,
+          "brier": 0.08911170065402985,
+          "nll": 0.29993587732315063
+        }
+      },
+      "joint_head": {
+        "n": 2961,
+        "positive": 1403,
+        "threshold": 0.49999999999999994,
+        "f1": 0.8690003608805486,
+        "precision": 0.8801169590643275,
+        "recall": 0.8581610833927299,
+        "false_positive_rate": 0.10526315789473684,
+        "false_negative_rate": 0.14183891660727013,
+        "confusion_matrix": [
+          [
+            1394,
+            164
+          ],
+          [
+            199,
+            1204
+          ]
+        ],
+        "calibration": {
+          "ece": 0.02371748490778024,
+          "brier": 0.09136814624071121,
+          "nll": 0.3115086257457733
+        }
+      }
+    },
+    "legacy_synthetic": {
+      "released_v2": {
+        "n": 1975,
+        "positive": 279,
+        "threshold": 0.5,
+        "f1": 0.5548780487804879,
+        "precision": 0.4827586206896552,
+        "recall": 0.6523297491039427,
+        "false_positive_rate": 0.11497641509433962,
+        "false_negative_rate": 0.34767025089605735,
+        "confusion_matrix": [
+          [
+            1501,
+            195
+          ],
+          [
+            97,
+            182
+          ]
+        ],
+        "calibration": {
+          "ece": 0.1287065639926262,
+          "brier": 0.11397628486156464,
+          "nll": 0.9476484656333923
+        }
+      },
+      "bpi_head": {
+        "n": 1975,
+        "positive": 279,
+        "threshold": 0.5500000000000002,
+        "f1": 0.3217821782178218,
+        "precision": 0.2090032154340836,
+        "recall": 0.6989247311827957,
+        "false_positive_rate": 0.43514150943396224,
+        "false_negative_rate": 0.3010752688172043,
+        "confusion_matrix": [
+          [
+            958,
+            738
+          ],
+          [
+            84,
+            195
+          ]
+        ],
+        "calibration": {
+          "ece": 0.3479635646920416,
+          "brier": 0.30285441875457764,
+          "nll": 1.2979967594146729
+        }
+      },
+      "joint_head": {
+        "n": 1975,
+        "positive": 279,
+        "threshold": 0.49999999999999994,
+        "f1": 0.4639423076923077,
+        "precision": 0.34900542495479203,
+        "recall": 0.6917562724014337,
+        "false_positive_rate": 0.21226415094339623,
+        "false_negative_rate": 0.30824372759856633,
+        "confusion_matrix": [
+          [
+            1336,
+            360
+          ],
+          [
+            86,
+            193
+          ]
+        ],
+        "calibration": {
+          "ece": 0.18763133502742158,
+          "brier": 0.17479607462882996,
+          "nll": 0.6059966087341309
+        }
+      }
+    },
+    "agent_tool_results": {
+      "released_v2": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.5,
+        "f1": 0.484304932735426,
+        "precision": 0.6666666666666666,
+        "recall": 0.38028169014084506,
+        "false_positive_rate": 0.675,
+        "false_negative_rate": 0.6197183098591549,
+        "confusion_matrix": [
+          [
+            13,
+            27
+          ],
+          [
+            88,
+            54
+          ]
+        ],
+        "calibration": {
+          "ece": 0.6098930968539686,
+          "brier": 0.6060966849327087,
+          "nll": 5.932164669036865
+        }
+      },
+      "bpi_head": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.5500000000000002,
+        "f1": 0.8987341772151899,
+        "precision": 0.8160919540229885,
+        "recall": 1.0,
+        "false_positive_rate": 0.8,
+        "false_negative_rate": 0.0,
+        "confusion_matrix": [
+          [
+            8,
+            32
+          ],
+          [
+            0,
+            142
+          ]
+        ],
+        "calibration": {
+          "ece": 0.14726480309452328,
+          "brier": 0.16194863617420197,
+          "nll": 0.7389261722564697
+        }
+      },
+      "joint_head": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.49999999999999994,
+        "f1": 0.8952380952380953,
+        "precision": 0.815028901734104,
+        "recall": 0.9929577464788732,
+        "false_positive_rate": 0.8,
+        "false_negative_rate": 0.007042253521126761,
+        "confusion_matrix": [
+          [
+            8,
+            32
+          ],
+          [
+            1,
+            141
+          ]
+        ],
+        "calibration": {
+          "ece": 0.14778636915834398,
+          "brier": 0.1696528196334839,
+          "nll": 0.8221940994262695
+        }
+      }
+    }
+  }
+}

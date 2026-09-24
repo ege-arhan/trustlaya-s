@@ -10,6 +10,15 @@ def test_pii_transfer():
 def test_secret_and_agent():
     assert decide(scores(secret=.9),[],confidence=.9)==('REVIEW','unverified_secret_score')
     assert decide(scores(),extract('password=synthetic_key_123456789'),confidence=.9)[0]=='BLOCK'
+
+
+def test_untrusted_tool_output_requires_review_for_privileged_agent():
+    context = {"agent": True, "untrusted_tool_output": True,
+               "network": True, "human_approval": False}
+    assert decide(scores(), [], metadata=context, confidence=.9) == (
+        "REVIEW", "untrusted_tool_output_privileged_agent")
+    assert decide(scores(prompt_injection=.95), [], metadata=context, confidence=.9) == (
+        "REVIEW", "untrusted_tool_output_privileged_agent")
     assert decide(scores(),[],{'agent':True,'shell':True,'human_approval':False},.9)[0]=='REVIEW'
 def test_uncertainty():
     assert decide(scores(),[],confidence=.55)==('REVIEW','uncertain')

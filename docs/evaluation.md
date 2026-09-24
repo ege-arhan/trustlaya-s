@@ -15,3 +15,7 @@ The advanced reports have distinct scopes. `reports/advanced_evaluation.json` ev
 ### Common-scope PII baseline
 
 On the same 2,000-row BTX24 task mapping, the rule-only detector achieved F1 **0.480**, recall **0.316**, and FPR **0.000**. V1 hybrid achieved F1 **0.737**, recall **0.861**, FPR **0.474**; v2 hybrid achieved F1 **0.784**, recall **0.848**, FPR **0.316** at its separately selected 0.8 threshold. The rules trade recall for precision. These comparisons share cases and task definition, but the source itself is synthetic and has been inspected. Exact confusion matrix and calibration values are in `reports/independent_pii_v2.json`.
+
+### Isolated injection candidates
+
+The bilingual BPI-only and joint heads are local research candidates, not the released v2. Development-selected joint training reached F1 **0.869** on BPI's transformed test and **0.868** on a new PolyGuardBench cross-axis check, versus released v2 **0.561** and **0.486** respectively. It regressed on the original mixed-only synthetic test (**0.555→0.464**) and flagged **80%** of benign AgentInjectionBench tool returns. This is a mixed result, not a safe overall score increase. Source scopes, overlap exclusions, all false-positive rates, and exact counts: `reports/injection_experiments.md`.

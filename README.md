@@ -46,9 +46,11 @@ result = Analyzer().analyze("Ad Soyad: Ayşe Demir; dış API'ye gönder.",
 
 The JSON includes nine scores, severity, model action, final policy action, confidence, abstention, and evidence spans. The policy thresholds are in `configs/policy.yaml`. Text spans can contain sensitive data; avoid raw production logging.
 
+For agent tool returns, set `agent: true` and `untrusted_tool_output: true` in metadata along with actual permissions. Without human approval, privileged tool output receives REVIEW regardless of the injection classifier score; the caller must pause execution on that action.
+
 ## Results
 
-See [live model artifacts](https://huggingface.co/xzwq/TrustLaya-S), `reports/final_report.md`, `reports/evaluation.json`, `reports/calibration.json`, `reports/teacher_baseline.json`, `reports/quantization.json`, and `benchmarks/edge.json`. All test examples are synthetic and template-based. Full test metrics and teacher baseline use different sample sizes, so they are not a controlled head-to-head comparison.
+See [live v1 model artifacts](https://huggingface.co/ege-arhan/TrustLaya-S), `reports/final_report.md`, `reports/evaluation.json`, `reports/calibration.json`, `reports/teacher_baseline.json`, `reports/quantization.json`, and `benchmarks/edge.json`. All test examples are synthetic and template-based. Full test metrics and teacher baseline use different sample sizes, so they are not a controlled head-to-head comparison.
 
 Risk score is not a legal or ethical verdict. Probabilities are task-model outputs and require task-specific calibration. Current calibration uses a synthetic validation set and does not establish real-world risk probability.
 
@@ -68,6 +70,8 @@ The synthetic test figures above are not production estimates. Independent evalu
 
 Versioned weights are excluded from Git. The original published Hugging Face model remains v1; local v2 results are **experimental**. On a distinct 2,000-row synthetic Turkish PII benchmark, v2 F1 is 0.784 with false-positive rate 0.316. Synthetic full-test macro F1 is 0.663. Encoded injection attacks failed in the small adversarial suite. Current `confidence` does not predict policy correctness well. See [model card](MODEL_CARD.md), [data card](DATA_CARD.md), [research report](reports/research_report.md), [calibration](docs/calibration.md), and [limitations](docs/limitations.md).
 
+Additional bilingual injection-head candidates remain under `models/candidates/`. They improved two external diagnostics but regressed on mixed-language synthetic examples and benign agent tool outputs, so the released model is unchanged. See the [scoped score comparison](reports/injection_experiments.md).
+
 For a clean clone, switch to `feature/trustlaya-advanced`, then download the experimental candidate from the [GitHub prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.0.0-rc1) using `.venv/bin/python scripts/download_artifacts.py --advanced`. The downloader checks SHA-256 against `models/advanced_manifest.json`. The separate [Hugging Face advanced model card](https://huggingface.co/ege-arhan/TrustLaya-S-Advanced) currently documents the candidate; model files are pending upload there.
 
 ## Decision path
@@ -86,4 +90,4 @@ flowchart LR
     H --> I[ALLOW / REDACT / REVIEW / BLOCK]
 ```
 
-The [Hugging Face Space](https://huggingface.co/spaces/xzwq/TrustLaya-S-demo) demonstrates the decision path. Score calibration and policy settings are documented; results are research diagnostics.
+The [Hugging Face Space](https://huggingface.co/spaces/ege-arhan/TrustLaya-S-demo) demonstrates the decision path. Score calibration and policy settings are documented; results are research diagnostics.

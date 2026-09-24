@@ -5,10 +5,12 @@ This measures payload classification, not whether an agent executes an attack.
 
 import hashlib
 import json
+import gc
 from collections import Counter, defaultdict
 from pathlib import Path
 
 from huggingface_hub import HfApi, hf_hub_download
+import onnxruntime as ort
 from sklearn.metrics import balanced_accuracy_score, confusion_matrix, f1_score, matthews_corrcoef, precision_score, recall_score
 
 from trustlaya.inference import Analyzer
@@ -60,6 +62,7 @@ def sliding_score(analyzer, text):
 
 
 def main():
+    ort.disable_telemetry_events()
     path = Path(hf_hub_download(SOURCE, FILE, repo_type="dataset", revision=SOURCE_REVISION))
     source_revision = HfApi().dataset_info(SOURCE, revision=SOURCE_REVISION).sha
     source_hash = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -109,6 +112,8 @@ def main():
               "views": views}
     target = ROOT / "reports/agent_injection_independent.json"
     target.write_text(json.dumps(report, indent=2) + "\n")
+    del analyzer
+    gc.collect()
     print(json.dumps({name: value["at_0_5"] for name, value in views.items()}, indent=2))
 
 

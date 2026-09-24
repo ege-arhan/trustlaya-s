@@ -10,7 +10,7 @@ Controlled adversarial injection: clean F1 **0.700** (24 rows), transformed F1 *
 
 Separate CC-BY Turkish PII test: v1 F1 **0.737**, v2 F1 **0.784**, v2 FPR **0.316**. Source is synthetic and this set was inspected after training; later tuning against it would bias subsequent claims.
 
-ONNX FP32: **159.9 MiB**, batch-1 CPU p50 **6.185 ms**. INT8 final-action disagreement **0.051** on 256 synthetic rows.
+ONNX FP32: **159.9 MiB**, batch-1 CPU p50 **7.388 ms**. INT8 final-action disagreement **0.051** on 256 synthetic rows.
 
 Abstention rate **0.002**. Confidence median **0.999**. Selective action error rises as threshold increases; current confidence is not a valid correctness estimate.
 

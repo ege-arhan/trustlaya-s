@@ -1,0 +1,18 @@
+# Injection-head improvement experiments
+
+All variants retain the 42,138,641-parameter encoder and other heads. They are isolated local candidates under `models/candidates/`; the released v2 checkpoint and default policy remain unchanged. `scripts/train_injection_candidate.py` trains only the injection linear-head row from the pinned MIT BPI-Guard source. `scripts/train_injection_joint.py` adds the original synthetic training split. Development-only selection chose C=0.1, threshold 0.55 for BPI-only and C=1.0, threshold 0.50 for joint training; temperatures were fitted on development data. A simple weight blend failed its two-development-set false-positive gates and was rejected (`reports/injection_blend_selection.json`).
+
+The BPI source labels a broader adversarial class than strict prompt injection. The test is synthetic/transformed and can retain source-family similarities after the 12 direct/original-text overlaps removed here. The original synthetic validation is English-only; its perfect injection F1 is a poor guide to the mixed-only test. The joint candidate was chosen without using BPI, synthetic, AgentInjectionBench, zachz or PolyGuardBench test scores in its parameter or threshold grid. BPI, synthetic, AgentInjectionBench and zachz scores had already been inspected during earlier experiments, so only the first PolyGuardBench check was a new source for the frozen candidates.
+
+| Corpus and task scope | Released v2 F1 / recall / FPR | BPI-only F1 / recall / FPR | Joint F1 / recall / FPR |
+|---|---:|---:|---:|
+| BPI test, n=2,961, broad adversarial label | .561 / .491 / .234 | .870 / .844 / .087 | .869 / .858 / .105 |
+| PolyGuardBench, 190 injection attacks + 360 benign over-refusal controls | .486 / .563 / .397 | .868 / .989 / .153 | .868 / .989 / .153 |
+| Original synthetic mixed-only test, n=1,975 | .555 / .652 / .115 | .322 / .699 / .435 | .464 / .692 / .212 |
+| AgentInjectionBench tool-result text, 142 attacks + 40 benign | .484 / .380 / .675 | .899 / 1.000 / .800 | .895 / .993 / .800 |
+
+The high agent-benchmark F1 is **not** an acceptable outcome: 80% of benign tool returns are flagged, and the benchmark is attack-heavy. PolyGuardBench's attack and benign examples come from different axes, so its combined F1 is also not a matched operational estimate. Its Turkish attack recall rose .516→.978 and English .608→1.000 for the joint candidate, but its benign FPR remains .111 Turkish / .194 English. The legacy synthetic regression and agent tool-output false alarms block promotion. No claim of overall model improvement or production calibration is made.
+
+The first BPI-only candidate also scored .649→.873 F1 against a separate MIT prompt-injection benchmark: 299 rows after four exact-training-overlap exclusions (`reports/injection_candidate_cross_source.json`). That set was viewed before joint training and is not fresh confirmation for the joint model. Raw counts, revisions, SHA-256 hashes, per-language PolyGuardBench results, calibration, and false-negative rates are in `reports/injection_candidate_bpi.json`, `reports/injection_candidate_holdout.json`, and `reports/injection_joint_selection.json`. Source datasets remain in their own repositories; this project commits aggregate metrics only.
+
+Next experiment: build a family-separated, independently adjudicated mixed-language and tool-output development set with matched benign controls. Refit a head against those domains, then evaluate once on new untouched sources. Keep `untrusted_tool_output` + privileged agent traffic behind the deterministic REVIEW gate until false negatives and false alarms both meet a defined operational target.

@@ -30,13 +30,15 @@ The same independent BTX24 sample also supplies a common-scope PII rule baseline
 
 An additional Apache-2.0 agentic injection benchmark has 142 attacks and 40 matched benign tool-output controls. The v2 prompt-injection head on concatenated tool results achieved F1 0.484, recall 0.380, FPR 0.675 and balanced accuracy 0.353 at 0.5. Of 182 texts, 129 exceed the 96-token input window. A 94-token overlapping-window maximum diagnostic improved F1 to 0.592 and recall to 0.500 while leaving FPR at 0.675; it was not promoted. This test cannot establish agent attack success or failure because it only scores text. See `reports/agent_injection_independent.json`.
 
+An isolated BPI-trained injection-head experiment then improved a new Turkish/English PolyGuardBench cross-axis diagnostic to F1 0.868 from 0.486, with attack recall 0.989 versus 0.563 and benign FPR 0.153 versus 0.397. The same joint candidate regressed on the original mixed-only synthetic test (F1 0.464 versus 0.555) and produced 0.800 false-positive rate on benign AgentInjectionBench tool returns. Thus it was **not promoted**. BPI's labels cover broader adversarial prompts than strict injection, and PolyGuardBench's attack/benign rows come from different axes. Full counts and experiment selection are in `reports/injection_experiments.md`.
+
 ## Calibration and abstention
 
 On the English-only synthetic validation set, mean ECE improved from 0.1051 to 0.0890, Brier from 0.1027 to 0.0853, NLL from 0.4243 to 0.2714. Eight temperatures were evaluated on the data used to fit them. Separate Turkish PII test ECE is 0.181. Action `confidence` median is 0.9988 on synthetic test, but action error among retained examples increases when confidence threshold rises. The present confidence output is not a reliable correctness estimate. Policy REVIEW/BLOCK rules remain the safety fallback.
 
 ## Adversarial, quantization and edge
 
-The 24-family adversarial suite yields clean injection F1 0.700 and transformed F1 0.750, but base64 encoding F1 0.000. FP32 ONNX max risk-logit difference from PyTorch on 256 rows is 5.05e-05. INT8 max risk-logit difference is 2.429, and 5.1% of final policy actions differ from FP32. Experimental INT8 is not an approved replacement. FP32 ONNX size is 159.9 MiB; MacBook batch-1 ONNX CPU median is 6.185 ms in the latest run. CPU, MPS, and ONNX details are in `benchmarks/results.json`. No Arduino UNO Q hardware was tested; the Linux application processor is the prospective target.
+The 24-family adversarial suite yields clean injection F1 0.700 and transformed F1 0.750, but base64 encoding F1 0.000. FP32 ONNX max risk-logit difference from PyTorch on 256 rows is 5.05e-05. INT8 max risk-logit difference is 2.429, and 5.1% of final policy actions differ from FP32. Experimental INT8 is not an approved replacement. FP32 ONNX size is 159.9 MiB; MacBook batch-1 ONNX CPU median is 7.388 ms in the latest saved run. CPU, MPS, and ONNX details are in `benchmarks/results.json`. No Arduino UNO Q hardware was tested; the Linux application processor is the prospective target.
 
 ## Ablations and rejected training
 
@@ -44,7 +46,7 @@ The base BERT checkpoint has no safety heads, so a base-only macro F1 is **NOT M
 
 ## Evidence, agent and session policy
 
-Pattern extraction returns type, exact text and offsets for detected PII, secrets and external transfer. This is not a learned NER head, and name/account-number coverage remains incomplete. Permission scoring reports shell, filesystem, network, database and credential subrisks. Bounded session state recognizes credential-access/external-transfer and filesystem/shell/external chains without storing raw prompts. These deterministic signals feed a rule-constrained fusion index and policy action; neither index is calibrated event probability. An optional audit log records risk, action, triggered rule and evidence offsets but omits evidence text. The HTTP API rejects per-request policy overrides and binds to localhost by default.
+Pattern extraction returns type, exact text and offsets for detected PII, secrets and external transfer. This is not a learned NER head, and name/account-number coverage remains incomplete. Permission scoring reports shell, filesystem, network, database and credential subrisks. Bounded session state recognizes credential-access/external-transfer and filesystem/shell/external chains without storing raw prompts. These deterministic signals feed a rule-constrained fusion index and policy action; neither index is calibrated event probability. Because the independent agentic injection benchmark showed poor text detection, `untrusted_tool_output` from a privileged agent without human approval now requires REVIEW regardless of model score; callers must provide truthful metadata and enforce the resulting pause. An optional audit log records risk, action, triggered rule and evidence offsets but omits evidence text. The HTTP API rejects per-request policy overrides and binds to localhost by default.
 
 ## API, reproducibility and limitations
 
