@@ -66,7 +66,24 @@ def main():
             "false_positive_rate": fp / (fp + tn),
             "false_negative_rate": fn / (fn + tp),
             "confusion_matrix_tn_fp_fn_tp": [int(tn), int(fp), int(fn), int(tp)],
+            "by_source": {},
         }
+        for source in sorted(set(row["source"] for row in rows)):
+            indices = [i for i, row in enumerate(rows) if row["source"] == source]
+            source_truth = [labels[i] for i in indices]
+            source_pred = [predictions[i] for i in indices]
+            source_tn, source_fp, source_fn, source_tp = confusion_matrix(
+                source_truth, source_pred, labels=[0, 1]).ravel()
+            report["models"][name]["by_source"][source] = {
+                "n": len(indices), "positive": sum(source_truth),
+                "f1": f1_score(source_truth, source_pred, zero_division=0),
+                "false_positive_rate": (source_fp / (source_fp + source_tn)
+                                        if source_fp + source_tn else None),
+                "false_negative_rate": (source_fn / (source_fn + source_tp)
+                                        if source_fn + source_tp else None),
+                "confusion_matrix_tn_fp_fn_tp": [int(source_tn), int(source_fp),
+                                                 int(source_fn), int(source_tp)],
+            }
         del analyzer
     output = ROOT / "reports/neuralchemy_cross_source.json"
     output.write_text(json.dumps(report, indent=2) + "\n")
