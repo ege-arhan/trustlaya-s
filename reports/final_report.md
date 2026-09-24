@@ -1,4 +1,4 @@
-# TrustLaya-S final report
+# TrustLaya-S final report (v1 historical run and v2 experimental update)
 
 ## Problem and goal
 
@@ -16,7 +16,7 @@ Pretrained Turkish BERT shared encoder, mean pooling, nine independent binary ri
 
 10,000 synthetic samples, eleven categories, Turkish/English/mixed templates. Train 6972, validation 1053, test 1975. Template families and exact texts do not cross splits. Synthetic examples are controlled, but many examples share a small set of templates; results are not evidence of open-world robustness.
 
-Published dataset: [xzwq/TrustLaya-S-synthetic](https://huggingface.co/datasets/xzwq/TrustLaya-S-synthetic). A fresh `datasets.load_dataset` call verified all three split counts and schema after upload. Independent evaluation corpora are linked and cited but not redistributed.
+Published dataset: [ege-arhan/TrustLaya-S-synthetic](https://huggingface.co/datasets/ege-arhan/TrustLaya-S-synthetic). A fresh `datasets.load_dataset` call verified all three split counts and schema after upload. Independent evaluation corpora are linked and cited but not redistributed.
 
 ## Full held-out synthetic test (1975 examples)
 
@@ -74,9 +74,9 @@ RSS deltas were measured sequentially in one process; allocator reuse and alread
 
 ## Test and verification
 
-`pytest`: 11 passed. ONNX checker and ONNX CPU inference passed. CLI produced REDACT for the requested Turkish PII transfer example. Stage outcomes are in `logs/final_check.log`. No Arduino UNO Q board was connected or measured.
+The original v1 run passed 11 pytest tests. ONNX checker and ONNX CPU inference passed. CLI produced REDACT for the requested Turkish PII transfer example. Stage outcomes are in `logs/final_check.log`. No Arduino UNO Q board was connected or measured.
 
-Published [GitHub source](https://github.com/ege-arhan/trustlaya-s), [Hugging Face model](https://huggingface.co/xzwq/TrustLaya-S), and [live Space](https://huggingface.co/spaces/xzwq/TrustLaya-S-demo). The live Space was manually checked with PII transfer (REDACT), prompt injection (BLOCK), and benign text (ALLOW).
+Published [GitHub source](https://github.com/ege-arhan/trustlaya-s), [Hugging Face v1 model](https://huggingface.co/ege-arhan/TrustLaya-S), and [Space](https://huggingface.co/spaces/ege-arhan/TrustLaya-S-demo). The v1 Space was manually checked with PII transfer (REDACT), prompt injection (BLOCK), and benign text (ALLOW).
 
 ## Limitations and next work
 
@@ -95,3 +95,9 @@ A further independent development/test secret threshold check gave test ROC AUC 
 ## Advanced v2 candidate update
 
 The versioned advanced candidate preserves v1 and updates only the PII head using frozen encoder features from disjoint Turkish privacy scenarios. A distinct 2,000-row synthetic Turkish PII test gave v2 F1 0.784 and false-positive rate 0.316. The original 1,975-row synthetic mixed test remains macro F1 0.663; injection F1 0.555 and data-governance F1 zero. Current confidence fails selective-risk testing. A 24-family adversarial suite found F1 zero for encoded attacks. FP32 ONNX remains 159.9 MiB; INT8 changed 5.1% of policy actions on 256 rows. A local session-aware API and agent risk policy are implemented. The complete scoped evidence, methods, and limitations are in `reports/research_report.md`, `MODEL_CARD.md`, and `DATA_CARD.md`. `scripts/final_check.sh` passed all stages, including 17 pytest tests, in the advanced branch. No production readiness or UNO Q hardware validation is claimed.
+
+## Latest independent diagnostic and release verification
+
+On the same 2,000-row Turkish PII mapping, rules alone reached F1 0.480 and FPR 0; v1/v2 hybrid F1 was 0.737/0.784, but v2 FPR was 0.316. The source is synthetic. A separate 182-case, hand-crafted agentic prompt-injection benchmark gave v2 tool-result classification F1 0.484, recall 0.380, FPR 0.675 and false-negative rate 0.620. Overlapping 94-token windows improved F1 to 0.592, with FPR still 0.675. This measures text detection only, not attack success. These failures rule out autonomous enforcement. Full scopes, pinned source revisions and breakdowns are in `reports/independent_pii_v2.json` and `reports/agent_injection_independent.json`.
+
+The latest Mac batch-one warm p50 was 14.427 ms PyTorch CPU, 7.534 ms PyTorch MPS and 6.185 ms ONNX CPU FP32; measurements vary between runs. The pinned PII training data reproduced the published v2 safetensors SHA-256 exactly in a separate candidate directory. The [experimental GitHub prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.0.0-rc1) was downloaded with SHA-256 verification and run from a clean checkout. See `reports/release_verification.md`. The [advanced Hugging Face model card](https://huggingface.co/ege-arhan/TrustLaya-S-Advanced) is public; binaries are currently available from the GitHub prerelease while Hugging Face file upload awaits browser access. Latest `scripts/final_check.sh` passed all stages, including independent diagnostics, ONNX parity, 17 tests and CLI inference.

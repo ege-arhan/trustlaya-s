@@ -23,7 +23,9 @@ def decide(scores, evidence, metadata=None, confidence=1.0, config=None, agent_r
     # A shifted secret-only score is too noisy to justify an automatic block.
     # Verified pattern evidence above can still block; model-only hits go to review.
     if scores["secret"]>=t["secret"]: return "REVIEW", "unverified_secret_score"
-    if scores["pii"]>=t["pii"] and transfer: return "REDACT", "pii_external_transfer"
+    # Independent PII tests show frequent model-only false positives.
+    # Keep automatic redaction for verified evidence; review unverified scores.
+    if scores["pii"]>=t["pii"] and transfer: return "REVIEW", "unverified_pii_transfer"
     if m.get("agent") and (m.get("shell") or m.get("credential_access") or (m.get("database") and m.get("network"))) and not m.get("human_approval"):
         return "REVIEW", "agent_permissions"
     if fusion and fusion["score"] >= 0.75: return "REVIEW", "fused_risk"

@@ -25,7 +25,9 @@ On the original synthetic validation, v2 mean ECE was **0.089** calibrated versu
 
 Controlled prompt-injection stress test: clean F1 **0.700** (24), transformed F1 **0.750** (216), but base64-encoded variant F1 **0**. External v1 injection false-positive rate was 0.429 on deepset held-out data. Independent model-only secret false-positive rate was 0.949 on a different noncommercial corpus. The v2 PII update does not change injection or secret weights.
 
-FP32 ONNX is 159.9 MiB and had maximum risk-logit drift 0.000051 versus PyTorch on 256 examples. INT8 ONNX is 40.5 MiB but changed **5.08%** of final policy actions on that sample. Mac batch-one warm p50: PyTorch CPU **11.685 ms**, MPS **4.584 ms**, ONNX CPU **4.629 ms**. Measurements are device and run specific. [Benchmark table](benchmarks/results.md).
+On a separate Apache-2.0 agentic tool-output benchmark (142 attacks, 40 matched benign), the injection head achieved F1 **0.484**, recall **0.380**, FPR **0.675** at 0.5. Overlapping-window maximum scoring improved F1 to **0.592** but did not reduce FPR. This measured text detection, not attack execution by an agent. [Breakdown](reports/agent_injection_independent.json).
+
+FP32 ONNX is 159.9 MiB and had maximum risk-logit drift 0.000051 versus PyTorch on 256 examples. INT8 ONNX is 40.5 MiB but changed **5.08%** of final policy actions on that sample. Latest Mac batch-one warm p50: PyTorch CPU **14.427 ms**, MPS **7.534 ms**, ONNX CPU **6.185 ms**. Measurements are device and run specific. [Benchmark table](benchmarks/results.md).
 
 ## Inference example
 

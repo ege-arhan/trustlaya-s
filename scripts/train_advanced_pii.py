@@ -1,6 +1,8 @@
 """Train a versioned PII-head candidate on MIT Turkish data and synthetic anchors."""
 
 import json
+import argparse
+import hashlib
 import random
 import shutil
 from pathlib import Path
@@ -21,13 +23,15 @@ from trustlaya.utils import device, normalize, seed_all
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = "yusuf-said/turkish-privacy-filter-dataset"
+SOURCE_REVISION = "fc2b9a3e197484d22a8201317cc722baacf053b7"
 PII_KEYS = {"account_number", "private_person", "private_phone", "private_email", "private_address"}
 DEV_SCENARIOS = {"json_log", "chat_transcript"}
 TEST_SCENARIOS = {"ocr_scan", "server_log", "call_center_log"}
 
 
 def data():
-    path = hf_hub_download(SOURCE, filename="tr_privacy_tr_curated.jsonl", repo_type="dataset")
+    path = hf_hub_download(SOURCE, filename="tr_privacy_tr_curated.jsonl",
+                           repo_type="dataset", revision=SOURCE_REVISION)
     raw = [json.loads(line) for line in open(path)]
     rows = [{"text": row["text"], "label": int(any(
         key.split(":")[0] in PII_KEYS for key in row["spans"])),
@@ -44,7 +48,7 @@ def data():
     anchors = rng.sample(anchors, 1000)
     split["train"].extend({"text": row["text"], "label": row["labels"]["pii"],
                            "scenario": "v1_synthetic_anchor"} for row in anchors)
-    return split
+    return split, hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def embeddings(model, tokenizer, rows, batch_size=64):
@@ -89,9 +93,19 @@ def select_threshold(logits, rows, temperature):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-dir", type=Path,
+                        default=ROOT / "models/candidates/advanced_pii")
+    parser.add_argument("--report", type=Path,
+                        default=ROOT / "reports/advanced_pii_candidate.json")
+    args = parser.parse_args()
+    protected = {ROOT / name for name in ("models/student", "models/trustlaya-s-v1",
+                                           "models/trustlaya-s-v2")}
+    if args.output_dir.resolve() in {path.resolve() for path in protected}:
+        parser.error("Refusing to overwrite released or evaluated checkpoint")
     seed_all(42)
     torch.set_num_threads(4)
-    split = data()
+    split, source_sha256 = data()
     tokenizer = AutoTokenizer.from_pretrained(ROOT / "models/trustlaya-s-v1")
     model = TrustLaya(BACKBONE, pretrained=False)
     model.load(ROOT / "models/trustlaya-s-v1/model.safetensors")
@@ -129,7 +143,9 @@ def main():
         for name, rows in split.items() if name != "train"
     }
     report = {
-        "source": SOURCE, "license": "MIT", "source_label": "synthetic_curated_not_human_verified",
+        "source": SOURCE, "source_revision": SOURCE_REVISION,
+        "source_file_sha256": source_sha256,
+        "license": "MIT", "source_label": "synthetic_curated_not_human_verified",
         "split_by_scenario": {name: {"rows": len(rows),
                                      "scenarios": sorted({r["scenario"] for r in rows})}
                               for name, rows in split.items()},
@@ -138,7 +154,7 @@ def main():
         "baseline_v1_dev_tuned": baseline_tuned, "candidate_v2_dev_tuned": candidate_tuned,
         "selection_note": "C and thresholds selected on scenario-disjoint dev with FPR <= 0.10 when possible. Test used for a promotion check; subsequent selected-model test claims are selection-biased.",
     }
-    dest = ROOT / "models/trustlaya-s-v2"
+    dest = args.output_dir
     dest.mkdir(parents=True, exist_ok=True)
     with torch.no_grad():
         model.heads.risks.weight[0].copy_(torch.tensor(chosen.coef_[0], device=device(), dtype=torch.float32))
@@ -153,7 +169,8 @@ def main():
     policy = yaml.safe_load((ROOT / "configs/policy.yaml").read_text())
     policy["pii"] = threshold
     (dest / "policy.yaml").write_text(yaml.safe_dump(policy, sort_keys=False))
-    (ROOT / "reports/advanced_pii_experiment.json").write_text(json.dumps(report, indent=2))
+    args.report.parent.mkdir(parents=True, exist_ok=True)
+    args.report.write_text(json.dumps(report, indent=2))
     print(json.dumps({"baseline_v1_dev_tuned": baseline_tuned,
                       "candidate_v2_dev_tuned": candidate_tuned,
                       "selected_C": chosen_c, "pii_temperature": temperature}, indent=2))

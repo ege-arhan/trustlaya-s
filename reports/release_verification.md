@@ -1,0 +1,9 @@
+# v2.0.0-rc1 release verification
+
+The public [GitHub prerelease](https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.0.0-rc1) contains the FP32 safetensors model (168,571,188 bytes), FP32 ONNX (167,661,320 bytes), experimental INT8 ONNX (42,507,021 bytes), tokenizer, calibration, thresholds, and policy files. `models/advanced_manifest.json` pins each asset's SHA-256.
+
+At detached commit `526e860` in a fresh worktree, `python scripts/download_artifacts.py --advanced --onnx-only` downloaded and verified the FP32 ONNX and supporting files. The requested Turkish PII-transfer CLI example produced policy action `REDACT`, reason `pii_external_transfer`, with `PII_MENTION` and `EXTERNAL_TRANSFER` spans. A second `--advanced` run downloaded and verified the FP32 safetensors and INT8 ONNX assets. PyTorch CPU inference on the downloaded checkpoint produced the same risk scores up to floating-point differences and also returned `REDACT`.
+
+The clean checkout test verifies release packaging and one representative inference path. It does not validate generalization, real hardware, or INT8 policy parity. The versioned release was created before the later policy change that routes unverified model-only PII transfer to REVIEW; the released weights and ONNX logits are unchanged. The current branch policy remains the reference for advanced use.
+
+On the development Mac, the pinned MIT PII source was fetched again and `python scripts/train_advanced_pii.py` rebuilt a separate candidate under `models/candidates/advanced_pii`. Its safetensors SHA-256 was `99a8527de00fed3a520d136d26cdda9acc79dff2fae5c725ef773159b565563c`, exactly matching `models/trustlaya-s-v2/model.safetensors`; all original experiment metric fields matched. The source file SHA-256 and run details are in `reports/advanced_pii_candidate.json`. This proves reproducibility in the current environment, not across other library or hardware versions.

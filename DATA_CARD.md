@@ -6,12 +6,15 @@ The v1 training corpus is [TrustLaya-S-synthetic](https://huggingface.co/dataset
 
 The v2 PII candidate updates **only the PII risk-head row**. It uses 3,653 scenario-grouped training rows from the MIT-licensed, synthetic/curated [Turkish Privacy Filter Dataset](https://huggingface.co/datasets/yusuf-said/turkish-privacy-filter-dataset), plus 1,000 synthetic v1 training anchors. Development has 478 rows from `json_log` and `chat_transcript`; the held-out scenario set has 979 rows from `ocr_scan`, `server_log`, and `call_center_log`. Scenario names and row counts are in `reports/advanced_pii_experiment.json`. The source annotations are not independent human adjudication. Supported positive categories are account number, person, phone, email, and address; dates and URLs are excluded from this task mapping.
 
+The evaluation scripts pin upstream revisions and record source hashes in their JSON reports. The training script writes new candidates under `models/candidates/` by default and refuses to overwrite released checkpoints.
+
 ## Diagnostic and test sources
 
 | Source | License | Use | Redistribution |
 |---|---|---|---|
 | [deepset prompt injections](https://huggingface.co/datasets/deepset/prompt-injections) | Apache-2.0 | v1 external injection diagnostic; earlier rejected fine-tune experiment | No source rows in this repo |
 | [BTX24 Turkish Privacy PII NER](https://huggingface.co/datasets/BTX24/turkish-privacy-pii-ner) | CC BY 4.0 | Unused-for-training 2,000-row stratified v2 PII diagnostic, 1,000 positive and 1,000 task-specific negative | Aggregate statistics only |
+| [AgentInjectionBench](https://huggingface.co/datasets/ppradyoth/AgentInjectionBench) | Apache 2.0 | Separate 182-case agentic prompt-injection diagnostic with 142 attacks and 40 matched benign controls; measures text detection on tool results, not agent execution | Aggregate statistics only |
 | [Prowl secrets corpus](https://huggingface.co/datasets/Podric/prowl-secrets-corpus) | CC BY-NC 4.0; derived portions retain upstream terms | v1 diagnostic only; **not used for training v2** | No source rows or spans |
 | [Rogue Security hard benign cases](https://huggingface.co/datasets/rogue-security/real-world-benign-use-cases) | License marked `other` | Diagnostic only | No source rows |
 

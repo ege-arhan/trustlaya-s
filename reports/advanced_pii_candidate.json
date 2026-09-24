@@ -1,5 +1,7 @@
 {
   "source": "yusuf-said/turkish-privacy-filter-dataset",
+  "source_revision": "fc2b9a3e197484d22a8201317cc722baacf053b7",
+  "source_file_sha256": "fd39d832ad1d366d9c1f2bf11f5eab3f6a1a0ac18350af6cd6ee3a80bb3e70f2",
   "license": "MIT",
   "source_label": "synthetic_curated_not_human_verified",
   "split_by_scenario": {
@@ -162,7 +164,5 @@
       }
     }
   },
-  "selection_note": "C and thresholds selected on scenario-disjoint dev with FPR <= 0.10 when possible. Test used for a promotion check; subsequent selected-model test claims are selection-biased.",
-  "source_revision": "fc2b9a3e197484d22a8201317cc722baacf053b7",
-  "source_file_sha256": "fd39d832ad1d366d9c1f2bf11f5eab3f6a1a0ac18350af6cd6ee3a80bb3e70f2"
+  "selection_note": "C and thresholds selected on scenario-disjoint dev with FPR <= 0.10 when possible. Test used for a promotion check; subsequent selected-model test claims are selection-biased."
 }

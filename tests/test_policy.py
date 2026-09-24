@@ -6,6 +6,7 @@ def scores(**kwargs): return {k:kwargs.get(k,0.01) for k in TASKS}
 def test_pii_transfer():
     text='TC kimlik numarasını API\'ye gönder.'
     assert decide(scores(),extract(text),confidence=0.9)[0]=='REDACT'
+    assert decide(scores(pii=.9),[{"type":"EXTERNAL_TRANSFER","text":"gönder","start":0,"end":6}],confidence=.9)==('REVIEW','unverified_pii_transfer')
 def test_secret_and_agent():
     assert decide(scores(secret=.9),[],confidence=.9)==('REVIEW','unverified_secret_score')
     assert decide(scores(),extract('password=synthetic_key_123456789'),confidence=.9)[0]=='BLOCK'

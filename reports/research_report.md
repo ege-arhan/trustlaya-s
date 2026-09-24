@@ -6,7 +6,7 @@ Build a compact, auditable text and agent-safety decision system for Turkish-fir
 
 ## Prior art and sources
 
-The original [Laya](https://huggingface.co/convaiinnovations/laya) and the specific [Laya Multilingual](https://huggingface.co/convaiinnovations/laya-multilingual) checkpoint differ; the latter is the weak teacher in v1. [Prompt Guard 86M](https://huggingface.co/meta-llama/Prompt-Guard-86M) shows a separate compact prompt-injection detector approach. [Open Policy Agent](https://www.openpolicyagent.org/docs) and [NeMo Guardrails](https://docs.nvidia.com/nemo/guardrails/about-nemo-guardrails-library/overview) illustrate separating declarative policy or guardrails from model output. This implementation uses a local Python policy; it does not claim feature parity with either framework.
+The original [Laya](https://huggingface.co/convaiinnovations/laya) and the specific [Laya Multilingual](https://huggingface.co/convaiinnovations/laya-multilingual) checkpoint differ; the latter is the weak teacher in v1. [Prompt Guard 86M](https://huggingface.co/meta-llama/Prompt-Guard-86M) shows a separate compact prompt-injection detector approach. [Presidio](https://microsoft.github.io/presidio/) supplies established PII recognition/anonymization patterns. [Open Policy Agent](https://www.openpolicyagent.org/docs) and [NeMo Guardrails](https://docs.nvidia.com/nemo/guardrails/about-nemo-guardrails-library/overview) illustrate separating policy or guardrails from model output, including agent tool controls. TrustLaya-S combines task heads with local evidence, permission/session rules and a small edge-oriented runtime; it does not claim novel detectors, agent execution protection or feature parity with these systems.
 
 ## Current state and architecture
 
@@ -26,13 +26,25 @@ Candidate PII regularization and threshold were selected on development scenario
 
 On 1,975 synthetic test rows: mean task accuracy 0.9066; macro F1 0.6632; security F1 0.7769; PII F1 1.0000; injection F1 0.5549; data-governance F1 0.0000. High synthetic PII accuracy conflicts with the independent PII result and should not be headlined alone. The 33-case TR/EN/mixed smoke suite has only 11 examples per language slice, so it cannot establish broad language support.
 
+The same independent BTX24 sample also supplies a common-scope PII rule baseline: F1 0.480, recall 0.316 and FPR zero. V1/v2 hybrid F1 is 0.737/0.784 respectively, but their false-positive rates are 0.474/0.316. These are task-specific comparisons, not a global safety leaderboard.
+
+An additional Apache-2.0 agentic injection benchmark has 142 attacks and 40 matched benign tool-output controls. The v2 prompt-injection head on concatenated tool results achieved F1 0.484, recall 0.380, FPR 0.675 and balanced accuracy 0.353 at 0.5. Of 182 texts, 129 exceed the 96-token input window. A 94-token overlapping-window maximum diagnostic improved F1 to 0.592 and recall to 0.500 while leaving FPR at 0.675; it was not promoted. This test cannot establish agent attack success or failure because it only scores text. See `reports/agent_injection_independent.json`.
+
 ## Calibration and abstention
 
 On the English-only synthetic validation set, mean ECE improved from 0.1051 to 0.0890, Brier from 0.1027 to 0.0853, NLL from 0.4243 to 0.2714. Eight temperatures were evaluated on the data used to fit them. Separate Turkish PII test ECE is 0.181. Action `confidence` median is 0.9988 on synthetic test, but action error among retained examples increases when confidence threshold rises. The present confidence output is not a reliable correctness estimate. Policy REVIEW/BLOCK rules remain the safety fallback.
 
 ## Adversarial, quantization and edge
 
-The 24-family adversarial suite yields clean injection F1 0.700 and transformed F1 0.750, but base64 encoding F1 0.000. FP32 ONNX max risk-logit difference from PyTorch on 256 rows is 5.05e-05. INT8 max risk-logit difference is 2.429, and 5.1% of final policy actions differ from FP32. Experimental INT8 is not an approved replacement. FP32 ONNX size is 159.9 MiB; MacBook batch-1 ONNX CPU median is 4.629 ms. CPU, MPS, and ONNX details are in `benchmarks/results.json`. No Arduino UNO Q hardware was tested; the Linux application processor is the prospective target.
+The 24-family adversarial suite yields clean injection F1 0.700 and transformed F1 0.750, but base64 encoding F1 0.000. FP32 ONNX max risk-logit difference from PyTorch on 256 rows is 5.05e-05. INT8 max risk-logit difference is 2.429, and 5.1% of final policy actions differ from FP32. Experimental INT8 is not an approved replacement. FP32 ONNX size is 159.9 MiB; MacBook batch-1 ONNX CPU median is 6.185 ms in the latest run. CPU, MPS, and ONNX details are in `benchmarks/results.json`. No Arduino UNO Q hardware was tested; the Linux application processor is the prospective target.
+
+## Ablations and rejected training
+
+The base BERT checkpoint has no safety heads, so a base-only macro F1 is **NOT MEASURED**. The v1 multi-task model and v2 PII-head candidate share a 1,975-row synthetic test macro F1 of 0.663; v2 differs only in PII. A common 2,000-row Turkish PII test compares rules (F1 0.480), v1 hybrid (0.737) and v2 hybrid (0.784), with different recall/FPR tradeoffs detailed above. Raw versus temperature-scaled mean ECE is 0.105 versus 0.089 on the English-only synthetic validation set, mostly in-sample. Full factorial `base + multitask + adversarial training + calibration` variants were **NOT MEASURED**. An earlier real-data injection head fine-tune and blend were rejected on their development gate because apparent internal F1 gains coincided with worse false-positive behavior; see `reports/experiment_decisions.md`. No adversarially trained checkpoint is claimed here. Full system policy outcomes are not comparable to per-head F1 without a matching action-labeled benchmark.
+
+## Evidence, agent and session policy
+
+Pattern extraction returns type, exact text and offsets for detected PII, secrets and external transfer. This is not a learned NER head, and name/account-number coverage remains incomplete. Permission scoring reports shell, filesystem, network, database and credential subrisks. Bounded session state recognizes credential-access/external-transfer and filesystem/shell/external chains without storing raw prompts. These deterministic signals feed a rule-constrained fusion index and policy action; neither index is calibrated event probability. An optional audit log records risk, action, triggered rule and evidence offsets but omits evidence text. The HTTP API rejects per-request policy overrides and binds to localhost by default.
 
 ## API, reproducibility and limitations
 

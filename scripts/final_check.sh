@@ -18,6 +18,9 @@ run_step training_smoke "$PY" scripts/train_student.py --steps 1 --batch 4
 run_step evaluation "$PY" scripts/evaluate_advanced.py
 run_step recalibration_candidate "$PY" scripts/calibrate.py
 run_step adversarial "$PY" scripts/evaluate_adversarial.py
+run_step independent_pii "$PY" scripts/evaluate_independent_pii.py
+run_step agent_injection "$PY" scripts/evaluate_agent_injection.py
+run_step language_smoke "$PY" scripts/evaluate_tr_benchmark.py
 run_step onnx_export "$PY" scripts/export_onnx.py
 run_step onnx_parity "$PY" scripts/evaluate_onnx_v2.py
 run_step benchmark "$PY" scripts/benchmark.py

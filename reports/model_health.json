@@ -30,13 +30,14 @@
   },
   "independent_pii": {
     "scope": "Test split, seed-42 stratified 125 per eight PII categories and 500 each of date and secret task-specific negatives. Entire source is synthetic; no raw examples redistributed. Date and secret are not globally benign.",
+    "rule_f1": 0.48024316109422494,
     "v1_f1": 0.7374732334047109,
     "v2_f1": 0.7837338262476895,
     "v2_false_positive_rate": 0.316
   },
   "edge": {
     "size_mib": 159.894,
-    "onnx_cpu_p50_ms": 4.629,
+    "onnx_cpu_p50_ms": 6.185,
     "int8_final_action_disagreement": 0.05078125
   },
   "uncertainty": {
@@ -81,5 +82,52 @@
       }
     },
     "note": "High categorical confidence does not predict lower synthetic action error in this run; do not treat it as correctness probability."
+  },
+  "independent_agent_injection": {
+    "scope": "Published benchmark tool_result text; second view appends advertised tool descriptions. Third view uses parameter-free overlapping 94-token windows and maximum score. This is prompt-injection text classification, NOT agent attack success rate. Some cases are multi-turn; default model truncates concatenated tool results to 96 tokens.",
+    "single_window": {
+      "n": 182,
+      "positive": 142,
+      "threshold": 0.5,
+      "precision": 0.6666666666666666,
+      "recall": 0.38028169014084506,
+      "f1": 0.484304932735426,
+      "balanced_accuracy": 0.35264084507042254,
+      "mcc": -0.24557157151603842,
+      "false_positive_rate": 0.675,
+      "false_negative_rate": 0.6197183098591549,
+      "confusion_matrix": [
+        [
+          13,
+          27
+        ],
+        [
+          88,
+          54
+        ]
+      ]
+    },
+    "sliding_max": {
+      "n": 182,
+      "positive": 142,
+      "threshold": 0.5,
+      "precision": 0.7244897959183674,
+      "recall": 0.5,
+      "f1": 0.5916666666666667,
+      "balanced_accuracy": 0.4125,
+      "mcc": -0.14536489390823487,
+      "false_positive_rate": 0.675,
+      "false_negative_rate": 0.5,
+      "confusion_matrix": [
+        [
+          13,
+          27
+        ],
+        [
+          71,
+          71
+        ]
+      ]
+    }
   }
 }
