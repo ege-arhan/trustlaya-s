@@ -37,6 +37,10 @@ prototype, not an independently audited security appliance. Restart revokes
 all outstanding tokens. Multiple gateway workers would need a shared atomic
 store, which this milestone does not provide.
 
+Single-use authorization is not end-to-end exactly-once delivery. If the
+protected API executes and its response is lost, a **new** request ID could
+repeat that side effect unless the protected API has its own idempotency key.
+
 Model misclassifications remain possible. The protocol enforces the existing
 policy decision; it does not prove that the policy decision is correct. No
 physical UNO Q execution or network isolation test has been performed.

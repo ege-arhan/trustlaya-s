@@ -50,6 +50,9 @@ token consumed. The guarded tool calls its side-effecting function only after
 a matching `valid: true` response. A dropped consume response means no tool
 execution, even if the gateway has already consumed the token.
 
+The token prevents replay of the **same authorization**. It does not replace
+the target API's idempotency mechanism for repeated new requests.
+
 The current shared key protects the prototype HTTP endpoints from unrelated
 clients when configured. It is not an agent identity proof. Do not expose
 plain HTTP or the key/token to an untrusted network. Production deployment
