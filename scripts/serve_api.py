@@ -31,7 +31,10 @@ def main():
     server = make_server(args.host, args.port, analyzer, args.audit_log,
                          tool_rules=tool_rules,
                          shared_key=os.getenv("TRUSTLAYA_SHARED_KEY"),
-                         authorization_ttl=args.authorization_ttl)
+                         authorization_ttl=args.authorization_ttl,
+                         adapter_url=os.getenv("TRUSTEDGE_ADAPTER_URL"),
+                         adapter_key=os.getenv("TRUSTEDGE_ADAPTER_KEY"),
+                         mode=os.getenv("TRUSTEDGE_MODE", "local"))
     print(f"TrustLaya-S API listening at http://{args.host}:{args.port}/analyze", flush=True)
     try:
         server.serve_forever()

@@ -28,7 +28,8 @@ class GuardedTool:
     """The sender must exist only in trusted code with direct access restricted."""
 
     def __init__(self, *, agent_id, session_id, tool, permissions,
-                 gateway_url=None, shared_key=None, timeout=2.0):
+                 gateway_url=None, shared_key=None, timeout=2.0,
+                 allow_private_http=False):
         self.gateway_url = gateway_url or os.getenv(
             "TRUSTLAYA_GATEWAY_URL", "http://127.0.0.1:8765")
         parsed = urlsplit(self.gateway_url)
@@ -41,7 +42,8 @@ class GuardedTool:
                 or parsed.username or parsed.password or not isinstance(timeout, (int, float))
                 or isinstance(timeout, bool) or not math.isfinite(timeout) or timeout <= 0):
             raise ValueError("invalid gateway URL")
-        if parsed.scheme == "http" and parsed.hostname not in ("127.0.0.1", "localhost", "::1"):
+        if (parsed.scheme == "http" and parsed.hostname not in
+                ("127.0.0.1", "localhost", "::1") and not allow_private_http):
             raise ValueError("remote gateway requires HTTPS")
         self.url = parsed
         self.port = port

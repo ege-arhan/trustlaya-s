@@ -97,3 +97,12 @@ flowchart LR
 ```
 
 The [Hugging Face Space](https://huggingface.co/spaces/ege-arhan/TrustLaya-S-demo) demonstrates the decision path. Score calibration and policy settings are documented; results are research diagnostics.
+
+# Credential-isolated tool execution
+
+The protected path is `agent -> gateway /v1/tool -> trusted adapter -> target`.
+Only the adapter receives the target credential. The local Docker bypass
+harness verifies that the agent cannot reach the target network directly:
+`.venv/bin/python scripts/verify_isolated_deployment.py`. See
+`docs/isolated-deployment.md` and `docs/security_boundary.md`. This is a
+prototype deployment test, not an Arduino UNO Q hardware test.

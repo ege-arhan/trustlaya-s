@@ -2,9 +2,11 @@
 
 import json
 import re
+import http.client
 from datetime import datetime, timezone
-from http.server import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from .inference import Analyzer
 from .session_risk import SessionRisk
@@ -47,7 +49,8 @@ def audit_record(result):
 
 def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
                 tool_rules=None, shared_key=None, authorization_ttl=15, clock=None,
-                monotonic_clock=None):
+                monotonic_clock=None, adapter_url=None, adapter_key=None,
+                adapter_timeout=2.0, mode="local"):
     if host not in ("127.0.0.1", "localhost", "::1") and (
             not isinstance(shared_key, str) or len(shared_key) < 32):
         raise ValueError("non-loopback binding requires a 32+ character key and TLS proxy")
@@ -57,6 +60,15 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
     authority = (AuthorizationService(engine, tool_rules, ttl_seconds=authorization_ttl,
                                       clock=clock, monotonic_clock=monotonic_clock)
                  if tool_rules is not None else None)
+    if mode not in ("local", "unoq"):
+        raise ValueError("invalid mode")
+    if (adapter_url is None) != (adapter_key is None):
+        raise ValueError("adapter URL and key must be configured together")
+    adapter = urlsplit(adapter_url) if adapter_url else None
+    if adapter and (adapter.scheme not in ("http", "https") or not adapter.hostname or
+                    adapter.username or adapter.password or adapter.query or adapter.fragment or
+                    adapter.path not in ("", "/")):
+        raise ValueError("invalid adapter URL")
 
     def write_audit(event):
         if audit_path is not None and event is not None:
@@ -65,7 +77,20 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
                 out.write(json.dumps(event) + "\n")
 
     class Handler(BaseHTTPRequestHandler):
+        def do_GET(self):
+            if self.path != "/health":
+                self.respond(404, {"error": "not_found"})
+                return
+            self.respond(200, {"deployment_mode": mode, "device": "unverified",
+                               "gateway": "healthy", "model": "loaded",
+                               "policy_engine": "loaded",
+                               "authorization": "ready" if authority else "not_configured",
+                               "trusted_adapter": "configured" if adapter else "not_configured"})
+
         def do_POST(self):
+            if self.path == "/v1/tool":
+                self.tool_route()
+                return
             if self.path in ("/v1/authorize", "/v1/consume"):
                 self.authorization_route()
                 return
@@ -140,6 +165,58 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
                 # A model, audit or storage failure must never issue authorization.
                 self.respond(503, {"error": "authorization_unavailable"})
 
+        def tool_route(self):
+            if authority is None or adapter is None:
+                self.respond(503, {"executed": False, "reason": "gateway_unavailable"})
+                return
+            if shared_key and not secrets.compare_digest(
+                    self.headers.get("X-TrustLaya-Key", ""), shared_key):
+                self.respond(401, {"executed": False, "reason": "unauthorized"})
+                return
+            try:
+                length = int(self.headers.get("Content-Length", "0"))
+                if not 0 < length <= 16384:
+                    raise ProtocolError("invalid_body_size")
+                request = json.loads(self.rfile.read(length))
+                response, event = authority.authorize(request)
+                write_audit(event)
+                public = {"executed": False, "decision": response["decision"],
+                          "reason": response["reason_codes"][-1],
+                          "risk": response["risk"], "output": None}
+                if not response["authorization_token"]:
+                    self.respond(200, public)
+                    return
+                connection_type = (http.client.HTTPSConnection if adapter.scheme == "https"
+                                   else http.client.HTTPConnection)
+                connection = connection_type(adapter.hostname, adapter.port,
+                                             timeout=adapter_timeout)
+                try:
+                    connection.request("POST", "/execute", body=json.dumps(
+                        {"request": request, "authorization": response},
+                        ensure_ascii=False, allow_nan=False).encode("utf-8"),
+                        headers={"Content-Type": "application/json",
+                                 "X-Adapter-Key": adapter_key})
+                    reply = connection.getresponse()
+                    data = reply.read(16385)
+                    if reply.status != 200 or len(data) > 16384:
+                        raise ValueError("adapter_invalid")
+                    result = json.loads(data)
+                    if (not isinstance(result, dict) or
+                            result.get("executed") is not True or
+                            result.get("decision") != response["decision"] or
+                            result.get("reason") != "executed" or
+                            result.get("output") != {"status": "accepted"}):
+                        raise ValueError("adapter_denied")
+                    public.update(executed=True, reason="executed",
+                                  output={"status": "accepted"})
+                    self.respond(200, public)
+                finally:
+                    connection.close()
+            except Exception:
+                # No fallback to a direct target call, and no exception text leaks.
+                self.respond(200, {"executed": False, "reason": "protected_operation_denied",
+                                   "output": None})
+
         def respond(self, status, payload):
             body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
             self.send_response(status)
@@ -152,4 +229,4 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
             # HTTP access logs are disabled; optional audit_record contains no raw input.
             pass
 
-    return HTTPServer((host, port), Handler)
+    return ThreadingHTTPServer((host, port), Handler)

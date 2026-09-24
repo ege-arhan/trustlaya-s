@@ -1,5 +1,50 @@
 # Planned Arduino UNO Q deployment
 
+## Credential-isolated mode
+
+Set `TRUSTEDGE_MODE=unoq` for the planned Linux service. This labels the
+deployment mode only; `/health` reports `device: unverified`. No physical
+UNO Q execution has been performed. Run the trusted adapter in a separate
+process or isolated service on the trusted side, with `TRUSTEDGE_TARGET_KEY`
+present only there. The agent must not receive that key or a route to the
+target. The first hardware test uses a controlled LAN gateway path, without
+transparent HTTPS interception.
+
+Required files: v2 tokenizer and calibration in `models/trustlaya-s-v2/`,
+the chosen ONNX file in `models/exported/v2/`, `configs/policy.yaml`, the
+trusted tool allowlist, and gateway/adapter source. Use a 64-bit Linux image
+with Python 3.10+ and ONNX Runtime wheels validated on the actual board CPU;
+install project dependencies in a virtual environment. Package availability
+has not yet been verified on UNO Q.
+
+Gateway environment: `TRUSTEDGE_MODE=unoq`, `TRUSTLAYA_HOST`,
+`TRUSTLAYA_PORT`, `TRUSTLAYA_TOOL_RULES`, `TRUSTLAYA_AUDIT_LOG`,
+`TRUSTLAYA_SHARED_KEY`, `TRUSTEDGE_ADAPTER_URL`, `TRUSTEDGE_ADAPTER_KEY`.
+Start with `.venv/bin/python scripts/serve_api.py`. Adapter environment:
+`TRUSTEDGE_ADAPTER_HOST`, `TRUSTEDGE_ADAPTER_PORT`, `TRUSTLAYA_GATEWAY_URL`,
+`TRUSTLAYA_SHARED_KEY`, `TRUSTLAYA_TOOL_RULES`, `TRUSTEDGE_ADAPTER_KEY`,
+`TRUSTEDGE_TARGET_URL`, `TRUSTEDGE_TARGET_KEY`. Start with
+`.venv/bin/python scripts/serve_adapter.py`. Never put the target key in
+the agent environment. Restrict access to allowlist and environment files.
+Use a TLS reverse proxy for network-facing gateway traffic; the built-in
+HTTP server has no TLS. Keep adapter and target on a private network that
+the agent cannot reach.
+
+Health: `python scripts/diagnose_gateway.py --url http://127.0.0.1:8765`
+from a trusted console. `/health` confirms process readiness, not hardware
+identity or target connectivity. Shutdown denies new operations; gateway
+restart invalidates all in-memory tokens. To roll back, stop the adapter and
+gateway, restore prior files and configuration, verify the agent still cannot
+reach the target, then restart.
+
+First physical test: record board revision, Linux image, Python and ONNX
+Runtime versions, model hashes, idle/load CPU and memory. Run at least 100
+benign and denied requests through the guarded path. Record p50/p95/p99
+inference, authorization, total latency and throughput; test timeout,
+gateway and adapter outage, BLOCK, REVIEW, replay and direct-route denial.
+Label every saved measurement `hardware: Arduino UNO Q`; never combine it
+with the Mac benchmark.
+
 **Status:** Not installed or measured on physical UNO Q hardware. The saved
 benchmarks are from a MacBook and must not be presented as board results.
 
