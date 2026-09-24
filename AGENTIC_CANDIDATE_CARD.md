@@ -16,12 +16,15 @@ Values are F1 / attack recall / benign false-positive rate on **different** data
 | BPI transformed/broad adversarial test, n=2,961 | .561 / .491 / .234 | **.819 / .743 / .065** |
 | PolyGuardBench cross-axis TR/EN diagnostic, n=550 | .486 / .563 / .397 | **.860 / .874 / .083** |
 | PromptWall broad attack/safe diagnostic, n=495 | .823 / .723 / .231 | .817 / .698 / .062 |
+| NeurAlchemy grouped core test, n=942 | .632 / .498 / .110 | **.805 / .726 / .110** |
 | Original mixed-only synthetic test, n=1,975 | .555 / .652 / .115 | .518 / .652 / .143 |
 | AgentInjectionBench tool-result text, n=182 | .484 / .380 / .675 | .881 / .965 / **.800** |
 
 The paired agentic test has 280 attacks and 265 benign controls; the candidate missed 20 attacks and flagged 56 benign examples. AgentInjectionBench has 142 attacks and only 40 benign controls, so its high F1 hides 80% benign false alarms. PromptWall attack recall regressed. The model is **not promoted**. Set `untrusted_tool_output: true` for privileged agent tool returns without human approval; the separate policy then requires REVIEW regardless of classifier score. Accurate metadata and an actual execution pause are the caller's responsibility.
 
 An additional [Bordair live-game diagnostic](reports/live_redteam_diagnostic.json) used 1,880 human-written game submissions from a pinned MIT-licensed source, including all 855 recorded guard bypasses. At each model's operating threshold, v2 marked 71.3% of bypass texts while this candidate marked 36.4%. These are **detection fractions, not recall**: every row is labeled by attacker intent, the source has no benign controls, and some individual strings are ordinary conversational requests outside game context. The result is another warning against promoting a synthetic-data score as general security performance.
+
+A new [NeurAlchemy grouped test](reports/neuralchemy_cross_source.json), opened after selection, had 552 broad attack/jailbreak examples and 390 benign examples. No normalized exact text overlapped the candidate's BPI, agentic or original synthetic train/development sets. It increased candidate F1 from 0.632 to 0.805 versus v2 at their configured thresholds, with the same 0.110 benign FPR. The source mixes jailbreak and prompt injection, has only 942 examples and may share semantic families with other public data, so this is not a strict tool-result security score.
 
 ## Export and use
 
