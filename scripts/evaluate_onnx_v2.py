@@ -1,6 +1,7 @@
 """Compare versioned FP32/INT8 ONNX outputs with PyTorch on identical inputs."""
 
 import json
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -23,8 +24,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    model_dir = ROOT / "models/trustlaya-s-v2"
-    exported = ROOT / "models/exported/v2"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model-dir", type=Path, default=ROOT / "models/trustlaya-s-v2")
+    parser.add_argument("--exported", type=Path, default=ROOT / "models/exported/v2")
+    parser.add_argument("--report", type=Path, default=ROOT / "reports/onnx_v2_parity.json")
+    args = parser.parse_args()
+    model_dir = args.model_dir
+    exported = args.exported
     fp32 = exported / "trustlaya_s.onnx"
     int8 = exported / "trustlaya_s_int8.onnx"
     onnx.checker.check_model(str(fp32))
@@ -88,7 +94,8 @@ def main():
     int_actions = [int_analyzer.analyze(row["text"])["action"] for row in rows]
     report["drift"]["int8"]["final_action_disagreement_rate"] = sum(
         a != b for a, b in zip(fp_actions, int_actions)) / len(rows)
-    (ROOT / "reports/onnx_v2_parity.json").write_text(json.dumps(report, indent=2))
+    args.report.parent.mkdir(parents=True, exist_ok=True)
+    args.report.write_text(json.dumps(report, indent=2))
     print(json.dumps({"drift": report["drift"],
                       "summary": {key: {"macro_f1": value["macro_f1"],
                                          "mean_ece": value["mean_ece"]}

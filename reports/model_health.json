@@ -37,7 +37,7 @@
   },
   "edge": {
     "size_mib": 159.894,
-    "onnx_cpu_p50_ms": 7.388,
+    "onnx_cpu_p50_ms": 5.94,
     "int8_final_action_disagreement": 0.05078125
   },
   "uncertainty": {

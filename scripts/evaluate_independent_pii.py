@@ -8,7 +8,6 @@ from pathlib import Path
 import numpy as np
 import torch
 from datasets import load_dataset
-from huggingface_hub import HfApi
 from safetensors.torch import load_file
 from transformers import AutoTokenizer
 from scipy.special import expit
@@ -86,9 +85,8 @@ def main():
                                                 if row["category"] == category))}
             for category in PII_CATEGORIES + NEGATIVE_CATEGORIES
         }
-    source_info = HfApi().dataset_info(SOURCE, revision=SOURCE_REVISION)
     report = {
-        "source": SOURCE, "source_revision": source_info.sha, "license": "CC-BY-4.0",
+        "source": SOURCE, "source_revision": SOURCE_REVISION, "license": "CC-BY-4.0",
         "scope": "Test split, seed-42 stratified 125 per eight PII categories and 500 each of date and secret task-specific negatives. Entire source is synthetic; no raw examples redistributed. Date and secret are not globally benign.",
         "n": len(rows), "positive": 1000, "negative": 1000,
         "results": {"rule_only": rule_baseline, **results},

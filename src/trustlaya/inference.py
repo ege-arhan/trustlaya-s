@@ -22,6 +22,7 @@ class Analyzer:
         self.backend=backend
         if backend in ("onnx","onnx_int8","onnx_int8_pc"):
             import onnxruntime as ort
+            ort.disable_telemetry_events()
             path=onnx_path or ROOT/("models/exported/trustlaya_int8_pc.onnx" if backend=="onnx_int8_pc" else "models/exported/trustlaya_int8.onnx" if backend=="onnx_int8" else "models/exported/trustlaya.onnx")
             self.session=ort.InferenceSession(str(path),providers=["CPUExecutionProvider"])
         else:

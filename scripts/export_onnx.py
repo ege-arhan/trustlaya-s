@@ -10,6 +10,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--model-dir",type=Path,default=ROOT/"models/trustlaya-s-v2")
     parser.add_argument("--output-dir",type=Path,default=ROOT/"models/exported/v2")
+    parser.add_argument("--report",type=Path,default=ROOT/"reports/model_sizes_v2.json")
     args=parser.parse_args()
     if not (args.model_dir/"model.safetensors").exists():
         parser.error(f"Model not found: {args.model_dir / 'model.safetensors'}")
@@ -25,5 +26,6 @@ def main():
     half=args.output_dir/"trustlaya_s_fp16.safetensors"
     save_file({k:v.detach().half().contiguous() for k,v in model.state_dict().items()},str(half))
     report={"model_dir":str(args.model_dir),"student_fp32_bytes":(args.model_dir/"model.safetensors").stat().st_size,"onnx_fp32_bytes":out.stat().st_size,"onnx_int8_bytes":quant.stat().st_size,"student_fp16_bytes":half.stat().st_size}
-    (ROOT/"reports/model_sizes_v2.json").write_text(json.dumps(report,indent=2));print(report)
+    args.report.parent.mkdir(parents=True,exist_ok=True)
+    args.report.write_text(json.dumps(report,indent=2));print(report)
 if __name__=="__main__":main()

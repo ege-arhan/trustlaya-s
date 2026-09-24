@@ -9,7 +9,7 @@ import gc
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from huggingface_hub import HfApi, hf_hub_download
+from huggingface_hub import hf_hub_download
 import onnxruntime as ort
 from sklearn.metrics import balanced_accuracy_score, confusion_matrix, f1_score, matthews_corrcoef, precision_score, recall_score
 
@@ -64,7 +64,6 @@ def sliding_score(analyzer, text):
 def main():
     ort.disable_telemetry_events()
     path = Path(hf_hub_download(SOURCE, FILE, repo_type="dataset", revision=SOURCE_REVISION))
-    source_revision = HfApi().dataset_info(SOURCE, revision=SOURCE_REVISION).sha
     source_hash = hashlib.sha256(path.read_bytes()).hexdigest()
     raw = [json.loads(line) for line in path.open()]
     analyzer = Analyzer("onnx", model_dir=ROOT / "models/trustlaya-s-v2",
@@ -104,7 +103,7 @@ def main():
                            max(1, sum(item["label"] for item in items)))
                 for key, items in groups.items() if any(item["label"] for item in items)}
         views[name] = result
-    report = {"source": SOURCE, "source_revision": source_revision,
+    report = {"source": SOURCE, "source_revision": SOURCE_REVISION,
               "source_sha256": source_hash, "license": "Apache-2.0",
               "source_counts": dict(Counter(row["ground_truth"] for row in raw)),
               "scope": "Published benchmark tool_result text; second view appends advertised tool descriptions. Third view uses parameter-free overlapping 94-token windows and maximum score. This is prompt-injection text classification, NOT agent attack success rate. Some cases are multi-turn; default model truncates concatenated tool results to 96 tokens.",

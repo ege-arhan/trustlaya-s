@@ -1,0 +1,51 @@
+{
+  "version": "v2.1.0-agentic-rc1",
+  "release": "https://github.com/ege-arhan/trustlaya-s/releases/tag/v2.1.0-agentic-rc1",
+  "status": "experimental_candidate_not_default",
+  "files": {
+    "model.safetensors": {
+      "bytes": 168571188,
+      "sha256": "59988e1cc364964e6ac34b0a9c63d6674819e3e23458623d85f0140aba9bc05b"
+    },
+    "trustlaya_s.onnx": {
+      "bytes": 167661320,
+      "sha256": "d4d0798d0aa5a1b69ed14826ae7f4ffd43519789865e9049619fcf2052f77bcb"
+    },
+    "trustlaya_s_int8.onnx": {
+      "bytes": 42507021,
+      "sha256": "d93102d148710531fccfea05e681acf174a4c353511c232eda672d51ad9f3060"
+    },
+    "calibration.json": {
+      "bytes": 348,
+      "sha256": "581b03a608d76eef4955bd71fd98751f99fe3429216bbeb524ed7b447eea9eea"
+    },
+    "decision_thresholds.json": {
+      "bytes": 58,
+      "sha256": "bbd83b05877354b3f5f4af2e0e83e4d7a9c15aac1366cc030bfb9bfc8e41fe92"
+    },
+    "policy.yaml": {
+      "bytes": 103,
+      "sha256": "3623c6c653976c8c8b62a940e3a0c67bfa5d88607648401992f8f4d4fc79af73"
+    },
+    "special_tokens_map.json": {
+      "bytes": 125,
+      "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+    },
+    "tokenizer.json": {
+      "bytes": 766406,
+      "sha256": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f"
+    },
+    "tokenizer_config.json": {
+      "bytes": 1305,
+      "sha256": "d9e1bab60bf33db7635c5299f32051ea4b5553b512958d11b22907bb11fc8ed6"
+    },
+    "vocab.txt": {
+      "bytes": 262620,
+      "sha256": "897ac58f86780d3afe8a1f18063f79d1f07201ceba37371b66e313404ca4a437"
+    },
+    "config.json": {
+      "bytes": 590,
+      "sha256": "ec59f7b60b5cd3e4e842dd0a685929c3d4a6a0498d27987824dd885f0090b0ad"
+    }
+  }
+}

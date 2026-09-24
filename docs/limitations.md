@@ -15,3 +15,5 @@ The original synthetic validation set contains English examples only, and most t
 On a separate 182-case agentic injection benchmark, tool-result text F1 was 0.484, false-negative rate 0.620 and false-positive rate 0.675. Sliding windows improved F1 to 0.592 but left FPR unchanged. This is a serious out-of-domain failure, not a production gate. The benchmark's execution outcomes were not tested; only text detection was measured.
 
 Experimental BPI-trained injection heads improved some Turkish/English diagnostics but worsened the mixed-only legacy test and raised benign agent-tool-output false-positive rate to 0.800. BPI labels include broader jailbreak/adversarial content, so those scores do not establish strict prompt-injection detection. These candidates are not promoted.
+
+A later agentic-data candidate improved a paired synthetic scenario test, yet still missed 20 of 280 attacks and flagged 56 of 265 benign examples. On a different broad attack corpus its recall declined, and the previously inspected agent tool-output false-positive rate stayed 0.800. It remains an opt-in research artifact only.

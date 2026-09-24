@@ -14,6 +14,7 @@ from train_advanced_pii import embeddings
 from train_injection_candidate import DEST as BPI_CANDIDATE, ROOT, SOURCE, REVISION, key, load, measures
 from select_injection_blend import DEST as BLEND_CANDIDATE
 from train_injection_joint import DEST as JOINT_CANDIDATE
+from train_injection_agentic import DEST as AGENT_CANDIDATE
 from trustlaya.dataset import read_rows
 from trustlaya.model import BACKBONE, TrustLaya
 from trustlaya.utils import device
@@ -59,6 +60,8 @@ def main():
         directories["development_blend"] = BLEND_CANDIDATE
     if (JOINT_CANDIDATE / "model.safetensors").exists():
         directories["joint_head"] = JOINT_CANDIDATE
+    if (AGENT_CANDIDATE / "model.safetensors").exists():
+        directories["agentic_head"] = AGENT_CANDIDATE
     model = TrustLaya(BACKBONE, pretrained=False)
     model.load(base / "model.safetensors")
     model.to(device()).eval()

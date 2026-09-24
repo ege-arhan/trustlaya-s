@@ -72,6 +72,7 @@ def main():
         parts.append(f'<text x="{x+side-6}" y="{y+side+16}" font-family="sans-serif" font-size="10">1</text>')
     parts.append('</svg>')
     (ROOT / "reports/reliability_v2.svg").write_text("\n".join(parts))
+    del analyzer
     print(f"Wrote reliability diagram for {len(TASKS)} tasks and {len(rows)} validation rows")
 
 

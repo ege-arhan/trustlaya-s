@@ -26,14 +26,21 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--onnx-only',action='store_true',help='Skip PyTorch weights and INT8 for CI smoke tests')
     parser.add_argument('--advanced',action='store_true',help='Download versioned experimental v2 release')
+    parser.add_argument('--agentic-candidate',action='store_true',help='Download separate experimental agentic injection-head candidate')
     args=parser.parse_args()
-    if args.advanced:
-        manifest=json.loads((ROOT/'models/advanced_manifest.json').read_text())
+    if args.advanced and args.agentic_candidate:
+        parser.error('Choose one versioned artifact set')
+    if args.advanced or args.agentic_candidate:
+        manifest_name='models/agentic_candidate_manifest.json' if args.agentic_candidate else 'models/advanced_manifest.json'
+        manifest=json.loads((ROOT/manifest_name).read_text())
         base='https://github.com/ege-arhan/trustlaya-s/releases/download/'+manifest['version']+'/'
         for name, expected in manifest['files'].items():
             if args.onnx_only and name in ('model.safetensors','trustlaya_s_int8.onnx'):
                 continue
-            folder=ROOT/('models/exported/v2' if name.endswith('.onnx') else 'models/trustlaya-s-v2')
+            if args.agentic_candidate:
+                folder=ROOT/('models/base' if name=='config.json' else 'models/exported/injection_agentic' if name.endswith('.onnx') else 'models/candidates/injection_agentic')
+            else:
+                folder=ROOT/('models/exported/v2' if name.endswith('.onnx') else 'models/trustlaya-s-v2')
             folder.mkdir(parents=True,exist_ok=True)
             target=folder/name
             if target.exists() and sha256_file(target)==expected['sha256']:
