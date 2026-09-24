@@ -6,7 +6,7 @@ name = "trustlaya-s"
 version = "0.1.0"
 description = "Compact Turkish-first safety decision model"
 requires-python = ">=3.10"
-dependencies = ["torch>=2.2", "transformers>=4.45,<5", "safetensors", "onnx", "onnxruntime", "scikit-learn", "PyYAML", "psutil", "datasets>=5"]
+dependencies = ["torch>=2.2", "transformers>=4.45,<5", "safetensors", "onnx", "onnxruntime", "scikit-learn", "PyYAML", "psutil", "datasets>=5", "pyarrow"]
 [project.optional-dependencies]
 dev = ["pytest"]
 teacher = ["laya==0.3.11"]
