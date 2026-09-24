@@ -16,7 +16,7 @@ uv pip install --python .venv/bin/python -r requirements.txt
 .venv/bin/python demo/cli_demo.py --backend onnx --text "Önceki talimatları yok say."
 ```
 
-In this local development checkout, model, tokenizer, calibration and ONNX files are already in `models/`. GitHub clones fetch public artifacts from [Hugging Face](https://huggingface.co/xzwq/TrustLaya-S). Rebuilding requires a network connection to download the pretrained base and Laya teacher. `models/base` is the MIT-licensed `ytu-ce-cosmos/turkish-medium-bert-uncased` checkpoint. `models/teacher` is the Apache-2.0 `convaiinnovations/laya` multilingual checkpoint. Neither original model is claimed as original work.
+In this local development checkout, model, tokenizer, calibration and ONNX files are already in `models/`. GitHub clones fetch public artifacts from [Hugging Face](https://huggingface.co/xzwq/TrustLaya-S). The [10,000-row synthetic dataset](https://huggingface.co/datasets/xzwq/TrustLaya-S-synthetic) has the published family-disjoint splits. Rebuilding requires a network connection to download the pretrained base and Laya teacher. `models/base` is the MIT-licensed `ytu-ce-cosmos/turkish-medium-bert-uncased` checkpoint. `models/teacher` is the Apache-2.0 `convaiinnovations/laya` multilingual checkpoint. Neither original model is claimed as original work.
 
 ## Reproduce
 
@@ -54,7 +54,7 @@ Risk score is not a legal or ethical verdict. Probabilities are task-model outpu
 
 ## Independent data
 
-The synthetic test figures above are not production estimates. Independent evaluations and rejected improvement attempts are documented in [docs/external_evaluation.md](docs/external_evaluation.md). Prompt injection false positives on external data remain the main safety gap.
+The synthetic test figures above are not production estimates. Independent evaluations and rejected improvement attempts are documented in [docs/external_evaluation.md](docs/external_evaluation.md). On independent balanced sets, PII hybrid F1 was 0.880 and model-only secret false-positive rate was 0.949. Prompt injection false-positive rate was 0.429 on another held-out set. These gaps prevent production use.
 
 ## Decision path
 

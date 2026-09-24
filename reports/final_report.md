@@ -16,6 +16,8 @@ Pretrained Turkish BERT shared encoder, mean pooling, nine independent binary ri
 
 10,000 synthetic samples, eleven categories, Turkish/English/mixed templates. Train 6972, validation 1053, test 1975. Template families and exact texts do not cross splits. Synthetic examples are controlled, but many examples share a small set of templates; results are not evidence of open-world robustness.
 
+Published dataset: [xzwq/TrustLaya-S-synthetic](https://huggingface.co/datasets/xzwq/TrustLaya-S-synthetic). A fresh `datasets.load_dataset` call verified all three split counts and schema after upload. Independent evaluation corpora are linked and cited but not redistributed.
+
 ## Full held-out synthetic test (1975 examples)
 
 Mean task accuracy: **0.907**; macro F1: **0.663**. Threshold is 0.5 after calibration and deterministic PII/secret score floors.
@@ -73,6 +75,8 @@ RSS deltas were measured sequentially in one process; allocator reuse and alread
 ## Test and verification
 
 `pytest`: 11 passed. ONNX checker and ONNX CPU inference passed. CLI produced REDACT for the requested Turkish PII transfer example. Stage outcomes are in `logs/final_check.log`. No Arduino UNO Q board was connected or measured.
+
+Published [GitHub source](https://github.com/ege-arhan/trustlaya-s), [Hugging Face model](https://huggingface.co/xzwq/TrustLaya-S), and [live Space](https://huggingface.co/spaces/xzwq/TrustLaya-S-demo). The live Space was manually checked with PII transfer (REDACT), prompt injection (BLOCK), and benign text (ALLOW).
 
 ## Limitations and next work
 
