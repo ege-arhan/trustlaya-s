@@ -8,6 +8,9 @@ from pathlib import Path
 
 from .inference import Analyzer
 from .session_risk import SessionRisk
+from .authorization import ProtocolError
+from .authorization_service import AuthorizationService
+import secrets
 
 DETECTIONS = ("pii", "secret", "prompt_injection", "dangerous_instruction")
 RISKS = ("privacy_risk", "security_risk", "ethics_risk", "oversight_risk",
@@ -27,6 +30,7 @@ def public_result(result):
         "evidence": result["evidence"], "severity": result["severity"],
         "model_action": result["model_action"], "action": result["action"],
         "policy_rule": result["policy_reason"],
+        "timing_ms": result.get("timing_ms"),
     }
 
 
@@ -41,13 +45,30 @@ def audit_record(result):
     }
 
 
-def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None):
+def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
+                tool_rules=None, shared_key=None, authorization_ttl=15, clock=None,
+                monotonic_clock=None):
+    if host not in ("127.0.0.1", "localhost", "::1") and (
+            not isinstance(shared_key, str) or len(shared_key) < 32):
+        raise ValueError("non-loopback binding requires a 32+ character key and TLS proxy")
     engine = analyzer or Analyzer("onnx")
     sessions = {}
     audit_path = Path(audit_path) if audit_path else None
+    authority = (AuthorizationService(engine, tool_rules, ttl_seconds=authorization_ttl,
+                                      clock=clock, monotonic_clock=monotonic_clock)
+                 if tool_rules is not None else None)
+
+    def write_audit(event):
+        if audit_path is not None and event is not None:
+            audit_path.parent.mkdir(parents=True, exist_ok=True)
+            with audit_path.open("a") as out:
+                out.write(json.dumps(event) + "\n")
 
     class Handler(BaseHTTPRequestHandler):
         def do_POST(self):
+            if self.path in ("/v1/authorize", "/v1/consume"):
+                self.authorization_route()
+                return
             if self.path != "/analyze":
                 self.respond(404, {"error": "not found"})
                 return
@@ -76,13 +97,48 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None):
                         sessions.pop(next(iter(sessions)))
                     tracker = sessions.setdefault(session_id, SessionRisk())
                 result = engine.analyze(text, metadata, session=tracker)
-                if audit_path is not None:
-                    audit_path.parent.mkdir(parents=True, exist_ok=True)
-                    with audit_path.open("a") as out:
-                        out.write(json.dumps(audit_record(result)) + "\n")
+                write_audit(audit_record(result))
                 self.respond(200, public_result(result))
             except (ValueError, TypeError, json.JSONDecodeError) as exc:
                 self.respond(400, {"error": str(exc)})
+
+        def authorization_route(self):
+            if authority is None:
+                self.respond(503, {"error": "authorization_not_configured"})
+                return
+            if shared_key and not secrets.compare_digest(
+                    self.headers.get("X-TrustLaya-Key", ""), shared_key):
+                self.respond(401, {"error": "unauthorized"})
+                return
+            try:
+                length = int(self.headers.get("Content-Length", "0"))
+                if not 0 < length <= 16384:
+                    raise ProtocolError("invalid_body_size")
+                payload = json.loads(self.rfile.read(length))
+                if not isinstance(payload, dict):
+                    raise ProtocolError("invalid_json_body")
+                if self.path == "/v1/authorize":
+                    request = payload
+                    session_key = (request.get("agent_id"), request.get("session_id"))
+                    tracker = sessions.get(session_key)
+                    if tracker is None and all(isinstance(x, str) for x in session_key):
+                        if len(sessions) >= 128:
+                            sessions.pop(next(iter(sessions)))
+                        tracker = sessions.setdefault(session_key, SessionRisk())
+                    response, event = authority.authorize(request, session=tracker)
+                else:
+                    if set(payload) != {"authorization_token", "authorized_request", "decision_id"}:
+                        raise ProtocolError("invalid_consume_schema")
+                    response, event = authority.consume(payload["authorization_token"],
+                                                        payload["authorized_request"],
+                                                        payload["decision_id"])
+                write_audit(event)
+                self.respond(200, response)
+            except (ProtocolError, ValueError, TypeError, json.JSONDecodeError) as exc:
+                self.respond(400, {"error": str(exc)})
+            except Exception:
+                # A model, audit or storage failure must never issue authorization.
+                self.respond(503, {"error": "authorization_unavailable"})
 
         def respond(self, status, payload):
             body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
