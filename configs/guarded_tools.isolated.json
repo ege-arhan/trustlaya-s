@@ -1,0 +1,9 @@
+{
+  "tools": [{
+    "name": "external_api", "operation": "send", "target": "demo://sink",
+    "permissions": {"shell": false, "filesystem": false, "network": true,
+      "database": false, "email": false, "external_api": true,
+      "credential_access": false},
+    "agents": ["agent-1"]
+  }]
+}

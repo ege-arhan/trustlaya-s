@@ -1,5 +1,21 @@
 # Authorization demo
 
+## Credential and network isolation demonstration
+
+Run `.venv/bin/python scripts/verify_isolated_deployment.py` from the project
+root with Docker running. It creates four temporary containers and random
+synthetic keys, runs the seven-step bypass demonstration, then removes the
+containers and networks. The target records exactly two accepted payloads:
+`Summarize this harmless text.` and `Send [REDACTED] to external API`.
+The agent's direct TCP attempt to the target IP fails; it has no target or
+adapter credential. BLOCK/REVIEW, duplicate request, changed payload,
+adapter outage and gateway outage produce no additional target action.
+
+This isolation harness uses deterministic fake risk decisions to make network
+and credential properties repeatable. The real model/Policy Engine demo below
+tests the classification path separately. The two demos must not be
+presented as a physical UNO Q result.
+
 Run from the project root with the existing v2 model files:
 
 ```bash

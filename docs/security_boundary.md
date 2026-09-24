@@ -1,7 +1,47 @@
 # Security boundary
 
+## Credential-isolated execution (prototype)
+
 ```text
-Agent (no direct target access)
+Agent (no target key, agent network only)
+  -> gateway /v1/tool (model -> existing policy -> authorization)
+  -> trusted adapter (consumes authorization, owns target key)
+  -> protected target (target network only)
+```
+
+The model supplies risk signals; the existing policy chooses ALLOW, REDACT,
+REVIEW or BLOCK; authorization binds a short-lived single-use decision to the
+exact request; the adapter alone makes authenticated target calls. Its target
+URL is fixed by trusted configuration, and it never forwards target response
+bodies. The gateway returns only a non-sensitive success marker.
+
+The Docker harness places the agent only on `agent_net`, the adapter and
+target only on `target_net`, and the gateway on both. Neither target nor
+adapter has a published port. A direct connection from the agent to the
+target's inspected IP was denied in the local Docker test. These network
+rules are a **deployment property**, not a Python library guarantee. The
+harness uses a deterministic fake analyzer to test network isolation; the
+normal server still loads the real model.
+
+Keep `TRUSTEDGE_TARGET_KEY` only in the adapter environment, and
+`TRUSTEDGE_ADAPTER_KEY` only in gateway and adapter environments. The agent
+receives neither. A Docker or host administrator can inspect environments;
+this prototype does not defend against that administrator. Sharing a process,
+publishing the adapter port, or giving the agent a target route would break
+the intended isolation.
+
+If model, policy, authorization, gateway, adapter or target is unavailable,
+the controlled path denies execution. A target action may still happen before
+its response is lost; target-side idempotency is required to prevent a new
+request ID from repeating that action.
+
+## Earlier library-level guard
+
+The existing `GuardedTool` remains available for callers that isolate its
+sender callback themselves. Its flow is:
+
+```text
+Caller with trusted sender callback
   -> trusted tool adapter / GuardedTool
   -> POST /v1/authorize on TrustLaya gateway
   -> existing model -> existing policy -> authorization store
@@ -43,4 +83,5 @@ repeat that side effect unless the protected API has its own idempotency key.
 
 Model misclassifications remain possible. The protocol enforces the existing
 policy decision; it does not prove that the policy decision is correct. No
-physical UNO Q execution or network isolation test has been performed.
+physical UNO Q execution has been performed. Network isolation was tested
+only in the local Docker harness.
