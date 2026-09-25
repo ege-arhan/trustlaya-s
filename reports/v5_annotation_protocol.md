@@ -1,5 +1,7 @@
 # V5 human annotation protocol, revision 2
 
+The local blind review interface and role-separated SQLite workflow are documented in [the Turkish UI guide](../docs/v5_annotation_ui_tr.md). The CSV workflow below remains an alternative import path; the UI does not silently write the reviewed manifest or create model training data.
+
 **Current state:** 600 examples prepared; 0 human reviewed. This packet is a source-blind annotation candidate set, not a GOLD benchmark. The 600-row quota does not guarantee sufficient examples in every subtype. No inter-rater statistic is claimed until independent reviews arrive.
 
 ## Unit and hierarchy
