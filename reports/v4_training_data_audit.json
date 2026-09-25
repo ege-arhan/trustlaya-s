@@ -1,0 +1,20 @@
+{
+  "JOT_revision": "94a2e998282301d545f92177e3fff8aab11fb0dd",
+  "JOT_source_total": 23558,
+  "JOT_JailbreakChat_template_groups": 154,
+  "JOT_JLL_records_excluded_by_source": 848,
+  "pre_screen": 2681,
+  "train_test_exact_excluded": 8,
+  "train_test_near_cosine_0.85_excluded": 488,
+  "train_after_screen": 2173,
+  "train_class_counts": {
+    "1": 95,
+    "0": 2078
+  },
+  "train_label_counts": {
+    "DIRECT_JAILBREAK_COMPOSED": 95,
+    "BENIGN_USER_REQUEST_UNREVIEWED": 2078
+  },
+  "attack_template_groups_after_screen": 89,
+  "final_test": "JailbreakLLMs remains excluded from fitting; final 5,761-row clean cohort unchanged"
+}

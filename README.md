@@ -1,5 +1,9 @@
 # TrustLaya-S
 
+## V4 long-context research (NO-GO; local only)
+
+The [V4 final report](reports/v4_final_report.md) records a source-separated experiment on the frozen encoder. On the same 5,761-row JailbreakLLMs external cohort, V4 reached F1 0.250 and recall 0.901, but its false-alarm rate was 0.657. On the independent, related deepset prompt-injection test, V4 recall was 0.067. DEV calibration failed to transfer to JailbreakLLMs. **V4 is not published and is not connected to the default CLI, API, policy engine or gateway.** V2 remains the frozen baseline and V3 remains NO-GO. See the [external scorecard](reports/v4_external_scorecard.md), [data provenance](reports/v4_data_provenance.md), [long-context diagnosis](reports/v4_long_context.md), and [reproduction instructions](reports/v4_training.md). No Arduino UNO Q measurement is claimed.
+
 ## External-data v3 experiment (not deployed)
 
 The frozen v2 external baseline and the independent v3 experiment are documented in [v2 freeze](reports/v2_external_baseline_frozen.md), [v3 scorecard](reports/v3_external_scorecard.md), and [v3 model card](reports/v3_model_card.md). V3 adds TAB DIRECT PERSON/CODE BIO token and Gandalf/prompt-library attack heads on the frozen v2 encoder. The PII head improves ranking but has poor exact-span recall; the attack head fails to transfer to JailbreakLLMs. **V3 is NO-GO and is not wired into the default CLI, API, policy, or authorization gateway.** The published v2 model and its full-cohort external results remain unchanged.

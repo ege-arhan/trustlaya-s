@@ -1,0 +1,31 @@
+{
+  "device": "mps",
+  "hardware": "local Mac, not Arduino UNO Q",
+  "model_load_ms": 643.9444580464624,
+  "first_inference_cold_ms": 88.51999999023974,
+  "sample_n": 30,
+  "window_latency_includes_python_and_encoder_not_policy_or_network": true,
+  "by_length": {
+    "<=94": {
+      "n": 10,
+      "mean_windows": 1.0,
+      "p50_ms": 4.358333011623472,
+      "p95_ms": 7.740101762465196,
+      "p99_ms": 9.674786773393862
+    },
+    "95-510": {
+      "n": 10,
+      "mean_windows": 7.3,
+      "p50_ms": 13.145374454325065,
+      "p95_ms": 27.82766006421297,
+      "p99_ms": 30.270364829339087
+    },
+    ">510": {
+      "n": 10,
+      "mean_windows": 20.1,
+      "p50_ms": 22.28210400789976,
+      "p95_ms": 49.58670407067983,
+      "p99_ms": 54.864574423991144
+    }
+  }
+}
