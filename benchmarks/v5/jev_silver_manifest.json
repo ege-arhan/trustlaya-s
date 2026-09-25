@@ -83,33 +83,36 @@
   },
   "length": {
     "v2_max_sequence_length": 512,
-    "v2_visible_content_tokens": 510,
-    "median_tokens": 54,
-    "p95_tokens": 466,
-    "truncated_by_v2_head_window": 25,
+    "v2_default_inference_max_length": 96,
+    "v2_visible_content_tokens": 94,
+    "v2_architecture_content_tokens": 510,
+    "median_tokens": 61,
+    "p95_tokens": 529,
+    "truncated_by_v2_head_window": 205,
+    "exceeds_v2_architecture_window": 32,
     "buckets": {
       "0-128": {
-        "n": 462,
-        "silver_attack": 92
+        "n": 445,
+        "silver_attack": 87
       },
       "129-256": {
-        "n": 77,
-        "silver_attack": 1
+        "n": 84,
+        "silver_attack": 6
       },
       "257-384": {
-        "n": 21,
+        "n": 25,
         "silver_attack": 0
       },
       "385-512": {
-        "n": 15,
+        "n": 14,
         "silver_attack": 0
       },
       "513-768": {
-        "n": 10,
+        "n": 16,
         "silver_attack": 1
       },
       "769-1024": {
-        "n": 5,
+        "n": 4,
         "silver_attack": 0
       },
       "1025-1536": {
@@ -117,7 +120,7 @@
         "silver_attack": 1
       },
       "1537-plus": {
-        "n": 5,
+        "n": 7,
         "silver_attack": 0
       }
     }

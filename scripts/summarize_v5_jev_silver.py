@@ -7,6 +7,7 @@ from collections import Counter
 from decimal import Decimal
 from pathlib import Path
 from transformers import AutoTokenizer
+from trustlaya.utils import normalize
 
 try:
     from scripts.run_v5_jev_silver import ROOT, QUESTIONS, original_permitted_rows, replacement_rows, sha256
@@ -55,8 +56,10 @@ def summarize(path: Path):
     }
     latency = [r["latency_ms"] for r in data]
     tokenizer = AutoTokenizer.from_pretrained(ROOT / "models/trustlaya-s-v2", local_files_only=True)
-    visible_content_limit = tokenizer.model_max_length - tokenizer.num_special_tokens_to_add(pair=False)
-    lengths = {sid: len(tokenizer.encode(row["text"], add_special_tokens=False, verbose=False))
+    inference_max_length = 96  # src/trustlaya/inference.py Analyzer.analyze
+    visible_content_limit = inference_max_length - tokenizer.num_special_tokens_to_add(pair=False)
+    architecture_content_limit = tokenizer.model_max_length - tokenizer.num_special_tokens_to_add(pair=False)
+    lengths = {sid: len(tokenizer.encode(normalize(row["text"]), add_special_tokens=False, verbose=False))
                for sid, row in expected.items()}
     buckets = [(0, 128), (129, 256), (257, 384), (385, 512), (513, 768),
                (769, 1024), (1025, 1536), (1537, None)]
@@ -81,10 +84,13 @@ def summarize(path: Path):
         "latency_ms": {"p50": percentile(latency, 50), "p95": percentile(latency, 95),
                        "p99": percentile(latency, 99)},
         "length": {"v2_max_sequence_length": tokenizer.model_max_length,
+                   "v2_default_inference_max_length": inference_max_length,
                    "v2_visible_content_tokens": visible_content_limit,
+                   "v2_architecture_content_tokens": architecture_content_limit,
                    "median_tokens": percentile(list(lengths.values()), 50),
                    "p95_tokens": percentile(list(lengths.values()), 95),
                    "truncated_by_v2_head_window": sum(n > visible_content_limit for n in lengths.values()),
+                   "exceeds_v2_architecture_window": sum(n > architecture_content_limit for n in lengths.values()),
                    "buckets": bucket_counts},
         "usage": {"input_tokens": total_input, "output_tokens": total_output},
         "gateway_reported_cost": str(sum(Decimal(str(c)) for c in costs if c is not None)) if any(c is not None for c in costs) else None,
