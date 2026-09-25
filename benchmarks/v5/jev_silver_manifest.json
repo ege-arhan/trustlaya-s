@@ -1,0 +1,141 @@
+{
+  "status": "JEV_SILVER_NOT_GOLD",
+  "n": 600,
+  "human_labels": 0,
+  "raw_text_in_public_manifest": false,
+  "model_alias": "typesafe-ai/jev",
+  "source_counts": {
+    "deepset_prompt_injections_train": {
+      "n": 340,
+      "silver_intent": {
+        "NORMAL": 243,
+        "ATTACK": 88,
+        "UNRESOLVED": 3,
+        "BENIGN_DUAL_USE": 6
+      },
+      "quality_flags": {
+        "LOW_MAX_PROBABILITY": 87,
+        "ATTACK_QUOTE_CONFLICT": 10,
+        "ATTACK_INTENT_CONFLICT": 1
+      }
+    },
+    "microsoft_mcp_security": {
+      "n": 92,
+      "silver_intent": {
+        "BENIGN_DUAL_USE": 45,
+        "NORMAL": 47
+      },
+      "quality_flags": {
+        "LOW_MAX_PROBABILITY": 37
+      }
+    },
+    "owasp_cheat_sheet": {
+      "n": 79,
+      "silver_intent": {
+        "BENIGN_DUAL_USE": 41,
+        "NORMAL": 31,
+        "ATTACK": 7
+      },
+      "quality_flags": {
+        "LOW_MAX_PROBABILITY": 30,
+        "ATTACK_QUOTE_CONFLICT": 6,
+        "ATTACK_INTENT_CONFLICT": 1
+      }
+    },
+    "stackexchange_questions": {
+      "n": 89,
+      "silver_intent": {
+        "NORMAL": 80,
+        "BENIGN_DUAL_USE": 9
+      },
+      "quality_flags": {
+        "LOW_MAX_PROBABILITY": 10
+      }
+    }
+  },
+  "overall_silver_intent": {
+    "NORMAL": 401,
+    "BENIGN_DUAL_USE": 101,
+    "ATTACK": 95,
+    "UNRESOLVED": 3
+  },
+  "deepset_source_proxy_agreement": {
+    "agree": 256,
+    "n": 340,
+    "warning": "Source labels are not an independent human-gold evaluation of Jev."
+  },
+  "deepset_source_proxy_cross_tab": {
+    "0": {
+      "NORMAL": 168,
+      "UNRESOLVED": 2
+    },
+    "1": {
+      "ATTACK": 88,
+      "NORMAL": 75,
+      "BENIGN_DUAL_USE": 6,
+      "UNRESOLVED": 1
+    }
+  },
+  "latency_ms": {
+    "p50": 2103,
+    "p95": 34310,
+    "p99": 94043
+  },
+  "length": {
+    "v2_max_sequence_length": 512,
+    "v2_visible_content_tokens": 510,
+    "median_tokens": 54,
+    "p95_tokens": 466,
+    "truncated_by_v2_head_window": 25,
+    "buckets": {
+      "0-128": {
+        "n": 462,
+        "silver_attack": 92
+      },
+      "129-256": {
+        "n": 77,
+        "silver_attack": 1
+      },
+      "257-384": {
+        "n": 21,
+        "silver_attack": 0
+      },
+      "385-512": {
+        "n": 15,
+        "silver_attack": 0
+      },
+      "513-768": {
+        "n": 10,
+        "silver_attack": 1
+      },
+      "769-1024": {
+        "n": 5,
+        "silver_attack": 0
+      },
+      "1025-1536": {
+        "n": 5,
+        "silver_attack": 1
+      },
+      "1537-plus": {
+        "n": 5,
+        "silver_attack": 0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 562666,
+    "output_tokens": 143854
+  },
+  "gateway_reported_cost": "0",
+  "hashes": {
+    "original_packet_sha256": "7287e5e7a342b02144270b0757805a8d3aa00204f1d145ddc29e65a5c9f6c862",
+    "replacement_packet_sha256": "2f671964617e02bb933d0b6b847691b15c2d84c2bfe52810c7c88f4dca6c26b7",
+    "predictions_sha256": "175fe236a5101aef42f07fb2322763f5a082f6a362842acea612ae283c01abef",
+    "jev_questions_sha256": "e9f2d5c5ef1ff23f55cfbae25d0efb9dbe2550c5e28c100251a2598421af12ed",
+    "v2_tokenizer_sha256": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f",
+    "private_export_sha256": "ac9064a3021e6118094d83fd09a472e1647980d71808ea1377a59551e219a22a"
+  },
+  "deepset_revision": "4f61ecb038e9c3fb77e21034b22511b523772cdd",
+  "selection_seed": 5025,
+  "test_split_used": false
+}

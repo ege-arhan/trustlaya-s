@@ -1,8 +1,12 @@
 # TrustLaya-S
 
+## V5 Jev-only SILVER annotation
+
+The current V5 experiment uses Jev via Vercel AI Gateway to label a **separate 600-row SILVER corpus** with zero human labels. Run `.venv/bin/python scripts/run_v5_jev_silver.py` after setting `AI_GATEWAY_API_KEY`, then `.venv/bin/python scripts/summarize_v5_jev_silver.py`. The resumable predictions and raw source texts stay under gitignored `benchmarks/v5/private/`; the public manifest contains only aggregates and hashes. This is **not a human GOLD benchmark or a measured model accuracy result**. Of the original frozen 600-row packet, 260 license-documented rows are included. Its 340 Tensor Trust rows are excluded from the external API run because the data repository has no explicit license; 340 separate rows from the pinned deepset *train* split take their place. See [Jev-only report](reports/v5_jev_only_silver.md).
+
 ## V5 kör insan anotasyonu (yerel altyapı)
 
-600 aday için iki bağımsız incelemeci, ayrı hakem ve yönetici rolleri olan yerel arayüz hazırdır. İlk kurulum: `.venv/bin/python scripts/run_v5_annotation_ui.py --init-accounts`; başlatma: `.venv/bin/python scripts/run_v5_annotation_ui.py`. Ayrıntılar ve veri güvenliği için [Türkçe kullanım kılavuzu](docs/v5_annotation_ui_tr.md). Paket henüz GOLD değildir; yeni model eğitilmedi. V2 varsayılan olarak kalır.
+Önceden oluşturulan yerel insan anotasyon arayüzü ayrı bir deney olarak korunmuştur; mevcut Jev-only iş akışı onu kullanmaz. Ayrıntılar için [Türkçe kullanım kılavuzu](docs/v5_annotation_ui_tr.md). Yeni model eğitilmedi. V2 varsayılan olarak kalır.
 
 ## V4 long-context research (NO-GO; local only)
 
