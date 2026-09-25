@@ -1,0 +1,36 @@
+{
+  "schema_version": "v5-candidate-1",
+  "status": "UNREVIEWED_CANDIDATES_ONLY",
+  "normalized_duplicate_rows_skipped": 438,
+  "tokenizer_sha256": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f",
+  "effective_content_tokens": 94,
+  "summary": {
+    "n": 1168,
+    "by_split": {
+      "CANDIDATE": 1168
+    },
+    "human_reviewed": 0
+  },
+  "source_count": {
+    "microsoft_mcp_security": 92,
+    "owasp_cheat_sheet": 79,
+    "stackexchange_questions": 89,
+    "tensor_trust_game": 908
+  },
+  "license_note": "Tensor Trust data repository has no explicit data license; local research candidates only; do not redistribute raw text.",
+  "source_revisions": {
+    "tensor_trust_data": "747a75e096761ebc01bd3970158827326b4add23",
+    "owasp_cheat_sheet": "c04039adbe6f727a2198b3a3ea634fec98ac068a",
+    "microsoft_mcp_security": "5b9b963b75fa2f2f4e34e459bc3647f7037b9faa",
+    "stackexchange": "API 2.3 saved response SHA-256"
+  },
+  "source_sha256": {
+    "microsoft_mcp_security.md": "d66b019985cd297d328ba5785cb215460feb27356205c0f93b0dbce51e1904d2",
+    "owasp_prompt_injection_cheat_sheet.md": "581a9bb96bc934fa277fde7610b6e05fdd485d79ff617851de99fc1262f56f74",
+    "stackexchange_ai_prompt_injection.json": "fc1dbaae08cdbdc03e5d028399731b87bc9fe1c8e909b9b41bacd51788d59a60",
+    "stackexchange_so_prompt_injection.json": "50b3a77e9374771c8fd48495f28491389e627a8f9368602139915313beabdd0f",
+    "stackexchange_so_system_prompt.json": "cdfdce513f3348685aa78a529554939f008c4cc041e30f4dea6ddb869ee31cf2",
+    "tensor_trust_extraction_v1.jsonl": "4090f9f57b6df69cc32d7669ac991e3fd53e6e2bb616a5e6f45dac79c183ee4c",
+    "tensor_trust_hijacking_v1.jsonl": "2ad3c2343bbf43cb1924f3ec5d6f830864ce3c879e9832b01d93a991e7e2e680"
+  }
+}

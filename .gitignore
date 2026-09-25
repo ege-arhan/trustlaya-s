@@ -22,5 +22,6 @@ models/exported/
 models/trustlaya-s-v*/
 benchmarks/external/raw/
 benchmarks/external/predictions/
+benchmarks/v5/private/
 
 src/*.egg-info/
