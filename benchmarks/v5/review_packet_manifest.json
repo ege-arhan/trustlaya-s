@@ -1,0 +1,30 @@
+{
+  "candidate_manifest_sha256": "af4cce748b32d042294ed7bf249970099ef9af71c9bd08eb61158b9800e8b84d",
+  "n": 600,
+  "private_file_sha256": {
+    "annotation_a_template.csv": "e698d54af176c54ffa8514fd69e19f89b8bfae4845eb916200f6656241f470bb",
+    "annotation_b_template.csv": "e698d54af176c54ffa8514fd69e19f89b8bfae4845eb916200f6656241f470bb",
+    "candidate_disagreement.json": "96446b3eb733b60d8d9aeabc10fbe077b89009bd45021b6f7015c9749070a4b7",
+    "packet_summary.json": "1d5d2f720312ecf5cb075c5ad5ae6b46f03559bf0b1cb0ebacc43f2ecd7dab5c",
+    "review_id_map.json": "53e8d1e0a39dc7ee80532f7774afffae17d98a7b8ce2c378ee7ada3630294f89",
+    "review_packet.jsonl": "7287e5e7a342b02144270b0757805a8d3aa00204f1d145ddc29e65a5c9f6c862"
+  },
+  "public_metadata_only": true,
+  "selection_seed": 20260925,
+  "source_length_group_counts": {
+    "microsoft_mcp_security:0-94": 34,
+    "microsoft_mcp_security:257+": 4,
+    "microsoft_mcp_security:95-256": 54,
+    "owasp_cheat_sheet:0-94": 51,
+    "owasp_cheat_sheet:257+": 3,
+    "owasp_cheat_sheet:95-256": 25,
+    "stackexchange_questions:0-94": 2,
+    "stackexchange_questions:257+": 59,
+    "stackexchange_questions:95-256": 28,
+    "tensor_trust_game:0-94": 114,
+    "tensor_trust_game:257+": 113,
+    "tensor_trust_game:95-256": 113
+  },
+  "status": "UNREVIEWED_PRIVATE_CANDIDATES",
+  "version": "v5-human-packet-2"
+}

@@ -27,11 +27,17 @@ V4 = ROOT / "models/trustlaya-s-v4-research"
 def score_windows(model, heads, device, tokenizer, windows):
     result = {name: [] for name in ("v2", "v3", "v4")}
     with torch.inference_mode():
-        for start in range(0, len(windows), 24):
-            batch = windows[start:start + 24]
+        # A 510-content-token pass consumes more memory than the 94-token
+        # research path; keep batches small and pad only to this batch's max.
+        batch_size = 4 if any(len(row) > 94 for row in windows) else 24
+        for start in range(0, len(windows), batch_size):
+            batch = windows[start:start + batch_size]
             ids = [tokenizer.build_inputs_with_special_tokens(row) for row in batch]
-            mask = [[1] * len(row) + [0] * (96 - len(row)) for row in ids]
-            ids = [row + [tokenizer.pad_token_id] * (96 - len(row)) for row in ids]
+            max_length = max(len(row) for row in ids)
+            if max_length > model.encoder.config.max_position_embeddings:
+                raise ValueError("window exceeds encoder position limit")
+            mask = [[1] * len(row) + [0] * (max_length - len(row)) for row in ids]
+            ids = [row + [tokenizer.pad_token_id] * (max_length - len(row)) for row in ids]
             t_ids = torch.tensor(ids, dtype=torch.long, device=device)
             t_mask = torch.tensor(mask, dtype=torch.long, device=device)
             hidden = model.encoder(input_ids=t_ids, attention_mask=t_mask).last_hidden_state

@@ -2,7 +2,7 @@
 
 **Status: candidate pool, not a validated benchmark.** No V5 model was trained, no v2/v3/v4 default was changed, and there are **zero human-reviewed gold labels** as of 2026-09-25.
 
-The [machine-readable manifest](../benchmarks/v5/dataset_manifest.json) and [row metadata](../benchmarks/v5/dataset_manifest.jsonl) contain provenance and hashes, without raw text. Private raw source snapshots and the 460-row review packet live in `benchmarks/v5/private/` and are gitignored. `scripts/build_v5_review_queue.py` regenerates the queue from pinned/snapshotted sources. It removed 438 normalized exact duplicates from 1,606 acquired rows, leaving **1,168 unique candidates**.
+The [machine-readable manifest](../benchmarks/v5/dataset_manifest.json) and [row metadata](../benchmarks/v5/dataset_manifest.jsonl) contain provenance and hashes, without raw text. Private raw source snapshots and the **600-row** review packet live in `benchmarks/v5/private/` and are gitignored. `scripts/build_v5_review_queue.py` regenerates the queue from pinned/snapshotted sources. It removed 438 normalized exact duplicates from 1,606 acquired rows, leaving **1,168 unique candidates**.
 
 | Source | Unique candidates | Provenance | License / restriction | Proposed role |
 |---|---:|---|---|---|
@@ -13,7 +13,7 @@ The [machine-readable manifest](../benchmarks/v5/dataset_manifest.json) and [row
 
 The Stack Exchange [licensing help](https://stackoverflow.com/help/licensing) gives CC BY-SA 4.0 for posts from 2018-05-02 onward. Source files are saved locally and SHA-256 values are in the manifest. Tensor Trust game **source code** is BSD-2-Clause; that does not establish a license for the separate [data repository](https://github.com/HumanCompatibleAI/tensor-trust-data/issues/3). We therefore cannot release its text or train a distributable model on it without resolving rights.
 
-The deterministic review packet contains 200 Tensor Trust candidates and all 260 candidates from the three other source families. It conceals source labels and model scores from annotators. Selection is source and length stratified, not label stratified. Human reviewers must decide whether each text is an actual attack, a quote, a discussion, education, an ordinary request, or ambiguous.
+The deterministic review packet contains **340 Tensor Trust candidates** and all **260** candidates from the three other source families. Its private exact bytes are pinned by the [packet checksum manifest](../benchmarks/v5/review_packet_manifest.json). It conceals source labels and model scores from annotators. Selection is source, length and frozen-head disagreement stratified, not human-label stratified. The hierarchical human protocol separates intent, vector, benign subtype and modifiers; `UNRESOLVED` is a review route and never gold.
 
 ## Source separation and missing pieces
 

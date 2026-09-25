@@ -1,4 +1,8 @@
 import pytest
+import csv
+import json
+
+from scripts import adjudicate_v5_reviews as reviews
 
 from trustlaya.v5_benchmark import bucket, validate_manifest, validate_record
 from trustlaya.v5_context import STRATEGIES, aggregate_score, candidate_windows
@@ -25,6 +29,8 @@ def test_bucket_boundaries():
 def test_unreviewed_cannot_be_gold():
     with pytest.raises(ValueError):
         validate_record(row(gold_label="DIRECT_ATTACK"))
+    with pytest.raises(ValueError):
+        validate_record(row(gold_label="AMBIGUOUS", review_status="AGREED"))
 
 
 def test_source_separation_and_normalized_overlap():
@@ -50,3 +56,75 @@ def test_router_selects_cue_region():
 def test_max_vs_mean():
     assert aggregate_score([.1, .9], "MAX_WINDOW_SCORE") == .9
     assert aggregate_score([.1, .9], "MEAN_WINDOW_SCORE") == .5
+
+
+def test_krippendorff_nominal_alpha():
+    assert reviews.krippendorff_alpha_nominal([]) is None
+    assert reviews.krippendorff_alpha_nominal([("ATTACK", "ATTACK")]) is None
+    assert reviews.krippendorff_alpha_nominal([("ATTACK", "ATTACK"), ("NORMAL", "NORMAL")]) == 1
+    assert reviews.krippendorff_alpha_nominal([("ATTACK", "NORMAL")]) == 0
+
+
+def _review_csv(path, annotator, intent):
+    with path.open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=reviews.FIELDS)
+        writer.writeheader()
+        writer.writerow({"sample_id": "r-blind", "annotator_id": annotator, "intent": intent,
+                         "attack_vector": "DIRECT_OVERRIDE" if intent == "ATTACK" else "",
+                         "benign_type": "", "language": "en", "attack_location": "",
+                         "contains_pii": "no", "contains_secret": "no", "obfuscated": "no"})
+
+
+def test_unresolved_review_never_becomes_gold(tmp_path, monkeypatch):
+    manifest = tmp_path / "benchmarks/v5/dataset_manifest.jsonl"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps(row()) + "\n")
+    private = tmp_path / "benchmarks/v5/private"
+    private.mkdir()
+    (private / "review_id_map.json").write_text('{"r-blind":"a"}')
+    monkeypatch.setattr(reviews, "ROOT", tmp_path)
+    monkeypatch.setattr(reviews, "PRIVATE", private)
+    a, b = tmp_path / "a.csv", tmp_path / "b.csv"
+    _review_csv(a, "human_a", "UNRESOLVED")
+    _review_csv(b, "human_b", "UNRESOLVED")
+    result = reviews.adjudicate(a, b, None)
+    assert result["gold_n"] == 0
+    assert result["ready_for_freeze"] is False
+    assert "gold_intent" not in json.loads((private / "reviewed_manifest.jsonl").read_text())
+
+
+def test_adjudicator_must_be_third_person(tmp_path, monkeypatch):
+    manifest = tmp_path / "benchmarks/v5/dataset_manifest.jsonl"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps(row()) + "\n")
+    private = tmp_path / "benchmarks/v5/private"
+    private.mkdir()
+    (private / "review_id_map.json").write_text('{"r-blind":"a"}')
+    monkeypatch.setattr(reviews, "ROOT", tmp_path)
+    monkeypatch.setattr(reviews, "PRIVATE", private)
+    a, b, senior = (tmp_path / name for name in ("a.csv", "b.csv", "senior.csv"))
+    _review_csv(a, "human_a", "ATTACK")
+    _review_csv(b, "human_b", "NORMAL")
+    _review_csv(senior, "human_a", "ATTACK")
+    with pytest.raises(ValueError, match="independent"):
+        reviews.adjudicate(a, b, senior)
+
+
+def test_senior_can_resolve_disagreement(tmp_path, monkeypatch):
+    manifest = tmp_path / "benchmarks/v5/dataset_manifest.jsonl"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps(row()) + "\n")
+    private = tmp_path / "benchmarks/v5/private"
+    private.mkdir()
+    (private / "review_id_map.json").write_text('{"r-blind":"a"}')
+    monkeypatch.setattr(reviews, "ROOT", tmp_path)
+    monkeypatch.setattr(reviews, "PRIVATE", private)
+    a, b, senior = (tmp_path / name for name in ("a.csv", "b.csv", "senior.csv"))
+    _review_csv(a, "human_a", "ATTACK")
+    _review_csv(b, "human_b", "NORMAL")
+    _review_csv(senior, "human_c", "ATTACK")
+    result = reviews.adjudicate(a, b, senior)
+    assert result["gold_n"] == 1
+    reviewed = json.loads((private / "reviewed_manifest.jsonl").read_text())
+    assert reviewed["gold_intent"] == "ATTACK"
+    assert reviewed["review_status"] == "ADJUDICATED"

@@ -13,6 +13,9 @@ LABELS = frozenset({
     "NORMAL_REQUEST", "AMBIGUOUS",
 })
 ATTACK = frozenset({"DIRECT_ATTACK", "PROMPT_INJECTION", "INDIRECT_ATTACK"})
+INTENTS = frozenset({"ATTACK", "BENIGN_DUAL_USE", "NORMAL", "UNRESOLVED"})
+ATTACK_VECTORS = frozenset({"DIRECT_OVERRIDE", "INDIRECT_INJECTION", "DATA_EXFILTRATION"})
+BENIGN_TYPES = frozenset({"SECURITY_ANALYSIS", "QUOTED_REFERENCE"})
 LOCATIONS = frozenset({
     "ATTACK_AT_BEGINNING", "ATTACK_IN_MIDDLE", "ATTACK_AT_END",
     "MULTIPLE_ATTACK_SEGMENTS", "DISTRIBUTED_CONTEXT",
@@ -42,13 +45,27 @@ def validate_record(row: dict) -> None:
     missing = [name for name in required if name not in row]
     if missing:
         raise ValueError(f"missing fields: {missing}")
-    if row["review_status"] not in {"UNREVIEWED", "ONE_REVIEW", "DISAGREEMENT", "ADJUDICATED", "AGREED"}:
+    if row["review_status"] not in {"UNREVIEWED", "ONE_REVIEW", "DISAGREEMENT", "UNRESOLVED", "ADJUDICATED", "AGREED"}:
         raise ValueError("invalid review status")
     if row["split"] not in {"TRAIN", "DEV", "HIDDEN_TEST_A", "HIDDEN_TEST_B", "CANDIDATE"}:
         raise ValueError("invalid split")
-    if row.get("gold_label") is not None and (row["gold_label"] not in LABELS or row["review_status"] not in {"AGREED", "ADJUDICATED"}):
+    if row.get("gold_label") is not None and (row["gold_label"] not in LABELS - {"AMBIGUOUS"} or row["review_status"] not in {"AGREED", "ADJUDICATED"}):
         raise ValueError("gold requires genuine completed human review")
-    if row.get("attack_location") is not None and (row["attack_location"] not in LOCATIONS or row.get("gold_label") not in ATTACK):
+    if row.get("gold_intent") is not None:
+        if row["gold_intent"] not in INTENTS - {"UNRESOLVED"} or row["review_status"] not in {"AGREED", "ADJUDICATED"}:
+            raise ValueError("intent gold requires completed human review")
+        if row["gold_intent"] == "ATTACK" and row.get("attack_vector") not in ATTACK_VECTORS:
+            raise ValueError("attack requires vector")
+        if row["gold_intent"] == "BENIGN_DUAL_USE" and row.get("benign_type") not in BENIGN_TYPES:
+            raise ValueError("dual-use requires benign subtype")
+        if row["gold_intent"] != "ATTACK" and row.get("attack_vector") is not None:
+            raise ValueError("benign row cannot carry attack vector")
+        if row["gold_intent"] != "BENIGN_DUAL_USE" and row.get("benign_type") is not None:
+            raise ValueError("non dual-use row cannot carry benign subtype")
+        for flag in ("contains_pii", "contains_secret", "obfuscated"):
+            if not isinstance(row.get(flag), bool):
+                raise ValueError(f"reviewed modifier {flag} must be bool")
+    if row.get("attack_location") is not None and (row["attack_location"] not in LOCATIONS or (row.get("gold_label") not in ATTACK and row.get("gold_intent") != "ATTACK")):
         raise ValueError("attack location requires reviewed attack")
     if row["length_bucket"] != bucket(row["original_token_length"]):
         raise ValueError("incorrect length bucket")
@@ -77,7 +94,8 @@ def validate_manifest(rows: list[dict]) -> dict:
     contaminated = sum(len(roles) > 1 for roles in hashes.values())
     if contaminated:
         raise ValueError(f"normalized duplicate across roles: {contaminated}")
-    return {"n": len(rows), "by_split": dict(counts), "human_reviewed": sum(r.get("gold_label") is not None for r in rows)}
+    return {"n": len(rows), "by_split": dict(counts),
+            "human_reviewed": sum(r.get("gold_label") is not None or r.get("gold_intent") is not None for r in rows)}
 
 
 def read_jsonl(path: Path) -> list[dict]:
