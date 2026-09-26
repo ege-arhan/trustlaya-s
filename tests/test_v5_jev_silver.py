@@ -21,6 +21,11 @@ def answers(intent="BENIGN_DUAL_USE", quoted=0.9, directed=0.1):
     }
 
 
+PRIVATE_PACKET = Path(__file__).resolve().parents[1] / "benchmarks/v5/private/review_packet.jsonl"
+local_packet = pytest.mark.skipif(not PRIVATE_PACKET.exists(), reason="private review packet is local-only")
+
+
+@local_packet
 def test_original_packet_excludes_unlicensed_tensor_trust():
     rows, digest = original_permitted_rows()
     assert len(rows) == 260
@@ -86,6 +91,7 @@ def test_resume_and_hash_guard(tmp_path, monkeypatch):
     assert json.loads(output.read_text())["silver"]["annotation_source"] == "JEV_SILVER"
 
 
+@local_packet
 def test_manifest_refuses_partial_results(tmp_path):
     from scripts.summarize_v5_jev_silver import summarize
 

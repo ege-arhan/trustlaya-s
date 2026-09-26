@@ -17,6 +17,12 @@ def test_short_input_and_invalid_geometry():
     with pytest.raises(ValueError): read_windows([1], capacity=94, overlap=94)
 
 
+import pytest
+from pathlib import Path
+
+
+@pytest.mark.skipif(not (Path(__file__).resolve().parents[1] / "models/trustlaya-s-v2/tokenizer.json").exists(),
+                    reason="V2 model files are local-only")
 def test_repository_tokenizer_low_level_truncation_is_explicitly_disabled():
     from pathlib import Path
     from transformers import AutoTokenizer
