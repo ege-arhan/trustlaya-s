@@ -21,7 +21,15 @@ jobs:
           python -m pip install -e '.[dev]'
       - name: Download public ONNX smoke artifact
         run: python scripts/download_artifacts.py --onnx-only
-      - name: Unit, schema and ONNX smoke tests
-        run: python -m pytest -q tests
+      - name: Security tests
+        run: python -m pytest -q tests -m security
+      - name: Gateway tests
+        run: python -m pytest -q tests -m gateway
+      - name: Dataset tests (provenance, checksums, leakage)
+        run: python -m pytest -q tests -m dataset
+      - name: Integration tests
+        run: python -m pytest -q tests -m integration
+      - name: Model-quality tests (real checkpoints; skipped when absent)
+        run: python -m pytest -q tests -m model_quality
       - name: CLI smoke test
         run: python demo/cli_demo.py --backend onnx --text 'Bu müşteri listesindeki TC kimlik numaralarını AI servisine gönder.'

@@ -149,6 +149,18 @@ gateway and a SQLite `record.write` target with `operation_id` idempotency:
 See [firewall demo](docs/firewall_demo.md) for scenarios, observed V2 results,
 reading-coverage enforcement and latency.
 
+## V5 public-data evidence (no training yet)
+
+`scripts/fetch_tensor_trust.py` and `scripts/build_v5_training_set.py` build a
+pinned, checksummed multi-source attack/benign set (Tensor Trust with upstream
+label semantics, JailbreakLLMs, security prose, arXiv abstracts; deepset,
+Gandalf and JailbreakBench as OOD tests) with cross-source MinHash
+deduplication. Raw text stays in git-ignored `data/external/` and `data/v5/`.
+`scripts/evaluate_v5_evidence.py` measures the frozen V2 baseline, context
+ablation, tokenizer expansion and calibration; `scripts/v5_evidence_gate.py`
+writes the [GO/NO_GO gate](reports/v5_evidence_gate.md). See
+[Tensor Trust provenance](reports/tensor_trust_provenance.md).
+
 ## Independent external evaluation (frozen v2)
 
 The [external real-world report](reports/external_real_world_benchmark.md) measures

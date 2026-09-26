@@ -9,6 +9,15 @@ requires-python = ">=3.10"
 dependencies = ["torch>=2.2", "transformers>=4.45,<5", "safetensors", "onnx", "onnxruntime", "scikit-learn", "PyYAML", "psutil", "datasets>=5", "pyarrow"]
 [project.optional-dependencies]
 dev = ["pytest"]
+data = ["datasketch==1.6.5", "pandas"]
 teacher = ["laya==0.3.11"]
 [tool.setuptools.packages.find]
 where = ["src"]
+[tool.pytest.ini_options]
+markers = [
+    "dataset: data provenance, checksum, parser and leakage checks",
+    "security: authorization and fail-closed invariants",
+    "gateway: gateway, adapter and target HTTP behavior",
+    "integration: end-to-end paths across services",
+    "model_quality: real-model behavior; results can change with a new checkpoint",
+]

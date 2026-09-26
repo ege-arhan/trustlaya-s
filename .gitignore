@@ -23,5 +23,8 @@ models/trustlaya-s-v*/
 benchmarks/external/raw/
 benchmarks/external/predictions/
 benchmarks/v5/private/
+# V5 raw public data and built text splits stay local (see data/v5_source_pins.json).
+data/external/
+data/v5/
 
 src/*.egg-info/

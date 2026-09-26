@@ -32,6 +32,10 @@ The same `trustlaya_s.onnx` now runs inside a Docker firewall demo on the [feat/
 
 All 13 fixed scenarios passed on 2026-09-26 (Docker on Apple Silicon): no unauthorized scenario created a target record, a retried operation never created a second record, and no key or secret appeared in logs. End-to-end p95 53 ms, model p95 45 ms over 100 sequential writes; gateway memory about 270 MiB. These are fixed demonstration inputs, not a quality benchmark. Observed model limits in the same runs: many short benign notes received REVIEW, and a 113-token benign meeting note was BLOCKed as prompt injection. No UNO Q measurement.
 
+## Public human-data baseline (2026-09-26, unchanged weights)
+
+The frozen V2 prompt-injection head was scored at its native 94-token reading and a threshold of 0.5 fixed in advance, on cluster-deduplicated public data ([V5 evidence gate](https://github.com/ege-arhan/trustlaya-s/blob/feat/v2-firewall-e2e/reports/v5_evidence_gate.md)). Tensor Trust TEST attacks (n=3,596, attack-only): recall **0.443**. JailbreakLLMs TEST (172 jailbreak / 1,938 regular prompts): recall **0.901**, false-positive rate **0.875**, F1 **0.153**. Benign security prose: false-positive rate **0.898** (documentation/forum) and **0.978** (arXiv abstracts). deepset (OOD): F1 **0.710**, FPR **0.364**. Gandalf (OOD, attack-only): recall **0.722**. These results show V2 is not usable as a general jailbreak/injection detector on real-world text. No V5 model has been trained yet.
+
 ## Files and usage
 
 `model.safetensors` is a custom nine-risk-head PyTorch model, not a generic `AutoModel`. `trustlaya_s.onnx` is FP32; `trustlaya_s_int8.onnx` is **experimental** and changed 5.1% of final policy actions on 256 synthetic rows. `calibration.json`, `decision_thresholds.json`, `policy.yaml`, and tokenizer files support the full pipeline. Batch-1 MacBook ONNX CPU p50 **4.629 ms** in the latest run; no Arduino UNO Q hardware benchmark was performed.

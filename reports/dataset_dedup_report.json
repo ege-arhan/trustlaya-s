@@ -1,0 +1,46 @@
+{
+  "exact_duplicates_collapsed_within_source": {
+    "tensor_trust": 23298,
+    "jailbreakllms": 662,
+    "gandalf": 1,
+    "arxiv_abstracts": 15
+  },
+  "status_by_source": {
+    "arxiv_abstracts/included": 585,
+    "deepset/excluded_near_duplicate_of_attack": 2,
+    "deepset/excluded_ood_overlaps_pool": 12,
+    "deepset/included": 648,
+    "gandalf/excluded_ood_overlaps_pool": 10,
+    "gandalf/included": 989,
+    "jailbreakbench/included": 200,
+    "jailbreakllms/excluded_near_duplicate_of_attack": 312,
+    "jailbreakllms/included": 14125,
+    "security_docs/included": 704,
+    "tensor_trust/included": 11994
+  },
+  "cross_source_clusters": {
+    "jailbreakllms+tensor_trust": 12,
+    "gandalf+tensor_trust": 9,
+    "deepset+jailbreakllms+tensor_trust": 2,
+    "deepset+jailbreakllms": 8
+  },
+  "rows_in_cross_source_clusters": {
+    "jailbreakllms+tensor_trust": 39,
+    "gandalf+tensor_trust": 27,
+    "deepset+jailbreakllms+tensor_trust": 10,
+    "deepset+jailbreakllms": 90
+  },
+  "tensor_trust_jailbreakllms_overlap_rows": 49,
+  "clusters_spanning_splits": 0,
+  "clusters_total": 23641,
+  "method": {
+    "normalization": "casefold + whitespace collapse (exact)",
+    "near_duplicate": "MinHash LSH, char 5-grams, 128 permutations, verified Jaccard > 0.7",
+    "split_unit": "cluster (cross-source)",
+    "split_shares": {
+      "TRAIN": 70,
+      "DEV": 15,
+      "TEST": 15
+    }
+  }
+}

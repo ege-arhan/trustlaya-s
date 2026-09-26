@@ -1,0 +1,64 @@
+{
+  "parser_validation": {
+    "v1": {
+      "raw_attacks": 126808,
+      "hijacking_benchmark_unique": 492,
+      "hijacking_benchmark_recovered": 490,
+      "extraction_benchmark_unique": 438,
+      "extraction_benchmark_recovered": 438,
+      "hijacking_candidates_unique": 1804,
+      "extraction_candidates_unique": 2583
+    },
+    "v2": {
+      "raw_attacks": 563349,
+      "hijacking_benchmark_unique": 492,
+      "hijacking_benchmark_recovered": 491,
+      "extraction_benchmark_unique": 438,
+      "extraction_benchmark_recovered": 438,
+      "hijacking_candidates_unique": 7665,
+      "extraction_candidates_unique": 28489
+    }
+  },
+  "raw_rows_by_category": {
+    "unverified_attempt": 298176,
+    "hijacking_benchmark_v1": 17808,
+    "extraction_candidate": 7902,
+    "access_code_entry": 10038,
+    "self_or_sandbox_attack": 99264,
+    "hijacking_candidate": 124752,
+    "extraction_benchmark_v1": 4924,
+    "tos_removed_text": 485
+  },
+  "unique_texts_by_category": {
+    "extraction_candidate": 5771,
+    "unverified_attempt": 228847,
+    "hijacking_benchmark_v1": 492,
+    "access_code_entry": 1220,
+    "self_or_sandbox_attack": 50724,
+    "hijacking_candidate": 7141,
+    "extraction_benchmark_v1": 438,
+    "tos_removed_text": 43
+  },
+  "included_by_split_label": {
+    "DEV/ATTACK": 1346,
+    "TEST/ATTACK": 3596,
+    "TRAIN/ATTACK": 7052
+  },
+  "included_by_native_category": {
+    "extraction_candidate": 5308,
+    "hijacking_benchmark_v1": 478,
+    "hijacking_candidate": 5778,
+    "extraction_benchmark_v1": 430
+  },
+  "status": {
+    "included": 11994,
+    "excluded_source_semantics": 259384
+  },
+  "security_docs": {
+    "security_docs_dropped_blocks": {
+      "short": 852,
+      "quoted_attack_string": 5,
+      "quote_table_or_heading": 27
+    }
+  }
+}
