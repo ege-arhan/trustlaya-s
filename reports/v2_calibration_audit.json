@@ -1,0 +1,725 @@
+{
+  "head": "prompt_injection",
+  "existing_temperature": 0.30000509809242715,
+  "dev_fitted_temperature": 20.0,
+  "fit_split": "DEV (pooled, mixed sources)",
+  "threshold_tuning_on_test": false,
+  "per_source": {
+    "DEV/arxiv_abstracts": {
+      "raw": {
+        "n": 101,
+        "positive": 0,
+        "negative": 101,
+        "tp": 0,
+        "fp": 100,
+        "fn": 0,
+        "tn": 1,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.9901,
+        "fpr_95ci": [
+          0.946,
+          0.9983
+        ],
+        "fnr": null,
+        "brier": 0.7774,
+        "ece": 0.8774,
+        "pr_auc": null
+      },
+      "existing_temperature": {
+        "n": 101,
+        "positive": 0,
+        "negative": 101,
+        "tp": 0,
+        "fp": 100,
+        "fn": 0,
+        "tn": 1,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.9901,
+        "fpr_95ci": [
+          0.946,
+          0.9983
+        ],
+        "fnr": null,
+        "brier": 0.9755,
+        "ece": 0.9861,
+        "pr_auc": null
+      },
+      "dev_temperature": {
+        "n": 101,
+        "positive": 0,
+        "negative": 101,
+        "tp": 0,
+        "fp": 100,
+        "fn": 0,
+        "tn": 1,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.9901,
+        "fpr_95ci": [
+          0.946,
+          0.9983
+        ],
+        "fnr": null,
+        "brier": 0.2778,
+        "ece": 0.527,
+        "pr_auc": null
+      }
+    },
+    "DEV/jailbreakllms": {
+      "raw": {
+        "n": 2060,
+        "positive": 177,
+        "negative": 1883,
+        "tp": 162,
+        "fp": 1635,
+        "fn": 15,
+        "tn": 248,
+        "precision": 0.0902,
+        "recall": 0.9153,
+        "recall_95ci": [
+          0.8649,
+          0.948
+        ],
+        "f1": 0.1641,
+        "fpr": 0.8683,
+        "fpr_95ci": [
+          0.8523,
+          0.8828
+        ],
+        "fnr": 0.0847,
+        "brier": 0.6644,
+        "ece": 0.729,
+        "pr_auc": 0.1643
+      },
+      "existing_temperature": {
+        "n": 2060,
+        "positive": 177,
+        "negative": 1883,
+        "tp": 162,
+        "fp": 1635,
+        "fn": 15,
+        "tn": 248,
+        "precision": 0.0902,
+        "recall": 0.9153,
+        "recall_95ci": [
+          0.8649,
+          0.948
+        ],
+        "f1": 0.1641,
+        "fpr": 0.8683,
+        "fpr_95ci": [
+          0.8523,
+          0.8828
+        ],
+        "fnr": 0.0847,
+        "brier": 0.7782,
+        "ece": 0.7925,
+        "pr_auc": 0.1643
+      },
+      "dev_temperature": {
+        "n": 2060,
+        "positive": 177,
+        "negative": 1883,
+        "tp": 162,
+        "fp": 1635,
+        "fn": 15,
+        "tn": 248,
+        "precision": 0.0902,
+        "recall": 0.9153,
+        "recall_95ci": [
+          0.8649,
+          0.948
+        ],
+        "f1": 0.1641,
+        "fpr": 0.8683,
+        "fpr_95ci": [
+          0.8523,
+          0.8828
+        ],
+        "fnr": 0.0847,
+        "brier": 0.271,
+        "ece": 0.4398,
+        "pr_auc": 0.1643
+      }
+    },
+    "DEV/security_docs": {
+      "raw": {
+        "n": 103,
+        "positive": 0,
+        "negative": 103,
+        "tp": 0,
+        "fp": 89,
+        "fn": 0,
+        "tn": 14,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.8641,
+        "fpr_95ci": [
+          0.7847,
+          0.9173
+        ],
+        "fnr": null,
+        "brier": 0.7556,
+        "ece": 0.8284,
+        "pr_auc": null
+      },
+      "existing_temperature": {
+        "n": 103,
+        "positive": 0,
+        "negative": 103,
+        "tp": 0,
+        "fp": 89,
+        "fn": 0,
+        "tn": 14,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.8641,
+        "fpr_95ci": [
+          0.7847,
+          0.9173
+        ],
+        "fnr": null,
+        "brier": 0.8523,
+        "ece": 0.8728,
+        "pr_auc": null
+      },
+      "dev_temperature": {
+        "n": 103,
+        "positive": 0,
+        "negative": 103,
+        "tp": 0,
+        "fp": 89,
+        "fn": 0,
+        "tn": 14,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.8641,
+        "fpr_95ci": [
+          0.7847,
+          0.9173
+        ],
+        "fnr": null,
+        "brier": 0.2805,
+        "ece": 0.5289,
+        "pr_auc": null
+      }
+    },
+    "DEV/tensor_trust": {
+      "raw": {
+        "n": 1346,
+        "positive": 1346,
+        "negative": 0,
+        "tp": 672,
+        "fp": 0,
+        "fn": 674,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.4993,
+        "recall_95ci": [
+          0.4726,
+          0.5259
+        ],
+        "f1": 0.666,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.5007,
+        "brier": 0.4407,
+        "ece": 0.517,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      },
+      "existing_temperature": {
+        "n": 1346,
+        "positive": 1346,
+        "negative": 0,
+        "tp": 672,
+        "fp": 0,
+        "fn": 674,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.4993,
+        "recall_95ci": [
+          0.4726,
+          0.5259
+        ],
+        "f1": 0.666,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.5007,
+        "brier": 0.4855,
+        "ece": 0.5076,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      },
+      "dev_temperature": {
+        "n": 1346,
+        "positive": 1346,
+        "negative": 0,
+        "tp": 672,
+        "fp": 0,
+        "fn": 674,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.4993,
+        "recall_95ci": [
+          0.4726,
+          0.5259
+        ],
+        "f1": 0.666,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.5007,
+        "brier": 0.2597,
+        "ece": 0.5075,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      }
+    },
+    "TEST/arxiv_abstracts": {
+      "raw": {
+        "n": 92,
+        "positive": 0,
+        "negative": 92,
+        "tp": 0,
+        "fp": 90,
+        "fn": 0,
+        "tn": 2,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.9783,
+        "fpr_95ci": [
+          0.9242,
+          0.994
+        ],
+        "fnr": null,
+        "brier": 0.7348,
+        "ece": 0.8488,
+        "pr_auc": null
+      },
+      "existing_temperature": {
+        "n": 92,
+        "positive": 0,
+        "negative": 92,
+        "tp": 0,
+        "fp": 90,
+        "fn": 0,
+        "tn": 2,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.9783,
+        "fpr_95ci": [
+          0.9242,
+          0.994
+        ],
+        "fnr": null,
+        "brier": 0.9447,
+        "ece": 0.9636,
+        "pr_auc": null
+      },
+      "dev_temperature": {
+        "n": 92,
+        "positive": 0,
+        "negative": 92,
+        "tp": 0,
+        "fp": 90,
+        "fn": 0,
+        "tn": 2,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.9783,
+        "fpr_95ci": [
+          0.9242,
+          0.994
+        ],
+        "fnr": null,
+        "brier": 0.275,
+        "ece": 0.5243,
+        "pr_auc": null
+      }
+    },
+    "TEST/jailbreakllms": {
+      "raw": {
+        "n": 2110,
+        "positive": 172,
+        "negative": 1938,
+        "tp": 155,
+        "fp": 1696,
+        "fn": 17,
+        "tn": 242,
+        "precision": 0.0837,
+        "recall": 0.9012,
+        "recall_95ci": [
+          0.8474,
+          0.9374
+        ],
+        "f1": 0.1532,
+        "fpr": 0.8751,
+        "fpr_95ci": [
+          0.8597,
+          0.8891
+        ],
+        "fnr": 0.0988,
+        "brier": 0.6666,
+        "ece": 0.7343,
+        "pr_auc": 0.1512
+      },
+      "existing_temperature": {
+        "n": 2110,
+        "positive": 172,
+        "negative": 1938,
+        "tp": 155,
+        "fp": 1696,
+        "fn": 17,
+        "tn": 242,
+        "precision": 0.0837,
+        "recall": 0.9012,
+        "recall_95ci": [
+          0.8474,
+          0.9374
+        ],
+        "f1": 0.1532,
+        "fpr": 0.8751,
+        "fpr_95ci": [
+          0.8597,
+          0.8891
+        ],
+        "fnr": 0.0988,
+        "brier": 0.7853,
+        "ece": 0.7978,
+        "pr_auc": 0.1512
+      },
+      "dev_temperature": {
+        "n": 2110,
+        "positive": 172,
+        "negative": 1938,
+        "tp": 155,
+        "fp": 1696,
+        "fn": 17,
+        "tn": 242,
+        "precision": 0.0837,
+        "recall": 0.9012,
+        "recall_95ci": [
+          0.8474,
+          0.9374
+        ],
+        "f1": 0.1532,
+        "fpr": 0.8751,
+        "fpr_95ci": [
+          0.8597,
+          0.8891
+        ],
+        "fnr": 0.0988,
+        "brier": 0.2717,
+        "ece": 0.4444,
+        "pr_auc": 0.1512
+      }
+    },
+    "TEST/security_docs": {
+      "raw": {
+        "n": 98,
+        "positive": 0,
+        "negative": 98,
+        "tp": 0,
+        "fp": 88,
+        "fn": 0,
+        "tn": 10,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.898,
+        "fpr_95ci": [
+          0.8223,
+          0.9436
+        ],
+        "fnr": null,
+        "brier": 0.7899,
+        "ece": 0.8527,
+        "pr_auc": null
+      },
+      "existing_temperature": {
+        "n": 98,
+        "positive": 0,
+        "negative": 98,
+        "tp": 0,
+        "fp": 88,
+        "fn": 0,
+        "tn": 10,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.898,
+        "fpr_95ci": [
+          0.8223,
+          0.9436
+        ],
+        "fnr": null,
+        "brier": 0.8764,
+        "ece": 0.8944,
+        "pr_auc": null
+      },
+      "dev_temperature": {
+        "n": 98,
+        "positive": 0,
+        "negative": 98,
+        "tp": 0,
+        "fp": 88,
+        "fn": 0,
+        "tn": 10,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.898,
+        "fpr_95ci": [
+          0.8223,
+          0.9436
+        ],
+        "fnr": null,
+        "brier": 0.285,
+        "ece": 0.5332,
+        "pr_auc": null
+      }
+    },
+    "TEST/tensor_trust": {
+      "raw": {
+        "n": 3596,
+        "positive": 3596,
+        "negative": 0,
+        "tp": 1593,
+        "fp": 0,
+        "fn": 2003,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.443,
+        "recall_95ci": [
+          0.4268,
+          0.4593
+        ],
+        "f1": 0.614,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.557,
+        "brier": 0.4614,
+        "ece": 0.5435,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      },
+      "existing_temperature": {
+        "n": 3596,
+        "positive": 3596,
+        "negative": 0,
+        "tp": 1593,
+        "fp": 0,
+        "fn": 2003,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.443,
+        "recall_95ci": [
+          0.4268,
+          0.4593
+        ],
+        "f1": 0.614,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.557,
+        "brier": 0.5357,
+        "ece": 0.5533,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      },
+      "dev_temperature": {
+        "n": 3596,
+        "positive": 3596,
+        "negative": 0,
+        "tp": 1593,
+        "fp": 0,
+        "fn": 2003,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.443,
+        "recall_95ci": [
+          0.4268,
+          0.4593
+        ],
+        "f1": 0.614,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.557,
+        "brier": 0.2589,
+        "ece": 0.5071,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      }
+    },
+    "OOD_TEST/deepset": {
+      "raw": {
+        "n": 648,
+        "positive": 252,
+        "negative": 396,
+        "tp": 218,
+        "fp": 144,
+        "fn": 34,
+        "tn": 252,
+        "precision": 0.6022,
+        "recall": 0.8651,
+        "recall_95ci": [
+          0.8174,
+          0.9018
+        ],
+        "f1": 0.7101,
+        "fpr": 0.3636,
+        "fpr_95ci": [
+          0.3178,
+          0.4121
+        ],
+        "fnr": 0.1349,
+        "brier": 0.2159,
+        "ece": 0.1911,
+        "pr_auc": 0.7357
+      },
+      "existing_temperature": {
+        "n": 648,
+        "positive": 252,
+        "negative": 396,
+        "tp": 218,
+        "fp": 144,
+        "fn": 34,
+        "tn": 252,
+        "precision": 0.6022,
+        "recall": 0.8651,
+        "recall_95ci": [
+          0.8174,
+          0.9018
+        ],
+        "f1": 0.7101,
+        "fpr": 0.3636,
+        "fpr_95ci": [
+          0.3178,
+          0.4121
+        ],
+        "fnr": 0.1349,
+        "brier": 0.2595,
+        "ece": 0.2535,
+        "pr_auc": 0.7357
+      },
+      "dev_temperature": {
+        "n": 648,
+        "positive": 252,
+        "negative": 396,
+        "tp": 218,
+        "fp": 144,
+        "fn": 34,
+        "tn": 252,
+        "precision": 0.6022,
+        "recall": 0.8651,
+        "recall_95ci": [
+          0.8174,
+          0.9018
+        ],
+        "f1": 0.7101,
+        "fpr": 0.3636,
+        "fpr_95ci": [
+          0.3178,
+          0.4121
+        ],
+        "fnr": 0.1349,
+        "brier": 0.2291,
+        "ece": 0.1878,
+        "pr_auc": 0.7357
+      }
+    },
+    "OOD_TEST/gandalf": {
+      "raw": {
+        "n": 989,
+        "positive": 989,
+        "negative": 0,
+        "tp": 714,
+        "fp": 0,
+        "fn": 275,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.7219,
+        "recall_95ci": [
+          0.6932,
+          0.749
+        ],
+        "f1": 0.8385,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.2781,
+        "brier": 0.2306,
+        "ece": 0.2998,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      },
+      "existing_temperature": {
+        "n": 989,
+        "positive": 989,
+        "negative": 0,
+        "tp": 714,
+        "fp": 0,
+        "fn": 275,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.7219,
+        "recall_95ci": [
+          0.6932,
+          0.749
+        ],
+        "f1": 0.8385,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.2781,
+        "brier": 0.2661,
+        "ece": 0.2841,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      },
+      "dev_temperature": {
+        "n": 989,
+        "positive": 989,
+        "negative": 0,
+        "tp": 714,
+        "fp": 0,
+        "fn": 275,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.7219,
+        "recall_95ci": [
+          0.6932,
+          0.749
+        ],
+        "f1": 0.8385,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.2781,
+        "brier": 0.2298,
+        "ece": 0.4778,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "arxiv:jailbreak": {
+    "files": {
+      "jailbreak.atom": "22c18bcb647ed823385b807e5d48878c4361202509637cfd22350516ed5e4c67"
+    },
+    "revision": "query-2026-09-26",
+    "url": "https://export.arxiv.org/api"
+  },
+  "arxiv:prompt_injection": {
+    "files": {
+      "prompt_injection.atom": "77515d2e8814da990dd11ddd02a6868774d545d415405cc0444dc9e4a5eb149b"
+    },
+    "revision": "query-2026-09-26",
+    "url": "https://export.arxiv.org/api"
+  },
+  "deepset": {
+    "files": {
+      "README.md": "d90b4518dfe06154deeec938243d1ec9119bdfbfd2105aee9cf1567999764b94",
+      "data/test-00000-of-00001-701d16158af87368.parquet": "39ac797cabc157eeed58435a08593b2952bb6cb16fc394a2d383f447cc7b246e",
+      "data/train-00000-of-00001-9564e8b05b4757ab.parquet": "2e10bc7ab30f542c97e4e83e2a5683000b5057d25ec10908784c631d44124c04"
+    },
+    "revision": "4f61ecb038e9c3fb77e21034b22511b523772cdd",
+    "url": "https://huggingface.co/datasets/deepset/prompt-injections"
+  },
+  "gandalf": {
+    "files": {
+      "README.md": "94e2abfab9caf8cb881098d16633334c2f63069e52440aaa94d7c150a8d8455f",
+      "data/test-00000-of-00001-bc92128b9288a6d1.parquet": "56b646d133335ebc535266bd55dbe1b5bee7caa4b95bf49d040684b9b5dd9972",
+      "data/train-00000-of-00001-ded53be747ff55cd.parquet": "5b6acf3e5a5998d21f8e1222bb45bbdec25a14408747b1cd63bebef4a75fa439",
+      "data/validation-00000-of-00001-94481a2a09ff2fff.parquet": "f51ab3e3407a368845b0f57932cc745c09280429416d7507bd178a16326a79f6"
+    },
+    "revision": "04737b65e90a6794ec227012e4a255a7def6344b",
+    "url": "https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions"
+  },
+  "jailbreakbench": {
+    "files": {
+      "LICENSE": "7e1ae8f3676f39ff6e62af1743385c176a9476b1157f35bb9d05b4e6c65b7d94",
+      "README.md": "fc84ea5865e60ba15f3776ff43ace47cbbf3470775f389afbb6bdb4d6333618a",
+      "data/benign-behaviors.csv": "3cda234d21a991fa309bbfea4b6d9dae31ccdf8e9d452424b6a983e4fdc33468",
+      "data/harmful-behaviors.csv": "4a8ec6832056b631eb092dccc60d37a61c3d441268268888b3d006288afeffa1"
+    },
+    "revision": "886acc352a31533ffbcf4ef22c744658688086fc",
+    "url": "https://huggingface.co/datasets/JailbreakBench/JBB-Behaviors"
+  },
+  "jailbreakllms": {
+    "files": {
+      "README.md": "58219d1aae8a380b51296c61f9644891d8ba012765b0571484153cfe846c8388",
+      "jailbreak_2023_12_25/train-00000-of-00001.parquet": "55bbc5e2be771ee16ed67aed4edb5ecef5f44ac69cea317a67e5405c5c6057a4",
+      "regular_2023_12_25/train-00000-of-00001.parquet": "23e90010ccbc85574bf46678528cddce5b02abc86d9a047209218af65cb37c68"
+    },
+    "revision": "a10aab8eff1c73165a442d4464dce192bd28b9c5",
+    "url": "https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts"
+  },
+  "security_docs:microsoft_mcp_security": {
+    "files": {
+      "02-Security/README.md": "d66b019985cd297d328ba5785cb215460feb27356205c0f93b0dbce51e1904d2"
+    },
+    "revision": "5b9b963b75fa2f2f4e34e459bc3647f7037b9faa",
+    "url": "https://github.com/microsoft/mcp-for-beginners"
+  },
+  "security_docs:owasp_cheat_sheet": {
+    "files": {
+      "cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.md": "581a9bb96bc934fa277fde7610b6e05fdd485d79ff617851de99fc1262f56f74"
+    },
+    "revision": "c04039adbe6f727a2198b3a3ea634fec98ac068a",
+    "url": "https://github.com/OWASP/CheatSheetSeries"
+  },
+  "security_docs:stackexchange": {
+    "files": {
+      "stackexchange_ai_prompt_injection.json": "fc1dbaae08cdbdc03e5d028399731b87bc9fe1c8e909b9b41bacd51788d59a60",
+      "stackexchange_so_prompt_injection.json": "50b3a77e9374771c8fd48495f28491389e627a8f9368602139915313beabdd0f",
+      "stackexchange_so_system_prompt.json": "cdfdce513f3348685aa78a529554939f008c4cc041e30f4dea6ddb869ee31cf2"
+    },
+    "revision": "saved-2026-09-25",
+    "url": "https://api.stackexchange.com/2.3 (saved)"
+  },
+  "tensor_trust": {
+    "files": {
+      "benchmarks/extraction-robustness/v1/extraction_robustness_dataset.jsonl": "4090f9f57b6df69cc32d7669ac991e3fd53e6e2bb616a5e6f45dac79c183ee4c",
+      "benchmarks/hijacking-robustness/v1/hijacking_robustness_dataset.jsonl": "2ad3c2343bbf43cb1924f3ec5d6f830864ce3c879e9832b01d93a991e7e2e680",
+      "detecting-extractions/v1/prompt_extraction_detection.jsonl": "af28d09554db4f8ed91d042005c3457f72c88e763e3787c3b1c76c1d9e8f8260",
+      "raw-data/v1/raw_dump_attacks.jsonl.bz2": "c3af2cb1b812fed72d879e130f2478d22915a2f4834494972418c57a60a2d4f6",
+      "raw-data/v1/raw_dump_defenses.jsonl.bz2": "3dd13f27012f976605b168a82f5d682b1404186856973c23424e556e64591b9d",
+      "raw-data/v2/raw_dump_attacks.jsonl.bz2": "87853cc8065a22156d15c4bdec777a8d35758749beb79769147d63a9644a73ce",
+      "raw-data/v2/raw_dump_defenses.jsonl.bz2": "cbdf52c469b2a57db61f885562bae1725cd56174cc201979e7bc042a680a5166"
+    },
+    "revision": "747a75e096761ebc01bd3970158827326b4add23",
+    "url": "https://github.com/HumanCompatibleAI/tensor-trust-data"
+  }
+}

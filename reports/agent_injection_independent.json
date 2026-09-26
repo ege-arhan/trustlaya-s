@@ -1,0 +1,572 @@
+{
+  "source": "ppradyoth/AgentInjectionBench",
+  "source_revision": "ef230359966c4d87b1c925aa56b8bf6e3f6ffed3",
+  "source_sha256": "606cb74f5ce874dba45d9cdf591af678d7c6bd8a92ff3189d0f522fb39fb941e",
+  "license": "Apache-2.0",
+  "source_counts": {
+    "unsafe": 142,
+    "safe": 40
+  },
+  "scope": "Published benchmark tool_result text; second view appends advertised tool descriptions. Third view uses parameter-free overlapping 94-token windows and maximum score. This is prompt-injection text classification, NOT agent attack success rate. Some cases are multi-turn; default model truncates concatenated tool results to 96 tokens.",
+  "selection_note": "No training, calibration or threshold selection on this source. Its results are now inspected and it is no longer fresh for future tuning.",
+  "views": {
+    "tool_results": {
+      "at_0_5": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.5,
+        "precision": 0.6666666666666666,
+        "recall": 0.38028169014084506,
+        "f1": 0.484304932735426,
+        "balanced_accuracy": 0.35264084507042254,
+        "mcc": -0.24557157151603842,
+        "false_positive_rate": 0.675,
+        "false_negative_rate": 0.6197183098591549,
+        "confusion_matrix": [
+          [
+            13,
+            27
+          ],
+          [
+            88,
+            54
+          ]
+        ]
+      },
+      "at_policy_0_7": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.7,
+        "precision": 0.6533333333333333,
+        "recall": 0.34507042253521125,
+        "f1": 0.45161290322580644,
+        "balanced_accuracy": 0.3475352112676056,
+        "mcc": -0.25653770150838306,
+        "false_positive_rate": 0.65,
+        "false_negative_rate": 0.6549295774647887,
+        "confusion_matrix": [
+          [
+            14,
+            26
+          ],
+          [
+            93,
+            49
+          ]
+        ]
+      },
+      "empty_payloads": 0,
+      "truncated_at_96_tokens": 129,
+      "total_windows": 182,
+      "category": {},
+      "category_positive_recall": {
+        "data_exfiltration": 0.5,
+        "goal_hijacking": 0.42857142857142855,
+        "mcp_context_poisoning": 0.3181818181818182,
+        "multi_turn_stateful": 0.47058823529411764,
+        "privilege_escalation": 0.22727272727272727,
+        "tool_output_injection": 0.39285714285714285,
+        "tool_shadowing": 0.3333333333333333
+      },
+      "bypass": {},
+      "bypass_positive_recall": {
+        "context_switching": 0.3225806451612903,
+        "role_play": 0.3561643835616438,
+        "encoding": 0.4444444444444444,
+        "instruction_nesting": 0.46153846153846156,
+        "few_shot_poisoning": 0.6666666666666666
+      },
+      "surface": {
+        "rag_document": {
+          "n": 19,
+          "positive": 11,
+          "threshold": 0.5,
+          "precision": 0.42857142857142855,
+          "recall": 0.5454545454545454,
+          "f1": 0.48,
+          "balanced_accuracy": 0.2727272727272727,
+          "mcc": -0.5096471914376256,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.45454545454545453,
+          "confusion_matrix": [
+            [
+              0,
+              8
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        },
+        "tool_output": {
+          "n": 87,
+          "positive": 71,
+          "threshold": 0.5,
+          "precision": 0.6944444444444444,
+          "recall": 0.352112676056338,
+          "f1": 0.4672897196261682,
+          "balanced_accuracy": 0.332306338028169,
+          "mcc": -0.2638149918093011,
+          "false_positive_rate": 0.6875,
+          "false_negative_rate": 0.647887323943662,
+          "confusion_matrix": [
+            [
+              5,
+              11
+            ],
+            [
+              46,
+              25
+            ]
+          ]
+        },
+        "file_content": {
+          "n": 10,
+          "positive": 8,
+          "threshold": 0.5,
+          "precision": 0.5,
+          "recall": 0.125,
+          "f1": 0.2,
+          "balanced_accuracy": 0.3125,
+          "mcc": -0.375,
+          "false_positive_rate": 0.5,
+          "false_negative_rate": 0.875,
+          "confusion_matrix": [
+            [
+              1,
+              1
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        "api_response": {
+          "n": 26,
+          "positive": 18,
+          "threshold": 0.5,
+          "precision": 0.7692307692307693,
+          "recall": 0.5555555555555556,
+          "f1": 0.6451612903225806,
+          "balanced_accuracy": 0.5902777777777778,
+          "mcc": 0.16666666666666666,
+          "false_positive_rate": 0.375,
+          "false_negative_rate": 0.4444444444444444,
+          "confusion_matrix": [
+            [
+              5,
+              3
+            ],
+            [
+              8,
+              10
+            ]
+          ]
+        },
+        "mcp_response": {
+          "n": 40,
+          "positive": 34,
+          "threshold": 0.5,
+          "precision": 0.75,
+          "recall": 0.35294117647058826,
+          "f1": 0.48,
+          "balanced_accuracy": 0.3431372549019608,
+          "mcc": -0.2286647801900118,
+          "false_positive_rate": 0.6666666666666666,
+          "false_negative_rate": 0.6470588235294118,
+          "confusion_matrix": [
+            [
+              2,
+              4
+            ],
+            [
+              22,
+              12
+            ]
+          ]
+        }
+      },
+      "surface_positive_recall": {
+        "rag_document": 0.5454545454545454,
+        "tool_output": 0.352112676056338,
+        "file_content": 0.125,
+        "api_response": 0.5555555555555556,
+        "mcp_response": 0.35294117647058826
+      }
+    },
+    "tool_results_plus_definitions": {
+      "at_0_5": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.5,
+        "precision": 0.675,
+        "recall": 0.38028169014084506,
+        "f1": 0.4864864864864865,
+        "balanced_accuracy": 0.36514084507042255,
+        "mcc": -0.2250295325673468,
+        "false_positive_rate": 0.65,
+        "false_negative_rate": 0.6197183098591549,
+        "confusion_matrix": [
+          [
+            14,
+            26
+          ],
+          [
+            88,
+            54
+          ]
+        ]
+      },
+      "at_policy_0_7": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.7,
+        "precision": 0.6578947368421053,
+        "recall": 0.352112676056338,
+        "f1": 0.45871559633027525,
+        "balanced_accuracy": 0.351056338028169,
+        "mcc": -0.250130391049148,
+        "false_positive_rate": 0.65,
+        "false_negative_rate": 0.647887323943662,
+        "confusion_matrix": [
+          [
+            14,
+            26
+          ],
+          [
+            92,
+            50
+          ]
+        ]
+      },
+      "empty_payloads": 0,
+      "truncated_at_96_tokens": 142,
+      "total_windows": 182,
+      "category": {},
+      "category_positive_recall": {
+        "data_exfiltration": 0.5,
+        "goal_hijacking": 0.42857142857142855,
+        "mcp_context_poisoning": 0.3181818181818182,
+        "multi_turn_stateful": 0.47058823529411764,
+        "privilege_escalation": 0.22727272727272727,
+        "tool_output_injection": 0.39285714285714285,
+        "tool_shadowing": 0.3333333333333333
+      },
+      "bypass": {},
+      "bypass_positive_recall": {
+        "context_switching": 0.3225806451612903,
+        "role_play": 0.3561643835616438,
+        "encoding": 0.4444444444444444,
+        "instruction_nesting": 0.46153846153846156,
+        "few_shot_poisoning": 0.6666666666666666
+      },
+      "surface": {
+        "rag_document": {
+          "n": 19,
+          "positive": 11,
+          "threshold": 0.5,
+          "precision": 0.42857142857142855,
+          "recall": 0.5454545454545454,
+          "f1": 0.48,
+          "balanced_accuracy": 0.2727272727272727,
+          "mcc": -0.5096471914376256,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.45454545454545453,
+          "confusion_matrix": [
+            [
+              0,
+              8
+            ],
+            [
+              5,
+              6
+            ]
+          ]
+        },
+        "tool_output": {
+          "n": 87,
+          "positive": 71,
+          "threshold": 0.5,
+          "precision": 0.6944444444444444,
+          "recall": 0.352112676056338,
+          "f1": 0.4672897196261682,
+          "balanced_accuracy": 0.332306338028169,
+          "mcc": -0.2638149918093011,
+          "false_positive_rate": 0.6875,
+          "false_negative_rate": 0.647887323943662,
+          "confusion_matrix": [
+            [
+              5,
+              11
+            ],
+            [
+              46,
+              25
+            ]
+          ]
+        },
+        "file_content": {
+          "n": 10,
+          "positive": 8,
+          "threshold": 0.5,
+          "precision": 0.5,
+          "recall": 0.125,
+          "f1": 0.2,
+          "balanced_accuracy": 0.3125,
+          "mcc": -0.375,
+          "false_positive_rate": 0.5,
+          "false_negative_rate": 0.875,
+          "confusion_matrix": [
+            [
+              1,
+              1
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        "api_response": {
+          "n": 26,
+          "positive": 18,
+          "threshold": 0.5,
+          "precision": 0.8333333333333334,
+          "recall": 0.5555555555555556,
+          "f1": 0.6666666666666666,
+          "balanced_accuracy": 0.6527777777777778,
+          "mcc": 0.2828894749305018,
+          "false_positive_rate": 0.25,
+          "false_negative_rate": 0.4444444444444444,
+          "confusion_matrix": [
+            [
+              6,
+              2
+            ],
+            [
+              8,
+              10
+            ]
+          ]
+        },
+        "mcp_response": {
+          "n": 40,
+          "positive": 34,
+          "threshold": 0.5,
+          "precision": 0.75,
+          "recall": 0.35294117647058826,
+          "f1": 0.48,
+          "balanced_accuracy": 0.3431372549019608,
+          "mcc": -0.2286647801900118,
+          "false_positive_rate": 0.6666666666666666,
+          "false_negative_rate": 0.6470588235294118,
+          "confusion_matrix": [
+            [
+              2,
+              4
+            ],
+            [
+              22,
+              12
+            ]
+          ]
+        }
+      },
+      "surface_positive_recall": {
+        "rag_document": 0.5454545454545454,
+        "tool_output": 0.352112676056338,
+        "file_content": 0.125,
+        "api_response": 0.5555555555555556,
+        "mcp_response": 0.35294117647058826
+      }
+    },
+    "tool_results_sliding_max": {
+      "at_0_5": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.5,
+        "precision": 0.7244897959183674,
+        "recall": 0.5,
+        "f1": 0.5916666666666667,
+        "balanced_accuracy": 0.4125,
+        "mcc": -0.14536489390823487,
+        "false_positive_rate": 0.675,
+        "false_negative_rate": 0.5,
+        "confusion_matrix": [
+          [
+            13,
+            27
+          ],
+          [
+            71,
+            71
+          ]
+        ]
+      },
+      "at_policy_0_7": {
+        "n": 182,
+        "positive": 142,
+        "threshold": 0.7,
+        "precision": 0.717391304347826,
+        "recall": 0.4647887323943662,
+        "f1": 0.5641025641025641,
+        "balanced_accuracy": 0.40739436619718306,
+        "mcc": -0.15340036874326887,
+        "false_positive_rate": 0.65,
+        "false_negative_rate": 0.5352112676056338,
+        "confusion_matrix": [
+          [
+            14,
+            26
+          ],
+          [
+            76,
+            66
+          ]
+        ]
+      },
+      "empty_payloads": 0,
+      "truncated_at_96_tokens": 129,
+      "total_windows": 527,
+      "category": {},
+      "category_positive_recall": {
+        "data_exfiltration": 0.65,
+        "goal_hijacking": 0.7142857142857143,
+        "mcp_context_poisoning": 0.4090909090909091,
+        "multi_turn_stateful": 0.5882352941176471,
+        "privilege_escalation": 0.22727272727272727,
+        "tool_output_injection": 0.5357142857142857,
+        "tool_shadowing": 0.3333333333333333
+      },
+      "bypass": {},
+      "bypass_positive_recall": {
+        "context_switching": 0.3870967741935484,
+        "role_play": 0.5068493150684932,
+        "encoding": 0.4444444444444444,
+        "instruction_nesting": 0.6153846153846154,
+        "few_shot_poisoning": 0.6666666666666666
+      },
+      "surface": {
+        "rag_document": {
+          "n": 19,
+          "positive": 11,
+          "threshold": 0.5,
+          "precision": 0.5294117647058824,
+          "recall": 0.8181818181818182,
+          "f1": 0.6428571428571429,
+          "balanced_accuracy": 0.4090909090909091,
+          "mcc": -0.29250896965085227,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.18181818181818182,
+          "confusion_matrix": [
+            [
+              0,
+              8
+            ],
+            [
+              2,
+              9
+            ]
+          ]
+        },
+        "tool_output": {
+          "n": 87,
+          "positive": 71,
+          "threshold": 0.5,
+          "precision": 0.7659574468085106,
+          "recall": 0.5070422535211268,
+          "f1": 0.6101694915254238,
+          "balanced_accuracy": 0.4097711267605634,
+          "mcc": -0.14027677434001268,
+          "false_positive_rate": 0.6875,
+          "false_negative_rate": 0.49295774647887325,
+          "confusion_matrix": [
+            [
+              5,
+              11
+            ],
+            [
+              35,
+              36
+            ]
+          ]
+        },
+        "file_content": {
+          "n": 10,
+          "positive": 8,
+          "threshold": 0.5,
+          "precision": 0.5,
+          "recall": 0.125,
+          "f1": 0.2,
+          "balanced_accuracy": 0.3125,
+          "mcc": -0.375,
+          "false_positive_rate": 0.5,
+          "false_negative_rate": 0.875,
+          "confusion_matrix": [
+            [
+              1,
+              1
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        "api_response": {
+          "n": 26,
+          "positive": 18,
+          "threshold": 0.5,
+          "precision": 0.7857142857142857,
+          "recall": 0.6111111111111112,
+          "f1": 0.6875,
+          "balanced_accuracy": 0.6180555555555556,
+          "mcc": 0.21859641244629688,
+          "false_positive_rate": 0.375,
+          "false_negative_rate": 0.3888888888888889,
+          "confusion_matrix": [
+            [
+              5,
+              3
+            ],
+            [
+              7,
+              11
+            ]
+          ]
+        },
+        "mcp_response": {
+          "n": 40,
+          "positive": 34,
+          "threshold": 0.5,
+          "precision": 0.7777777777777778,
+          "recall": 0.4117647058823529,
+          "f1": 0.5384615384615384,
+          "balanced_accuracy": 0.37254901960784315,
+          "mcc": -0.1829534767323246,
+          "false_positive_rate": 0.6666666666666666,
+          "false_negative_rate": 0.5882352941176471,
+          "confusion_matrix": [
+            [
+              2,
+              4
+            ],
+            [
+              20,
+              14
+            ]
+          ]
+        }
+      },
+      "surface_positive_recall": {
+        "rag_document": 0.8181818181818182,
+        "tool_output": 0.5070422535211268,
+        "file_content": 0.125,
+        "api_response": 0.6111111111111112,
+        "mcp_response": 0.4117647058823529
+      }
+    }
+  }
+}

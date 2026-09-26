@@ -1,0 +1,28 @@
+{
+  "n": 1168,
+  "reviewed_gold_n": 0,
+  "source_counts": {
+    "tensor_trust_game": 908,
+    "owasp_cheat_sheet": 79,
+    "microsoft_mcp_security": 92,
+    "stackexchange_questions": 89
+  },
+  "length_buckets": {
+    "0-128": 687,
+    "129-256": 169,
+    "257-384": 94,
+    "385-512": 79,
+    "513-768": 113,
+    "769-1024": 14,
+    "1025-1536": 5,
+    "1537+": 7
+  },
+  "truncated_at_current_94": 612,
+  "median_tokens": 100.0,
+  "p90_tokens": 535.4999999999998,
+  "p95_tokens": 621.2999999999997,
+  "p99_tokens": 1019.2099999999973,
+  "attack_rate": null,
+  "benign_rate": null,
+  "note": "Source labels are candidates, not human-reviewed gold labels."
+}

@@ -1,0 +1,10 @@
+{
+  "python": "3.12.10",
+  "platform": "macOS-26.3.1-arm64-arm-64bit",
+  "torch": "2.14.0",
+  "transformers": "4.57.6",
+  "numpy": "2.4.6",
+  "device": "mps",
+  "git_commit": "feddc575282de292d40f3cb6a08e0d320d648705",
+  "note": "MPS kernels are not bitwise deterministic; seeds fix data order and init."
+}

@@ -5,6 +5,8 @@ __pycache__/
 logs/
 publish/
 data/**/*.jsonl
+!data/benchmarks/trustlaya_adversarial.jsonl
+!data/benchmarks/trustlaya_tr_benchmark.jsonl
 models/candidates/
 models/teacher/
 models/base/model.safetensors
@@ -17,5 +19,13 @@ models/student/tokenizer_config.json
 models/student/special_tokens_map.json
 models/student/calibration.json
 models/exported/
+models/trustlaya-s-v*/
+benchmarks/external/raw/
+benchmarks/external/predictions/
+benchmarks/v5/private/
+# V5 raw public data and built text splits stay local (see data/v5_source_pins.json).
+data/external/
+data/v5/
 
 src/*.egg-info/
+models/v5-ablation/

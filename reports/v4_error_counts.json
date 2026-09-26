@@ -1,0 +1,25 @@
+{
+  "method": "non-exclusive regex heuristic tags on first 100 FP and first 100 FN; not human annotation",
+  "total_FP": 3370,
+  "total_FN": 63,
+  "sampled": {
+    "FP": 100,
+    "FN": 63
+  },
+  "tag_counts": {
+    "FP": {
+      "roleplay": 46,
+      "explicit_override": 17,
+      "over_510_tokens": 50,
+      "over_94_tokens": 47,
+      "unclassified_by_heuristic": 3
+    },
+    "FN": {
+      "unclassified_by_heuristic": 21,
+      "roleplay": 12,
+      "over_510_tokens": 8,
+      "over_94_tokens": 30,
+      "explicit_override": 1
+    }
+  }
+}

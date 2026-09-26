@@ -1,0 +1,30 @@
+{
+  "torch_cpu": {
+    "cold_start_ms": 1256.3333750003949,
+    "warm_p50_ms": 19.204875046852976,
+    "warm_mean_ms": 30.628625041572377,
+    "batch": 1,
+    "rss_delta_mib_approx": 173.96875
+  },
+  "onnx_cpu": {
+    "cold_start_ms": 152.97283395193517,
+    "warm_p50_ms": 6.34462502785027,
+    "warm_mean_ms": 6.5896416490431875,
+    "batch": 1,
+    "rss_delta_mib_approx": 301.71875
+  },
+  "onnx_int8_cpu": {
+    "cold_start_ms": 106.95970803499222,
+    "warm_p50_ms": 10.238624992780387,
+    "warm_mean_ms": 9.477793803671375,
+    "batch": 1,
+    "rss_delta_mib_approx": 61.03125
+  },
+  "torch_mps": {
+    "cold_start_ms": 876.0701249702834,
+    "warm_p50_ms": 13.898834004066885,
+    "warm_mean_ms": 13.766222950653173,
+    "batch": 1,
+    "rss_delta_mib_approx": 17.71875
+  }
+}

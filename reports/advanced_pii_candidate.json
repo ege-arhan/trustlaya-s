@@ -1,0 +1,168 @@
+{
+  "source": "yusuf-said/turkish-privacy-filter-dataset",
+  "source_revision": "fc2b9a3e197484d22a8201317cc722baacf053b7",
+  "source_file_sha256": "fd39d832ad1d366d9c1f2bf11f5eab3f6a1a0ac18350af6cd6ee3a80bb3e70f2",
+  "license": "MIT",
+  "source_label": "synthetic_curated_not_human_verified",
+  "split_by_scenario": {
+    "train": {
+      "rows": 4653,
+      "scenarios": [
+        "address_confirmation",
+        "billing_note",
+        "code_review_note",
+        "config_snippet",
+        "contract_excerpt",
+        "crm_note",
+        "delivery_note",
+        "email_body",
+        "identity_form",
+        "legal_intake",
+        "medical_note",
+        "reservation_message",
+        "support_ticket",
+        "turkish_kvkk_manual",
+        "v1_synthetic_anchor"
+      ]
+    },
+    "dev": {
+      "rows": 478,
+      "scenarios": [
+        "chat_transcript",
+        "json_log"
+      ]
+    },
+    "test": {
+      "rows": 979,
+      "scenarios": [
+        "call_center_log",
+        "ocr_scan",
+        "server_log"
+      ]
+    }
+  },
+  "anchor_rows": 1000,
+  "selected_C": 1.0,
+  "pii_temperature": 1.6342230984385429,
+  "baseline_v1_at_0_5": {
+    "dev": {
+      "n": 478,
+      "positive": 116,
+      "threshold": 0.5,
+      "model_f1": 0.09302325581395349,
+      "hybrid_f1": 0.39215686274509803,
+      "recall": 0.43103448275862066,
+      "false_positive_rate": 0.24585635359116023,
+      "calibration": {
+        "ece": 0.22605032565765798,
+        "brier": 0.2610626816749573,
+        "nll": 0.7484276294708252
+      }
+    },
+    "test": {
+      "n": 979,
+      "positive": 383,
+      "threshold": 0.5,
+      "model_f1": 0.7321711568938193,
+      "hybrid_f1": 0.8217967599410898,
+      "recall": 0.7284595300261096,
+      "false_positive_rate": 0.028523489932885907,
+      "calibration": {
+        "ece": 0.10544484561885706,
+        "brier": 0.15109974145889282,
+        "nll": 0.5048273801803589
+      }
+    }
+  },
+  "candidate_v2_at_0_5": {
+    "dev": {
+      "n": 478,
+      "positive": 116,
+      "threshold": 0.5,
+      "model_f1": 0.6390532544378699,
+      "hybrid_f1": 0.6390532544378699,
+      "recall": 0.9310344827586207,
+      "false_positive_rate": 0.3149171270718232,
+      "calibration": {
+        "ece": 0.22642054661297897,
+        "brier": 0.15221697092056274,
+        "nll": 0.4537353515625
+      }
+    },
+    "test": {
+      "n": 979,
+      "positive": 383,
+      "threshold": 0.5,
+      "model_f1": 0.853907134767837,
+      "hybrid_f1": 0.853907134767837,
+      "recall": 0.9843342036553525,
+      "false_positive_rate": 0.2063758389261745,
+      "calibration": {
+        "ece": 0.20137534094203846,
+        "brier": 0.11265543848276138,
+        "nll": 0.3564097583293915
+      }
+    }
+  },
+  "baseline_v1_dev_tuned": {
+    "dev": {
+      "n": 478,
+      "positive": 116,
+      "threshold": 0.85,
+      "model_f1": 0.03389830508474576,
+      "hybrid_f1": 0.5766871165644172,
+      "recall": 0.4051724137931034,
+      "false_positive_rate": 0.0,
+      "calibration": {
+        "ece": 0.22605032565765798,
+        "brier": 0.2610626816749573,
+        "nll": 0.7484276294708252
+      }
+    },
+    "test": {
+      "n": 979,
+      "positive": 383,
+      "threshold": 0.85,
+      "model_f1": 0.39751552795031053,
+      "hybrid_f1": 0.7013422818791947,
+      "recall": 0.5456919060052219,
+      "false_positive_rate": 0.006711409395973154,
+      "calibration": {
+        "ece": 0.10544484561885706,
+        "brier": 0.15109974145889282,
+        "nll": 0.5048273801803589
+      }
+    }
+  },
+  "candidate_v2_dev_tuned": {
+    "dev": {
+      "n": 478,
+      "positive": 116,
+      "threshold": 0.8,
+      "model_f1": 0.8532110091743119,
+      "hybrid_f1": 0.8584474885844748,
+      "recall": 0.8103448275862069,
+      "false_positive_rate": 0.024861878453038673,
+      "calibration": {
+        "ece": 0.22642054661297897,
+        "brier": 0.15221697092056274,
+        "nll": 0.4537353515625
+      }
+    },
+    "test": {
+      "n": 979,
+      "positive": 383,
+      "threshold": 0.8,
+      "model_f1": 0.8985115020297699,
+      "hybrid_f1": 0.9232804232804233,
+      "recall": 0.9112271540469974,
+      "false_positive_rate": 0.040268456375838924,
+      "calibration": {
+        "ece": 0.20137534094203846,
+        "brier": 0.11265543848276138,
+        "nll": 0.3564097583293915
+      }
+    }
+  },
+  "selection_note": "C and thresholds selected on scenario-disjoint dev with FPR <= 0.10 when possible. Test used for a promotion check; subsequent selected-model test claims are selection-biased."
+}

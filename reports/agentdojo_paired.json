@@ -1,0 +1,200 @@
+{
+  "source": "ethz-spylab/agentdojo",
+  "source_revision": "089ed468cf3ed0322acc66b0211f26d9d90dbf60",
+  "license": "MIT",
+  "run": "gpt-4o-2024-05-13",
+  "selection": "First 10 task IDs per suite, one important_instructions attack and its clean run; fixed before model scoring.",
+  "scope": "Paired clean and injected tool outputs from recorded agent runs. Detector text classification, not agent replay or attack success. Runs are benchmark-designed, not live user traffic.",
+  "pairs": 25,
+  "suites": {
+    "banking": 8,
+    "slack": 0,
+    "travel": 9,
+    "workspace": 8
+  },
+  "skipped_unmatched": 5,
+  "path_digest_sha256": "001dd5b3a2991fb45f4939110d6fcc132fe9e46e3a2de2bf1d0279c885f56b1d",
+  "models": {
+    "released_v2": {
+      "overall": {
+        "n": 50,
+        "threshold": 0.5,
+        "precision": 0.5238095238095238,
+        "recall": 0.44,
+        "f1": 0.4782608695652174,
+        "false_positive_rate": 0.4,
+        "false_negative_rate": 0.56,
+        "confusion_matrix_tn_fp_fn_tp": [
+          15,
+          10,
+          14,
+          11
+        ]
+      },
+      "by_suite": {
+        "banking": {
+          "n": 16,
+          "threshold": 0.5,
+          "precision": 0.5,
+          "recall": 0.125,
+          "f1": 0.2,
+          "false_positive_rate": 0.125,
+          "false_negative_rate": 0.875,
+          "confusion_matrix_tn_fp_fn_tp": [
+            7,
+            1,
+            7,
+            1
+          ]
+        },
+        "travel": {
+          "n": 18,
+          "threshold": 0.5,
+          "precision": 0.4,
+          "recall": 0.6666666666666666,
+          "f1": 0.5,
+          "false_positive_rate": 1.0,
+          "false_negative_rate": 0.3333333333333333,
+          "confusion_matrix_tn_fp_fn_tp": [
+            0,
+            9,
+            3,
+            6
+          ]
+        },
+        "workspace": {
+          "n": 16,
+          "threshold": 0.5,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "false_positive_rate": 0.0,
+          "false_negative_rate": 0.5,
+          "confusion_matrix_tn_fp_fn_tp": [
+            8,
+            0,
+            4,
+            4
+          ]
+        }
+      },
+      "sliding_max_94_tokens_step_70": {
+        "n": 50,
+        "threshold": 0.5,
+        "precision": 0.7142857142857143,
+        "recall": 1.0,
+        "f1": 0.8333333333333334,
+        "false_positive_rate": 0.4,
+        "false_negative_rate": 0.0,
+        "confusion_matrix_tn_fp_fn_tp": [
+          15,
+          10,
+          0,
+          25
+        ]
+      },
+      "paired_detection_rate": 0.16
+    },
+    "agentic_candidate": {
+      "overall": {
+        "n": 50,
+        "threshold": 0.65,
+        "precision": 0.5952380952380952,
+        "recall": 1.0,
+        "f1": 0.746268656716418,
+        "false_positive_rate": 0.68,
+        "false_negative_rate": 0.0,
+        "confusion_matrix_tn_fp_fn_tp": [
+          8,
+          17,
+          0,
+          25
+        ]
+      },
+      "by_suite": {
+        "banking": {
+          "n": 16,
+          "threshold": 0.65,
+          "precision": 0.5714285714285714,
+          "recall": 1.0,
+          "f1": 0.7272727272727273,
+          "false_positive_rate": 0.75,
+          "false_negative_rate": 0.0,
+          "confusion_matrix_tn_fp_fn_tp": [
+            2,
+            6,
+            0,
+            8
+          ]
+        },
+        "travel": {
+          "n": 18,
+          "threshold": 0.65,
+          "precision": 0.6,
+          "recall": 1.0,
+          "f1": 0.75,
+          "false_positive_rate": 0.6666666666666666,
+          "false_negative_rate": 0.0,
+          "confusion_matrix_tn_fp_fn_tp": [
+            3,
+            6,
+            0,
+            9
+          ]
+        },
+        "workspace": {
+          "n": 16,
+          "threshold": 0.65,
+          "precision": 0.6153846153846154,
+          "recall": 1.0,
+          "f1": 0.7619047619047619,
+          "false_positive_rate": 0.625,
+          "false_negative_rate": 0.0,
+          "confusion_matrix_tn_fp_fn_tp": [
+            3,
+            5,
+            0,
+            8
+          ]
+        }
+      },
+      "sliding_max_94_tokens_step_70": {
+        "n": 50,
+        "threshold": 0.65,
+        "precision": 0.5681818181818182,
+        "recall": 1.0,
+        "f1": 0.7246376811594203,
+        "false_positive_rate": 0.76,
+        "false_negative_rate": 0.0,
+        "confusion_matrix_tn_fp_fn_tp": [
+          6,
+          19,
+          0,
+          25
+        ]
+      },
+      "paired_detection_rate": 0.32
+    }
+  },
+  "template_marker_baseline": {
+    "n": 50,
+    "threshold": 0.5,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.0,
+    "confusion_matrix_tn_fp_fn_tp": [
+      25,
+      0,
+      0,
+      25
+    ]
+  },
+  "input_length": {
+    "max_model_tokens": 96,
+    "attack_over_94_content_tokens": 25,
+    "clean_over_94_content_tokens": 19,
+    "attack_marker_after_94_content_tokens": 11
+  }
+}
