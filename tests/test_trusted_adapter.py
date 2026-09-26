@@ -26,6 +26,10 @@ PERMS = {key: key in ("network", "external_api") for key in PERMISSIONS}
 RULES = [{**TOOL, "permissions": PERMS, "agents": ["agent-1"]}]
 
 
+COMPLETE = {"strategy": "head_94_v1", "total_tokens": 5, "read_tokens": 5,
+            "truncated": False}
+
+
 class FakeAnalyzer:
     policy = {"secret": 0.8}
 
@@ -46,7 +50,7 @@ class FakeAnalyzer:
                 "privacy_risk", "security_risk", "ethics_risk", "oversight_risk",
                 "data_governance_risk")
         return {**{key: 0.01 for key in keys}, "action": decision,
-                "policy_reason": decision.lower(), "evidence": evidence}
+                "policy_reason": decision.lower(), "evidence": evidence, "coverage": COMPLETE}
 
 
 def free_port():
@@ -138,7 +142,8 @@ def test_block_review_redact_and_missing_adapter_key(deployment):
         assert gateway_tool(gateway, client, text)["executed"] is False
     result = gateway_tool(gateway, client, "Send 05551234567 to external API")
     assert result["decision"] == "REDACT" and result["executed"] is True
-    assert received == [{"text": "Send [REDACTED] to external API", "arguments": {}}]
+    assert received == [{"agent_id": "agent-1", "text": "Send [REDACTED] to external API",
+                         "arguments": {}}]
     assert post(adapter.server_port, "/execute", {})[0] == 401
 
 
@@ -206,7 +211,8 @@ def test_wrong_target_credential_and_target_failure_do_not_leak(deployment):
                               {"request": request, "authorization": authorization},
                               {"X-Adapter-Key": ADAPTER_KEY})
         assert status == 200 and result["executed"] is False
-        assert result["reason"] == "adapter_unavailable"
+        assert result["reason"] == "target_rejected"
+        assert result["execution_status"] == "not_executed"
         assert received == []
         assert SECRET not in json.dumps(result) + audit.read_text()
         assert "guessed-key" not in json.dumps(result) + audit.read_text()
@@ -232,5 +238,6 @@ def test_target_outage_fails_closed_without_secret_leak(deployment):
     _, result = post(adapter.server_port, "/execute",
                      {"request": request, "authorization": authorization},
                      {"X-Adapter-Key": ADAPTER_KEY})
-    assert result == {"executed": False, "reason": "adapter_unavailable", "output": None}
+    assert result == {"executed": False, "execution_status": "not_executed",
+                      "reason": "target_unavailable", "output": None}
     assert received == [] and SECRET not in audit.read_text() + json.dumps(result)

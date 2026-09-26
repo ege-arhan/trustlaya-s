@@ -50,8 +50,39 @@ token consumed. The guarded tool calls its side-effecting function only after
 a matching `valid: true` response. A dropped consume response means no tool
 execution, even if the gateway has already consumed the token.
 
-The token prevents replay of the **same authorization**. It does not replace
-the target API's idempotency mechanism for repeated new requests.
+The token prevents replay of the **same authorization**. It does not stop a
+target from acting twice on two separate authorizations, so side-effecting
+tools carry an idempotency key:
+
+- `request.arguments.operation_id` (same ID rules as `request_id`) is bound by
+  `payload_sha256` like every other field. It is not sent to the model and
+  does not block REDACT; the sanitized request keeps it.
+- The target stores `(agent_id, operation_id)` atomically. The same payload
+  returns the earlier result (`output.replayed: true`); a different payload is
+  rejected (`operation_id_conflict`). Retries must reuse the `operation_id`
+  with a new `request_id`.
+
+`POST /v1/tool` responses add `execution_status`:
+
+| value | meaning |
+|---|---|
+| `executed` | the target confirmed the operation |
+| `not_executed` | the request never reached a component that could execute it, or the target refused it |
+| `unknown` | the request reached the adapter or target but no reply arrived; it may have executed. Retry with the same `operation_id`. |
+
+`executed` stays a boolean and is `true` only for confirmed execution.
+
+## Reading coverage
+
+V2 reads `[CLS]` + the first 94 content tokens + `[SEP]` of the normalized
+text (`head_94_v1`). `/analyze`, `/v1/authorize` and `/v1/tool` report
+`coverage` (`total_tokens`, `read_tokens`, `truncated`, `read_spans`,
+`unread_spans`, offsets in the normalized text) and `versions` (model file
+SHA-256 prefix, policy hash, reading strategy). Regex evidence still scans the
+full text. If the model did not read every token, an ALLOW or REDACT becomes
+**REVIEW** with `incomplete_analysis_coverage` and no token is issued; a
+missing coverage report counts as incomplete. BLOCK is never relaxed. The
+2,000-character request limit is unchanged.
 
 The current shared key protects the prototype HTTP endpoints from unrelated
 clients when configured. It is not an agent identity proof. Do not expose

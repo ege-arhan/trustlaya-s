@@ -142,6 +142,13 @@ harness verifies that the agent cannot reach the target network directly:
 `docs/isolated-deployment.md` and `docs/security_boundary.md`. This is a
 prototype deployment test, not an Arduino UNO Q hardware test.
 
+That harness uses mocked decisions. The real-model version runs V2 ONNX in the
+gateway and a SQLite `record.write` target with `operation_id` idempotency:
+`.venv/bin/python scripts/run_firewall_demo.py` writes
+`reports/firewall_demo.json` and a local demo page `reports/firewall_demo.html`.
+See [firewall demo](docs/firewall_demo.md) for scenarios, observed V2 results,
+reading-coverage enforcement and latency.
+
 ## Independent external evaluation (frozen v2)
 
 The [external real-world report](reports/external_real_world_benchmark.md) measures

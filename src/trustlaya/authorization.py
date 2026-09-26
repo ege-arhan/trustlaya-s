@@ -67,6 +67,10 @@ def validate_request(request, now=None):
             payload["text"], str) or not 0 < len(payload["text"]) <= 2000 or not isinstance(
                 payload["arguments"], dict):
         raise ProtocolError("invalid_payload")
+    operation_id = payload["arguments"].get("operation_id")
+    if "operation_id" in payload["arguments"] and (
+            not isinstance(operation_id, str) or not ID.fullmatch(operation_id)):
+        raise ProtocolError("invalid_operation_id")
     if len(canonical(payload)) > 8192:
         raise ProtocolError("payload_too_large")
     digest = request["payload_sha256"]

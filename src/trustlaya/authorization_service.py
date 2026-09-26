@@ -14,6 +14,14 @@ def _utc(epoch):
     return datetime.fromtimestamp(epoch, timezone.utc).isoformat()
 
 
+def coverage_complete(result):
+    """True only when the analyzer reports that it read every token."""
+    coverage = result.get("coverage")
+    return (isinstance(coverage, dict) and coverage.get("truncated") is False
+            and isinstance(coverage.get("total_tokens"), int)
+            and coverage.get("read_tokens") == coverage["total_tokens"])
+
+
 def validate_tool_rules(rules):
     if not isinstance(rules, list):
         raise ValueError("tool_rules must be a list")
@@ -89,7 +97,9 @@ class AuthorizationService:
         metadata = {**rule["permissions"], "agent": True, "human_approval": False,
                     "untrusted_tool_output": rule.get("untrusted_tool_output", False)}
         payload = request["request"]
-        arguments = payload["arguments"]
+        # operation_id is an idempotency key for the target, not content to analyze.
+        kept = {k: v for k, v in payload["arguments"].items() if k == "operation_id"}
+        arguments = {k: v for k, v in payload["arguments"].items() if k != "operation_id"}
         analysis_text = payload["text"]
         if arguments:
             analysis_text += "\n" + json.dumps(arguments, ensure_ascii=False, sort_keys=True)
@@ -100,6 +110,10 @@ class AuthorizationService:
         if decision not in ("ALLOW", "REDACT", "REVIEW", "BLOCK"):
             raise ProtocolError("invalid_policy_decision")
         reasons = [result["policy_reason"]]
+        if decision in ("ALLOW", "REDACT") and not coverage_complete(result):
+            # Unread text was never judged; a protected action must not run on it.
+            decision = "REVIEW"
+            reasons.append("incomplete_analysis_coverage")
         effective = request
         if decision == "REDACT":
             sanitized = sanitize_text(payload["text"], result["evidence"])
@@ -111,10 +125,10 @@ class AuthorizationService:
                         safe_result.get("timing_ms"), dict):
                     for name in ("model_inference", "policy", "analysis_total"):
                         result["timing_ms"][name] += safe_result["timing_ms"].get(name, 0)
-                if safe_result["action"] == "ALLOW":
-                    effective = {**request, "request": {"text": sanitized, "arguments": {}},
-                                 "payload_sha256": payload_hash(
-                                     {"text": sanitized, "arguments": {}})}
+                if safe_result["action"] == "ALLOW" and coverage_complete(safe_result):
+                    safe_payload = {"text": sanitized, "arguments": kept}
+                    effective = {**request, "request": safe_payload,
+                                 "payload_sha256": payload_hash(safe_payload)}
                 else:
                     reasons.append("sanitized_payload_not_allowed")
         issued = decision == "ALLOW" or (decision == "REDACT" and effective is not request)
@@ -130,7 +144,8 @@ class AuthorizationService:
                                  for e in result["evidence"]],
                     "tool": tool, "agent_id": request["agent_id"],
                     "session_id": request["session_id"],
-                    "authorized_request": None}
+                    "authorized_request": None,
+                    "coverage": result.get("coverage"), "versions": result.get("versions")}
         if isinstance(result.get("timing_ms"), dict):
             response["timing_ms"] = dict(result["timing_ms"])
         if issued:

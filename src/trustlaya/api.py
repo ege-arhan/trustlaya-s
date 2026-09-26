@@ -2,6 +2,7 @@
 
 import json
 import re
+import time
 import http.client
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -33,6 +34,7 @@ def public_result(result):
         "model_action": result["model_action"], "action": result["action"],
         "policy_rule": result["policy_reason"],
         "timing_ms": result.get("timing_ms"),
+        "coverage": result.get("coverage"), "versions": result.get("versions"),
     }
 
 
@@ -167,12 +169,17 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
 
         def tool_route(self):
             if authority is None or adapter is None:
-                self.respond(503, {"executed": False, "reason": "gateway_unavailable"})
+                self.respond(503, {"executed": False, "execution_status": "not_executed",
+                                   "reason": "gateway_unavailable"})
                 return
             if shared_key and not secrets.compare_digest(
                     self.headers.get("X-TrustLaya-Key", ""), shared_key):
-                self.respond(401, {"executed": False, "reason": "unauthorized"})
+                self.respond(401, {"executed": False, "execution_status": "not_executed",
+                                   "reason": "unauthorized"})
                 return
+            # Until the request reaches the adapter, nothing can have executed.
+            public = {"executed": False, "execution_status": "not_executed",
+                      "reason": "protected_operation_denied", "output": None}
             try:
                 length = int(self.headers.get("Content-Length", "0"))
                 if not 0 < length <= 16384:
@@ -180,9 +187,15 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
                 request = json.loads(self.rfile.read(length))
                 response, event = authority.authorize(request)
                 write_audit(event)
-                public = {"executed": False, "decision": response["decision"],
-                          "reason": response["reason_codes"][-1],
-                          "risk": response["risk"], "output": None}
+                public.update(decision=response["decision"],
+                              reason=response["reason_codes"][-1],
+                              reason_codes=response["reason_codes"],
+                              risk=response["risk"],
+                              evidence=response["evidence"],
+                              coverage=response.get("coverage"),
+                              versions=response.get("versions"),
+                              timing_ms=dict(response.get("timing_ms") or {}),
+                              authorization_issued=bool(response["authorization_token"]))
                 if not response["authorization_token"]:
                     self.respond(200, public)
                     return
@@ -190,7 +203,16 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
                                    else http.client.HTTPConnection)
                 connection = connection_type(adapter.hostname, adapter.port,
                                              timeout=adapter_timeout)
+                adapter_started = time.perf_counter()
                 try:
+                    try:
+                        connection.connect()
+                    except OSError:
+                        public["reason"] = "adapter_unavailable"
+                        self.respond(200, public)
+                        return
+                    # The adapter may execute from here on; a lost reply is unknown.
+                    public.update(execution_status="unknown", reason="adapter_response_lost")
                     connection.request("POST", "/execute", body=json.dumps(
                         {"request": request, "authorization": response},
                         ensure_ascii=False, allow_nan=False).encode("utf-8"),
@@ -198,24 +220,40 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
                                  "X-Adapter-Key": adapter_key})
                     reply = connection.getresponse()
                     data = reply.read(16385)
+                    public["timing_ms"]["adapter_roundtrip"] = (
+                        time.perf_counter() - adapter_started) * 1000
                     if reply.status != 200 or len(data) > 16384:
+                        # The adapter answers non-200 only before any execution.
+                        public.update(execution_status="not_executed",
+                                      reason="adapter_rejected")
                         raise ValueError("adapter_invalid")
                     result = json.loads(data)
+                    output = result.get("output") if isinstance(result, dict) else None
+                    if (isinstance(result, dict) and result.get("executed") is False and
+                            result.get("execution_status") in ("not_executed", "unknown") and
+                            isinstance(result.get("reason"), str) and
+                            len(result["reason"]) <= 64):
+                        public.update(execution_status=result["execution_status"],
+                                      reason=result["reason"])
+                        self.respond(200, public)
+                        return
                     if (not isinstance(result, dict) or
                             result.get("executed") is not True or
                             result.get("decision") != response["decision"] or
                             result.get("reason") != "executed" or
-                            result.get("output") != {"status": "accepted"}):
-                        raise ValueError("adapter_denied")
-                    public.update(executed=True, reason="executed",
-                                  output={"status": "accepted"})
+                            not isinstance(output, dict) or
+                            output.get("status") != "accepted" or
+                            set(output) - {"status", "record_id", "replayed"}):
+                        raise ValueError("adapter_invalid")
+                    public.update(executed=True, execution_status="executed",
+                                  reason="executed", output=output)
                     self.respond(200, public)
                 finally:
                     connection.close()
             except Exception:
                 # No fallback to a direct target call, and no exception text leaks.
-                self.respond(200, {"executed": False, "reason": "protected_operation_denied",
-                                   "output": None})
+                self.respond(200, {k: public[k] for k in (
+                    "executed", "execution_status", "reason", "output")})
 
         def respond(self, status, payload):
             body = json.dumps(payload, ensure_ascii=False).encode("utf-8")

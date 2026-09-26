@@ -9,6 +9,30 @@ from urllib.parse import urlsplit
 from .guarded_tool import GuardedTool
 
 
+class TargetFailure(Exception):
+    """The target did not confirm execution; ``status`` says whether it may have."""
+
+    def __init__(self, status, reason):
+        super().__init__(reason)
+        self.status = status
+        self.reason = reason
+
+
+def target_output(data):
+    """Keep only the idempotency fields; never pass other target data onward."""
+    try:
+        body = json.loads(data) if data else {}
+    except ValueError:
+        body = {}
+    output = {"status": "accepted"}
+    if isinstance(body, dict):
+        if isinstance(body.get("record_id"), int) and not isinstance(body["record_id"], bool):
+            output["record_id"] = body["record_id"]
+        if isinstance(body.get("replayed"), bool):
+            output["replayed"] = body["replayed"]
+    return output
+
+
 def make_adapter(host="127.0.0.1", port=8766, *, gateway_url=None,
                  gateway_key=None, adapter_key=None, target_url=None,
                  target_key=None, tool=None, permissions=None, timeout=2.0):
@@ -22,23 +46,35 @@ def make_adapter(host="127.0.0.1", port=8766, *, gateway_url=None,
             target.username or target.password or target.query or target.fragment):
         raise ValueError("invalid target URL")
 
-    def send(text, arguments):
+    def send(agent_id, text, arguments):
         # The target URL and credential come only from this process's configuration.
         # No arbitrary destination or target response body reaches the agent.
         connection_class = (http.client.HTTPSConnection if target.scheme == "https"
                             else http.client.HTTPConnection)
         connection = connection_class(target.hostname, target.port, timeout=timeout)
         try:
-            body = json.dumps({"text": text, "arguments": arguments},
-                              ensure_ascii=False, allow_nan=False).encode("utf-8")
-            connection.request("POST", target.path or "/", body=body,
-                               headers={"Content-Type": "application/json",
-                                        "X-Target-Key": target_key})
-            response = connection.getresponse()
-            response.read(16385)
+            try:
+                connection.connect()
+            except OSError as exc:
+                raise TargetFailure("not_executed", "target_unavailable") from exc
+            # From here on the target may have acted even if no reply arrives.
+            try:
+                body = json.dumps({"agent_id": agent_id, "text": text, "arguments": arguments},
+                                  ensure_ascii=False, allow_nan=False).encode("utf-8")
+                connection.request("POST", target.path or "/", body=body,
+                                   headers={"Content-Type": "application/json",
+                                            "X-Target-Key": target_key})
+                response = connection.getresponse()
+                data = response.read(16385)
+            except (OSError, http.client.HTTPException) as exc:
+                raise TargetFailure("unknown", "target_response_lost") from exc
+            if response.status == 409:
+                raise TargetFailure("not_executed", "operation_id_conflict")
+            if response.status in (400, 401, 403):
+                raise TargetFailure("not_executed", "target_rejected")
             if response.status != 200:
-                raise RuntimeError("target_rejected")
-            return {"status": "accepted"}
+                raise TargetFailure("unknown", "target_status_unknown")
+            return target_output(data)
         finally:
             connection.close()
 
@@ -73,16 +109,23 @@ def make_adapter(host="127.0.0.1", port=8766, *, gateway_url=None,
                                     permissions=permissions, gateway_url=gateway_url,
                                     shared_key=gateway_key, timeout=timeout,
                                     allow_private_http=True)
+                agent_id = request["agent_id"]
                 result = guard.execute_with_authorization(
-                    request, body["authorization"], send)
+                    request, body["authorization"],
+                    lambda text, arguments: send(agent_id, text, arguments))
                 self.respond(200, {"executed": result.executed,
+                                   "execution_status": "executed" if result.executed
+                                   else "not_executed",
                                    "reason": result.reason,
                                    "decision": result.decision,
                                    "output": result.output if result.executed else None})
+            except TargetFailure as exc:
+                self.respond(200, {"executed": False, "execution_status": exc.status,
+                                   "reason": exc.reason, "output": None})
             except Exception:
                 # Never disclose credentials, URLs, target bodies or exceptions.
-                self.respond(200, {"executed": False, "reason": "adapter_unavailable",
-                                   "output": None})
+                self.respond(200, {"executed": False, "execution_status": "not_executed",
+                                   "reason": "adapter_unavailable", "output": None})
 
         def respond(self, status, payload):
             data = json.dumps(payload).encode("utf-8")

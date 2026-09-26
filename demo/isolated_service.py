@@ -22,7 +22,8 @@ class FakeAnalyzer:
                 "privacy_risk", "security_risk", "ethics_risk", "oversight_risk",
                 "data_governance_risk")
         return {**{key: 0.01 for key in keys}, "action": decision,
-                "policy_reason": decision.lower(), "evidence": evidence}
+                "policy_reason": decision.lower(), "evidence": evidence,
+                "coverage": {"total_tokens": 1, "read_tokens": 1, "truncated": False}}
 
 
 def target():

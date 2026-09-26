@@ -34,6 +34,7 @@ def main():
                          authorization_ttl=args.authorization_ttl,
                          adapter_url=os.getenv("TRUSTEDGE_ADAPTER_URL"),
                          adapter_key=os.getenv("TRUSTEDGE_ADAPTER_KEY"),
+                         adapter_timeout=float(os.getenv("TRUSTEDGE_ADAPTER_TIMEOUT", "2")),
                          mode=os.getenv("TRUSTEDGE_MODE", "local"))
     print(f"TrustLaya-S API listening at http://{args.host}:{args.port}/analyze", flush=True)
     try:

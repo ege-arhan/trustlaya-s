@@ -17,6 +17,10 @@ from trustlaya.authorization import payload_hash
 from trustlaya.guarded_tool import GuardedTool
 
 
+COMPLETE = {"strategy": "head_94_v1", "total_tokens": 5, "read_tokens": 5,
+            "truncated": False}
+
+
 class FakeAnalyzer:
     policy = {"prompt_injection": 0.7}
 
@@ -36,7 +40,7 @@ class FakeAnalyzer:
                   "dangerous_instruction", "privacy_risk", "security_risk",
                   "ethics_risk", "oversight_risk", "data_governance_risk")}
         return {**scores, "action": action, "policy_reason": reason,
-                "evidence": evidence}
+                "evidence": evidence, "coverage": COMPLETE}
 
 
 PERMS = {key: key in ("network", "external_api") for key in PERMISSIONS}
