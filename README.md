@@ -161,6 +161,13 @@ ablation, tokenizer expansion and calibration; `scripts/v5_evidence_gate.py`
 writes the [GO/NO_GO gate](reports/v5_evidence_gate.md). See
 [Tensor Trust provenance](reports/tensor_trust_provenance.md).
 
+The first V5 training ablation (8 runs, `scripts/train_v5_ablation.py` then
+`scripts/finalize_v5_ablation.py`) is **NO_GO**: mixed Tensor Trust +
+JailbreakLLMs + security-prose models beat V2 on those sources but raise the
+deepset benign false-positive rate from 0.36 to 0.70–0.85. See the
+[ablation report](reports/v5_ablation_report.md). V2 remains the default and
+no V5 weights are published.
+
 ## Independent external evaluation (frozen v2)
 
 The [external real-world report](reports/external_real_world_benchmark.md) measures

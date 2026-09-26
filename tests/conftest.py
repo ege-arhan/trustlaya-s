@@ -6,7 +6,7 @@ CATEGORIES = {
     "test_authorization_protocol.py": "security", "test_policy.py": "security",
     "test_advanced_risk.py": "security", "test_firewall.py": "security",
     "test_gateway.py": "gateway", "test_trusted_adapter.py": "gateway", "test_api.py": "gateway",
-    "test_dataset.py": "dataset", "test_v5_dataset.py": "dataset", "test_v5_benchmark.py": "dataset",
+    "test_dataset.py": "dataset", "test_v5_dataset.py": "dataset", "test_v5_training.py": "dataset", "test_v5_benchmark.py": "dataset",
     "test_v5_jev_silver.py": "dataset", "test_v5_jev_diagnostic.py": "dataset",
     "test_external_benchmark_pipeline.py": "dataset", "test_context_windows.py": "dataset",
     "test_v5_annotation_ui.py": "integration", "test_external_real.py": "model_quality",

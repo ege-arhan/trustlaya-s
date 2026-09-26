@@ -1,0 +1,36 @@
+{
+  "experiment_id": "E8_mixed_balanced_ce_510",
+  "sources": [
+    "tensor_trust",
+    "jailbreakllms",
+    "security_docs",
+    "arxiv_abstracts"
+  ],
+  "sampling": "BALANCED_SOURCE",
+  "loss": "CE",
+  "context": 510,
+  "seed": 42,
+  "training": {
+    "optimizer": "AdamW",
+    "lr": 2e-05,
+    "weight_decay": 0.01,
+    "batch_size": 16,
+    "epochs": 3,
+    "warmup_fraction": 0.1,
+    "schedule": "linear warmup + linear decay",
+    "grad_clip": 1.0,
+    "init": "models/base (ytu-ce-cosmos/turkish-medium-bert-uncased), not V2",
+    "precision": "fp32",
+    "reading": "HEAD truncation",
+    "epoch_selection": "lowest DEV loss (shared DEV)"
+  },
+  "focal": null,
+  "selection_rules": {
+    "threshold": "per experiment, on DEV only: maximize DEV macro group accuracy over the (source,label) groups TT/ATTACK, JLL/ATTACK, JLL/BENIGN, security_docs/BENIGN, arxiv/BENIGN; grid 0.01..0.99",
+    "candidate": "highest DEV macro group accuracy at its DEV threshold; tie-break DEV PR-AUC",
+    "calibration": "temperature scaling fitted on DEV only for every experiment; raw and calibrated reported",
+    "test": "TEST1 (pool TEST) and TEST2 (OOD) run once, after selection is frozen, for all experiments"
+  },
+  "tokenizer_sha256": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f",
+  "backbone_sha256": "c625c4b284fbcb92127283d186a0620d7615f58d9f2dcbe377dd1f17e073b458"
+}
