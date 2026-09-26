@@ -3,10 +3,10 @@ name: hf-sync
 # Publishes the tracked Hugging Face model card. Weights are not in git and are
 # never uploaded from CI. Requires the HF_TOKEN repository secret (write access
 # to ege-arhan/TrustLaya-S-Advanced only).
+# Any branch: the owner wants Hugging Face to follow every pushed change.
 on:
   push:
-    branches: [main]
-    paths: ["hf/**"]
+    paths: ["hf/**", ".github/workflows/hf-sync.yml"]
   workflow_dispatch:
 
 concurrency: hf-sync
