@@ -136,5 +136,25 @@
     },
     "revision": "747a75e096761ebc01bd3970158827326b4add23",
     "url": "https://github.com/HumanCompatibleAI/tensor-trust-data"
+  },
+  "tr_conversation_pi": {
+    "files": {
+      "ANNOTATION_GUIDE.md": "7644586a7180ee3db10f043ae2f641a60d4819cec3436cc03dbf0f3f49a98c6e",
+      "DATA_CARD.md": "8f14230daedd00dabae751ba3ce0af405ed47a5205cd41ed28fe247eb5c613e8",
+      "LICENSE": "09535727ac2a79bfb0a2ca3e9ccefd0cd1118920895f54bb988a6a0bded17698",
+      "README.md": "63712e2622afe4016c956b8b1a4cda31483c42ae65d96aef1ab10ec956c845d0",
+      "archive/seed-v0/attacks.jsonl": "6f4b0031e96a42c0c5f2a9ebc02b06487561564808aeb150049b9e875ca61725",
+      "archive/seed-v0/train.jsonl": "e19f6b0ef114cf8150beb5d81b4989077f4b944e5b7e9f4d56f281432f5fa7a7",
+      "data/test.jsonl": "b21520130e80a3c28786f32a69b6d2f40740c5899ad6500a6a603931eb1327b4",
+      "data/test.parquet": "887cbc90bb8b6a8f47346dd1ad432ef51db94da4eeb3aa6e528091b7ad586cbc",
+      "data/train.jsonl": "16b007c20581c1be16dac53d96d501a6451c92aa8f3ea9f2e976d543ff3e59fd",
+      "data/train.parquet": "8128714a60f7f63167e838c71d5a4c94f55ef2b1c752b00585f945b41dfe6321",
+      "data/validation.jsonl": "3bd3533f078041bd308fbc5066ac7df1a3161e7a5a1881d4701c78ed7950c80f",
+      "data/validation.parquet": "404cd620e542f2a1961f509522623abf312fc58844d3dc3ce349b3fa15443014",
+      "source/base_benign.jsonl": "f257f7c57ad0a75f5f5d26ddcfe785161b53c22a9cc3d1455f2606c5d050a9ab",
+      "source/paired_cases.jsonl": "113134dcab7e3b9c6daa362bd6399f8382d0af3e5d95403fcaf2e66d5799eaa3"
+    },
+    "revision": "29d7593984f563c4ad56876aa800b9ffd948a2fb",
+    "url": "https://huggingface.co/datasets/3nesdeniz/turkish-conversation-prompt-injection"
   }
 }

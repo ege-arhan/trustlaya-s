@@ -59,6 +59,21 @@ def load_rows():
 def weights_for(train, spec):
     if spec["sampling"] == "NATURAL":
         return None
+    synthetic = set(spec.get("synthetic_sources", ()))
+    if synthetic:
+        # Synthetic rows get sampling mass equal to their count share within their label,
+        # so source balancing cannot inflate them; real rows keep the balanced scheme.
+        real = [r for r in train if r["source"] not in synthetic]
+        real_weights = iter(weights_for(real, {**spec, "synthetic_sources": ()}))
+        weights = []
+        count = Counter(r["label"] for r in train)
+        synth = Counter(r["label"] for r in train if r["source"] in synthetic)
+        for r in train:
+            if r["source"] in synthetic:
+                weights.append(0.5 / count[r["label"]])
+            else:
+                weights.append(next(real_weights) * (1 - synth[r["label"]] / count[r["label"]]))
+        return weights
     weights = source_balanced_weights([(r["source"], r["label"]) for r in train])
     if spec["new_weight"] != 1:
         weights = [w * spec["new_weight"] if r["source"] in NEW_SOURCES else w for r, w in zip(train, weights)]
@@ -90,7 +105,7 @@ def run(run_id, rows, tokenizer, dev_rows, spec=None, out_root=OUT, ckpt_root=CH
     out_dir, ckpt_dir = out_root / run_id, ckpt_root / run_id
     out_dir.mkdir(parents=True, exist_ok=True)
     ckpt_dir.mkdir(parents=True, exist_ok=True)
-    base = load_split(rows, "TRAIN", set(MIXED) | set(spec.get("extra_attack_sources", ())))
+    base = load_split(rows, "TRAIN", set(MIXED) | set(spec.get("extra_attack_sources", ())) | set(spec.get("synthetic_sources", ())))
     extra = [r for r in load_split(rows, "TRAIN", set(NEW_SOURCES)) if r["language"] in spec["languages"]]
     train = tokenize(tokenizer, base + extra)
     weights = weights_for(train, spec)

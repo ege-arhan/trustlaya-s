@@ -72,3 +72,25 @@ def test_iter3_manifest_and_roles():
         else:
             assert r["source"] == "hackaprompt" and r["native_category"].startswith("successful_attack")
             assert r["split"] in ("TRAIN", "DEV", "TEST")
+
+
+def test_synthetic_mass_equals_count_share_and_classes_stay_balanced():
+    train = ([{"source": "tensor_trust", "label": "ATTACK"}] * 6 + [{"source": "hackaprompt", "label": "ATTACK"}] * 2
+             + [{"source": "mt_de_attack", "label": "ATTACK"}] * 2 + [{"source": "jailbreakllms", "label": "BENIGN"}] * 5)
+    w = weights_for(train, {"sampling": "BALANCED_SOURCE", "new_weight": 1, "synthetic_sources": ("mt_de_attack",)})
+    mass = lambda pred: sum(x for r, x in zip(train, w) if pred(r))
+    assert mass(lambda r: r["label"] == "ATTACK") == pytest.approx(mass(lambda r: r["label"] == "BENIGN"))
+    assert mass(lambda r: r["source"] == "mt_de_attack") / mass(lambda r: r["label"] == "ATTACK") == pytest.approx(0.2)
+
+
+def test_iter5_synthetic_manifest_is_train_only_and_flagged():
+    for line in (ROOT / "data/v5_iter5_manifest.sha256").read_text().splitlines():
+        digest, path = line.split()
+        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path
+    manifest = json.loads((ROOT / "data/v5_iter5_manifest.json").read_text())
+    fields = manifest["rows"]["fields"]
+    for row in manifest["rows"]["rows"]:
+        r = dict(zip(fields, row))
+        assert r["synthetic"] is True and r["status"] == "included"
+        assert r["synthetic_method"] and r["original_source"] and r["generation_or_translation_model"]
+        assert r["target_language"] in ("de", "tr")
