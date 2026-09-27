@@ -174,7 +174,11 @@ Aya) and tests on an independent benign set (MASSIVE). Status **PARTIAL**:
 false alarms drop sharply (deepset 0.71 → 0.06, MASSIVE 0.94 → 0.20), but the
 DEV-selected model misses most deepset attacks (recall 0.21). A
 [variance study](reports/v5_variance_study.md) shows that drop comes mainly from
-the threshold rule, not the new data or batching. V2 stays the default.
+the threshold rule, not the new data or batching. Iteration 3
+([report](reports/v5_iter3_report.md)) adds HackAPrompt successful attacks:
+false alarms fall further (fresh MASSIVE-dev FPR 0.44 → 0.25), but deepset
+recall stays near 0.30, largely because no German attacks exist in TRAIN.
+V2 stays the default.
 
 ## Independent external evaluation (frozen v2)
 

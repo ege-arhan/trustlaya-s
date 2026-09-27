@@ -1,0 +1,392 @@
+{
+  "frozen_at": "2026-09-27T06:38:56.738094+00:00",
+  "plan_sha256": "91f41542871643fb9ce9dc12209abe124971e1923c69b37b6fa89af95a0f78c6",
+  "threshold_rule": "class-balanced DEV accuracy",
+  "runs": {
+    "H1_grouped_s42": {
+      "threshold": 0.37,
+      "temperature": 0.6617,
+      "checkpoint_sha256": "617c678ad82bc3062cbdc9c7e62b5a5c957b49d08e22439b778780aa44097134",
+      "dev_per_source": {
+        "arxiv_abstracts": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "aya": {
+          "recall": null,
+          "fpr": 0.0124,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "dolly": {
+          "recall": null,
+          "fpr": 0.0033,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "hackaprompt": {
+          "recall": 0.996,
+          "fpr": null,
+          "f1": 0.998,
+          "pr_auc": null
+        },
+        "jailbreakllms": {
+          "recall": 0.8418,
+          "fpr": 0.1869,
+          "f1": 0.4395,
+          "pr_auc": 0.5506
+        },
+        "oasst2": {
+          "recall": null,
+          "fpr": 0.0274,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "security_docs": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "tensor_trust": {
+          "recall": 0.9599,
+          "fpr": null,
+          "f1": 0.9795,
+          "pr_auc": null
+        }
+      }
+    },
+    "H1_grouped_s43": {
+      "threshold": 0.24,
+      "temperature": 0.6717,
+      "checkpoint_sha256": "d89341018065cc739022cce5ea36263ad8c8a0ec23446f1fa945681f3e480331",
+      "dev_per_source": {
+        "arxiv_abstracts": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "aya": {
+          "recall": null,
+          "fpr": 0.0231,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "dolly": {
+          "recall": null,
+          "fpr": 0.0067,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "hackaprompt": {
+          "recall": 0.999,
+          "fpr": null,
+          "f1": 0.9995,
+          "pr_auc": null
+        },
+        "jailbreakllms": {
+          "recall": 0.8588,
+          "fpr": 0.2268,
+          "f1": 0.4021,
+          "pr_auc": 0.5326
+        },
+        "oasst2": {
+          "recall": null,
+          "fpr": 0.0462,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "security_docs": {
+          "recall": null,
+          "fpr": 0.0194,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "tensor_trust": {
+          "recall": 0.9762,
+          "fpr": null,
+          "f1": 0.988,
+          "pr_auc": null
+        }
+      }
+    },
+    "H1_grouped_s44": {
+      "threshold": 0.3,
+      "temperature": 0.6717,
+      "checkpoint_sha256": "7b054caaf3be2755d5ee6dbc3750c44f98854ce52191e6318052f45061267113",
+      "dev_per_source": {
+        "arxiv_abstracts": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "aya": {
+          "recall": null,
+          "fpr": 0.0151,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "dolly": {
+          "recall": null,
+          "fpr": 0.0067,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "hackaprompt": {
+          "recall": 0.998,
+          "fpr": null,
+          "f1": 0.999,
+          "pr_auc": null
+        },
+        "jailbreakllms": {
+          "recall": 0.8305,
+          "fpr": 0.2225,
+          "f1": 0.3957,
+          "pr_auc": 0.5348
+        },
+        "oasst2": {
+          "recall": null,
+          "fpr": 0.0332,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "security_docs": {
+          "recall": null,
+          "fpr": 0.0097,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "tensor_trust": {
+          "recall": 0.971,
+          "fpr": null,
+          "f1": 0.9853,
+          "pr_auc": null
+        }
+      }
+    },
+    "H1_random_s42": {
+      "threshold": 0.32,
+      "temperature": 0.6717,
+      "checkpoint_sha256": "d9c5e2f97c8e55557b16010977680c79354f8676114ba60a76caae3b00bc5fae",
+      "dev_per_source": {
+        "arxiv_abstracts": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "aya": {
+          "recall": null,
+          "fpr": 0.0186,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "dolly": {
+          "recall": null,
+          "fpr": 0.005,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "hackaprompt": {
+          "recall": 0.998,
+          "fpr": null,
+          "f1": 0.999,
+          "pr_auc": null
+        },
+        "jailbreakllms": {
+          "recall": 0.8588,
+          "fpr": 0.2103,
+          "f1": 0.4193,
+          "pr_auc": 0.5691
+        },
+        "oasst2": {
+          "recall": null,
+          "fpr": 0.039,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "security_docs": {
+          "recall": null,
+          "fpr": 0.0097,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "tensor_trust": {
+          "recall": 0.9658,
+          "fpr": null,
+          "f1": 0.9826,
+          "pr_auc": null
+        }
+      }
+    },
+    "A4control_s42": {
+      "threshold": 0.15,
+      "temperature": 0.8541,
+      "checkpoint_sha256": "69995a93efbe9a207d13d9a57031a793cfe9dee0362fa76501341e670cd08ab1",
+      "dev_per_source": {
+        "arxiv_abstracts": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "aya": {
+          "recall": null,
+          "fpr": 0.047,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "dolly": {
+          "recall": null,
+          "fpr": 0.0317,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "hackaprompt": {
+          "recall": 0.897,
+          "fpr": null,
+          "f1": 0.9457,
+          "pr_auc": null
+        },
+        "jailbreakllms": {
+          "recall": 0.904,
+          "fpr": 0.317,
+          "f1": 0.3426,
+          "pr_auc": 0.5362
+        },
+        "oasst2": {
+          "recall": null,
+          "fpr": 0.1039,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "security_docs": {
+          "recall": null,
+          "fpr": 0.0583,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "tensor_trust": {
+          "recall": 0.9866,
+          "fpr": null,
+          "f1": 0.9933,
+          "pr_auc": null
+        }
+      }
+    },
+    "A4control_s43": {
+      "threshold": 0.2,
+      "temperature": 0.907,
+      "checkpoint_sha256": "f9524a672b2a624859639ee0d2d213e9b2c95abf6ff9704289543f58c0c1b19d",
+      "dev_per_source": {
+        "arxiv_abstracts": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "aya": {
+          "recall": null,
+          "fpr": 0.0275,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "dolly": {
+          "recall": null,
+          "fpr": 0.0167,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "hackaprompt": {
+          "recall": 0.86,
+          "fpr": null,
+          "f1": 0.9247,
+          "pr_auc": null
+        },
+        "jailbreakllms": {
+          "recall": 0.8531,
+          "fpr": 0.2873,
+          "f1": 0.3475,
+          "pr_auc": 0.5135
+        },
+        "oasst2": {
+          "recall": null,
+          "fpr": 0.062,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "security_docs": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "tensor_trust": {
+          "recall": 0.9792,
+          "fpr": null,
+          "f1": 0.9895,
+          "pr_auc": null
+        }
+      }
+    },
+    "A4control_s44": {
+      "threshold": 0.23,
+      "temperature": 0.9347,
+      "checkpoint_sha256": "1cb28ce012dd5ef10445da6277e7f7158c1699cb61a6f37d07734a7e2f51fc26",
+      "dev_per_source": {
+        "arxiv_abstracts": {
+          "recall": null,
+          "fpr": 0.0,
+          "f1": null,
+          "pr_auc": null
+        },
+        "aya": {
+          "recall": null,
+          "fpr": 0.0275,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "dolly": {
+          "recall": null,
+          "fpr": 0.02,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "hackaprompt": {
+          "recall": 0.851,
+          "fpr": null,
+          "f1": 0.9195,
+          "pr_auc": null
+        },
+        "jailbreakllms": {
+          "recall": 0.8475,
+          "fpr": 0.2539,
+          "f1": 0.3727,
+          "pr_auc": 0.5077
+        },
+        "oasst2": {
+          "recall": null,
+          "fpr": 0.062,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "security_docs": {
+          "recall": null,
+          "fpr": 0.0291,
+          "f1": 0.0,
+          "pr_auc": null
+        },
+        "tensor_trust": {
+          "recall": 0.9807,
+          "fpr": null,
+          "f1": 0.9902,
+          "pr_auc": null
+        }
+      }
+    }
+  }
+}
