@@ -1,0 +1,569 @@
+{
+  "note": "H1 (iteration-3 model) and A4 control, seeds 42/43/44, per threshold strategy; mean \u00b1 sd over seeds.",
+  "summary": {
+    "H1_T1": {
+      "dev_worst_stratum": {
+        "mean": 0.9158,
+        "sd": 0.0263
+      },
+      "deepset_recall": {
+        "mean": 0.299,
+        "sd": 0.0391
+      },
+      "deepset_fpr": {
+        "mean": 0.0699,
+        "sd": 0.0129
+      },
+      "deepset_de_recall": {
+        "mean": 0.1205,
+        "sd": 0.0241
+      },
+      "deepset_question_recall": {
+        "mean": 0.1282,
+        "sd": 0.0424
+      },
+      "gandalf_recall": {
+        "mean": 0.9778,
+        "sd": 0.0081
+      },
+      "massive_dev_fpr": {
+        "mean": 0.2473,
+        "sd": 0.0443
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9878,
+        "sd": 0.0033
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8275,
+        "sd": 0.0263
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1885,
+        "sd": 0.0239
+      },
+      "hackaprompt_recall": {
+        "mean": 0.999,
+        "sd": 0.001
+      },
+      "security_docs_fpr": {
+        "mean": 0.0102,
+        "sd": 0.0102
+      }
+    },
+    "H1_T2": {
+      "dev_worst_stratum": {
+        "mean": 0.9158,
+        "sd": 0.0263
+      },
+      "deepset_recall": {
+        "mean": 0.299,
+        "sd": 0.0391
+      },
+      "deepset_fpr": {
+        "mean": 0.0699,
+        "sd": 0.0129
+      },
+      "deepset_de_recall": {
+        "mean": 0.1205,
+        "sd": 0.0241
+      },
+      "deepset_question_recall": {
+        "mean": 0.1282,
+        "sd": 0.0424
+      },
+      "gandalf_recall": {
+        "mean": 0.9778,
+        "sd": 0.0081
+      },
+      "massive_dev_fpr": {
+        "mean": 0.2473,
+        "sd": 0.0443
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9878,
+        "sd": 0.0033
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8275,
+        "sd": 0.0263
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1885,
+        "sd": 0.0239
+      },
+      "hackaprompt_recall": {
+        "mean": 0.999,
+        "sd": 0.001
+      },
+      "security_docs_fpr": {
+        "mean": 0.0102,
+        "sd": 0.0102
+      }
+    },
+    "H1_T3": {
+      "dev_worst_stratum": {
+        "mean": 0.9459,
+        "sd": 0.0039
+      },
+      "deepset_recall": {
+        "mean": 0.3836,
+        "sd": 0.027
+      },
+      "deepset_fpr": {
+        "mean": 0.1246,
+        "sd": 0.0335
+      },
+      "deepset_de_recall": {
+        "mean": 0.2089,
+        "sd": 0.0368
+      },
+      "deepset_question_recall": {
+        "mean": 0.1974,
+        "sd": 0.0311
+      },
+      "gandalf_recall": {
+        "mean": 0.9879,
+        "sd": 0.0031
+      },
+      "massive_dev_fpr": {
+        "mean": 0.4281,
+        "sd": 0.1053
+      },
+      "tensor_trust_recall": {
+        "mean": 0.992,
+        "sd": 0.0015
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8818,
+        "sd": 0.0387
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.2981,
+        "sd": 0.0756
+      },
+      "hackaprompt_recall": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "security_docs_fpr": {
+        "mean": 0.0408,
+        "sd": 0.0102
+      }
+    },
+    "H1_T4": {
+      "dev_worst_stratum": {
+        "mean": 0.8544,
+        "sd": 0.0132
+      },
+      "deepset_recall": {
+        "mean": 0.2249,
+        "sd": 0.0061
+      },
+      "deepset_fpr": {
+        "mean": 0.0236,
+        "sd": 0.0081
+      },
+      "deepset_de_recall": {
+        "mean": 0.0763,
+        "sd": 0.0069
+      },
+      "deepset_question_recall": {
+        "mean": 0.0846,
+        "sd": 0.0077
+      },
+      "gandalf_recall": {
+        "mean": 0.9565,
+        "sd": 0.0081
+      },
+      "massive_dev_fpr": {
+        "mean": 0.1102,
+        "sd": 0.0062
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9807,
+        "sd": 0.0004
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.7325,
+        "sd": 0.0323
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1035,
+        "sd": 0.0222
+      },
+      "hackaprompt_recall": {
+        "mean": 0.9963,
+        "sd": 0.0012
+      },
+      "security_docs_fpr": {
+        "mean": 0.0034,
+        "sd": 0.0059
+      }
+    },
+    "A4_T1": {
+      "dev_worst_stratum": {
+        "mean": 0.8175,
+        "sd": 0.0304
+      },
+      "deepset_recall": {
+        "mean": 0.3823,
+        "sd": 0.0518
+      },
+      "deepset_fpr": {
+        "mean": 0.1574,
+        "sd": 0.0299
+      },
+      "deepset_de_recall": {
+        "mean": 0.237,
+        "sd": 0.0618
+      },
+      "deepset_question_recall": {
+        "mean": 0.1641,
+        "sd": 0.0347
+      },
+      "gandalf_recall": {
+        "mean": 0.9852,
+        "sd": 0.0033
+      },
+      "massive_dev_fpr": {
+        "mean": 0.441,
+        "sd": 0.1266
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9931,
+        "sd": 0.0017
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8818,
+        "sd": 0.0033
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.2655,
+        "sd": 0.0309
+      },
+      "hackaprompt_recall": {
+        "mean": 0.8607,
+        "sd": 0.0228
+      },
+      "security_docs_fpr": {
+        "mean": 0.0374,
+        "sd": 0.0059
+      }
+    },
+    "A4_T2": {
+      "dev_worst_stratum": {
+        "mean": 0.8614,
+        "sd": 0.0031
+      },
+      "deepset_recall": {
+        "mean": 0.5053,
+        "sd": 0.0465
+      },
+      "deepset_fpr": {
+        "mean": 0.2205,
+        "sd": 0.0161
+      },
+      "deepset_de_recall": {
+        "mean": 0.4177,
+        "sd": 0.1053
+      },
+      "deepset_question_recall": {
+        "mean": 0.2872,
+        "sd": 0.0347
+      },
+      "gandalf_recall": {
+        "mean": 0.9936,
+        "sd": 0.0006
+      },
+      "massive_dev_fpr": {
+        "mean": 0.6145,
+        "sd": 0.0627
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9962,
+        "sd": 0.0006
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.907,
+        "sd": 0.0117
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.3514,
+        "sd": 0.0165
+      },
+      "hackaprompt_recall": {
+        "mean": 0.903,
+        "sd": 0.0026
+      },
+      "security_docs_fpr": {
+        "mean": 0.0782,
+        "sd": 0.0156
+      }
+    },
+    "A4_T3": {
+      "dev_worst_stratum": {
+        "mean": 0.8491,
+        "sd": 0.0122
+      },
+      "deepset_recall": {
+        "mean": 0.4484,
+        "sd": 0.042
+      },
+      "deepset_fpr": {
+        "mean": 0.1843,
+        "sd": 0.0141
+      },
+      "deepset_de_recall": {
+        "mean": 0.3454,
+        "sd": 0.0736
+      },
+      "deepset_question_recall": {
+        "mean": 0.2282,
+        "sd": 0.027
+      },
+      "gandalf_recall": {
+        "mean": 0.9916,
+        "sd": 0.0006
+      },
+      "massive_dev_fpr": {
+        "mean": 0.5345,
+        "sd": 0.0748
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9948,
+        "sd": 0.0009
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8992,
+        "sd": 0.0089
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.3092,
+        "sd": 0.0165
+      },
+      "hackaprompt_recall": {
+        "mean": 0.8823,
+        "sd": 0.0095
+      },
+      "security_docs_fpr": {
+        "mean": 0.051,
+        "sd": 0.0
+      }
+    },
+    "A4_T4": {
+      "dev_worst_stratum": {
+        "mean": 0.6702,
+        "sd": 0.0219
+      },
+      "deepset_recall": {
+        "mean": 0.2077,
+        "sd": 0.0127
+      },
+      "deepset_fpr": {
+        "mean": 0.0472,
+        "sd": 0.0102
+      },
+      "deepset_de_recall": {
+        "mean": 0.0562,
+        "sd": 0.0251
+      },
+      "deepset_question_recall": {
+        "mean": 0.0743,
+        "sd": 0.0044
+      },
+      "gandalf_recall": {
+        "mean": 0.9505,
+        "sd": 0.0053
+      },
+      "massive_dev_fpr": {
+        "mean": 0.1279,
+        "sd": 0.0188
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9786,
+        "sd": 0.0032
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.7287,
+        "sd": 0.0474
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1127,
+        "sd": 0.0191
+      },
+      "hackaprompt_recall": {
+        "mean": 0.695,
+        "sd": 0.0036
+      },
+      "security_docs_fpr": {
+        "mean": 0.0136,
+        "sd": 0.0118
+      }
+    }
+  },
+  "iteration3_config_means": {
+    "H1": {
+      "tensor_trust_recall": {
+        "mean": 0.9878,
+        "sd": 0.0033
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8275,
+        "sd": 0.0263
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1885,
+        "sd": 0.0239
+      },
+      "hackaprompt_recall": {
+        "mean": 0.999,
+        "sd": 0.001
+      },
+      "hackaprompt_recall_with_pwn": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "hackaprompt_recall_without_pwn": {
+        "mean": 0.9966,
+        "sd": 0.0034
+      },
+      "security_docs_fpr": {
+        "mean": 0.0102,
+        "sd": 0.0102
+      },
+      "arxiv_fpr": {
+        "mean": 0.0145,
+        "sd": 0.0062
+      },
+      "new_benign_fpr": {
+        "dolly": 0.015,
+        "oasst2": 0.0518,
+        "aya": 0.0139
+      },
+      "deepset_recall": {
+        "mean": 0.299,
+        "sd": 0.0391
+      },
+      "deepset_fpr": {
+        "mean": 0.0699,
+        "sd": 0.0129
+      },
+      "deepset_pr_auc": {
+        "mean": 0.6705,
+        "sd": 0.0184
+      },
+      "gandalf_recall": {
+        "mean": 0.9778,
+        "sd": 0.0081
+      },
+      "massive_test_fpr": {
+        "mean": 0.262,
+        "sd": 0.0425
+      },
+      "massive_test_fpr_by_language": {
+        "de": 0.1858,
+        "en": 0.3653,
+        "tr": 0.2356
+      },
+      "fresh_massive_dev_fpr": {
+        "mean": 0.2473,
+        "sd": 0.0443
+      },
+      "fresh_massive_dev_fpr_by_language": {
+        "de": 0.1754,
+        "en": 0.3391,
+        "tr": 0.2277
+      },
+      "test1_ece_raw": {
+        "mean": 0.0488,
+        "sd": 0.0023
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.0167,
+        "sd": 0.0034
+      }
+    },
+    "A4_control": {
+      "tensor_trust_recall": {
+        "mean": 0.9931,
+        "sd": 0.0017
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8818,
+        "sd": 0.0033
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.2655,
+        "sd": 0.0309
+      },
+      "hackaprompt_recall": {
+        "mean": 0.8607,
+        "sd": 0.0228
+      },
+      "hackaprompt_recall_with_pwn": {
+        "mean": 0.8682,
+        "sd": 0.023
+      },
+      "hackaprompt_recall_without_pwn": {
+        "mean": 0.8429,
+        "sd": 0.0229
+      },
+      "security_docs_fpr": {
+        "mean": 0.0374,
+        "sd": 0.0059
+      },
+      "arxiv_fpr": {
+        "mean": 0.0217,
+        "sd": 0.0
+      },
+      "new_benign_fpr": {
+        "dolly": 0.0267,
+        "oasst2": 0.0828,
+        "aya": 0.0261
+      },
+      "deepset_recall": {
+        "mean": 0.3823,
+        "sd": 0.0518
+      },
+      "deepset_fpr": {
+        "mean": 0.1574,
+        "sd": 0.0299
+      },
+      "deepset_pr_auc": {
+        "mean": 0.6258,
+        "sd": 0.0153
+      },
+      "gandalf_recall": {
+        "mean": 0.9852,
+        "sd": 0.0033
+      },
+      "massive_test_fpr": {
+        "mean": 0.4631,
+        "sd": 0.1302
+      },
+      "massive_test_fpr_by_language": {
+        "de": 0.4531,
+        "en": 0.5189,
+        "tr": 0.4173
+      },
+      "fresh_massive_dev_fpr": {
+        "mean": 0.441,
+        "sd": 0.1266
+      },
+      "fresh_massive_dev_fpr_by_language": {
+        "de": 0.4341,
+        "en": 0.4882,
+        "tr": 0.4006
+      },
+      "test1_ece_raw": {
+        "mean": 0.0293,
+        "sd": 0.0061
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.0268,
+        "sd": 0.0058
+      }
+    }
+  }
+}

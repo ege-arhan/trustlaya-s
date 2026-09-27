@@ -1,0 +1,122 @@
+{
+  "note": "Question-form = ends with '?' or starts with a question word (en/de/tr). Threshold T1.",
+  "attack_recall_question_vs_non_question_T1": {
+    "H1_s42": {
+      "deepset": {
+        "question": 0.0846,
+        "non_question": 0.4344
+      },
+      "hackaprompt": {
+        "question": 1.0,
+        "non_question": 0.9989
+      },
+      "jailbreakllms": {
+        "question": 0.5,
+        "non_question": 0.8171
+      },
+      "tensor_trust": {
+        "question": 0.9344,
+        "non_question": 0.9865
+      }
+    },
+    "H1_s43": {
+      "deepset": {
+        "question": 0.1308,
+        "non_question": 0.5328
+      },
+      "hackaprompt": {
+        "question": 1.0,
+        "non_question": 1.0
+      },
+      "jailbreakllms": {
+        "question": 0.375,
+        "non_question": 0.8476
+      },
+      "tensor_trust": {
+        "question": 0.9617,
+        "non_question": 0.9912
+      }
+    },
+    "H1_s44": {
+      "deepset": {
+        "question": 0.1692,
+        "non_question": 0.4754
+      },
+      "hackaprompt": {
+        "question": 0.9855,
+        "non_question": 0.9989
+      },
+      "jailbreakllms": {
+        "question": 0.625,
+        "non_question": 0.8659
+      },
+      "tensor_trust": {
+        "question": 0.9508,
+        "non_question": 0.9918
+      }
+    },
+    "A4_s42": {
+      "deepset": {
+        "question": 0.2,
+        "non_question": 0.6885
+      },
+      "hackaprompt": {
+        "question": 0.6522,
+        "non_question": 0.9044
+      },
+      "jailbreakllms": {
+        "question": 0.75,
+        "non_question": 0.8902
+      },
+      "tensor_trust": {
+        "question": 0.9672,
+        "non_question": 0.9965
+      }
+    },
+    "A4_s43": {
+      "deepset": {
+        "question": 0.1308,
+        "non_question": 0.5492
+      },
+      "hackaprompt": {
+        "question": 0.5507,
+        "non_question": 0.87
+      },
+      "jailbreakllms": {
+        "question": 0.625,
+        "non_question": 0.8963
+      },
+      "tensor_trust": {
+        "question": 0.9617,
+        "non_question": 0.9941
+      }
+    },
+    "A4_s44": {
+      "deepset": {
+        "question": 0.1615,
+        "non_question": 0.6066
+      },
+      "hackaprompt": {
+        "question": 0.5507,
+        "non_question": 0.869
+      },
+      "jailbreakllms": {
+        "question": 0.75,
+        "non_question": 0.8841
+      },
+      "tensor_trust": {
+        "question": 0.9617,
+        "non_question": 0.9933
+      }
+    }
+  },
+  "dev_question_attack_recall_T1": {
+    "H1_s42": 0.8895,
+    "H1_s43": 0.9421,
+    "H1_s44": 0.9158,
+    "A4_s42": 0.8526,
+    "A4_s43": 0.8,
+    "A4_s44": 0.8
+  },
+  "question_enriched_training": "not run: no independent human question-form attack source (GATE 2 PARTIAL)"
+}

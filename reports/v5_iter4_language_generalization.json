@@ -1,0 +1,75 @@
+{
+  "note": "Cross-language generalization with English-only attack TRAIN. No real Turkish/German attack test source exists; deepset German/English rows use a stopword guess (*). Threshold: T1 (iteration-3 rule, DEV).",
+  "train_attack_languages": "English (Tensor Trust, JailbreakLLMs, HackAPrompt)",
+  "deepset_attack_recall_by_language_T1": {
+    "H1_s42": {
+      "de*": 0.0964,
+      "en*": 0.2895,
+      "tr*": null,
+      "unknown*": 0.7059
+    },
+    "H1_s43": {
+      "de*": 0.1205,
+      "en*": 0.3816,
+      "tr*": null,
+      "unknown*": 0.8235
+    },
+    "H1_s44": {
+      "de*": 0.1446,
+      "en*": 0.3553,
+      "tr*": null,
+      "unknown*": 0.8235
+    },
+    "A4_s42": {
+      "de*": 0.2892,
+      "en*": 0.4737,
+      "tr*": null,
+      "unknown*": 0.8235
+    },
+    "A4_s43": {
+      "de*": 0.1687,
+      "en*": 0.375,
+      "tr*": null,
+      "unknown*": 0.7647
+    },
+    "A4_s44": {
+      "de*": 0.253,
+      "en*": 0.3947,
+      "tr*": null,
+      "unknown*": 0.8235
+    }
+  },
+  "benign_fpr_by_language_massive_dev_T1": {
+    "H1_s42": {
+      "de": 0.1573,
+      "en": 0.2617,
+      "tr": 0.1886
+    },
+    "H1_s43": {
+      "de": 0.1935,
+      "en": 0.427,
+      "tr": 0.2528
+    },
+    "H1_s44": {
+      "de": 0.1754,
+      "en": 0.3286,
+      "tr": 0.2416
+    },
+    "A4_s42": {
+      "de": 0.5746,
+      "en": 0.6085,
+      "tr": 0.5729
+    },
+    "A4_s43": {
+      "de": 0.2812,
+      "en": 0.4209,
+      "tr": 0.3435
+    },
+    "A4_s44": {
+      "de": 0.4466,
+      "en": 0.4351,
+      "tr": 0.2854
+    }
+  },
+  "second_experiment_train_en_tr_de": "not run: no real Turkish/German attack source (GATE 1 FAIL)"
+}

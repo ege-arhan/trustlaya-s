@@ -178,7 +178,10 @@ the threshold rule, not the new data or batching. Iteration 3
 ([report](reports/v5_iter3_report.md)) adds HackAPrompt successful attacks:
 false alarms fall further (fresh MASSIVE-dev FPR 0.44 → 0.25), but deepset
 recall stays near 0.30, largely because no German attacks exist in TRAIN.
-V2 stays the default.
+Iteration 4 ([report](reports/v5_iter4_master_report.md)) found no real,
+human-written Turkish or German attack dataset in public sources and showed
+by threshold ablation that the remaining deepset gap is a ranking limit, not a
+threshold choice (status NO_GO). V2 stays the default.
 
 ## Independent external evaluation (frozen v2)
 
