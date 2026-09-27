@@ -13,6 +13,15 @@
     "revision": "query-2026-09-26",
     "url": "https://export.arxiv.org/api"
   },
+  "aya": {
+    "files": {
+      "README.md": "3ac54f63eec84100c155571945da01c7c18cd8ec97ea94639e2b94a6860e8573",
+      "data/test-00000-of-00001.parquet": "52bbb79461bff9887c9987a5737d9a06f5ec6c78c08d770828c37fc182ce2cca",
+      "data/train-00000-of-00001.parquet": "51baa85043b569ba117f41516b32d1b0e4e2647fb203a08933f98a556fb1fb06"
+    },
+    "revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
+    "url": "https://huggingface.co/datasets/CohereLabs/aya_dataset"
+  },
   "deepset": {
     "files": {
       "README.md": "d90b4518dfe06154deeec938243d1ec9119bdfbfd2105aee9cf1567999764b94",
@@ -21,6 +30,14 @@
     },
     "revision": "4f61ecb038e9c3fb77e21034b22511b523772cdd",
     "url": "https://huggingface.co/datasets/deepset/prompt-injections"
+  },
+  "dolly": {
+    "files": {
+      "README.md": "db06c60090a11b20e79d1933b2f316f781605f07761ff2ae2795d6523e3e960b",
+      "databricks-dolly-15k.jsonl": "2df9083338b4abd6bceb5635764dab5d833b393b55759dffb0959b6fcbf794ec"
+    },
+    "revision": "bdd27f4d94b9c1f951818a7da7fd7aeea5dbff1a",
+    "url": "https://huggingface.co/datasets/databricks/databricks-dolly-15k"
   },
   "gandalf": {
     "files": {
@@ -50,6 +67,21 @@
     },
     "revision": "a10aab8eff1c73165a442d4464dce192bd28b9c5",
     "url": "https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts"
+  },
+  "massive": {
+    "files": {
+      "amazon-massive-dataset-1.1.tar.gz": "4cba5faa11c71437928e17cb1b9b3d8b8e727e7ea363a3a9a8045e19c0491577"
+    },
+    "revision": "1.1-etag-51e0da2a3ff7a016f109e1d1b4306e93-3",
+    "url": "https://github.com/alexa/massive (S3 release 1.1)"
+  },
+  "oasst2": {
+    "files": {
+      "2023-11-05_oasst2_ready.messages.jsonl.gz": "a9f240c4c77aa1378364f70d37e753c07ba284e247b019d700e1947a0e5da751",
+      "README.md": "52bd472cf3cae04a4b21ecd5316f929741c47d991d4763b041c3a94de072dc31"
+    },
+    "revision": "179dd21fc55192153d94adb0e0ce8f69e222bf75",
+    "url": "https://huggingface.co/datasets/OpenAssistant/oasst2"
   },
   "security_docs:microsoft_mcp_security": {
     "files": {

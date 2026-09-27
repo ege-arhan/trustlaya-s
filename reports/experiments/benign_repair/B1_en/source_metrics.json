@@ -1,0 +1,768 @@
+{
+  "DEV_threshold_0.5": {
+    "arxiv_abstracts": {
+      "n": 101,
+      "positive": 0,
+      "negative": 101,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 101,
+      "precision": null,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": null,
+      "fpr": 0.0,
+      "fpr_95ci": [
+        -0.0,
+        0.0366
+      ],
+      "fnr": null,
+      "brier": 0.0003,
+      "ece": 0.0123,
+      "pr_auc": null
+    },
+    "aya": {
+      "n": 1127,
+      "positive": 0,
+      "negative": 1127,
+      "tp": 0,
+      "fp": 63,
+      "fn": 0,
+      "tn": 1064,
+      "precision": 0.0,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": 0.0,
+      "fpr": 0.0559,
+      "fpr_95ci": [
+        0.0439,
+        0.0709
+      ],
+      "fnr": null,
+      "brier": 0.0767,
+      "ece": 0.2145,
+      "pr_auc": null
+    },
+    "dolly": {
+      "n": 600,
+      "positive": 0,
+      "negative": 600,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 600,
+      "precision": null,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": null,
+      "fpr": 0.0,
+      "fpr_95ci": [
+        0.0,
+        0.0064
+      ],
+      "fnr": null,
+      "brier": 0.0055,
+      "ece": 0.0491,
+      "pr_auc": null
+    },
+    "jailbreakllms": {
+      "n": 2060,
+      "positive": 177,
+      "negative": 1883,
+      "tp": 112,
+      "fp": 119,
+      "fn": 65,
+      "tn": 1764,
+      "precision": 0.4848,
+      "recall": 0.6328,
+      "recall_95ci": [
+        0.5596,
+        0.7003
+      ],
+      "f1": 0.549,
+      "fpr": 0.0632,
+      "fpr_95ci": [
+        0.0531,
+        0.0751
+      ],
+      "fnr": 0.3672,
+      "brier": 0.069,
+      "ece": 0.0794,
+      "pr_auc": 0.5411
+    },
+    "oasst2": {
+      "n": 693,
+      "positive": 0,
+      "negative": 693,
+      "tp": 0,
+      "fp": 19,
+      "fn": 0,
+      "tn": 674,
+      "precision": 0.0,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": 0.0,
+      "fpr": 0.0274,
+      "fpr_95ci": [
+        0.0176,
+        0.0424
+      ],
+      "fnr": null,
+      "brier": 0.0239,
+      "ece": 0.0906,
+      "pr_auc": null
+    },
+    "security_docs": {
+      "n": 103,
+      "positive": 0,
+      "negative": 103,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 103,
+      "precision": null,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": null,
+      "fpr": 0.0,
+      "fpr_95ci": [
+        0.0,
+        0.036
+      ],
+      "fnr": null,
+      "brier": 0.0055,
+      "ece": 0.0403,
+      "pr_auc": null
+    },
+    "tensor_trust": {
+      "n": 1346,
+      "positive": 1346,
+      "negative": 0,
+      "tp": 1279,
+      "fp": 0,
+      "fn": 67,
+      "tn": 0,
+      "precision": 1.0,
+      "recall": 0.9502,
+      "recall_95ci": [
+        0.9373,
+        0.9606
+      ],
+      "f1": 0.9745,
+      "fpr": null,
+      "fpr_95ci": null,
+      "fnr": 0.0498,
+      "brier": 0.044,
+      "ece": 0.1139,
+      "pr_auc": null,
+      "note": "attack-only set: precision/FPR/PR-AUC undefined"
+    }
+  },
+  "DEV_selected_threshold": {
+    "pooled": {
+      "n": 6030,
+      "positive": 1523,
+      "negative": 4507,
+      "tp": 1379,
+      "fp": 150,
+      "fn": 144,
+      "tn": 4357,
+      "precision": 0.9019,
+      "recall": 0.9054,
+      "recall_95ci": [
+        0.8897,
+        0.9191
+      ],
+      "f1": 0.9037,
+      "fpr": 0.0333,
+      "fpr_95ci": [
+        0.0284,
+        0.0389
+      ],
+      "fnr": 0.0946,
+      "brier": 0.0511,
+      "ece": 0.0707,
+      "pr_auc": 0.9585
+    },
+    "pooled_calibrated": {
+      "ece": 0.0441,
+      "brier": 0.0461
+    },
+    "per_source": {
+      "arxiv_abstracts": {
+        "n": 101,
+        "positive": 0,
+        "negative": 101,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 101,
+        "precision": null,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": null,
+        "fpr": 0.0,
+        "fpr_95ci": [
+          -0.0,
+          0.0366
+        ],
+        "fnr": null,
+        "brier": 0.0003,
+        "ece": 0.0123,
+        "pr_auc": null
+      },
+      "aya": {
+        "n": 1127,
+        "positive": 0,
+        "negative": 1127,
+        "tp": 0,
+        "fp": 43,
+        "fn": 0,
+        "tn": 1084,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.0382,
+        "fpr_95ci": [
+          0.0284,
+          0.051
+        ],
+        "fnr": null,
+        "brier": 0.0767,
+        "ece": 0.2145,
+        "pr_auc": null
+      },
+      "dolly": {
+        "n": 600,
+        "positive": 0,
+        "negative": 600,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 600,
+        "precision": null,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": null,
+        "fpr": 0.0,
+        "fpr_95ci": [
+          0.0,
+          0.0064
+        ],
+        "fnr": null,
+        "brier": 0.0055,
+        "ece": 0.0491,
+        "pr_auc": null
+      },
+      "jailbreakllms": {
+        "n": 2060,
+        "positive": 177,
+        "negative": 1883,
+        "tp": 108,
+        "fp": 96,
+        "fn": 69,
+        "tn": 1787,
+        "precision": 0.5294,
+        "recall": 0.6102,
+        "recall_95ci": [
+          0.5367,
+          0.679
+        ],
+        "f1": 0.5669,
+        "fpr": 0.051,
+        "fpr_95ci": [
+          0.0419,
+          0.0619
+        ],
+        "fnr": 0.3898,
+        "brier": 0.069,
+        "ece": 0.0794,
+        "pr_auc": 0.5411
+      },
+      "oasst2": {
+        "n": 693,
+        "positive": 0,
+        "negative": 693,
+        "tp": 0,
+        "fp": 11,
+        "fn": 0,
+        "tn": 682,
+        "precision": 0.0,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": 0.0,
+        "fpr": 0.0159,
+        "fpr_95ci": [
+          0.0089,
+          0.0282
+        ],
+        "fnr": null,
+        "brier": 0.0239,
+        "ece": 0.0906,
+        "pr_auc": null
+      },
+      "security_docs": {
+        "n": 103,
+        "positive": 0,
+        "negative": 103,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 103,
+        "precision": null,
+        "recall": null,
+        "recall_95ci": null,
+        "f1": null,
+        "fpr": 0.0,
+        "fpr_95ci": [
+          0.0,
+          0.036
+        ],
+        "fnr": null,
+        "brier": 0.0055,
+        "ece": 0.0403,
+        "pr_auc": null
+      },
+      "tensor_trust": {
+        "n": 1346,
+        "positive": 1346,
+        "negative": 0,
+        "tp": 1271,
+        "fp": 0,
+        "fn": 75,
+        "tn": 0,
+        "precision": 1.0,
+        "recall": 0.9443,
+        "recall_95ci": [
+          0.9307,
+          0.9553
+        ],
+        "f1": 0.9713,
+        "fpr": null,
+        "fpr_95ci": null,
+        "fnr": 0.0557,
+        "brier": 0.044,
+        "ece": 0.1139,
+        "pr_auc": null,
+        "note": "attack-only set: precision/FPR/PR-AUC undefined"
+      }
+    },
+    "language_x_length": {
+      "arxiv_abstracts": {
+        "en/257+": {
+          "n": 97,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.012
+        },
+        "en/95-256": {
+          "n": 4,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0193
+        },
+        "en/all": {
+          "n": 101,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0123
+        }
+      },
+      "aya": {
+        "de/257+": {
+          "n": 1,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.1447
+        },
+        "de/33-64": {
+          "n": 10,
+          "fpr": 0.1,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.235
+        },
+        "de/65-94": {
+          "n": 1,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.3315
+        },
+        "de/95-256": {
+          "n": 1,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0441
+        },
+        "de/<=32": {
+          "n": 21,
+          "fpr": 0.0476,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.1916
+        },
+        "de/all": {
+          "n": 34,
+          "fpr": 0.0588,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.2028
+        },
+        "en/257+": {
+          "n": 4,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.1555
+        },
+        "en/33-64": {
+          "n": 102,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0225
+        },
+        "en/65-94": {
+          "n": 27,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0202
+        },
+        "en/95-256": {
+          "n": 15,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0372
+        },
+        "en/<=32": {
+          "n": 346,
+          "fpr": 0.0231,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.0806
+        },
+        "en/all": {
+          "n": 494,
+          "fpr": 0.0162,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.0646
+        },
+        "tr/257+": {
+          "n": 4,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.4151
+        },
+        "tr/33-64": {
+          "n": 33,
+          "fpr": 0.0303,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.3269
+        },
+        "tr/65-94": {
+          "n": 30,
+          "fpr": 0.0667,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.3856
+        },
+        "tr/95-256": {
+          "n": 19,
+          "fpr": 0.0526,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.4134
+        },
+        "tr/<=32": {
+          "n": 513,
+          "fpr": 0.0565,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.3335
+        },
+        "tr/all": {
+          "n": 599,
+          "fpr": 0.0551,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.3388
+        }
+      },
+      "dolly": {
+        "en/33-64": {
+          "n": 85,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0255
+        },
+        "en/65-94": {
+          "n": 16,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.024
+        },
+        "en/95-256": {
+          "n": 7,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0496
+        },
+        "en/<=32": {
+          "n": 492,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.054
+        },
+        "en/all": {
+          "n": 600,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0491
+        }
+      },
+      "jailbreakllms": {
+        "unknown/257+": {
+          "n": 1146,
+          "fpr": 0.0637,
+          "recall": 0.6831,
+          "f1": 0.6403,
+          "mean_score": 0.218
+        },
+        "unknown/33-64": {
+          "n": 140,
+          "fpr": 0.037,
+          "recall": 0.2,
+          "f1": 0.1818,
+          "mean_score": 0.0789
+        },
+        "unknown/65-94": {
+          "n": 141,
+          "fpr": 0.0146,
+          "recall": 0.25,
+          "f1": 0.2857,
+          "mean_score": 0.071
+        },
+        "unknown/95-256": {
+          "n": 536,
+          "fpr": 0.0272,
+          "recall": 0.4091,
+          "f1": 0.4,
+          "mean_score": 0.0968
+        },
+        "unknown/<=32": {
+          "n": 97,
+          "fpr": 0.1183,
+          "recall": 0.0,
+          "f1": 0.0,
+          "mean_score": 0.1836
+        },
+        "unknown/all": {
+          "n": 2060,
+          "fpr": 0.051,
+          "recall": 0.6102,
+          "f1": 0.5669,
+          "mean_score": 0.1653
+        }
+      },
+      "oasst2": {
+        "de/33-64": {
+          "n": 32,
+          "fpr": 0.0625,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.2564
+        },
+        "de/65-94": {
+          "n": 8,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.315
+        },
+        "de/95-256": {
+          "n": 8,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.1838
+        },
+        "de/<=32": {
+          "n": 42,
+          "fpr": 0.0476,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.242
+        },
+        "de/all": {
+          "n": 90,
+          "fpr": 0.0444,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.2484
+        },
+        "en/257+": {
+          "n": 11,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0877
+        },
+        "en/33-64": {
+          "n": 163,
+          "fpr": 0.0123,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.0409
+        },
+        "en/65-94": {
+          "n": 48,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0481
+        },
+        "en/95-256": {
+          "n": 59,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0528
+        },
+        "en/<=32": {
+          "n": 319,
+          "fpr": 0.0125,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.0818
+        },
+        "en/all": {
+          "n": 600,
+          "fpr": 0.01,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.0652
+        },
+        "tr/<=32": {
+          "n": 3,
+          "fpr": 0.3333,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.4392
+        },
+        "tr/all": {
+          "n": 3,
+          "fpr": 0.3333,
+          "recall": null,
+          "f1": 0.0,
+          "mean_score": 0.4392
+        }
+      },
+      "security_docs": {
+        "en/257+": {
+          "n": 1,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0102
+        },
+        "en/33-64": {
+          "n": 44,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0197
+        },
+        "en/65-94": {
+          "n": 25,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0736
+        },
+        "en/95-256": {
+          "n": 22,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0286
+        },
+        "en/<=32": {
+          "n": 11,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0735
+        },
+        "en/all": {
+          "n": 103,
+          "fpr": 0.0,
+          "recall": null,
+          "f1": null,
+          "mean_score": 0.0403
+        }
+      },
+      "tensor_trust": {
+        "unknown/257+": {
+          "n": 150,
+          "fpr": null,
+          "recall": 0.9933,
+          "f1": 0.9967,
+          "mean_score": 0.941
+        },
+        "unknown/33-64": {
+          "n": 240,
+          "fpr": null,
+          "recall": 0.9292,
+          "f1": 0.9633,
+          "mean_score": 0.87
+        },
+        "unknown/65-94": {
+          "n": 100,
+          "fpr": null,
+          "recall": 0.95,
+          "f1": 0.9744,
+          "mean_score": 0.8982
+        },
+        "unknown/95-256": {
+          "n": 134,
+          "fpr": null,
+          "recall": 0.9701,
+          "f1": 0.9848,
+          "mean_score": 0.9182
+        },
+        "unknown/<=32": {
+          "n": 722,
+          "fpr": null,
+          "recall": 0.9335,
+          "f1": 0.9656,
+          "mean_score": 0.8725
+        },
+        "unknown/all": {
+          "n": 1346,
+          "fpr": null,
+          "recall": 0.9443,
+          "f1": 0.9713,
+          "mean_score": 0.8861
+        }
+      }
+    }
+  }
+}

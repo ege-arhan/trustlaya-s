@@ -1,0 +1,25 @@
+{
+  "train_rows": 17902,
+  "train_by_source_language_label": {
+    "arxiv_abstracts/en/BENIGN": 392,
+    "jailbreakllms/undetermined/ATTACK": 966,
+    "jailbreakllms/undetermined/BENIGN": 8989,
+    "security_docs/en/BENIGN": 503,
+    "tensor_trust/undetermined/ATTACK": 7052
+  },
+  "class_balance": {
+    "ATTACK": 8018,
+    "BENIGN": 9884
+  },
+  "expected_sampling_mass": {
+    "arxiv_abstracts/BENIGN": 0.1667,
+    "jailbreakllms/ATTACK": 0.25,
+    "jailbreakllms/BENIGN": 0.1667,
+    "security_docs/BENIGN": 0.1667,
+    "tensor_trust/ATTACK": 0.25
+  },
+  "kish_effective_sample_size": 4932.5,
+  "samples_per_epoch": 17902,
+  "new_benign_length_buckets": {},
+  "distinct_training_rows_seen": 13642
+}

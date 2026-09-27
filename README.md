@@ -168,6 +168,13 @@ deepset benign false-positive rate from 0.36 to 0.70–0.85. See the
 [ablation report](reports/v5_ablation_report.md). V2 remains the default and
 no V5 weights are published.
 
+Iteration 2 ([benign repair report](reports/v5_benign_repair_report.md))
+adds human-written English, German and Turkish benign requests (Dolly, OASST2,
+Aya) and tests on an independent benign set (MASSIVE). Status **PARTIAL**:
+false alarms drop sharply (deepset 0.71 → 0.06, MASSIVE 0.94 → 0.20), but the
+DEV-selected model misses most deepset attacks (recall 0.71 → 0.21). V2 stays
+the default.
+
 ## Independent external evaluation (frozen v2)
 
 The [external real-world report](reports/external_real_world_benchmark.md) measures

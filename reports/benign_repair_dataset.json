@@ -1,0 +1,242 @@
+{
+  "sources": {
+    "dolly": {
+      "repo": "databricks/databricks-dolly-15k",
+      "revision": "bdd27f4d94b9c1f951818a7da7fd7aeea5dbff1a",
+      "license": "CC-BY-SA-3.0",
+      "field": "instruction",
+      "languages": [
+        "en"
+      ]
+    },
+    "oasst2": {
+      "repo": "OpenAssistant/oasst2",
+      "revision": "179dd21fc55192153d94adb0e0ce8f69e222bf75",
+      "license": "Apache-2.0",
+      "field": "first prompter message",
+      "languages": [
+        "en",
+        "de",
+        "tr"
+      ],
+      "filter": "review_result, not deleted, not synthetic, spam label < 0.5"
+    },
+    "aya": {
+      "repo": "CohereLabs/aya_dataset",
+      "revision": "f9ea04583f02a8f86404ff6c58bf75fe637df8a2",
+      "license": "Apache-2.0",
+      "field": "inputs",
+      "languages": [
+        "en",
+        "de",
+        "tr"
+      ]
+    },
+    "massive": {
+      "repo": "alexa/massive 1.1 (S3 tarball, ETag 51e0da2a3ff7a016f109e1d1b4306e93-3)",
+      "license": "CC-BY-4.0",
+      "field": "utt (test partition)",
+      "languages": [
+        "en",
+        "de",
+        "tr"
+      ],
+      "role": "TEST2_OOD_BENIGN only",
+      "per_locale": 1000
+    }
+  },
+  "caps_per_source_language": {
+    "TRAIN": 3000,
+    "DEV": 600,
+    "TEST": 600
+  },
+  "exact_duplicates_dropped": {
+    "dolly": 250,
+    "oasst2": 50,
+    "aya": 1089,
+    "massive": 14
+  },
+  "status": {
+    "aya/excluded_near_duplicate_of_attack": 3,
+    "aya/excluded_overlaps_ood": 1,
+    "aya/included": 7638,
+    "dolly/excluded_cap": 10550,
+    "dolly/excluded_near_duplicate_of_attack": 6,
+    "dolly/excluded_overlaps_ood": 5,
+    "dolly/included": 4200,
+    "massive/excluded_overlaps_pool": 8,
+    "massive/included": 2978,
+    "oasst2/excluded_cap": 1108,
+    "oasst2/excluded_near_duplicate_of_attack": 24,
+    "oasst2/excluded_overlaps_ood": 4,
+    "oasst2/included": 4786
+  },
+  "included_counts": {
+    "aya/de/DEV": 34,
+    "aya/de/TEST": 21,
+    "aya/de/TRAIN": 143,
+    "aya/en/DEV": 494,
+    "aya/en/TEST": 513,
+    "aya/en/TRAIN": 2382,
+    "aya/tr/DEV": 599,
+    "aya/tr/TEST": 591,
+    "aya/tr/TRAIN": 2861,
+    "dolly/en/DEV": 600,
+    "dolly/en/TEST": 600,
+    "dolly/en/TRAIN": 3000,
+    "massive/de/OOD_BENIGN_TEST": 996,
+    "massive/en/OOD_BENIGN_TEST": 990,
+    "massive/tr/OOD_BENIGN_TEST": 992,
+    "oasst2/de/DEV": 90,
+    "oasst2/de/TEST": 86,
+    "oasst2/de/TRAIN": 401,
+    "oasst2/en/DEV": 600,
+    "oasst2/en/TEST": 600,
+    "oasst2/en/TRAIN": 3000,
+    "oasst2/tr/DEV": 3,
+    "oasst2/tr/TEST": 2,
+    "oasst2/tr/TRAIN": 4
+  },
+  "length_buckets": {
+    "dolly/TRAIN": {
+      "<=32": 2467,
+      "33-64": 422,
+      "95-256": 29,
+      "65-94": 74,
+      "257+": 8
+    },
+    "dolly/DEV": {
+      "<=32": 492,
+      "33-64": 85,
+      "95-256": 7,
+      "65-94": 16
+    },
+    "dolly/TEST": {
+      "33-64": 89,
+      "<=32": 495,
+      "65-94": 13,
+      "95-256": 3
+    },
+    "oasst2/TRAIN": {
+      "33-64": 843,
+      "65-94": 335,
+      "<=32": 1891,
+      "257+": 65,
+      "95-256": 271
+    },
+    "oasst2/DEV": {
+      "<=32": 364,
+      "95-256": 67,
+      "65-94": 56,
+      "33-64": 195,
+      "257+": 11
+    },
+    "oasst2/TEST": {
+      "<=32": 402,
+      "65-94": 66,
+      "95-256": 66,
+      "33-64": 145,
+      "257+": 9
+    },
+    "aya/TRAIN": {
+      "<=32": 4260,
+      "33-64": 656,
+      "257+": 55,
+      "65-94": 195,
+      "95-256": 220
+    },
+    "aya/DEV": {
+      "33-64": 145,
+      "<=32": 880,
+      "65-94": 58,
+      "95-256": 35,
+      "257+": 9
+    },
+    "aya/TEST": {
+      "<=32": 902,
+      "33-64": 133,
+      "257+": 13,
+      "95-256": 43,
+      "65-94": 34
+    },
+    "massive/OOD_BENIGN_TEST": {
+      "<=32": 2957,
+      "33-64": 21
+    }
+  },
+  "security_vocabulary_rows": {
+    "dolly/TRAIN": {
+      "system": 15,
+      "password": 1,
+      "instruction": 4,
+      "prompt": 1,
+      "security": 7,
+      "developer": 2
+    },
+    "dolly/DEV": {
+      "system": 3,
+      "admin": 1
+    },
+    "dolly/TEST": {
+      "system": 6,
+      "security": 1
+    },
+    "oasst2/TRAIN": {
+      "instruction": 15,
+      "prompt": 37,
+      "system": 73,
+      "security": 14,
+      "developer": 12,
+      "api_key": 1,
+      "password": 4,
+      "ignore": 4,
+      "admin": 3,
+      "override": 2,
+      "token": 4
+    },
+    "oasst2/DEV": {
+      "system": 13,
+      "instruction": 3,
+      "developer": 3,
+      "prompt": 11,
+      "token": 1,
+      "password": 1
+    },
+    "oasst2/TEST": {
+      "system": 12,
+      "security": 5,
+      "prompt": 5,
+      "instruction": 2,
+      "token": 2,
+      "developer": 2,
+      "ignore": 1,
+      "admin": 1
+    },
+    "aya/TRAIN": {
+      "system": 35,
+      "ignore": 1,
+      "security": 3,
+      "password": 10,
+      "prompt": 7,
+      "admin": 1,
+      "token": 1
+    },
+    "aya/DEV": {
+      "system": 8,
+      "admin": 1,
+      "password": 2,
+      "security": 2,
+      "prompt": 1
+    },
+    "aya/TEST": {
+      "system": 10,
+      "password": 4,
+      "developer": 1,
+      "admin": 1,
+      "prompt": 1
+    },
+    "massive/OOD_BENIGN_TEST": {}
+  },
+  "short_instruction_rows_le_94_tokens": 11143,
+  "hard_negative_rows_with_security_vocabulary_TRAIN": 246
+}
