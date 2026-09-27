@@ -1,0 +1,910 @@
+{
+  "note": "S0 = iteration-3 H1 seeds 42/43/44 (same recipe, reused). S2_de and S1_tr were the DEV top-2 and got seeds 43/44.",
+  "config_means": {
+    "S0": {
+      "tensor_trust_recall": {
+        "mean": 0.9878,
+        "sd": 0.0033,
+        "min": 0.9839,
+        "max": 0.9897
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8275,
+        "sd": 0.0263,
+        "min": 0.8023,
+        "max": 0.8547
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1885,
+        "sd": 0.0239,
+        "min": 0.1615,
+        "max": 0.2069
+      },
+      "hackaprompt_recall": {
+        "mean": 0.999,
+        "sd": 0.001,
+        "min": 0.998,
+        "max": 1.0
+      },
+      "security_docs_fpr": {
+        "mean": 0.0102,
+        "sd": 0.0102,
+        "min": 0.0,
+        "max": 0.0204
+      },
+      "arxiv_fpr": {
+        "mean": 0.0145,
+        "sd": 0.0062,
+        "min": 0.0109,
+        "max": 0.0217
+      },
+      "deepset_recall": {
+        "mean": 0.299,
+        "sd": 0.0391,
+        "min": 0.254,
+        "max": 0.3254
+      },
+      "deepset_fpr": {
+        "mean": 0.0699,
+        "sd": 0.0129,
+        "min": 0.0556,
+        "max": 0.0808
+      },
+      "deepset_pr_auc": {
+        "mean": 0.6705,
+        "sd": 0.0184,
+        "min": 0.6511,
+        "max": 0.6878
+      },
+      "gandalf_recall": {
+        "mean": 0.9778,
+        "sd": 0.0081,
+        "min": 0.9717,
+        "max": 0.9869
+      },
+      "massive_test_fpr": {
+        "mean": 0.262,
+        "sd": 0.0425,
+        "min": 0.2186,
+        "max": 0.3036
+      },
+      "massive_dev_fpr": {
+        "mean": 0.2473,
+        "sd": 0.0443,
+        "min": 0.2024,
+        "max": 0.291
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.0167,
+        "sd": 0.0034,
+        "min": 0.0129,
+        "max": 0.0195
+      },
+      "test1_ece_raw": {
+        "mean": 0.0488,
+        "sd": 0.0023,
+        "min": 0.0463,
+        "max": 0.0507
+      }
+    },
+    "S2_de": {
+      "tensor_trust_recall": {
+        "mean": 0.987,
+        "sd": 0.0036,
+        "min": 0.983,
+        "max": 0.99
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8236,
+        "sd": 0.0204,
+        "min": 0.8023,
+        "max": 0.843
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.182,
+        "sd": 0.0386,
+        "min": 0.1491,
+        "max": 0.2245
+      },
+      "hackaprompt_recall": {
+        "mean": 0.9987,
+        "sd": 0.0015,
+        "min": 0.997,
+        "max": 1.0
+      },
+      "security_docs_fpr": {
+        "mean": 0.0136,
+        "sd": 0.0156,
+        "min": 0.0,
+        "max": 0.0306
+      },
+      "arxiv_fpr": {
+        "mean": 0.0109,
+        "sd": 0.0,
+        "min": 0.0109,
+        "max": 0.0109
+      },
+      "deepset_recall": {
+        "mean": 0.3981,
+        "sd": 0.0298,
+        "min": 0.369,
+        "max": 0.4286
+      },
+      "deepset_fpr": {
+        "mean": 0.1145,
+        "sd": 0.0152,
+        "min": 0.0985,
+        "max": 0.1288
+      },
+      "deepset_pr_auc": {
+        "mean": 0.6708,
+        "sd": 0.011,
+        "min": 0.661,
+        "max": 0.6827
+      },
+      "gandalf_recall": {
+        "mean": 0.972,
+        "sd": 0.0082,
+        "min": 0.9626,
+        "max": 0.9778
+      },
+      "massive_test_fpr": {
+        "mean": 0.3753,
+        "sd": 0.0587,
+        "min": 0.3109,
+        "max": 0.4258
+      },
+      "massive_dev_fpr": {
+        "mean": 0.3687,
+        "sd": 0.0598,
+        "min": 0.3045,
+        "max": 0.4228
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.0173,
+        "sd": 0.0022,
+        "min": 0.0153,
+        "max": 0.0197
+      },
+      "test1_ece_raw": {
+        "mean": 0.0465,
+        "sd": 0.0023,
+        "min": 0.0439,
+        "max": 0.0482
+      }
+    },
+    "S1_tr": {
+      "tensor_trust_recall": {
+        "mean": 0.9899,
+        "sd": 0.0016,
+        "min": 0.9886,
+        "max": 0.9917
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8624,
+        "sd": 0.0168,
+        "min": 0.843,
+        "max": 0.8721
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.2253,
+        "sd": 0.0335,
+        "min": 0.1899,
+        "max": 0.2564
+      },
+      "hackaprompt_recall": {
+        "mean": 0.9993,
+        "sd": 0.0006,
+        "min": 0.999,
+        "max": 1.0
+      },
+      "security_docs_fpr": {
+        "mean": 0.0306,
+        "sd": 0.0177,
+        "min": 0.0204,
+        "max": 0.051
+      },
+      "arxiv_fpr": {
+        "mean": 0.0145,
+        "sd": 0.0062,
+        "min": 0.0109,
+        "max": 0.0217
+      },
+      "deepset_recall": {
+        "mean": 0.3267,
+        "sd": 0.0225,
+        "min": 0.3016,
+        "max": 0.3452
+      },
+      "deepset_fpr": {
+        "mean": 0.0825,
+        "sd": 0.0243,
+        "min": 0.0606,
+        "max": 0.1086
+      },
+      "deepset_pr_auc": {
+        "mean": 0.6751,
+        "sd": 0.0249,
+        "min": 0.6606,
+        "max": 0.7039
+      },
+      "gandalf_recall": {
+        "mean": 0.9784,
+        "sd": 0.0038,
+        "min": 0.9757,
+        "max": 0.9828
+      },
+      "massive_test_fpr": {
+        "mean": 0.4464,
+        "sd": 0.0579,
+        "min": 0.3838,
+        "max": 0.498
+      },
+      "massive_dev_fpr": {
+        "mean": 0.4255,
+        "sd": 0.0483,
+        "min": 0.3724,
+        "max": 0.467
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.0127,
+        "sd": 0.0011,
+        "min": 0.0116,
+        "max": 0.0138
+      },
+      "test1_ece_raw": {
+        "mean": 0.0454,
+        "sd": 0.0015,
+        "min": 0.0442,
+        "max": 0.0471
+      }
+    }
+  },
+  "dev_selection": {
+    "frozen_at": "2026-09-27T11:24:41.844316+00:00",
+    "rule": "DEV class-balanced accuracy at T1, tie DEV PR-AUC",
+    "runs_seed42": {
+      "S1_tr": {
+        "threshold": 0.21,
+        "temperature": 0.6421,
+        "dev_class_balanced_accuracy": 0.945,
+        "dev_pr_auc": 0.986,
+        "checkpoint_sha256": "f02b5c19ea9919d9add71baf5ecf1d461d08225da85a435df80c2a08069fbcb3"
+      },
+      "S2_de": {
+        "threshold": 0.41,
+        "temperature": 0.6717,
+        "dev_class_balanced_accuracy": 0.9455,
+        "dev_pr_auc": 0.9858,
+        "checkpoint_sha256": "3d6f2810778ab1be01e5efa43a0fab929c94999da2f69d51b6fc285568cadf7f"
+      },
+      "S3_tr_de": {
+        "threshold": 0.23,
+        "temperature": 0.6518,
+        "dev_class_balanced_accuracy": 0.9413,
+        "dev_pr_auc": 0.9856,
+        "checkpoint_sha256": "667bfa30ed9af3755741c5f160653d54b5c1a347479591e805e6c11b96ba6aa6"
+      },
+      "S4_tr_de_benign": {
+        "threshold": 0.29,
+        "temperature": 0.6922,
+        "dev_class_balanced_accuracy": 0.9433,
+        "dev_pr_auc": 0.9856,
+        "checkpoint_sha256": "65870ab068a05d8b251a046f104503a91faf834da34f8cf195d8acf1e3d38315"
+      },
+      "S5_de_debenign": {
+        "threshold": 0.29,
+        "temperature": 0.6231,
+        "dev_class_balanced_accuracy": 0.9433,
+        "dev_pr_auc": 0.986,
+        "checkpoint_sha256": "c3c2ac8a9170c0aaa6234ad298ffe203f993d3f636eddaa29744ba78b204fc77"
+      }
+    },
+    "top2_for_seeds_43_44": [
+      "S2_de",
+      "S1_tr"
+    ]
+  },
+  "deepset_buckets_per_run": {
+    "S0_s42": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.0964,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.8252
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.2895,
+        "precision": 0.9778,
+        "fpr": 0.0056,
+        "pr_auc": 0.7911
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.0846,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.5721
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.4344,
+        "precision": 0.7067,
+        "fpr": 0.1947,
+        "pr_auc": 0.7259
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.2837,
+        "precision": 0.7349,
+        "fpr": 0.0563,
+        "pr_auc": 0.6363
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.0811,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.98
+      }
+    },
+    "S0_s43": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.1205,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.7985
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3816,
+        "precision": 0.9355,
+        "fpr": 0.0223,
+        "pr_auc": 0.7882
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1308,
+        "precision": 0.85,
+        "fpr": 0.0106,
+        "pr_auc": 0.578
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.5328,
+        "precision": 0.6915,
+        "fpr": 0.2566,
+        "pr_auc": 0.7587
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.3581,
+        "precision": 0.7064,
+        "fpr": 0.0818,
+        "pr_auc": 0.6601
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.1351,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9763
+      }
+    },
+    "S0_s44": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.1446,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.8318
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3553,
+        "precision": 0.8852,
+        "fpr": 0.0391,
+        "pr_auc": 0.8019
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1692,
+        "precision": 0.7857,
+        "fpr": 0.0212,
+        "pr_auc": 0.6104
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.4754,
+        "precision": 0.716,
+        "fpr": 0.2035,
+        "pr_auc": 0.7605
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.3535,
+        "precision": 0.7238,
+        "fpr": 0.0742,
+        "pr_auc": 0.6779
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.1081,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9658
+      }
+    },
+    "S1_tr_s42": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.1325,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.8405
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3947,
+        "precision": 0.8824,
+        "fpr": 0.0447,
+        "pr_auc": 0.7845
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1308,
+        "precision": 0.7083,
+        "fpr": 0.0247,
+        "pr_auc": 0.5592
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.5492,
+        "precision": 0.6505,
+        "fpr": 0.3186,
+        "pr_auc": 0.7462
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.3535,
+        "precision": 0.6387,
+        "fpr": 0.11,
+        "pr_auc": 0.6389
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.2162,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.984
+      }
+    },
+    "S2_de_s42": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.4096,
+        "precision": 0.8718,
+        "fpr": 0.0379,
+        "pr_auc": 0.8028
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3026,
+        "precision": 0.9388,
+        "fpr": 0.0168,
+        "pr_auc": 0.7612
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1462,
+        "precision": 0.8261,
+        "fpr": 0.0141,
+        "pr_auc": 0.5193
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.6066,
+        "precision": 0.6789,
+        "fpr": 0.3097,
+        "pr_auc": 0.7633
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.3395,
+        "precision": 0.6518,
+        "fpr": 0.0997,
+        "pr_auc": 0.6178
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.5405,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.989
+      }
+    },
+    "S3_tr_de_s42": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.5301,
+        "precision": 0.8302,
+        "fpr": 0.0682,
+        "pr_auc": 0.8264
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3355,
+        "precision": 0.9273,
+        "fpr": 0.0223,
+        "pr_auc": 0.7632
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1846,
+        "precision": 0.7273,
+        "fpr": 0.0318,
+        "pr_auc": 0.5275
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.7049,
+        "precision": 0.6418,
+        "fpr": 0.4248,
+        "pr_auc": 0.7672
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.4047,
+        "precision": 0.6042,
+        "fpr": 0.1458,
+        "pr_auc": 0.6173
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.6216,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9838
+      }
+    },
+    "S4_tr_de_benign_s42": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.4578,
+        "precision": 0.95,
+        "fpr": 0.0152,
+        "pr_auc": 0.8451
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3158,
+        "precision": 0.96,
+        "fpr": 0.0112,
+        "pr_auc": 0.753
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1462,
+        "precision": 0.9048,
+        "fpr": 0.0071,
+        "pr_auc": 0.5247
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.6639,
+        "precision": 0.7232,
+        "fpr": 0.2743,
+        "pr_auc": 0.8036
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.3814,
+        "precision": 0.713,
+        "fpr": 0.0844,
+        "pr_auc": 0.6401
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.4865,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9866
+      }
+    },
+    "S5_de_debenign_s42": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.4819,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.8711
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3355,
+        "precision": 0.9273,
+        "fpr": 0.0223,
+        "pr_auc": 0.7899
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.2,
+        "precision": 0.963,
+        "fpr": 0.0035,
+        "pr_auc": 0.6236
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.6311,
+        "precision": 0.6364,
+        "fpr": 0.3894,
+        "pr_auc": 0.7577
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.3953,
+        "precision": 0.6538,
+        "fpr": 0.1151,
+        "pr_auc": 0.6506
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.4865,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9797
+      }
+    },
+    "S2_de_s43": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.494,
+        "precision": 0.8367,
+        "fpr": 0.0606,
+        "pr_auc": 0.8061
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3487,
+        "precision": 0.9298,
+        "fpr": 0.0223,
+        "pr_auc": 0.787
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1769,
+        "precision": 0.7667,
+        "fpr": 0.0247,
+        "pr_auc": 0.5174
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.6967,
+        "precision": 0.6589,
+        "fpr": 0.3894,
+        "pr_auc": 0.7741
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.4,
+        "precision": 0.6277,
+        "fpr": 0.1304,
+        "pr_auc": 0.6274
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.5946,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9807
+      }
+    },
+    "S2_de_s44": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.4699,
+        "precision": 0.8864,
+        "fpr": 0.0379,
+        "pr_auc": 0.8274
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3092,
+        "precision": 0.9038,
+        "fpr": 0.0279,
+        "pr_auc": 0.8011
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1769,
+        "precision": 0.8214,
+        "fpr": 0.0177,
+        "pr_auc": 0.5992
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.6311,
+        "precision": 0.6525,
+        "fpr": 0.3628,
+        "pr_auc": 0.7602
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.386,
+        "precision": 0.6434,
+        "fpr": 0.1176,
+        "pr_auc": 0.6453
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.4595,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9827
+      }
+    },
+    "S1_tr_s43": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.1205,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.8335
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3553,
+        "precision": 0.9474,
+        "fpr": 0.0168,
+        "pr_auc": 0.7802
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1231,
+        "precision": 0.8889,
+        "fpr": 0.0071,
+        "pr_auc": 0.5527
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.4918,
+        "precision": 0.6742,
+        "fpr": 0.2566,
+        "pr_auc": 0.7449
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.3256,
+        "precision": 0.6931,
+        "fpr": 0.0793,
+        "pr_auc": 0.6441
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.1622,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9746
+      }
+    },
+    "S1_tr_s44": {
+      "german*": {
+        "n": 215,
+        "positive": 83,
+        "recall": 0.2048,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.8442
+      },
+      "english*": {
+        "n": 331,
+        "positive": 152,
+        "recall": 0.3684,
+        "precision": 0.9492,
+        "fpr": 0.0168,
+        "pr_auc": 0.8223
+      },
+      "question": {
+        "n": 413,
+        "positive": 130,
+        "recall": 0.1615,
+        "precision": 0.913,
+        "fpr": 0.0071,
+        "pr_auc": 0.6306
+      },
+      "non_question": {
+        "n": 235,
+        "positive": 122,
+        "recall": 0.541,
+        "precision": 0.75,
+        "fpr": 0.1947,
+        "pr_auc": 0.7751
+      },
+      "short_<=94": {
+        "n": 606,
+        "positive": 215,
+        "recall": 0.3535,
+        "precision": 0.76,
+        "fpr": 0.0614,
+        "pr_auc": 0.6847
+      },
+      "long_>94": {
+        "n": 42,
+        "positive": 37,
+        "recall": 0.2973,
+        "precision": 1.0,
+        "fpr": 0.0,
+        "pr_auc": 0.9649
+      }
+    }
+  }
+}

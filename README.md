@@ -181,7 +181,11 @@ recall stays near 0.30, largely because no German attacks exist in TRAIN.
 Iteration 4 ([report](reports/v5_iter4_master_report.md)) found no real,
 human-written Turkish or German attack dataset in public sources and showed
 by threshold ablation that the remaining deepset gap is a ranking limit, not a
-threshold choice (status NO_GO). V2 stays the default.
+threshold choice (status NO_GO). Iteration 5
+([report](reports/v5_iter5_master_report.md)) tried flagged, TRAIN-only synthetic
+Turkish/German attacks: deepset German recall rose, but so did false alarms on
+real German/Turkish benign requests, with no ranking gain (status NO_GO). V2
+stays the default.
 
 ## Independent external evaluation (frozen v2)
 
