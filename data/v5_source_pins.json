@@ -49,6 +49,14 @@
     "revision": "04737b65e90a6794ec227012e4a255a7def6344b",
     "url": "https://huggingface.co/datasets/Lakera/gandalf_ignore_instructions"
   },
+  "hackaprompt": {
+    "files": {
+      "README.md": "627ac0ec7ebfcb5baf93bbc9b80c72a73443846debf06196803aee1138486d2a",
+      "hackaprompt.parquet": "bedca308fbd71be57793930e4e4a0dcfbda2a27b6d0f2ad3191bb20a6a315928"
+    },
+    "revision": "25b87fbedfb86840abaf8cd09af7a029208a971a",
+    "url": "https://huggingface.co/datasets/hackaprompt/hackaprompt-dataset (gated, terms accepted by account owner)"
+  },
   "jailbreakbench": {
     "files": {
       "LICENSE": "7e1ae8f3676f39ff6e62af1743385c176a9476b1157f35bb9d05b4e6c65b7d94",
@@ -74,6 +82,16 @@
     },
     "revision": "1.1-etag-51e0da2a3ff7a016f109e1d1b4306e93-3",
     "url": "https://github.com/alexa/massive (S3 release 1.1)"
+  },
+  "mosscap": {
+    "files": {
+      "README.md": "f8774e6c4712fd55b1daa3f7b2f647bbf9316dbbc81ec3a9a7050d90eb6e3d45",
+      "data/test-00000-of-00001-06acab2d6a2bcf9f.parquet": "9311f64ca579c947e43ff64ad4996585c51e4dae8ae747342926cf0091160d21",
+      "data/train-00000-of-00001-07ae0ed17fa07cc1.parquet": "a3c354dd1457c0125243ed107a4cc3eafdc09b2c60eb7ce3e3854a2fbb12a4b2",
+      "data/validation-00000-of-00001-e136a45438d15f16.parquet": "d6c112992c73a1744f540cc3f6d51ecafabdf4023ec2188de6dde31ca7e52d24"
+    },
+    "revision": "b7e495ff63373ff7f7dabc1e9390cf62b5838570",
+    "url": "https://huggingface.co/datasets/Lakera/mosscap_prompt_injection"
   },
   "oasst2": {
     "files": {

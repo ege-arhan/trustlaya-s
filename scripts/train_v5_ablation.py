@@ -82,8 +82,8 @@ def tokenize(tokenizer, rows):
     return rows
 
 
-def epoch_order(n, weights, epoch):
-    generator = torch.Generator().manual_seed(SEED + epoch)
+def epoch_order(n, weights, epoch, seed=SEED):
+    generator = torch.Generator().manual_seed(seed + epoch)
     if weights is None:
         return torch.randperm(n, generator=generator).tolist()
     return torch.multinomial(torch.tensor(weights, dtype=torch.double), n, replacement=True,

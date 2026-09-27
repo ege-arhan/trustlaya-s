@@ -68,14 +68,14 @@ def weights_for(train, spec):
     return weights
 
 
-def grouped_batches(order, lengths, batch_size, epoch):
+def grouped_batches(order, lengths, batch_size, epoch, seed=SEED):
     """Sort by length inside chunks of CHUNK_BATCHES batches, then shuffle batch order (seeded)."""
     batches = []
     size = batch_size * CHUNK_BATCHES
     for start in range(0, len(order), size):
         chunk = sorted(order[start:start + size], key=lambda i: lengths[i])
         batches += [chunk[k:k + batch_size] for k in range(0, len(chunk), batch_size)]
-    random.Random(SEED + 1000 + epoch).shuffle(batches)
+    random.Random(seed + 1000 + epoch).shuffle(batches)
     return batches
 
 
@@ -83,12 +83,14 @@ def ids_digest(rows):
     return hashlib.sha256("\n".join(sorted(r["sample_id"] for r in rows)).encode()).hexdigest()
 
 
-def run(run_id, rows, tokenizer, dev_rows):
-    spec = RUNS[run_id]
-    out_dir, ckpt_dir = OUT / run_id, CHECKPOINTS / run_id
+def run(run_id, rows, tokenizer, dev_rows, spec=None, out_root=OUT, ckpt_root=CHECKPOINTS):
+    """spec may set seed (default 42) and batching ("grouped" default, or "random" as in E6)."""
+    spec = spec or RUNS[run_id]
+    seed, batching = spec.get("seed", SEED), spec.get("batching", "grouped")
+    out_dir, ckpt_dir = out_root / run_id, ckpt_root / run_id
     out_dir.mkdir(parents=True, exist_ok=True)
     ckpt_dir.mkdir(parents=True, exist_ok=True)
-    base = load_split(rows, "TRAIN", set(MIXED))
+    base = load_split(rows, "TRAIN", set(MIXED) | set(spec.get("extra_attack_sources", ())))
     extra = [r for r in load_split(rows, "TRAIN", set(NEW_SOURCES)) if r["language"] in spec["languages"]]
     train = tokenize(tokenizer, base + extra)
     weights = weights_for(train, spec)
@@ -99,7 +101,8 @@ def run(run_id, rows, tokenizer, dev_rows):
     total = sum(mass.values())
     kish = (sum(weights) ** 2 / sum(w * w for w in weights)) if weights else len(train)
     config = {"run_id": run_id, **spec, "languages": list(spec["languages"]), "context": CONTEXT, "loss": "FOCAL",
-              "focal": FOCAL, "seed": SEED, "training": {**TRAINING, "batching": f"length-grouped, chunks of {CHUNK_BATCHES} batches"},
+              "focal": FOCAL, "seed": seed, "training": {**TRAINING, "batching": f"length-grouped, chunks of {CHUNK_BATCHES} batches"
+                                                                     if batching == "grouped" else "random (as E6)"},
               "plan": "reports/benign_repair_plan.md", "tokenizer_sha256": sha256(TOKENIZER / "tokenizer.json"),
               "backbone_sha256": sha256(BACKBONE / "model.safetensors")}
     (out_dir / "config.json").write_text(json.dumps(config, indent=2) + "\n")
@@ -119,7 +122,7 @@ def run(run_id, rows, tokenizer, dev_rows):
                  "config_sha256": sha256(out_dir / "config.json")}
     (out_dir / "dataset_checksums.json").write_text(json.dumps(checksums, indent=2) + "\n")
 
-    seed_everything(SEED)
+    seed_everything(seed)
     dev = device()
     model = V5Classifier(BACKBONE).to(dev)
     optimizer = torch.optim.AdamW(model.parameters(), lr=TRAINING["lr"], weight_decay=TRAINING["weight_decay"])
@@ -132,10 +135,13 @@ def run(run_id, rows, tokenizer, dev_rows):
     best, seen, started = None, set(), time.perf_counter()
     for epoch in range(TRAINING["epochs"]):
         model.train()
-        order = epoch_order(len(train), weights, epoch)
+        order = epoch_order(len(train), weights, epoch, seed)
         seen.update(order)
         running, epoch_loss, steps = [], 0.0, 0
-        for idx in grouped_batches(order, lengths, TRAINING["batch_size"], epoch):
+        size = TRAINING["batch_size"]
+        batches = (grouped_batches(order, lengths, size, epoch, seed) if batching == "grouped"
+                   else [order[k:k + size] for k in range(0, len(order), size)])
+        for idx in batches:
             ids, mask = batch([train[i]["tokens"] for i in idx], CONTEXT, tokenizer.cls_token_id, tokenizer.sep_token_id)
             targets = torch.tensor([train[i]["y"] for i in idx], device=dev)
             loss = focal_loss(model(ids.to(dev), mask.to(dev)), targets, **FOCAL)

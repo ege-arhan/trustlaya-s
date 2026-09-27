@@ -59,3 +59,16 @@ def test_grouped_batches_are_a_seeded_partition():
     assert sorted(i for b in first for i in b) == order
     assert first == grouped_batches(order, lengths, 16, 0)
     assert first != grouped_batches(order, lengths, 16, 1)
+
+
+def test_iter3_manifest_and_roles():
+    for line in (ROOT / "data/iter3_manifest.sha256").read_text().splitlines():
+        digest, path = line.split()
+        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path
+    data = json.loads((ROOT / "data/iter3_lineage.json").read_text())
+    for r in (dict(zip(data["fields"], row)) for row in data["rows"]):
+        if r["source"] == "massive_dev":
+            assert r["split"] == "OOD_BENIGN_FRESH"
+        else:
+            assert r["source"] == "hackaprompt" and r["native_category"].startswith("successful_attack")
+            assert r["split"] in ("TRAIN", "DEV", "TEST")

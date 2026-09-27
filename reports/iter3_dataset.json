@@ -1,0 +1,41 @@
+{
+  "hackaprompt": {
+    "rows": 601757,
+    "correct_rows": 77936,
+    "unique_successful_inputs": 18479,
+    "failed_attempts_excluded": 523821,
+    "revision": "25b87fbedfb86840abaf8cd09af7a029208a971a",
+    "license": "MIT (gated; terms accepted)",
+    "label_rule": "correct == True -> ATTACK; failed attempts excluded"
+  },
+  "massive_dev": {
+    "per_locale": 1000,
+    "partition": "dev",
+    "role": "OOD_BENIGN_FRESH"
+  },
+  "caps": {
+    "TRAIN": 5000,
+    "DEV": 1000,
+    "TEST": 1000
+  },
+  "status": {
+    "hackaprompt/excluded_benign_near_duplicate": 7,
+    "hackaprompt/excluded_cap": 11472,
+    "hackaprompt/included": 7000,
+    "massive_dev/excluded_overlaps_other": 41,
+    "massive_dev/included": 2959
+  },
+  "included": {
+    "hackaprompt/en/DEV": 1000,
+    "hackaprompt/en/TEST": 1000,
+    "hackaprompt/en/TRAIN": 5000,
+    "massive_dev/de/OOD_BENIGN_FRESH": 992,
+    "massive_dev/en/OOD_BENIGN_FRESH": 986,
+    "massive_dev/tr/OOD_BENIGN_FRESH": 981
+  },
+  "hackaprompt_contains_pwned_share": {
+    "TRAIN": 0.713,
+    "DEV": 0.715,
+    "TEST": 0.703
+  }
+}

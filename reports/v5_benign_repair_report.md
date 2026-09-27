@@ -113,3 +113,13 @@ REGRESSION = a DEV attack recall more than 0.05 below that.
 2. Add an attack source resembling short, question-like injections to TRAIN (independent of
    deepset), then check deepset recall again.
 3. Security Stack Exchange questions as security-vocabulary hard negatives.
+
+## Correction (2026-09-27, after the variance study)
+
+Results above are unchanged; one interpretation was wrong. "Batching alone changed the model a
+lot" compared R0 at the iteration-2 threshold rule with E6 at its iteration-1 threshold. The
+[variance study](v5_variance_study.md) shows random vs length-grouped batching give overlapping
+results over three seeds, and that the original E6 checkpoint itself drops to deepset recall 0.298
+under the iteration-2 rule. The deepset recall drop is therefore mostly a threshold-rule/DEV
+composition effect, not an effect of the new benign data or of batching; the benign data does
+improve JailbreakLLMs recall, MASSIVE FPR and calibration at a fixed rule.

@@ -31,3 +31,6 @@ src/*.egg-info/
 models/v5-ablation/
 models/v5-benign-repair/
 data/v5_benign/
+models/v5-variance/
+data/v5_iter3/
+models/v5-iter3/
