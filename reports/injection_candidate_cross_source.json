@@ -1,0 +1,164 @@
+{
+  "fresh_source": "zachz/prompt-injection-benchmark",
+  "fresh_source_revision": "dc0072ad6af8d1be049cdb60959e3ff51df4bcae",
+  "fresh_license": "MIT",
+  "fresh_sha256": "214f58813b0dd6be93a198037be64ccb56c87c2d6af14719b8e233865ad38ba2",
+  "fresh_excluded_exact_training_overlap": 4,
+  "selection_note": "Fresh source and legacy synthetic test are diagnostics after BPI validation-only candidate selection; no threshold or C was chosen here. Fresh source has short, English-heavy authored/template examples; it is not agent tool-output traffic.",
+  "results": {
+    "fresh_zachz": {
+      "v2_at_0_5": {
+        "n": 299,
+        "positive": 199,
+        "threshold": 0.5,
+        "f1": 0.6488095238095238,
+        "precision": 0.7956204379562044,
+        "recall": 0.5477386934673367,
+        "false_positive_rate": 0.28,
+        "false_negative_rate": 0.45226130653266333,
+        "confusion_matrix": [
+          [
+            72,
+            28
+          ],
+          [
+            90,
+            109
+          ]
+        ],
+        "calibration": {
+          "ece": 0.3487284947591631,
+          "brier": 0.3534722328186035,
+          "nll": 2.9735283851623535
+        }
+      },
+      "candidate_at_0_5": {
+        "n": 299,
+        "positive": 199,
+        "threshold": 0.5,
+        "f1": 0.8853333333333333,
+        "precision": 0.9431818181818182,
+        "recall": 0.8341708542713567,
+        "false_positive_rate": 0.1,
+        "false_negative_rate": 0.1658291457286432,
+        "confusion_matrix": [
+          [
+            90,
+            10
+          ],
+          [
+            33,
+            166
+          ]
+        ],
+        "calibration": {
+          "ece": 0.08929885681531699,
+          "brier": 0.09313277155160904,
+          "nll": 0.2886340916156769
+        }
+      },
+      "candidate_dev_threshold": {
+        "n": 299,
+        "positive": 199,
+        "threshold": 0.5500000000000002,
+        "f1": 0.8726287262872628,
+        "precision": 0.9470588235294117,
+        "recall": 0.8090452261306532,
+        "false_positive_rate": 0.09,
+        "false_negative_rate": 0.19095477386934673,
+        "confusion_matrix": [
+          [
+            91,
+            9
+          ],
+          [
+            38,
+            161
+          ]
+        ],
+        "calibration": {
+          "ece": 0.08929885681531699,
+          "brier": 0.09313277155160904,
+          "nll": 0.2886340916156769
+        }
+      }
+    },
+    "legacy_synthetic": {
+      "v2_at_0_5": {
+        "n": 1975,
+        "positive": 279,
+        "threshold": 0.5,
+        "f1": 0.5548780487804879,
+        "precision": 0.4827586206896552,
+        "recall": 0.6523297491039427,
+        "false_positive_rate": 0.11497641509433962,
+        "false_negative_rate": 0.34767025089605735,
+        "confusion_matrix": [
+          [
+            1501,
+            195
+          ],
+          [
+            97,
+            182
+          ]
+        ],
+        "calibration": {
+          "ece": 0.1287065639926262,
+          "brier": 0.11397628486156464,
+          "nll": 0.9476484656333923
+        }
+      },
+      "candidate_at_0_5": {
+        "n": 1975,
+        "positive": 279,
+        "threshold": 0.5,
+        "f1": 0.3449959316517494,
+        "precision": 0.2231578947368421,
+        "recall": 0.7598566308243727,
+        "false_positive_rate": 0.43514150943396224,
+        "false_negative_rate": 0.24014336917562723,
+        "confusion_matrix": [
+          [
+            958,
+            738
+          ],
+          [
+            67,
+            212
+          ]
+        ],
+        "calibration": {
+          "ece": 0.3479635646920416,
+          "brier": 0.30285441875457764,
+          "nll": 1.2979967594146729
+        }
+      },
+      "candidate_dev_threshold": {
+        "n": 1975,
+        "positive": 279,
+        "threshold": 0.5500000000000002,
+        "f1": 0.3217821782178218,
+        "precision": 0.2090032154340836,
+        "recall": 0.6989247311827957,
+        "false_positive_rate": 0.43514150943396224,
+        "false_negative_rate": 0.3010752688172043,
+        "confusion_matrix": [
+          [
+            958,
+            738
+          ],
+          [
+            84,
+            195
+          ]
+        ],
+        "calibration": {
+          "ece": 0.3479635646920416,
+          "brier": 0.30285441875457764,
+          "nll": 1.2979967594146729
+        }
+      }
+    }
+  }
+}

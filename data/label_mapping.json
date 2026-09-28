@@ -1,0 +1,67 @@
+{
+  "tensor_trust": {
+    "hijacking_benchmark_v1": {
+      "label": "ATTACK",
+      "rule": "attacker_input appears in upstream v1 hijacking robustness benchmark (LLM adversarially filtered)"
+    },
+    "extraction_benchmark_v1": {
+      "label": "ATTACK",
+      "rule": "attacker_input appears in upstream v1 extraction robustness benchmark"
+    },
+    "hijacking_candidate": {
+      "label": "ATTACK",
+      "rule": "upstream is_first_pass_hijacking_candidate: granted access without being the access code, used against >=2 accounts, >1 word or >30 chars"
+    },
+    "extraction_candidate": {
+      "label": "ATTACK",
+      "rule": "upstream: response contains access code, or last failed attack before the attacker entered the code (not self-attack)"
+    },
+    "unverified_attempt": {
+      "label": "EXCLUDED",
+      "rule": "attack on another player with no success evidence; NOT benign"
+    },
+    "self_or_sandbox_attack": {
+      "label": "EXCLUDED",
+      "rule": "attacker == defender (testing own defense / sandbox)"
+    },
+    "access_code_entry": {
+      "label": "EXCLUDED",
+      "rule": "input equals the defender access code (a password, not an attack)"
+    },
+    "tos_removed_text": {
+      "label": "EXCLUDED",
+      "rule": "input or access code removed upstream for ToS violations"
+    }
+  },
+  "tensor_trust_defenses": {
+    "label": "EXCLUDED",
+    "rule": "defense prompts are not a normal-user distribution"
+  },
+  "jailbreakllms": {
+    "jailbreak_prompt": "ATTACK",
+    "regular_prompt": "BENIGN"
+  },
+  "deepset": {
+    "injection": "ATTACK",
+    "benign": "BENIGN"
+  },
+  "gandalf": {
+    "gandalf_ignore_instructions_attack": "ATTACK"
+  },
+  "jailbreakbench": {
+    "harmful_behavior": "HARMFUL_REQUEST (different task)",
+    "benign_behavior": "BENIGN_REQUEST (different task)"
+  },
+  "security_docs": {
+    "defensive_documentation": "BENIGN",
+    "forum_question_prose": "BENIGN",
+    "filter": "code blocks, quotes, tables, quoted or imperative attack strings removed"
+  },
+  "arxiv_abstracts": {
+    "paper_abstract": "BENIGN"
+  },
+  "conflicts": {
+    "exact_label_conflict": "EXCLUDED",
+    "benign near-duplicate of an attack (Jaccard > 0.70)": "excluded"
+  }
+}

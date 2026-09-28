@@ -1,0 +1,149 @@
+{
+  "cohort": "Bordair live game attacks >=500 chars + OWASP 2026 explanatory paragraphs",
+  "model": "v3",
+  "threshold": 0.3,
+  "calibration": "frozen v3 Gandalf/prompts.chat development fit applied after pooling",
+  "batch_size": 24,
+  "total_scored_windows_including_strategy_duplicates": 2738,
+  "total_batched_model_ms": 3355.9030829928815,
+  "strategies": {
+    "HEAD": {
+      "metrics": {
+        "n": 445,
+        "positive": 340,
+        "tp": 2,
+        "fp": 0,
+        "tn": 105,
+        "fn": 338,
+        "precision": 1.0,
+        "recall": 0.0058823529411764705,
+        "f1": 0.011695906432748537,
+        "fpr": 0.0,
+        "fnr": 0.9941176470588236,
+        "accuracy": 0.24044943820224718,
+        "roc_auc": 0.7025210084033614,
+        "pr_auc": 0.8875085269930008,
+        "ece": 0.7309898627759647,
+        "brier": 0.7082563438194701,
+        "nll": 3.4782749917026288
+      },
+      "mean_windows_per_document": 1.0,
+      "p95_windows_per_document": 1.0
+    },
+    "TAIL": {
+      "metrics": {
+        "n": 445,
+        "positive": 340,
+        "tp": 2,
+        "fp": 0,
+        "tn": 105,
+        "fn": 338,
+        "precision": 1.0,
+        "recall": 0.0058823529411764705,
+        "f1": 0.011695906432748537,
+        "fpr": 0.0,
+        "fnr": 0.9941176470588236,
+        "accuracy": 0.24044943820224718,
+        "roc_auc": 0.7189915966386554,
+        "pr_auc": 0.8917291724010008,
+        "ece": 0.7278887692118358,
+        "brier": 0.7033676224454514,
+        "nll": 3.2928750289879023
+      },
+      "mean_windows_per_document": 1.0,
+      "p95_windows_per_document": 1.0
+    },
+    "HEAD_TAIL": {
+      "metrics": {
+        "n": 445,
+        "positive": 340,
+        "tp": 2,
+        "fp": 0,
+        "tn": 105,
+        "fn": 338,
+        "precision": 1.0,
+        "recall": 0.0058823529411764705,
+        "f1": 0.011695906432748537,
+        "fpr": 0.0,
+        "fnr": 0.9941176470588236,
+        "accuracy": 0.24044943820224718,
+        "roc_auc": 0.718627450980392,
+        "pr_auc": 0.893826287093493,
+        "ece": 0.7275636142459063,
+        "brier": 0.7025010479527629,
+        "nll": 3.3875289194290183
+      },
+      "mean_windows_per_document": 1.0,
+      "p95_windows_per_document": 1.0
+    },
+    "SLIDING": {
+      "metrics": {
+        "n": 445,
+        "positive": 340,
+        "tp": 1,
+        "fp": 0,
+        "tn": 105,
+        "fn": 339,
+        "precision": 1.0,
+        "recall": 0.0029411764705882353,
+        "f1": 0.005865102639296188,
+        "fpr": 0.0,
+        "fnr": 0.9970588235294118,
+        "accuracy": 0.23820224719101124,
+        "roc_auc": 0.7707563025210085,
+        "pr_auc": 0.9080664766605572,
+        "ece": 0.7369966816436201,
+        "brier": 0.7180843950998657,
+        "nll": 3.1853381207629243
+      },
+      "mean_windows_per_document": 5.197752808988764,
+      "p95_windows_per_document": 11.0
+    },
+    "WINDOW_MAX": {
+      "metrics": {
+        "n": 445,
+        "positive": 340,
+        "tp": 11,
+        "fp": 0,
+        "tn": 105,
+        "fn": 329,
+        "precision": 1.0,
+        "recall": 0.03235294117647059,
+        "f1": 0.06267806267806268,
+        "fpr": 0.0,
+        "fnr": 0.9676470588235294,
+        "accuracy": 0.2606741573033708,
+        "roc_auc": 0.7931092436974789,
+        "pr_auc": 0.9264955272112043,
+        "ece": 0.6920094932778725,
+        "brier": 0.6433937704352615,
+        "nll": 2.40850549916666
+      },
+      "mean_windows_per_document": 5.197752808988764,
+      "p95_windows_per_document": 11.0
+    },
+    "WINDOW_LOGIT_POOL": {
+      "metrics": {
+        "n": 445,
+        "positive": 340,
+        "tp": 1,
+        "fp": 0,
+        "tn": 105,
+        "fn": 339,
+        "precision": 1.0,
+        "recall": 0.0029411764705882353,
+        "f1": 0.005865102639296188,
+        "fpr": 0.0,
+        "fnr": 0.9970588235294118,
+        "accuracy": 0.23820224719101124,
+        "roc_auc": 0.7553221288515407,
+        "pr_auc": 0.9007360341731246,
+        "ece": 0.7405483462753129,
+        "brier": 0.7243032988591457,
+        "nll": 3.3838593652564906
+      },
+      "mean_windows_per_document": 5.197752808988764,
+      "p95_windows_per_document": 11.0
+    }
+  }
+}

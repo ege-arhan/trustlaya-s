@@ -1,0 +1,9 @@
+{
+  "tools": [{
+    "name": "record", "operation": "write", "target": "demo://records",
+    "permissions": {"shell": false, "filesystem": false, "network": false,
+      "database": true, "email": false, "external_api": false,
+      "credential_access": false},
+    "agents": ["agent-1"]
+  }]
+}

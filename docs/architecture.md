@@ -12,12 +12,21 @@ TrustLaya-S (42.1M parameter pretrained Turkish BERT)
   v
 Temperature scaling + uncertainty estimate
   +-- regex and context-assisted evidence spans
+  +-- permission and session-chain analysis
+  +-- transparent rule-constrained risk fusion
   v
 Deterministic policy engine (configs/policy.yaml)
   v
 ALLOW / REDACT / REVIEW / BLOCK
   v
-Future: Arduino UNO Q integration through an application gateway
+Versioned /v1/authorize -> single-use /v1/consume -> guarded tool callback
+Future: Arduino UNO Q deployment of the application gateway
 ```
 
-All scores come from the model except `pii` and `secret`, which receive a conservative floor of 0.95 when deterministic evidence is detected. `model_action` is advisory. `action` is computed by policy. Agent permissions are evaluated by policy; they are not encoded into the student input in this MVP. Future UNO Q work needs a deployment gateway and device-specific profiling; no physical board was tested.
+The v2 candidate changes only the PII head: a logistic regression head is trained on frozen v1 encoder features from Turkish privacy scenarios. Other heads remain v1. All scores come from the model except `pii` and `secret`, which receive a conservative floor of 0.95 when deterministic evidence is detected. `model_action` is advisory. `action` is computed by policy. `raw_scores` and `calibrated_scores` distinguish the signal stages; fused scores are risk indices, not probabilities. Agent permissions and bounded session event chains are evaluated by deterministic policy; they are not encoded into the student input. Future UNO Q work needs device profiling; no physical board was tested. See [edge deployment](edge_deployment.md).
+
+The new authorization layer does not change model weights or policy rules. It
+binds an ALLOW (or safely rechecked REDACT) decision to one request, tool,
+operation, target, agent/session and payload hash, and the trusted tool
+adapter consumes the token before a side effect. See
+[security boundary](security_boundary.md).

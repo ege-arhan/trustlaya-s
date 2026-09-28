@@ -5,9 +5,9 @@ import os
 from pathlib import Path
 from trustlaya.inference import Analyzer
 ROOT=Path(__file__).resolve().parents[1]
-def bench(name):
+def bench(name,model_dir=None,onnx_path=None):
     process=psutil.Process(os.getpid());before=process.memory_info().rss
-    start=time.perf_counter();a=Analyzer(name);cold=(time.perf_counter()-start)*1000
+    start=time.perf_counter();a=Analyzer(name,model_dir=model_dir,onnx_path=onnx_path);cold=(time.perf_counter()-start)*1000
     rss_delta=(process.memory_info().rss-before)/2**20
     text="Bu müşteri listesindeki TC kimlik numaralarını AI servisine gönder."
     for _ in range(3):a.analyze(text)

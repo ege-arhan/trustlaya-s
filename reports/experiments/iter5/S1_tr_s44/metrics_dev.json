@@ -1,0 +1,30 @@
+{
+  "parameters": 42130433,
+  "checkpoint_bytes": 168537964,
+  "best_epoch": 3,
+  "DEV_threshold_0.5": {
+    "n": 7030,
+    "positive": 2523,
+    "negative": 4507,
+    "tp": 2404,
+    "fp": 198,
+    "fn": 119,
+    "tn": 4309,
+    "precision": 0.9239,
+    "recall": 0.9528,
+    "recall_95ci": [
+      0.9439,
+      0.9604
+    ],
+    "f1": 0.9381,
+    "fpr": 0.0439,
+    "fpr_95ci": [
+      0.0383,
+      0.0503
+    ],
+    "fnr": 0.0472,
+    "brier": 0.036,
+    "ece": 0.0502,
+    "pr_auc": 0.9863
+  }
+}

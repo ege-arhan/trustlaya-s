@@ -1,0 +1,30 @@
+name: hf-sync
+
+# Publishes the tracked Hugging Face model card. Weights are not in git and are
+# never uploaded from CI. Requires the HF_TOKEN repository secret (write access
+# to ege-arhan/TrustLaya-S-Advanced only).
+# Any branch: the owner wants Hugging Face to follow every pushed change.
+on:
+  push:
+    paths: ["hf/**", ".github/workflows/hf-sync.yml"]
+  workflow_dispatch:
+
+concurrency: hf-sync
+
+jobs:
+  model-card:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install huggingface_hub==0.36.2
+      - name: Upload model card
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          test -n "$HF_TOKEN" || { echo "HF_TOKEN secret is not set"; exit 1; }
+          hf upload ege-arhan/TrustLaya-S-Advanced hf/TrustLaya-S-Advanced/README.md README.md \
+            --commit-message "Sync model card from GitHub ${GITHUB_SHA::7}"

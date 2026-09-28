@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrustEdge Firewall Demo</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1d1f24; --muted: #5f6570; --line: #dedbd2;
+    --ok: #1f7a4d; --ok-bg: #e5f3ea; --bad: #a3322a; --bad-bg: #f8e4e1;
+    --warn: #8a5a00; --warn-bg: #fbefd4; --info: #2c5d8f; --info-bg: #e3edf7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #15171b; --panel: #1e2126; --ink: #e8e6e1; --muted: #9aa0aa; --line: #30343b;
+      --ok: #6fcf9b; --ok-bg: #1d3328; --bad: #f08a80; --bad-bg: #3a2220;
+      --warn: #e8b85a; --warn-bg: #3a2f17; --info: #8cb8e8; --info-bg: #1c2b3b; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .verdict { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .chip { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12.5px;
+    font-weight: 600; white-space: nowrap; }
+  .ok { color: var(--ok); background: var(--ok-bg); }
+  .bad { color: var(--bad); background: var(--bad-bg); }
+  .warn { color: var(--warn); background: var(--warn-bg); }
+  .info { color: var(--info); background: var(--info-bg); }
+  .chain-head { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr; gap: 10px;
+    color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em;
+    padding: 0 14px 6px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    margin-bottom: 12px; overflow: hidden; }
+  .card > header { display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .card h2 { font-size: 15.5px; margin: 0; }
+  .step { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr; gap: 10px;
+    padding: 10px 14px; border-top: 1px dashed var(--line); }
+  .step:first-of-type { border-top: 0; }
+  .cell { min-width: 0; overflow-wrap: anywhere; }
+  .label { display: none; color: var(--muted); font-size: 11.5px; text-transform: uppercase;
+    letter-spacing: .05em; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .bars div { display: flex; align-items: center; gap: 6px; font-size: 12.5px; }
+  .bars span:first-child { width: 72px; color: var(--muted); }
+  .bar { flex: 1; height: 6px; background: var(--line); border-radius: 3px; position: relative; }
+  .bar i { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: var(--info); }
+  .bar i.hi { background: var(--bad); }
+  .note { padding: 8px 14px 12px; color: var(--muted); font-size: 13px; }
+  section { margin-top: 32px; }
+  h3 { font-size: 17px; margin: 0 0 10px; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  th, td { text-align: left; padding: 8px 12px; border-top: 1px solid var(--line); font-size: 13.5px; }
+  th { color: var(--muted); font-weight: 600; background: transparent; }
+  .table-wrap { overflow-x: auto; }
+  @media (max-width: 820px) {
+    .chain-head { display: none; }
+    .step { grid-template-columns: 1fr; gap: 8px; }
+    .label { display: block; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>TrustEdge firewall: gerçek V2 ile uçtan uca demo</h1>
+  <p class="sub" id="sub"></p>
+  <div class="verdict" id="checks"></div>
+  <div class="chain-head"><div>İstek</div><div>Model sinyalleri</div><div>Politika nedeni</div>
+    <div>Yetkilendirme</div><div>Hedefteki sonuç</div></div>
+  <div id="scenarios"></div>
+  <section><h3>Hedef veritabanındaki kayıtlar (SQLite)</h3><div class="table-wrap"><table id="records"></table></div></section>
+  <section><h3>Gecikme ve bellek</h3><div class="table-wrap"><table id="perf"></table></div>
+    <p class="muted" id="mem"></p></section>
+  <p class="muted" id="scope"></p>
+</main>
+<script>
+const R = __REPORT__;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const chip = (text, kind) => `<span class="chip ${kind}">${esc(text)}</span>`;
+const decisionKind = { ALLOW: "ok", REDACT: "warn", REVIEW: "warn", BLOCK: "bad" };
+
+$("sub").textContent = `${R.model} · model ${R.versions?.model ?? "?"} · politika ${R.versions?.policy ?? "?"} · okuma ${R.versions?.reading ?? "?"} · ${new Date(R.generated_at).toLocaleString("tr-TR")}`;
+$("checks").innerHTML = chip(R.passed ? "Tüm geçiş koşulları sağlandı" : "Geçiş koşulu başarısız", R.passed ? "ok" : "bad") +
+  Object.entries(R.checks).map(([k, v]) => chip(k.replaceAll("_", " "), v ? "ok" : "bad")).join("");
+
+function signals(step) {
+  if (!step.risk || !Object.keys(step.risk).length) return `<span class="muted">model çağrılmadı</span>`;
+  const keys = { pii: "pii", secret: "secret", prompt_injection: "injection", dangerous_instruction: "dangerous" };
+  const bars = Object.entries(keys).map(([k, name]) => {
+    const v = step.risk[k] ?? 0;
+    return `<div><span>${name}</span><span class="bar"><i class="${v >= 0.5 ? "hi" : ""}" style="width:${(v * 100).toFixed(0)}%"></i></span><span class="mono">${v.toFixed(2)}</span></div>`;
+  }).join("");
+  const ev = (step.evidence || []).map((e) => chip(e.type, "info")).join(" ");
+  const cov = step.coverage ? `<div class="muted">okunan ${step.coverage.read_tokens}/${step.coverage.total_tokens} token${step.coverage.truncated ? " · " + chip("eksik kapsam", "warn") : ""}</div>` : "";
+  return `<div class="bars">${bars}</div>${ev ? `<div style="margin-top:4px">${ev}</div>` : ""}${cov}`;
+}
+function policy(step) {
+  if (step.call === "probe") return `<span class="muted">—</span>`;
+  const codes = step.reason_codes || (step.reason ? [step.reason] : []);
+  return (step.decision ? chip(step.decision, decisionKind[step.decision] || "info") + " " : "") +
+    `<div class="mono">${codes.map(esc).join("<br>") || "—"}</div>`;
+}
+function authz(step) {
+  if (step.call === "probe") return `<span class="muted">—</span>`;
+  if (step.gateway_unreachable) return chip("gateway erişilemez", "bad");
+  if ("valid" in step) return chip(step.valid ? "token geçerli (tüketildi)" : "reddedildi", step.valid ? "ok" : "bad") + `<div class="mono">${esc(step.reason)}</div>`;
+  if (step.authorization_token) return chip("tek kullanımlık token verildi", "ok");
+  if (step.authorization_issued) return chip("token verildi → adapter tüketti", "ok");
+  return chip("token verilmedi", "bad");
+}
+function target(step) {
+  if (step.call === "probe") {
+    return `<div class="mono">hedef IP: ${step.target_by_ip ? "ERİŞİLDİ" : "erişilemez"}<br>adapter IP: ${step.adapter_by_ip ? "ERİŞİLDİ" : "erişilemez"}<br>DNS: ${esc(JSON.stringify(step.dns))}<br>ajandaki özel anahtarlar: ${step.private_keys_in_env.length}</div>`;
+  }
+  const status = step.execution_status;
+  if (!status) return `<span class="muted">işlem denenmedi</span>`;
+  const kind = { executed: "ok", not_executed: "info", unknown: "warn" }[status];
+  const out = step.output ? `<div class="mono">record_id=${step.output.record_id ?? "?"}${step.output.replayed ? " · önceki sonuç döndü" : ""}</div>` : "";
+  return chip(status, kind) + out + (status !== "executed" && step.reason ? `<div class="mono">${esc(step.reason)}</div>` : "");
+}
+$("scenarios").innerHTML = R.scenarios.map((s) => `
+  <article class="card">
+    <header><h2>${esc(s.title)}</h2><div>${chip(s.passed ? "geçti" : "başarısız", s.passed ? "ok" : "bad")}
+      ${s.target_effect ? chip("hedef: " + s.target_effect, "info") : ""}</div></header>
+    ${s.steps.map((step, i) => `<div class="step">
+      <div class="cell"><div class="label">İstek</div><div class="muted mono">${esc(step.call)}</div>${i === 0 ? `<div>${esc(s.request)}</div>` : ""}</div>
+      <div class="cell"><div class="label">Model sinyalleri</div>${signals(step)}</div>
+      <div class="cell"><div class="label">Politika nedeni</div>${policy(step)}</div>
+      <div class="cell"><div class="label">Yetkilendirme</div>${authz(step)}</div>
+      <div class="cell"><div class="label">Hedefteki sonuç</div>${target(step)}</div>
+    </div>`).join("")}
+    ${s.note ? `<div class="note">${esc(s.note)}</div>` : ""}
+  </article>`).join("");
+
+$("records").innerHTML = `<tr><th>id</th><th>agent_id</th><th>operation_id</th><th>metin</th></tr>` +
+  R.target_records.map((r) => `<tr><td>${r.id}</td><td class="mono">${esc(r.agent_id)}</td><td class="mono">${esc(r.operation_id)}</td><td>${esc(r.text)}</td></tr>`).join("") +
+  `<tr><td colspan="4" class="muted">+ ${R.bench_records} gecikme ölçümü kaydı (bench-*)</td></tr>`;
+
+const b = R.performance.bench;
+$("perf").innerHTML = `<tr><th>bileşen</th><th>p50 ms</th><th>p95 ms</th><th>p99 ms</th><th>maks ms</th></tr>` +
+  (b ? Object.entries(b.components).map(([k, v]) => `<tr><td class="mono">${esc(k)}</td><td>${v.p50_ms}</td><td>${v.p95_ms}</td><td>${v.p99_ms}</td><td>${v.max_ms}</td></tr>`).join("") : "") +
+  `<tr><td colspan="5" class="muted">soğuk başlangıç (compose up → hazır): ${R.performance.cold_start_s} s · ${b ? `${b.count} ardışık istek, sonuçlar: ${esc(JSON.stringify(b.outcomes))}` : ""} · ${esc(R.performance.host)}</td></tr>`;
+$("mem").textContent = "Bellek: " + R.performance.memory.join(" · ");
+$("scope").textContent = R.scope_note + " Reddedilen işlem adımı: " + R.rejected_operations + ".";
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "candidate_n": 1168,
+  "status": "candidate-only; hidden tests not yet acquired or inspected",
+  "method": "normalized exact plus hashed char 4-5gram cosine >=0.85",
+  "coverage": "v2 train, v4 train/dev, historical JLL clean; no hidden sources acquired",
+  "within_candidate_normalized_exact_extra_rows": 0,
+  "within_candidate_cross_source_near_pairs_gte_0_85": 0,
+  "overlap": {
+    "v2_train": {
+      "previous_rows": 6972,
+      "normalized_exact_unique": 0,
+      "candidate_rows_char45_cosine_gte_0_85": 0,
+      "candidate_ids": [],
+      "ids_truncated": false
+    },
+    "v4_train": {
+      "previous_rows": 2173,
+      "normalized_exact_unique": 0,
+      "candidate_rows_char45_cosine_gte_0_85": 0,
+      "candidate_ids": [],
+      "ids_truncated": false
+    },
+    "v4_dev": {
+      "previous_rows": 445,
+      "normalized_exact_unique": 0,
+      "candidate_rows_char45_cosine_gte_0_85": 1,
+      "candidate_ids": [
+        "tensor_trust_game:hijacking:199338022262096"
+      ],
+      "ids_truncated": false
+    },
+    "jll_historical_clean": {
+      "previous_rows": 5761,
+      "normalized_exact_unique": 0,
+      "candidate_rows_char45_cosine_gte_0_85": 0,
+      "candidate_ids": [],
+      "ids_truncated": false
+    }
+  }
+}

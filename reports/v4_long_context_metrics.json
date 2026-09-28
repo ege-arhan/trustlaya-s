@@ -1,0 +1,160 @@
+{
+  "full": {
+    "all": {
+      "n": 5888,
+      "characters": {
+        "median": 712.5,
+        "p90": 2663.0,
+        "p95": 3860.5999999999985,
+        "p99": 6639.560000000001
+      },
+      "tokens": {
+        "median": 242.0,
+        "p90": 927.9000000000005,
+        "p95": 1317.0,
+        "p99": 2336.300000000001,
+        "maximum": 12100
+      },
+      "over_current_94": 4771,
+      "over_model_capacity_510": 1477,
+      "cue_anywhere": 2166,
+      "cue_only_after_94": 142,
+      "cue_only_after_510": 37,
+      "cue_after_94_any": 385,
+      "cue_after_510_any": 133,
+      "mean_retained_ratio_at_94": 0.4838985151184245
+    },
+    "attack": {
+      "n": 636,
+      "characters": {
+        "median": 1563.0,
+        "p90": 4209.5,
+        "p95": 4762.5,
+        "p99": 6751.749999999996
+      },
+      "tokens": {
+        "median": 540.0,
+        "p90": 1435.5,
+        "p95": 1627.25,
+        "p99": 2276.25,
+        "maximum": 4809
+      },
+      "over_current_94": 601,
+      "over_model_capacity_510": 337,
+      "cue_anywhere": 382,
+      "cue_only_after_94": 53,
+      "cue_only_after_510": 14,
+      "cue_after_94_any": 183,
+      "cue_after_510_any": 67,
+      "mean_retained_ratio_at_94": 0.27533338883731506
+    },
+    "regular": {
+      "n": 5252,
+      "characters": {
+        "median": 641.0,
+        "p90": 2354.800000000001,
+        "p95": 3411.45,
+        "p99": 6587.139999999981
+      },
+      "tokens": {
+        "median": 217.0,
+        "p90": 810.9000000000005,
+        "p95": 1186.3499999999995,
+        "p99": 2339.899999999998,
+        "maximum": 12100
+      },
+      "over_current_94": 4170,
+      "over_model_capacity_510": 1140,
+      "cue_anywhere": 1784,
+      "cue_only_after_94": 89,
+      "cue_only_after_510": 23,
+      "cue_after_94_any": 202,
+      "cue_after_510_any": 66,
+      "mean_retained_ratio_at_94": 0.5091550688721918
+    }
+  },
+  "clean": {
+    "all": {
+      "n": 5761,
+      "characters": {
+        "median": 737.0,
+        "p90": 2709.0,
+        "p95": 3881.0,
+        "p99": 6659.599999999991
+      },
+      "tokens": {
+        "median": 251.0,
+        "p90": 945.0,
+        "p95": 1343.0,
+        "p99": 2366.99999999998,
+        "maximum": 12100
+      },
+      "over_current_94": 4653,
+      "over_model_capacity_510": 1475,
+      "cue_anywhere": 2056,
+      "cue_only_after_94": 141,
+      "cue_only_after_510": 37,
+      "cue_after_94_any": 384,
+      "cue_after_510_any": 133,
+      "mean_retained_ratio_at_94": 0.479741294918411
+    },
+    "attack": {
+      "n": 635,
+      "characters": {
+        "median": 1565.0,
+        "p90": 4210.2,
+        "p95": 4767.199999999995,
+        "p99": 6753.4999999999945
+      },
+      "tokens": {
+        "median": 540.0,
+        "p90": 1436.2000000000003,
+        "p95": 1628.0999999999992,
+        "p99": 2276.2999999999997,
+        "maximum": 4809
+      },
+      "over_current_94": 600,
+      "over_model_capacity_510": 337,
+      "cue_anywhere": 381,
+      "cue_only_after_94": 52,
+      "cue_only_after_510": 14,
+      "cue_after_94_any": 182,
+      "cue_after_510_any": 67,
+      "mean_retained_ratio_at_94": 0.27524757596713206
+    },
+    "regular": {
+      "n": 5126,
+      "characters": {
+        "median": 661.5,
+        "p90": 2369.0,
+        "p95": 3458.0,
+        "p99": 6645.25
+      },
+      "tokens": {
+        "median": 223.0,
+        "p90": 824.0,
+        "p95": 1198.75,
+        "p99": 2417.0,
+        "maximum": 12100
+      },
+      "over_current_94": 4053,
+      "over_model_capacity_510": 1138,
+      "cue_anywhere": 1675,
+      "cue_only_after_94": 89,
+      "cue_only_after_510": 23,
+      "cue_after_94_any": 202,
+      "cue_after_510_any": 66,
+      "mean_retained_ratio_at_94": 0.5050736225684425
+    }
+  },
+  "settings": {
+    "tokenizer_model_max_length_total": 512,
+    "model_position_embeddings_total": 512,
+    "special_tokens": 2,
+    "single_pass_content_capacity": 510,
+    "actual_evaluation_max_length_total": 96,
+    "actual_evaluation_content_capacity": 94,
+    "cue_regex": "ignore\\s+(?:all\\s+|any\\s+|the\\s+|your\\s+)?(?:previous|prior|above)\\s+(?:instructions?|prompts?|rules?)|(?:reveal|show|print|expose)\\s+(?:the\\s+|your\\s+)?(?:hidden\\s+|initial\\s+)?(?:system\\s+prompt|instructions?|password)|(?:you\\s+are\\s+now|from\\s+now\\s+on|act\\s+as|pretend\\s+to\\s+be)|(?:developer\\s+mode|do\\s+anything\\s+now|no\\s+restrictions|without\\s+restrictions)|(?:bypass|override|disable)\\s+(?:the\\s+|your\\s+)?(?:safety|policy|rules?|instructions?|filter)",
+    "v2_tokenizer_sha256": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f"
+  }
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480">
+<rect width="900" height="480" fill="white"/>
+<style>text{font-family:Arial,sans-serif;fill:#243040} .axis{stroke:#64748b;stroke-width:1}.ideal{stroke:#b7c4d0;stroke-dasharray:4 4}.raw{stroke:#d97706;fill:none;stroke-width:2}.cal{stroke:#2563eb;fill:none;stroke-width:2}</style>
+<text x="55" y="37" font-size="20">PII</text>
+<line class="axis" x1="55" y1="410" x2="395" y2="410"/>
+<line class="axis" x1="55" y1="410" x2="55" y2="70"/>
+<line class="ideal" x1="55" y1="410" x2="395" y2="70"/>
+<text x="145" y="450" font-size="14">Mean score (10 bins)</text>
+<text x="55" y="65" font-size="13">Observed positive rate</text>
+<polyline class="raw" points="60.2,401.4 102.3,344.5 138.7,323.2 171.7,343.7 208.8,318.1 240.5,367.5 275.0,364.7 314.6,410.0 340.6,264.3 379.3,70.0"/>
+<polyline class="cal" points="61.5,400.8 101.5,341.5 139.5,342.0 174.8,325.0 206.5,363.6 233.6,381.7 276.5,376.0 304.4,240.0 354.0,70.0 366.9,70.0"/>
+<line class="raw" x1="245" y1="37" x2="273" y2="37"/>
+<text x="279" y="42" font-size="13">raw</text>
+<line class="cal" x1="330" y1="37" x2="358" y2="37"/>
+<text x="364" y="42" font-size="13">calibrated</text>
+<text x="500" y="37" font-size="20">JAILBREAK</text>
+<line class="axis" x1="500" y1="410" x2="840" y2="410"/>
+<line class="axis" x1="500" y1="410" x2="500" y2="70"/>
+<line class="ideal" x1="500" y1="410" x2="840" y2="70"/>
+<text x="590" y="450" font-size="14">Mean score (10 bins)</text>
+<text x="500" y="65" font-size="13">Observed positive rate</text>
+<polyline class="raw" points="514.0,378.3 548.8,355.5 583.3,359.5 617.7,372.9 652.3,375.1 687.0,391.3 720.4,377.4 752.8,375.4 785.6,379.1 827.9,405.7"/>
+<polyline class="cal" points="504.3,371.4 547.9,368.4 583.1,394.9 619.2,383.3 652.0,368.4 684.9,384.8 723.4,369.2 755.7,348.2 790.5,387.3 831.4,405.3"/>
+<line class="raw" x1="690" y1="37" x2="718" y2="37"/>
+<text x="724" y="42" font-size="13">raw</text>
+<line class="cal" x1="775" y1="37" x2="803" y2="37"/>
+<text x="809" y="42" font-size="13">calibrated</text>
+</svg>

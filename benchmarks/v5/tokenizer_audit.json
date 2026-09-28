@@ -1,0 +1,56 @@
+{
+  "status": "TOKEN_LENGTH_AUDIT_ONLY",
+  "candidate_n": 1168,
+  "current_model": "ytu-ce-cosmos/turkish-medium-bert-uncased",
+  "current_tokenizer_sha256": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f",
+  "reference_tokenizer": "google-bert/bert-base-multilingual-cased",
+  "reference_revision": "3f076fdb1ab68d5b2880cb87a0886f315b8146f8",
+  "reference_license": "Apache-2.0",
+  "by_source": {
+    "microsoft_mcp_security": {
+      "n": 92,
+      "current_median_tokens": 120.0,
+      "reference_median_tokens": 92.0,
+      "current_tokens_per_word": 2.9241851676901276,
+      "reference_tokens_per_word": 2.16343882853094,
+      "current_over_94": 58,
+      "reference_over_94": 42,
+      "current_over_510": 0,
+      "reference_over_510": 0
+    },
+    "owasp_cheat_sheet": {
+      "n": 79,
+      "current_median_tokens": 75.0,
+      "reference_median_tokens": 57.0,
+      "current_tokens_per_word": 2.8524338827136835,
+      "reference_tokens_per_word": 2.0778075891146033,
+      "current_over_94": 28,
+      "reference_over_94": 13,
+      "current_over_510": 0,
+      "reference_over_510": 0
+    },
+    "stackexchange_questions": {
+      "n": 89,
+      "current_median_tokens": 376.0,
+      "reference_median_tokens": 270.0,
+      "current_tokens_per_word": 2.625459716569411,
+      "reference_tokens_per_word": 2.0683077526602265,
+      "current_over_94": 87,
+      "reference_over_94": 79,
+      "current_over_510": 30,
+      "reference_over_510": 21
+    },
+    "tensor_trust_game": {
+      "n": 908,
+      "current_median_tokens": 91.5,
+      "reference_median_tokens": 65.0,
+      "current_tokens_per_word": 1.9937988327214535,
+      "reference_tokens_per_word": 1.6321072201826226,
+      "current_over_94": 439,
+      "reference_over_94": 338,
+      "current_over_510": 109,
+      "reference_over_510": 54
+    }
+  },
+  "warning": "Token counts do not prove accuracy or permit replacement of the trained tokenizer."
+}

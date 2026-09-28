@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-09-24T20:38:11.095004+00:00",
+  "machine": "macOS-26.3.1-arm64-arm-64bit",
+  "architecture": "arm64",
+  "scope": "Local Mac HTTP/JSON authorization, v2 FP32 ONNX CPU, fake no-op tool. Not UNO Q.",
+  "iterations": 50,
+  "warmup_excluded": 1,
+  "denied_execution_count": 0,
+  "timeout_count": 0,
+  "latency": {
+    "model_inference": {
+      "p50_ms": 4.507478995947167,
+      "p95_ms": 4.793806391535327,
+      "p99_ms": 4.925982519052923
+    },
+    "policy": {
+      "p50_ms": 0.0028545036911964417,
+      "p95_ms": 0.0035913311876356597,
+      "p99_ms": 0.0039585091872140765
+    },
+    "authorization_server": {
+      "p50_ms": 4.885750502580777,
+      "p95_ms": 5.1628564251586795,
+      "p99_ms": 5.306492559611797
+    },
+    "authorization_client": {
+      "p50_ms": 5.21879197913222,
+      "p95_ms": 5.520504675223492,
+      "p99_ms": 5.656146398978308
+    },
+    "consume": {
+      "p50_ms": 0.3346250159665942,
+      "p95_ms": 0.415568720200099,
+      "p99_ms": 0.47277308243792504
+    },
+    "tool_execution": {
+      "p50_ms": 0.0002080341801047325,
+      "p95_ms": 0.00029103830456733704,
+      "p99_ms": 0.000313431373797357
+    },
+    "gateway_total": {
+      "p50_ms": 5.567520973272622,
+      "p95_ms": 5.939441145164892,
+      "p99_ms": 6.050738646881655
+    }
+  }
+}

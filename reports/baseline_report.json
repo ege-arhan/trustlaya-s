@@ -1,0 +1,190 @@
+{
+  "checkpoint": "/Users/egearhany/trustlaya/models/student/model.safetensors",
+  "test_rows": 1975,
+  "parameters": 42138641,
+  "trainable_parameters_recorded": 19185681,
+  "weight_bytes": 168571188,
+  "tokenizer_bytes": 1030456,
+  "max_sequence_length": 96,
+  "mean_task_accuracy": 0.9065541490857947,
+  "macro_f1": 0.6631675712855586,
+  "micro_f1": 0.7496608892238131,
+  "tasks": {
+    "pii": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          1619,
+          0
+        ],
+        [
+          0,
+          356
+        ]
+      ],
+      "support_positive": 356
+    },
+    "secret": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          1774,
+          0
+        ],
+        [
+          0,
+          201
+        ]
+      ],
+      "support_positive": 201
+    },
+    "prompt_injection": {
+      "precision": 0.4827586206896552,
+      "recall": 0.6523297491039427,
+      "f1": 0.5548780487804879,
+      "accuracy": 0.8521518987341772,
+      "confusion_matrix": [
+        [
+          1501,
+          195
+        ],
+        [
+          97,
+          182
+        ]
+      ],
+      "support_positive": 279
+    },
+    "dangerous_instruction": {
+      "precision": 1.0,
+      "recall": 0.49489795918367346,
+      "f1": 0.6621160409556314,
+      "accuracy": 0.949873417721519,
+      "confusion_matrix": [
+        [
+          1779,
+          0
+        ],
+        [
+          99,
+          97
+        ]
+      ],
+      "support_positive": 196
+    },
+    "privacy_risk": {
+      "precision": 0.6336206896551724,
+      "recall": 0.45794392523364486,
+      "f1": 0.5316455696202531,
+      "accuracy": 0.8688607594936709,
+      "confusion_matrix": [
+        [
+          1569,
+          85
+        ],
+        [
+          174,
+          147
+        ]
+      ],
+      "support_positive": 321
+    },
+    "security_risk": {
+      "precision": 0.675341574495771,
+      "recall": 0.9145374449339208,
+      "f1": 0.7769461077844312,
+      "accuracy": 0.6982278481012658,
+      "confusion_matrix": [
+        [
+          341,
+          499
+        ],
+        [
+          97,
+          1038
+        ]
+      ],
+      "support_positive": 1135
+    },
+    "ethics_risk": {
+      "precision": 1.0,
+      "recall": 0.2844574780058651,
+      "f1": 0.4429223744292237,
+      "accuracy": 0.8764556962025316,
+      "confusion_matrix": [
+        [
+          1634,
+          0
+        ],
+        [
+          244,
+          97
+        ]
+      ],
+      "support_positive": 341
+    },
+    "oversight_risk": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          1606,
+          0
+        ],
+        [
+          0,
+          369
+        ]
+      ],
+      "support_positive": 369
+    },
+    "data_governance_risk": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.9134177215189874,
+      "confusion_matrix": [
+        [
+          1804,
+          0
+        ],
+        [
+          171,
+          0
+        ]
+      ],
+      "support_positive": 171
+    }
+  },
+  "latency": {
+    "pytorch_cpu": {
+      "cold_start_ms": 471.8914579716511,
+      "warm_p50_ms": 12.6559580094181,
+      "warm_mean_ms": 12.647858145646751,
+      "batch": 1,
+      "rss_delta_mib_approx": 148.6875
+    },
+    "onnx_cpu": {
+      "cold_start_ms": 117.98099998850375,
+      "warm_p50_ms": 5.139540997333825,
+      "warm_mean_ms": 5.153249955037609,
+      "batch": 1,
+      "rss_delta_mib_approx": 356.375
+    },
+    "pytorch_mps": {
+      "cold_start_ms": 647.4194999900647,
+      "warm_p50_ms": 5.541457969229668,
+      "warm_mean_ms": 5.46037285530474,
+      "batch": 1,
+      "rss_delta_mib_approx": 31.34375
+    }
+  }
+}

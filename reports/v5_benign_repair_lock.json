@@ -1,0 +1,201 @@
+{
+  "frozen_at": "2026-09-27T01:30:20.470881+00:00",
+  "plan_sha256": "217c96f9332de8789514161e26b8b716ec07112c10a299473a0424e88466a890",
+  "e6_dev_recall_reference": {
+    "tensor_trust": 0.9814,
+    "jailbreakllms": 0.7684
+  },
+  "dev_selected_candidate": "A4_multilingual_4x",
+  "selections": {
+    "M0_E6_reference": {
+      "threshold": 0.34,
+      "temperature": 0.6326,
+      "frozen_from": "reports/experiments/E6_mixed_balanced_focal_510/selection.json",
+      "checkpoint_sha256": "26468821df242d2f5e873daf2b943dd6787e95cfefa037d8cfacfee2dbe048cb"
+    },
+    "R0_control": {
+      "threshold": 0.73,
+      "temperature": 0.8802,
+      "dev_macro_group_accuracy": 0.8743,
+      "dev_attack_recall": {
+        "tensor_trust": 0.8893,
+        "jailbreakllms": 0.3333
+      },
+      "dev_benign_fpr": {
+        "jailbreakllms": 0.0143,
+        "security_docs": 0.0,
+        "arxiv_abstracts": 0.0,
+        "dolly": 0.07,
+        "oasst2": 0.0808,
+        "aya": 0.063
+      },
+      "dev_mean_benign_fpr": 0.038,
+      "dev_mean_attack_recall": 0.6113,
+      "dev_pr_auc": 0.9214,
+      "dev_ece_calibrated": 0.1603,
+      "REGRESSION": true,
+      "checkpoint_sha256": "c116ca7735fa9fe498492a89e06440ee5979e92dfc228593c5a24e603561fac5"
+    },
+    "B1_en": {
+      "threshold": 0.54,
+      "temperature": 0.6231,
+      "dev_macro_group_accuracy": 0.9312,
+      "dev_attack_recall": {
+        "tensor_trust": 0.9443,
+        "jailbreakllms": 0.6102
+      },
+      "dev_benign_fpr": {
+        "jailbreakllms": 0.051,
+        "security_docs": 0.0,
+        "arxiv_abstracts": 0.0,
+        "dolly": 0.0,
+        "oasst2": 0.0159,
+        "aya": 0.0382
+      },
+      "dev_mean_benign_fpr": 0.0175,
+      "dev_mean_attack_recall": 0.7772,
+      "dev_pr_auc": 0.9585,
+      "dev_ece_calibrated": 0.0441,
+      "REGRESSION": true,
+      "checkpoint_sha256": "949bb73b89193a6a740122ad33513a8744c191d0621775563784647f67134f9c"
+    },
+    "B2_de": {
+      "threshold": 0.75,
+      "temperature": 0.8043,
+      "dev_macro_group_accuracy": 0.8947,
+      "dev_attack_recall": {
+        "tensor_trust": 0.89,
+        "jailbreakllms": 0.452
+      },
+      "dev_benign_fpr": {
+        "jailbreakllms": 0.0239,
+        "security_docs": 0.0,
+        "arxiv_abstracts": 0.0,
+        "dolly": 0.0817,
+        "oasst2": 0.0505,
+        "aya": 0.0284
+      },
+      "dev_mean_benign_fpr": 0.0308,
+      "dev_mean_attack_recall": 0.671,
+      "dev_pr_auc": 0.9264,
+      "dev_ece_calibrated": 0.158,
+      "REGRESSION": true,
+      "checkpoint_sha256": "6590cc8ad41de8dabf1e86113ec3fe47ae5979bc8c35248c6873bca5f417e32c"
+    },
+    "B3_tr": {
+      "threshold": 0.71,
+      "temperature": 0.8541,
+      "dev_macro_group_accuracy": 0.8865,
+      "dev_attack_recall": {
+        "tensor_trust": 0.9227,
+        "jailbreakllms": 0.4746
+      },
+      "dev_benign_fpr": {
+        "jailbreakllms": 0.0234,
+        "security_docs": 0.0,
+        "arxiv_abstracts": 0.0,
+        "dolly": 0.1217,
+        "oasst2": 0.1183,
+        "aya": 0.0417
+      },
+      "dev_mean_benign_fpr": 0.0509,
+      "dev_mean_attack_recall": 0.6986,
+      "dev_pr_auc": 0.9355,
+      "dev_ece_calibrated": 0.1024,
+      "REGRESSION": true,
+      "checkpoint_sha256": "3a52dc36b770969c44d55fd998acb5ccd23b0fc53fc742ca931f1c9614427bbe"
+    },
+    "B4_multilingual": {
+      "threshold": 0.32,
+      "temperature": 0.7027,
+      "dev_macro_group_accuracy": 0.9393,
+      "dev_attack_recall": {
+        "tensor_trust": 0.971,
+        "jailbreakllms": 0.7288
+      },
+      "dev_benign_fpr": {
+        "jailbreakllms": 0.1211,
+        "security_docs": 0.0,
+        "arxiv_abstracts": 0.0,
+        "dolly": 0.01,
+        "oasst2": 0.0332,
+        "aya": 0.0213
+      },
+      "dev_mean_benign_fpr": 0.0309,
+      "dev_mean_attack_recall": 0.8499,
+      "dev_pr_auc": 0.9704,
+      "dev_ece_calibrated": 0.0161,
+      "REGRESSION": false,
+      "checkpoint_sha256": "6cbfce383ab312a3335a3d5d6cec13727775e6d905630f882aa096ab4e69fa9c"
+    },
+    "M1_multilingual_natural": {
+      "threshold": 0.25,
+      "temperature": 0.5957,
+      "dev_macro_group_accuracy": 0.9312,
+      "dev_attack_recall": {
+        "tensor_trust": 0.9755,
+        "jailbreakllms": 0.6667
+      },
+      "dev_benign_fpr": {
+        "jailbreakllms": 0.0664,
+        "security_docs": 0.0388,
+        "arxiv_abstracts": 0.0099,
+        "dolly": 0.01,
+        "oasst2": 0.0447,
+        "aya": 0.0231
+      },
+      "dev_mean_benign_fpr": 0.0322,
+      "dev_mean_attack_recall": 0.8211,
+      "dev_pr_auc": 0.9768,
+      "dev_ece_calibrated": 0.0117,
+      "REGRESSION": true,
+      "checkpoint_sha256": "1e757730361e5d71e0b7a4e931a124fb50bdb684bab3a71f5f94688843bf2ddf"
+    },
+    "A2_multilingual_2x": {
+      "threshold": 0.34,
+      "temperature": 0.6922,
+      "dev_macro_group_accuracy": 0.9395,
+      "dev_attack_recall": {
+        "tensor_trust": 0.9666,
+        "jailbreakllms": 0.7571
+      },
+      "dev_benign_fpr": {
+        "jailbreakllms": 0.1386,
+        "security_docs": 0.0097,
+        "arxiv_abstracts": 0.0,
+        "dolly": 0.0083,
+        "oasst2": 0.0303,
+        "aya": 0.0204
+      },
+      "dev_mean_benign_fpr": 0.0345,
+      "dev_mean_attack_recall": 0.8619,
+      "dev_pr_auc": 0.9695,
+      "dev_ece_calibrated": 0.0166,
+      "REGRESSION": false,
+      "checkpoint_sha256": "dbf5df55fde54ca2f77c89415d41902a6a307f31494c4a4df03acd9bc7cf6663"
+    },
+    "A4_multilingual_4x": {
+      "threshold": 0.41,
+      "temperature": 0.6819,
+      "dev_macro_group_accuracy": 0.9422,
+      "dev_attack_recall": {
+        "tensor_trust": 0.9629,
+        "jailbreakllms": 0.7514
+      },
+      "dev_benign_fpr": {
+        "jailbreakllms": 0.1397,
+        "security_docs": 0.0,
+        "arxiv_abstracts": 0.0,
+        "dolly": 0.0017,
+        "oasst2": 0.0202,
+        "aya": 0.0151
+      },
+      "dev_mean_benign_fpr": 0.0295,
+      "dev_mean_attack_recall": 0.8571,
+      "dev_pr_auc": 0.9683,
+      "dev_ece_calibrated": 0.0243,
+      "REGRESSION": false,
+      "checkpoint_sha256": "69995a93efbe9a207d13d9a57031a793cfe9dee0362fa76501341e670cd08ab1"
+    }
+  }
+}
