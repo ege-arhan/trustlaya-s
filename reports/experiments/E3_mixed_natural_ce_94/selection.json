@@ -1,0 +1,9 @@
+{
+  "threshold": 0.12,
+  "dev_macro_group_accuracy": 0.8763,
+  "dev_macro_group_accuracy_at_0.5": 0.8532,
+  "temperature": 1.1533,
+  "temperature_at_search_bound": false,
+  "dev_pr_auc": 0.9764,
+  "checkpoint_sha256": "a7c9e4c33e877d2555782f4c73db5e719e7c3d0aff15981795002a0c938a8ffe"
+}

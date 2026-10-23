@@ -18,14 +18,20 @@ class Rows(Dataset):
         r=self.rows[i]
         return self.enc["input_ids"][i],self.enc["attention_mask"][i],torch.tensor([r["labels"][k] for k in TASKS],dtype=torch.float32),torch.tensor(SEVERITIES.index(r["severity"])),torch.tensor(ACTIONS.index(r["action"])),torch.tensor([self.teacher.get(r["text"],{}).get(k,float("nan")) for k in TASKS],dtype=torch.float32)
 def main():
-    p=argparse.ArgumentParser();p.add_argument("--steps",type=int,default=200);p.add_argument("--batch",type=int,default=32);p.add_argument("--lr",type=float,default=3e-4);p.add_argument("--resume",action="store_true");p.add_argument("--teacher-file");a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument("--steps",type=int,default=200);p.add_argument("--batch",type=int,default=32);p.add_argument("--lr",type=float,default=3e-4);p.add_argument("--resume",action="store_true");p.add_argument("--teacher-file")
+    p.add_argument("--output-dir",type=Path,default=ROOT/"models/candidates/advanced_training")
+    p.add_argument("--resume-from",type=Path,default=ROOT/"models/trustlaya-s-v1/model.safetensors")
+    a=p.parse_args()
+    protected={ROOT/"models/student",ROOT/"models/trustlaya-s-v1",ROOT/"models/trustlaya-s-v2"}
+    if a.output_dir.resolve() in {path.resolve() for path in protected}:
+        p.error("Refusing to overwrite a released or evaluated checkpoint")
     seed_all(); torch.set_num_threads(4)
     tokenizer=AutoTokenizer.from_pretrained(BACKBONE)
     rows=read_rows(ROOT/"data/splits/train.jsonl")
     teacher={r["text"]:r["teacher"] for r in read_rows(a.teacher_file)} if a.teacher_file else {}
     data=Rows(rows,tokenizer,teacher); loader=DataLoader(data,batch_size=a.batch,shuffle=True)
     model=TrustLaya(BACKBONE,pretrained=not a.resume)
-    if a.resume: model.load(ROOT/"models/student/model.safetensors")
+    if a.resume: model.load(a.resume_from)
     model=model.to(device()); model.train()
     for module in model.modules():
         if isinstance(module, torch.nn.Dropout): module.p=0.0
@@ -45,8 +51,8 @@ def main():
             losses.append(float(value.item()));step+=1
             if step%25==0:print(f"step={step} loss={sum(losses[-25:])/25:.4f}",flush=True)
             if step>=a.steps:break
-    target=ROOT/"models/student";target.mkdir(parents=True,exist_ok=True)
+    target=a.output_dir;target.mkdir(parents=True,exist_ok=True)
     model.save(target/"model.safetensors");tokenizer.save_pretrained(target)
     report={"backbone":BACKBONE,"steps":step,"training_examples_seen":step*a.batch,"last_loss":losses[-1],"parameters":sum(p.numel() for p in model.parameters()),"trainable_parameters":sum(p.numel() for p in model.parameters() if p.requires_grad),"teacher_used":bool(teacher),"teacher_examples":len(teacher)}
-    (ROOT/"reports/training.json").write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
+    (ROOT/"reports/training_candidate.json").write_text(json.dumps({**report,"output_dir":str(target)},indent=2));print(json.dumps(report,indent=2))
 if __name__=="__main__":main()

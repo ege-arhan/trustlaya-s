@@ -1,0 +1,49 @@
+{
+  "benchmark": "JailbreakLLMs clean paired cohort, N=5761; TAB prior cohorts; deepset separate task",
+  "dataset_revisions": {
+    "jailbreakllms": "2dbd7bbc25f1b156552678f451bddbc787cd679f",
+    "tab": "558e09e26d6b36f5f78440074e6a233946d98bd9"
+  },
+  "file_sha256": {
+    "encoder_config.json": "ec59f7b60b5cd3e4e842dd0a685929c3d4a6a0498d27987824dd885f0090b0ad",
+    "v2_calibration.json": "d96930cda27a12d3f3436706ef53015351a595b0aef5c152a69375077ce06f96",
+    "v2_jll_predictions.json": "bd2454d22ecba54fef0e245ef207a7d65f9029f73fecbe9af6fc236356a5224b",
+    "v2_tab_predictions.json": "06230d6aa26c5130045b21f640ee8dd4f85e6b40b07ca0515468810b1e7c4ab2",
+    "v2_thresholds.json": "92abf11e9dca2f84c6d12ff99f07c355c1e556bd94e7b0c8dd6d91683957532c",
+    "v2_v3_manifest.json": "c37f5c6b5ce19a8656d5ae46c7462e263e7f76bc8507b65f9ddce8a89f6b90ed",
+    "v3_calibration.json": "c7613186ac6ce8764f38b094d18c9cb11abe70f54cd0ac5394cf82cb2459b53d",
+    "v3_jll_predictions.json": "951b3b1c0ccc4690310681946fa51e9e329ab8a91e577496444089bc9c3481bc",
+    "v3_tab_predictions.json": "7c02a7b1ee877880b6c66e3bcc8238f46b788e24526d9f3db2a55d2339718677",
+    "v3_thresholds.json": "7f239b192aa3fb089e9e6388d0c6e7d0704a19ff51c232b523dc0da791fda849",
+    "v4_deepset_metrics.json": "2fc4080fb7e2a98114db8350157d45e2d48595fbf0717f75be6a8df20a21416d",
+    "v4_inference_config.json": "0045c7cf57b5b9353ca58e012e4af31c14553e6106ecf12c486132a38338bdae",
+    "v4_jll_metrics.json": "cff9b6a14d35168a553eda866bd1ea93846a6a163714fe5729695738d694f1f0",
+    "v4_jll_predictions.json": "dda9bd90ca74500a8834552cd42cca03bd0e6349e377692bf9f9fd737d443795",
+    "v4_operating_point.json": "6ab39b34b413d0b1e05f61b653472321b4c34e987607b0a0eda1b52d63bd9993"
+  },
+  "frozen_from_commit": "d8272bc",
+  "model_sha256": {
+    "tokenizer": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f",
+    "v2_model": "99a8527de00fed3a520d136d26cdda9acc79dff2fae5c725ef773159b565563c",
+    "v3_attack_head": "b207389c55cc79c1807d5b4ef160be7bb8dc44eebc9b180f946427e08bc0e174",
+    "v3_pii_head": "cea63619596a031c3c7e4f868d92c8ef0170b6a4a180ec6c05de832ed0a45cf3",
+    "v4_attack_head": "fa72302753553b0accaedb0feb92c02f0313c31f13debc2903dd408873788a1c"
+  },
+  "operating_points": {
+    "v2": {
+      "calibration": "raw",
+      "max_total_tokens": 96,
+      "threshold": 0.5
+    },
+    "v3": {
+      "calibration": "Platt",
+      "max_total_tokens": 96,
+      "threshold": 0.3
+    },
+    "v4": {
+      "calibration": "Platt after WINDOW_MAX",
+      "threshold": 0.79,
+      "window_total_tokens": 96
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "dataset": "original synthetic validation, English-labeled only",
+  "target": "any of nine task labels positive",
+  "threshold": 0.7,
+  "methods": {
+    "weighted": {
+      "at_0_70": {
+        "threshold": 0.7,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "false_positive_rate": 0.0,
+        "tn": 97,
+        "fp": 0,
+        "fn": 956,
+        "tp": 0
+      },
+      "best_validation_f1": {
+        "threshold": 0.05,
+        "f1": 0.9517172722747635,
+        "precision": 0.9078822412155746,
+        "recall": 1.0,
+        "false_positive_rate": 1.0,
+        "tn": 0,
+        "fp": 97,
+        "fn": 0,
+        "tp": 956
+      },
+      "best_validation_f1_at_fpr_le_0_10": {
+        "threshold": 0.15,
+        "f1": 0.6930963773069037,
+        "precision": 1.0,
+        "recall": 0.5303347280334728,
+        "false_positive_rate": 0.0,
+        "tn": 97,
+        "fp": 0,
+        "fn": 449,
+        "tp": 507
+      }
+    },
+    "interaction": {
+      "at_0_70": {
+        "threshold": 0.7,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "false_positive_rate": 0.0,
+        "tn": 97,
+        "fp": 0,
+        "fn": 956,
+        "tp": 0
+      },
+      "best_validation_f1": {
+        "threshold": 0.05,
+        "f1": 0.9517172722747635,
+        "precision": 0.9078822412155746,
+        "recall": 1.0,
+        "false_positive_rate": 1.0,
+        "tn": 0,
+        "fp": 97,
+        "fn": 0,
+        "tp": 956
+      },
+      "best_validation_f1_at_fpr_le_0_10": {
+        "threshold": 0.15,
+        "f1": 0.6930963773069037,
+        "precision": 1.0,
+        "recall": 0.5303347280334728,
+        "false_positive_rate": 0.0,
+        "tn": 97,
+        "fp": 0,
+        "fn": 449,
+        "tp": 507
+      }
+    },
+    "rule_constrained": {
+      "at_0_70": {
+        "threshold": 0.7,
+        "f1": 0.7362855254461335,
+        "precision": 1.0,
+        "recall": 0.5826359832635983,
+        "false_positive_rate": 0.0,
+        "tn": 97,
+        "fp": 0,
+        "fn": 399,
+        "tp": 557
+      },
+      "best_validation_f1": {
+        "threshold": 0.25,
+        "f1": 0.9627391742195368,
+        "precision": 0.9281553398058252,
+        "recall": 1.0,
+        "false_positive_rate": 0.7628865979381443,
+        "tn": 23,
+        "fp": 74,
+        "fn": 0,
+        "tp": 956
+      },
+      "best_validation_f1_at_fpr_le_0_10": {
+        "threshold": 0.55,
+        "f1": 0.7362855254461335,
+        "precision": 1.0,
+        "recall": 0.5826359832635983,
+        "false_positive_rate": 0.0,
+        "tn": 97,
+        "fp": 0,
+        "fn": 399,
+        "tp": 557
+      }
+    }
+  }
+}

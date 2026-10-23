@@ -1,0 +1,5455 @@
+{
+  "threshold": 0.5,
+  "selection_split": "DEV",
+  "grid": [
+    {
+      "strategy": "HEAD",
+      "content_tokens": 94,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 834,
+          "fp": 1824,
+          "fn": 689,
+          "tn": 263,
+          "precision": 0.3138,
+          "recall": 0.5476,
+          "recall_95ci": [
+            0.5225,
+            0.5725
+          ],
+          "f1": 0.3989,
+          "fpr": 0.874,
+          "fpr_95ci": [
+            0.8591,
+            0.8875
+          ],
+          "fnr": 0.4524,
+          "brier": 0.5868,
+          "ece": 0.591,
+          "pr_auc": 0.3906
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 100,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9901,
+            "fpr_95ci": [
+              0.946,
+              0.9983
+            ],
+            "fnr": null,
+            "brier": 0.7774,
+            "ece": 0.8774,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 162,
+            "fp": 1635,
+            "fn": 15,
+            "tn": 248,
+            "precision": 0.0902,
+            "recall": 0.9153,
+            "recall_95ci": [
+              0.8649,
+              0.948
+            ],
+            "f1": 0.1641,
+            "fpr": 0.8683,
+            "fpr_95ci": [
+              0.8523,
+              0.8828
+            ],
+            "fnr": 0.0847,
+            "brier": 0.6644,
+            "ece": 0.729,
+            "pr_auc": 0.1643
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 89,
+            "fn": 0,
+            "tn": 14,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8641,
+            "fpr_95ci": [
+              0.7847,
+              0.9173
+            ],
+            "fnr": null,
+            "brier": 0.7556,
+            "ece": 0.8284,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 672,
+            "fp": 0,
+            "fn": 674,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.4993,
+            "recall_95ci": [
+              0.4726,
+              0.5259
+            ],
+            "f1": 0.666,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.5007,
+            "brier": 0.4407,
+            "ece": 0.517,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 6.89
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 305,
+          "fp": 1479,
+          "fn": 143,
+          "tn": 163,
+          "precision": 0.171,
+          "recall": 0.6808,
+          "recall_95ci": [
+            0.6363,
+            0.7223
+          ],
+          "f1": 0.2733,
+          "fpr": 0.9007,
+          "fpr_95ci": [
+            0.8853,
+            0.9143
+          ],
+          "fnr": 0.3192,
+          "brier": 0.6408,
+          "ece": 0.6771,
+          "pr_auc": 0.2337
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 1748,
+          "fp": 1874,
+          "fn": 2020,
+          "tn": 254,
+          "precision": 0.4826,
+          "recall": 0.4639,
+          "recall_95ci": [
+            0.448,
+            0.4799
+          ],
+          "f1": 0.4731,
+          "fpr": 0.8806,
+          "fpr_95ci": [
+            0.8662,
+            0.8937
+          ],
+          "fnr": 0.5361,
+          "brier": 0.5445,
+          "ece": 0.5486,
+          "pr_auc": 0.5721
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 90,
+            "fn": 0,
+            "tn": 2,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9783,
+            "fpr_95ci": [
+              0.9242,
+              0.994
+            ],
+            "fnr": null,
+            "brier": 0.7348,
+            "ece": 0.8488,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 155,
+            "fp": 1696,
+            "fn": 17,
+            "tn": 242,
+            "precision": 0.0837,
+            "recall": 0.9012,
+            "recall_95ci": [
+              0.8474,
+              0.9374
+            ],
+            "f1": 0.1532,
+            "fpr": 0.8751,
+            "fpr_95ci": [
+              0.8597,
+              0.8891
+            ],
+            "fnr": 0.0988,
+            "brier": 0.6666,
+            "ece": 0.7343,
+            "pr_auc": 0.1512
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.7899,
+            "ece": 0.8527,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 1593,
+            "fp": 0,
+            "fn": 2003,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.443,
+            "recall_95ci": [
+              0.4268,
+              0.4593
+            ],
+            "f1": 0.614,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.557,
+            "brier": 0.4614,
+            "ece": 0.5435,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 8.05
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 772,
+          "fp": 1535,
+          "fn": 937,
+          "tn": 163,
+          "precision": 0.3346,
+          "recall": 0.4517,
+          "recall_95ci": [
+            0.4283,
+            0.4754
+          ],
+          "f1": 0.3845,
+          "fpr": 0.904,
+          "fpr_95ci": [
+            0.8891,
+            0.9171
+          ],
+          "fnr": 0.5483,
+          "brier": 0.5806,
+          "ece": 0.6037,
+          "pr_auc": 0.4392
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2159,
+            "ece": 0.1911,
+            "pr_auc": 0.7357
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 1.07
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.086,
+          "ece": 0.1089,
+          "pr_auc": 0.9933
+        }
+      }
+    },
+    {
+      "strategy": "HEAD",
+      "content_tokens": 128,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 834,
+          "fp": 1823,
+          "fn": 689,
+          "tn": 264,
+          "precision": 0.3139,
+          "recall": 0.5476,
+          "recall_95ci": [
+            0.5225,
+            0.5725
+          ],
+          "f1": 0.399,
+          "fpr": 0.8735,
+          "fpr_95ci": [
+            0.8586,
+            0.8871
+          ],
+          "fnr": 0.4524,
+          "brier": 0.5767,
+          "ece": 0.5828,
+          "pr_auc": 0.4104
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 100,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9901,
+            "fpr_95ci": [
+              0.946,
+              0.9983
+            ],
+            "fnr": null,
+            "brier": 0.7318,
+            "ece": 0.8501,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 162,
+            "fp": 1634,
+            "fn": 15,
+            "tn": 249,
+            "precision": 0.0902,
+            "recall": 0.9153,
+            "recall_95ci": [
+              0.8649,
+              0.948
+            ],
+            "f1": 0.1642,
+            "fpr": 0.8678,
+            "fpr_95ci": [
+              0.8517,
+              0.8823
+            ],
+            "fnr": 0.0847,
+            "brier": 0.6521,
+            "ece": 0.7248,
+            "pr_auc": 0.1532
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 89,
+            "fn": 0,
+            "tn": 14,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8641,
+            "fpr_95ci": [
+              0.7847,
+              0.9173
+            ],
+            "fnr": null,
+            "brier": 0.7534,
+            "ece": 0.8262,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 672,
+            "fp": 0,
+            "fn": 674,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.4993,
+            "recall_95ci": [
+              0.4726,
+              0.5259
+            ],
+            "f1": 0.666,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.5007,
+            "brier": 0.4361,
+            "ece": 0.5145,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 5.9
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 305,
+          "fp": 1478,
+          "fn": 143,
+          "tn": 164,
+          "precision": 0.1711,
+          "recall": 0.6808,
+          "recall_95ci": [
+            0.6363,
+            0.7223
+          ],
+          "f1": 0.2734,
+          "fpr": 0.9001,
+          "fpr_95ci": [
+            0.8847,
+            0.9137
+          ],
+          "fnr": 0.3192,
+          "brier": 0.6234,
+          "ece": 0.6651,
+          "pr_auc": 0.2437
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 1774,
+          "fp": 1892,
+          "fn": 1994,
+          "tn": 236,
+          "precision": 0.4839,
+          "recall": 0.4708,
+          "recall_95ci": [
+            0.4549,
+            0.4868
+          ],
+          "f1": 0.4773,
+          "fpr": 0.8891,
+          "fpr_95ci": [
+            0.875,
+            0.9017
+          ],
+          "fnr": 0.5292,
+          "brier": 0.5305,
+          "ece": 0.5361,
+          "pr_auc": 0.5784
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9891,
+            "fpr_95ci": [
+              0.941,
+              0.9981
+            ],
+            "fnr": null,
+            "brier": 0.6963,
+            "ece": 0.8283,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 158,
+            "fp": 1714,
+            "fn": 14,
+            "tn": 224,
+            "precision": 0.0844,
+            "recall": 0.9186,
+            "recall_95ci": [
+              0.868,
+              0.9509
+            ],
+            "f1": 0.1546,
+            "fpr": 0.8844,
+            "fpr_95ci": [
+              0.8694,
+              0.8979
+            ],
+            "fnr": 0.0814,
+            "brier": 0.6548,
+            "ece": 0.7302,
+            "pr_auc": 0.1448
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 87,
+            "fn": 0,
+            "tn": 11,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8878,
+            "fpr_95ci": [
+              0.8101,
+              0.9362
+            ],
+            "fnr": null,
+            "brier": 0.7867,
+            "ece": 0.8496,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 1616,
+            "fp": 0,
+            "fn": 1980,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.4494,
+            "recall_95ci": [
+              0.4332,
+              0.4657
+            ],
+            "f1": 0.6201,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.5506,
+            "brier": 0.4464,
+            "ece": 0.5364,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 7.39
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 798,
+          "fp": 1553,
+          "fn": 911,
+          "tn": 145,
+          "precision": 0.3394,
+          "recall": 0.4669,
+          "recall_95ci": [
+            0.4434,
+            0.4906
+          ],
+          "f1": 0.3931,
+          "fpr": 0.9146,
+          "fpr_95ci": [
+            0.9004,
+            0.927
+          ],
+          "fnr": 0.5331,
+          "brier": 0.5563,
+          "ece": 0.5858,
+          "pr_auc": 0.4301
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2156,
+            "ece": 0.1917,
+            "pr_auc": 0.7388
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.23
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.082,
+          "ece": 0.1223,
+          "pr_auc": 0.9953
+        }
+      }
+    },
+    {
+      "strategy": "HEAD",
+      "content_tokens": 256,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 839,
+          "fp": 1877,
+          "fn": 684,
+          "tn": 210,
+          "precision": 0.3089,
+          "recall": 0.5509,
+          "recall_95ci": [
+            0.5258,
+            0.5757
+          ],
+          "f1": 0.3958,
+          "fpr": 0.8994,
+          "fpr_95ci": [
+            0.8857,
+            0.9116
+          ],
+          "fnr": 0.4491,
+          "brier": 0.5938,
+          "ece": 0.602,
+          "pr_auc": 0.4037
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 101,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9634,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.8092,
+            "ece": 0.8979,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 162,
+            "fp": 1685,
+            "fn": 15,
+            "tn": 198,
+            "precision": 0.0877,
+            "recall": 0.9153,
+            "recall_95ci": [
+              0.8649,
+              0.948
+            ],
+            "f1": 0.1601,
+            "fpr": 0.8948,
+            "fpr_95ci": [
+              0.8802,
+              0.9079
+            ],
+            "fnr": 0.0847,
+            "brier": 0.6855,
+            "ece": 0.7505,
+            "pr_auc": 0.1589
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8835,
+            "fpr_95ci": [
+              0.8073,
+              0.9321
+            ],
+            "fnr": null,
+            "brier": 0.7572,
+            "ece": 0.8288,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 677,
+            "fp": 0,
+            "fn": 669,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.503,
+            "recall_95ci": [
+              0.4763,
+              0.5296
+            ],
+            "f1": 0.6693,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.497,
+            "brier": 0.4247,
+            "ece": 0.5055,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 13.62
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 310,
+          "fp": 1532,
+          "fn": 138,
+          "tn": 110,
+          "precision": 0.1683,
+          "recall": 0.692,
+          "recall_95ci": [
+            0.6477,
+            0.7329
+          ],
+          "f1": 0.2707,
+          "fpr": 0.933,
+          "fpr_95ci": [
+            0.9199,
+            0.9441
+          ],
+          "fnr": 0.308,
+          "brier": 0.6529,
+          "ece": 0.6864,
+          "pr_auc": 0.2467
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 1842,
+          "fp": 1933,
+          "fn": 1926,
+          "tn": 195,
+          "precision": 0.4879,
+          "recall": 0.4889,
+          "recall_95ci": [
+            0.4729,
+            0.5048
+          ],
+          "f1": 0.4884,
+          "fpr": 0.9084,
+          "fpr_95ci": [
+            0.8954,
+            0.9199
+          ],
+          "fnr": 0.5111,
+          "brier": 0.5167,
+          "ece": 0.5277,
+          "pr_auc": 0.5703
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 92,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9599,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.7807,
+            "ece": 0.8817,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 159,
+            "fp": 1753,
+            "fn": 13,
+            "tn": 185,
+            "precision": 0.0832,
+            "recall": 0.9244,
+            "recall_95ci": [
+              0.875,
+              0.9553
+            ],
+            "f1": 0.1526,
+            "fpr": 0.9045,
+            "fpr_95ci": [
+              0.8906,
+              0.9168
+            ],
+            "fnr": 0.0756,
+            "brier": 0.6875,
+            "ece": 0.7556,
+            "pr_auc": 0.149
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.792,
+            "ece": 0.8524,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 1683,
+            "fp": 0,
+            "fn": 1913,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.468,
+            "recall_95ci": [
+              0.4518,
+              0.4844
+            ],
+            "f1": 0.6376,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.532,
+            "brier": 0.4022,
+            "ece": 0.5,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 15.11
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 866,
+          "fp": 1594,
+          "fn": 843,
+          "tn": 104,
+          "precision": 0.352,
+          "recall": 0.5067,
+          "recall_95ci": [
+            0.483,
+            0.5304
+          ],
+          "f1": 0.4154,
+          "fpr": 0.9388,
+          "fpr_95ci": [
+            0.9263,
+            0.9492
+          ],
+          "fnr": 0.4933,
+          "brier": 0.5323,
+          "ece": 0.5609,
+          "pr_auc": 0.4216
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2155,
+            "ece": 0.1919,
+            "pr_auc": 0.7395
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.17
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.0809,
+          "ece": 0.1229,
+          "pr_auc": 0.9953
+        }
+      }
+    },
+    {
+      "strategy": "HEAD",
+      "content_tokens": 510,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 871,
+          "fp": 1876,
+          "fn": 652,
+          "tn": 211,
+          "precision": 0.3171,
+          "recall": 0.5719,
+          "recall_95ci": [
+            0.5469,
+            0.5965
+          ],
+          "f1": 0.408,
+          "fpr": 0.8989,
+          "fpr_95ci": [
+            0.8852,
+            0.9111
+          ],
+          "fnr": 0.4281,
+          "brier": 0.5994,
+          "ece": 0.5975,
+          "pr_auc": 0.3896
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 100,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9901,
+            "fpr_95ci": [
+              0.946,
+              0.9983
+            ],
+            "fnr": null,
+            "brier": 0.8299,
+            "ece": 0.9078,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 162,
+            "fp": 1685,
+            "fn": 15,
+            "tn": 198,
+            "precision": 0.0877,
+            "recall": 0.9153,
+            "recall_95ci": [
+              0.8649,
+              0.948
+            ],
+            "f1": 0.1601,
+            "fpr": 0.8948,
+            "fpr_95ci": [
+              0.8802,
+              0.9079
+            ],
+            "fnr": 0.0847,
+            "brier": 0.7032,
+            "ece": 0.7624,
+            "pr_auc": 0.1974
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8835,
+            "fpr_95ci": [
+              0.8073,
+              0.9321
+            ],
+            "fnr": null,
+            "brier": 0.7572,
+            "ece": 0.8287,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 709,
+            "fp": 0,
+            "fn": 637,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5267,
+            "recall_95ci": [
+              0.5,
+              0.5533
+            ],
+            "f1": 0.69,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4733,
+            "brier": 0.4112,
+            "ece": 0.4942,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 17.0
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 342,
+          "fp": 1531,
+          "fn": 106,
+          "tn": 111,
+          "precision": 0.1826,
+          "recall": 0.7634,
+          "recall_95ci": [
+            0.7219,
+            0.8004
+          ],
+          "f1": 0.2947,
+          "fpr": 0.9324,
+          "fpr_95ci": [
+            0.9192,
+            0.9436
+          ],
+          "fnr": 0.2366,
+          "brier": 0.6626,
+          "ece": 0.684,
+          "pr_auc": 0.2406
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2152,
+          "fp": 1946,
+          "fn": 1616,
+          "tn": 182,
+          "precision": 0.5251,
+          "recall": 0.5711,
+          "recall_95ci": [
+            0.5553,
+            0.5868
+          ],
+          "f1": 0.5472,
+          "fpr": 0.9145,
+          "fpr_95ci": [
+            0.9018,
+            0.9256
+          ],
+          "fnr": 0.4289,
+          "brier": 0.4973,
+          "ece": 0.4995,
+          "pr_auc": 0.5577
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 92,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9599,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.8309,
+            "ece": 0.9101,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 160,
+            "fp": 1766,
+            "fn": 12,
+            "tn": 172,
+            "precision": 0.0831,
+            "recall": 0.9302,
+            "recall_95ci": [
+              0.882,
+              0.9596
+            ],
+            "f1": 0.1525,
+            "fpr": 0.9112,
+            "fpr_95ci": [
+              0.8978,
+              0.9231
+            ],
+            "fnr": 0.0698,
+            "brier": 0.7086,
+            "ece": 0.77,
+            "pr_auc": 0.167
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.7921,
+            "ece": 0.8527,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 1992,
+            "fp": 0,
+            "fn": 1604,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5539,
+            "recall_95ci": [
+              0.5377,
+              0.5701
+            ],
+            "f1": 0.713,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4461,
+            "brier": 0.3568,
+            "ece": 0.4555,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 30.9
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1176,
+          "fp": 1607,
+          "fn": 533,
+          "tn": 91,
+          "precision": 0.4226,
+          "recall": 0.6881,
+          "recall_95ci": [
+            0.6658,
+            0.7096
+          ],
+          "f1": 0.5236,
+          "fpr": 0.9464,
+          "fpr_95ci": [
+            0.9347,
+            0.9561
+          ],
+          "fnr": 0.3119,
+          "brier": 0.4988,
+          "ece": 0.505,
+          "pr_auc": 0.4065
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2155,
+            "ece": 0.1919,
+            "pr_auc": 0.7393
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.05
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.081,
+          "ece": 0.1233,
+          "pr_auc": 0.9953
+        }
+      }
+    },
+    {
+      "strategy": "TAIL",
+      "content_tokens": 94,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 855,
+          "fp": 1618,
+          "fn": 668,
+          "tn": 469,
+          "precision": 0.3457,
+          "recall": 0.5614,
+          "recall_95ci": [
+            0.5363,
+            0.5861
+          ],
+          "f1": 0.4279,
+          "fpr": 0.7753,
+          "fpr_95ci": [
+            0.7569,
+            0.7927
+          ],
+          "fnr": 0.4386,
+          "brier": 0.5394,
+          "ece": 0.5372,
+          "pr_auc": 0.4092
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 95,
+            "fn": 0,
+            "tn": 6,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9406,
+            "fpr_95ci": [
+              0.8764,
+              0.9725
+            ],
+            "fnr": null,
+            "brier": 0.6706,
+            "ece": 0.7992,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 148,
+            "fp": 1433,
+            "fn": 29,
+            "tn": 450,
+            "precision": 0.0936,
+            "recall": 0.8362,
+            "recall_95ci": [
+              0.7746,
+              0.8834
+            ],
+            "f1": 0.1684,
+            "fpr": 0.761,
+            "fpr_95ci": [
+              0.7412,
+              0.7797
+            ],
+            "fnr": 0.1638,
+            "brier": 0.6041,
+            "ece": 0.6686,
+            "pr_auc": 0.1524
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 90,
+            "fn": 0,
+            "tn": 13,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8738,
+            "fpr_95ci": [
+              0.796,
+              0.9247
+            ],
+            "fnr": null,
+            "brier": 0.7567,
+            "ece": 0.8245,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 707,
+            "fp": 0,
+            "fn": 639,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5253,
+            "recall_95ci": [
+              0.4985,
+              0.5518
+            ],
+            "f1": 0.6887,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4747,
+            "brier": 0.414,
+            "ece": 0.492,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 4.27
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 326,
+          "fp": 1273,
+          "fn": 122,
+          "tn": 369,
+          "precision": 0.2039,
+          "recall": 0.7277,
+          "recall_95ci": [
+            0.6847,
+            0.7668
+          ],
+          "f1": 0.3185,
+          "fpr": 0.7753,
+          "fpr_95ci": [
+            0.7545,
+            0.7948
+          ],
+          "fnr": 0.2723,
+          "brier": 0.559,
+          "ece": 0.5917,
+          "pr_auc": 0.2589
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2198,
+          "fp": 1698,
+          "fn": 1570,
+          "tn": 430,
+          "precision": 0.5642,
+          "recall": 0.5833,
+          "recall_95ci": [
+            0.5675,
+            0.599
+          ],
+          "f1": 0.5736,
+          "fpr": 0.7979,
+          "fpr_95ci": [
+            0.7803,
+            0.8144
+          ],
+          "fnr": 0.4167,
+          "brier": 0.4608,
+          "ece": 0.4439,
+          "pr_auc": 0.5976
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 83,
+            "fn": 0,
+            "tn": 9,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9022,
+            "fpr_95ci": [
+              0.8244,
+              0.9477
+            ],
+            "fnr": null,
+            "brier": 0.6499,
+            "ece": 0.7834,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 143,
+            "fp": 1527,
+            "fn": 29,
+            "tn": 411,
+            "precision": 0.0856,
+            "recall": 0.8314,
+            "recall_95ci": [
+              0.7683,
+              0.88
+            ],
+            "f1": 0.1553,
+            "fpr": 0.7879,
+            "fpr_95ci": [
+              0.7692,
+              0.8055
+            ],
+            "fnr": 0.1686,
+            "brier": 0.6102,
+            "ece": 0.6809,
+            "pr_auc": 0.1284
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.8028,
+            "ece": 0.8622,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 2055,
+            "fp": 0,
+            "fn": 1541,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5715,
+            "recall_95ci": [
+              0.5552,
+              0.5876
+            ],
+            "f1": 0.7273,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4285,
+            "brier": 0.359,
+            "ece": 0.4478,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 6.26
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1222,
+          "fp": 1359,
+          "fn": 487,
+          "tn": 339,
+          "precision": 0.4735,
+          "recall": 0.715,
+          "recall_95ci": [
+            0.6932,
+            0.7359
+          ],
+          "f1": 0.5697,
+          "fpr": 0.8004,
+          "fpr_95ci": [
+            0.7807,
+            0.8187
+          ],
+          "fnr": 0.285,
+          "brier": 0.4357,
+          "ece": 0.419,
+          "pr_auc": 0.4766
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2164,
+            "ece": 0.1941,
+            "pr_auc": 0.7381
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2999,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.1
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.0935,
+          "ece": 0.1291,
+          "pr_auc": 0.9956
+        }
+      }
+    },
+    {
+      "strategy": "TAIL",
+      "content_tokens": 128,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 868,
+          "fp": 1806,
+          "fn": 655,
+          "tn": 281,
+          "precision": 0.3246,
+          "recall": 0.5699,
+          "recall_95ci": [
+            0.5449,
+            0.5946
+          ],
+          "f1": 0.4136,
+          "fpr": 0.8654,
+          "fpr_95ci": [
+            0.85,
+            0.8793
+          ],
+          "fnr": 0.4301,
+          "brier": 0.5528,
+          "ece": 0.558,
+          "pr_auc": 0.4152
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.901,
+            "fpr_95ci": [
+              0.8273,
+              0.9453
+            ],
+            "fnr": null,
+            "brier": 0.6315,
+            "ece": 0.7714,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 163,
+            "fp": 1626,
+            "fn": 14,
+            "tn": 257,
+            "precision": 0.0911,
+            "recall": 0.9209,
+            "recall_95ci": [
+              0.8716,
+              0.9523
+            ],
+            "f1": 0.1658,
+            "fpr": 0.8635,
+            "fpr_95ci": [
+              0.8473,
+              0.8783
+            ],
+            "fnr": 0.0791,
+            "brier": 0.6286,
+            "ece": 0.7027,
+            "pr_auc": 0.1487
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 89,
+            "fn": 0,
+            "tn": 14,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8641,
+            "fpr_95ci": [
+              0.7847,
+              0.9173
+            ],
+            "fnr": null,
+            "brier": 0.7495,
+            "ece": 0.8189,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 705,
+            "fp": 0,
+            "fn": 641,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5238,
+            "recall_95ci": [
+              0.4971,
+              0.5504
+            ],
+            "f1": 0.6875,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4762,
+            "brier": 0.4157,
+            "ece": 0.496,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 6.21
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 339,
+          "fp": 1461,
+          "fn": 109,
+          "tn": 181,
+          "precision": 0.1883,
+          "recall": 0.7567,
+          "recall_95ci": [
+            0.7149,
+            0.7941
+          ],
+          "f1": 0.3016,
+          "fpr": 0.8898,
+          "fpr_95ci": [
+            0.8737,
+            0.904
+          ],
+          "fnr": 0.2433,
+          "brier": 0.582,
+          "ece": 0.6243,
+          "pr_auc": 0.2433
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2308,
+          "fp": 1865,
+          "fn": 1460,
+          "tn": 263,
+          "precision": 0.5531,
+          "recall": 0.6125,
+          "recall_95ci": [
+            0.5969,
+            0.628
+          ],
+          "f1": 0.5813,
+          "fpr": 0.8764,
+          "fpr_95ci": [
+            0.8617,
+            0.8897
+          ],
+          "fnr": 0.3875,
+          "brier": 0.4613,
+          "ece": 0.4422,
+          "pr_auc": 0.602
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 80,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8696,
+            "fpr_95ci": [
+              0.7857,
+              0.9238
+            ],
+            "fnr": null,
+            "brier": 0.6103,
+            "ece": 0.754,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 155,
+            "fp": 1696,
+            "fn": 17,
+            "tn": 242,
+            "precision": 0.0837,
+            "recall": 0.9012,
+            "recall_95ci": [
+              0.8474,
+              0.9374
+            ],
+            "f1": 0.1532,
+            "fpr": 0.8751,
+            "fpr_95ci": [
+              0.8597,
+              0.8891
+            ],
+            "fnr": 0.0988,
+            "brier": 0.633,
+            "ece": 0.7081,
+            "pr_auc": 0.1251
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 89,
+            "fn": 0,
+            "tn": 9,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9082,
+            "fpr_95ci": [
+              0.8346,
+              0.9509
+            ],
+            "fnr": null,
+            "brier": 0.7987,
+            "ece": 0.8588,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 2153,
+            "fp": 0,
+            "fn": 1443,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5987,
+            "recall_95ci": [
+              0.5826,
+              0.6146
+            ],
+            "f1": 0.749,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4013,
+            "brier": 0.3476,
+            "ece": 0.4413,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 9.96
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1332,
+          "fp": 1526,
+          "fn": 377,
+          "tn": 172,
+          "precision": 0.4661,
+          "recall": 0.7794,
+          "recall_95ci": [
+            0.7591,
+            0.7984
+          ],
+          "f1": 0.5833,
+          "fpr": 0.8987,
+          "fpr_95ci": [
+            0.8834,
+            0.9122
+          ],
+          "fnr": 0.2206,
+          "brier": 0.4366,
+          "ece": 0.4127,
+          "pr_auc": 0.475
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2157,
+            "ece": 0.1915,
+            "pr_auc": 0.7383
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.08
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.084,
+          "ece": 0.1329,
+          "pr_auc": 0.9953
+        }
+      }
+    },
+    {
+      "strategy": "TAIL",
+      "content_tokens": 256,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 881,
+          "fp": 1848,
+          "fn": 642,
+          "tn": 239,
+          "precision": 0.3228,
+          "recall": 0.5785,
+          "recall_95ci": [
+            0.5535,
+            0.603
+          ],
+          "f1": 0.4144,
+          "fpr": 0.8855,
+          "fpr_95ci": [
+            0.8711,
+            0.8984
+          ],
+          "fnr": 0.4215,
+          "brier": 0.5808,
+          "ece": 0.5794,
+          "pr_auc": 0.4058
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 100,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9901,
+            "fpr_95ci": [
+              0.946,
+              0.9983
+            ],
+            "fnr": null,
+            "brier": 0.7682,
+            "ece": 0.8703,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 162,
+            "fp": 1657,
+            "fn": 15,
+            "tn": 226,
+            "precision": 0.0891,
+            "recall": 0.9153,
+            "recall_95ci": [
+              0.8649,
+              0.948
+            ],
+            "f1": 0.1623,
+            "fpr": 0.88,
+            "fpr_95ci": [
+              0.8645,
+              0.8939
+            ],
+            "fnr": 0.0847,
+            "brier": 0.6758,
+            "ece": 0.7399,
+            "pr_auc": 0.1514
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8835,
+            "fpr_95ci": [
+              0.8073,
+              0.9321
+            ],
+            "fnr": null,
+            "brier": 0.7574,
+            "ece": 0.8288,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 719,
+            "fp": 0,
+            "fn": 627,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5342,
+            "recall_95ci": [
+              0.5075,
+              0.5607
+            ],
+            "f1": 0.6964,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4658,
+            "brier": 0.4078,
+            "ece": 0.4913,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 9.89
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 352,
+          "fp": 1503,
+          "fn": 96,
+          "tn": 139,
+          "precision": 0.1898,
+          "recall": 0.7857,
+          "recall_95ci": [
+            0.7454,
+            0.8212
+          ],
+          "f1": 0.3057,
+          "fpr": 0.9153,
+          "fpr_95ci": [
+            0.9009,
+            0.9279
+          ],
+          "fnr": 0.2143,
+          "brier": 0.6305,
+          "ece": 0.6512,
+          "pr_auc": 0.2513
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2322,
+          "fp": 1901,
+          "fn": 1446,
+          "tn": 227,
+          "precision": 0.5498,
+          "recall": 0.6162,
+          "recall_95ci": [
+            0.6006,
+            0.6316
+          ],
+          "f1": 0.5812,
+          "fpr": 0.8933,
+          "fpr_95ci": [
+            0.8795,
+            0.9057
+          ],
+          "fnr": 0.3838,
+          "brier": 0.4723,
+          "ece": 0.4659,
+          "pr_auc": 0.5905
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 92,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9599,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.7685,
+            "ece": 0.8732,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 157,
+            "fp": 1720,
+            "fn": 15,
+            "tn": 218,
+            "precision": 0.0836,
+            "recall": 0.9128,
+            "recall_95ci": [
+              0.8611,
+              0.9464
+            ],
+            "f1": 0.1532,
+            "fpr": 0.8875,
+            "fpr_95ci": [
+              0.8727,
+              0.9008
+            ],
+            "fnr": 0.0872,
+            "brier": 0.6749,
+            "ece": 0.7419,
+            "pr_auc": 0.1217
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 89,
+            "fn": 0,
+            "tn": 9,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9082,
+            "fpr_95ci": [
+              0.8346,
+              0.9509
+            ],
+            "fnr": null,
+            "brier": 0.7945,
+            "ece": 0.8558,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 2165,
+            "fp": 0,
+            "fn": 1431,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.6021,
+            "recall_95ci": [
+              0.586,
+              0.6179
+            ],
+            "f1": 0.7516,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.3979,
+            "brier": 0.337,
+            "ece": 0.4311,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 15.12
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1346,
+          "fp": 1562,
+          "fn": 363,
+          "tn": 136,
+          "precision": 0.4629,
+          "recall": 0.7876,
+          "recall_95ci": [
+            0.7676,
+            0.8063
+          ],
+          "f1": 0.5831,
+          "fpr": 0.9199,
+          "fpr_95ci": [
+            0.906,
+            0.9319
+          ],
+          "fnr": 0.2124,
+          "brier": 0.4555,
+          "ece": 0.4497,
+          "pr_auc": 0.4606
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2155,
+            "ece": 0.1917,
+            "pr_auc": 0.7388
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.07
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.0813,
+          "ece": 0.1126,
+          "pr_auc": 0.9953
+        }
+      }
+    },
+    {
+      "strategy": "TAIL",
+      "content_tokens": 510,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 874,
+          "fp": 1871,
+          "fn": 649,
+          "tn": 216,
+          "precision": 0.3184,
+          "recall": 0.5739,
+          "recall_95ci": [
+            0.5489,
+            0.5985
+          ],
+          "f1": 0.4096,
+          "fpr": 0.8965,
+          "fpr_95ci": [
+            0.8827,
+            0.9089
+          ],
+          "fnr": 0.4261,
+          "brier": 0.5957,
+          "ece": 0.5961,
+          "pr_auc": 0.3885
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 100,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9901,
+            "fpr_95ci": [
+              0.946,
+              0.9983
+            ],
+            "fnr": null,
+            "brier": 0.8242,
+            "ece": 0.9045,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 165,
+            "fp": 1680,
+            "fn": 12,
+            "tn": 203,
+            "precision": 0.0894,
+            "recall": 0.9322,
+            "recall_95ci": [
+              0.8852,
+              0.9608
+            ],
+            "f1": 0.1632,
+            "fpr": 0.8922,
+            "fpr_95ci": [
+              0.8774,
+              0.9054
+            ],
+            "fnr": 0.0678,
+            "brier": 0.6967,
+            "ece": 0.7558,
+            "pr_auc": 0.1744
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8835,
+            "fpr_95ci": [
+              0.8073,
+              0.9321
+            ],
+            "fnr": null,
+            "brier": 0.7572,
+            "ece": 0.8287,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 709,
+            "fp": 0,
+            "fn": 637,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5267,
+            "recall_95ci": [
+              0.5,
+              0.5533
+            ],
+            "f1": 0.69,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4733,
+            "brier": 0.4118,
+            "ece": 0.4949,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 11.55
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 345,
+          "fp": 1526,
+          "fn": 103,
+          "tn": 116,
+          "precision": 0.1844,
+          "recall": 0.7701,
+          "recall_95ci": [
+            0.7289,
+            0.8067
+          ],
+          "f1": 0.2975,
+          "fpr": 0.9294,
+          "fpr_95ci": [
+            0.9159,
+            0.9408
+          ],
+          "fnr": 0.2299,
+          "brier": 0.6563,
+          "ece": 0.6765,
+          "pr_auc": 0.2298
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2160,
+          "fp": 1923,
+          "fn": 1608,
+          "tn": 205,
+          "precision": 0.529,
+          "recall": 0.5732,
+          "recall_95ci": [
+            0.5574,
+            0.589
+          ],
+          "f1": 0.5502,
+          "fpr": 0.9037,
+          "fpr_95ci": [
+            0.8904,
+            0.9155
+          ],
+          "fnr": 0.4268,
+          "brier": 0.4957,
+          "ece": 0.495,
+          "pr_auc": 0.5651
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9891,
+            "fpr_95ci": [
+              0.941,
+              0.9981
+            ],
+            "fnr": null,
+            "brier": 0.817,
+            "ece": 0.9011,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 160,
+            "fp": 1744,
+            "fn": 12,
+            "tn": 194,
+            "precision": 0.084,
+            "recall": 0.9302,
+            "recall_95ci": [
+              0.882,
+              0.9596
+            ],
+            "f1": 0.1541,
+            "fpr": 0.8999,
+            "fpr_95ci": [
+              0.8857,
+              0.9125
+            ],
+            "fnr": 0.0698,
+            "brier": 0.6976,
+            "ece": 0.7593,
+            "pr_auc": 0.1531
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.7921,
+            "ece": 0.8527,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 2000,
+            "fp": 0,
+            "fn": 1596,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5562,
+            "recall_95ci": [
+              0.5399,
+              0.5723
+            ],
+            "f1": 0.7148,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4438,
+            "brier": 0.361,
+            "ece": 0.4588,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 20.82
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1184,
+          "fp": 1584,
+          "fn": 525,
+          "tn": 114,
+          "precision": 0.4277,
+          "recall": 0.6928,
+          "recall_95ci": [
+            0.6705,
+            0.7142
+          ],
+          "f1": 0.5289,
+          "fpr": 0.9329,
+          "fpr_95ci": [
+            0.92,
+            0.9438
+          ],
+          "fnr": 0.3072,
+          "brier": 0.4961,
+          "ece": 0.4973,
+          "pr_auc": 0.4197
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2155,
+            "ece": 0.1919,
+            "pr_auc": 0.7393
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.03
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.081,
+          "ece": 0.1233,
+          "pr_auc": 0.9953
+        }
+      }
+    },
+    {
+      "strategy": "HEAD_TAIL",
+      "content_tokens": 94,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 844,
+          "fp": 1746,
+          "fn": 679,
+          "tn": 341,
+          "precision": 0.3259,
+          "recall": 0.5542,
+          "recall_95ci": [
+            0.5291,
+            0.579
+          ],
+          "f1": 0.4104,
+          "fpr": 0.8366,
+          "fpr_95ci": [
+            0.8201,
+            0.8518
+          ],
+          "fnr": 0.4458,
+          "brier": 0.5606,
+          "ece": 0.559,
+          "pr_auc": 0.4036
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 96,
+            "fn": 0,
+            "tn": 5,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9505,
+            "fpr_95ci": [
+              0.8893,
+              0.9787
+            ],
+            "fnr": null,
+            "brier": 0.6992,
+            "ece": 0.8238,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 163,
+            "fp": 1560,
+            "fn": 14,
+            "tn": 323,
+            "precision": 0.0946,
+            "recall": 0.9209,
+            "recall_95ci": [
+              0.8716,
+              0.9523
+            ],
+            "f1": 0.1716,
+            "fpr": 0.8285,
+            "fpr_95ci": [
+              0.8108,
+              0.8448
+            ],
+            "fnr": 0.0791,
+            "brier": 0.6281,
+            "ece": 0.695,
+            "pr_auc": 0.1767
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 90,
+            "fn": 0,
+            "tn": 13,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8738,
+            "fpr_95ci": [
+              0.796,
+              0.9247
+            ],
+            "fnr": null,
+            "brier": 0.7592,
+            "ece": 0.8265,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 681,
+            "fp": 0,
+            "fn": 665,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5059,
+            "recall_95ci": [
+              0.4793,
+              0.5326
+            ],
+            "f1": 0.6719,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4941,
+            "brier": 0.4316,
+            "ece": 0.5094,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 5.68
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 315,
+          "fp": 1401,
+          "fn": 133,
+          "tn": 241,
+          "precision": 0.1836,
+          "recall": 0.7031,
+          "recall_95ci": [
+            0.6592,
+            0.7436
+          ],
+          "f1": 0.2911,
+          "fpr": 0.8532,
+          "fpr_95ci": [
+            0.8353,
+            0.8695
+          ],
+          "fnr": 0.2969,
+          "brier": 0.5956,
+          "ece": 0.6185,
+          "pr_auc": 0.264
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 1922,
+          "fp": 1781,
+          "fn": 1846,
+          "tn": 347,
+          "precision": 0.519,
+          "recall": 0.5101,
+          "recall_95ci": [
+            0.4941,
+            0.526
+          ],
+          "f1": 0.5145,
+          "fpr": 0.8369,
+          "fpr_95ci": [
+            0.8206,
+            0.852
+          ],
+          "fnr": 0.4899,
+          "brier": 0.5039,
+          "ece": 0.4976,
+          "pr_auc": 0.5703
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 82,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8913,
+            "fpr_95ci": [
+              0.8114,
+              0.9399
+            ],
+            "fnr": null,
+            "brier": 0.6119,
+            "ece": 0.7608,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 145,
+            "fp": 1611,
+            "fn": 27,
+            "tn": 327,
+            "precision": 0.0826,
+            "recall": 0.843,
+            "recall_95ci": [
+              0.7812,
+              0.8898
+            ],
+            "f1": 0.1504,
+            "fpr": 0.8313,
+            "fpr_95ci": [
+              0.8139,
+              0.8473
+            ],
+            "fnr": 0.157,
+            "brier": 0.6355,
+            "ece": 0.7021,
+            "pr_auc": 0.1335
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.7889,
+            "ece": 0.8495,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 1777,
+            "fp": 0,
+            "fn": 1819,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.4942,
+            "recall_95ci": [
+              0.4778,
+              0.5105
+            ],
+            "f1": 0.6615,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.5058,
+            "brier": 0.4161,
+            "ece": 0.5093,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 7.68
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 946,
+          "fp": 1442,
+          "fn": 763,
+          "tn": 256,
+          "precision": 0.3961,
+          "recall": 0.5535,
+          "recall_95ci": [
+            0.5299,
+            0.577
+          ],
+          "f1": 0.4618,
+          "fpr": 0.8492,
+          "fpr_95ci": [
+            0.8314,
+            0.8655
+          ],
+          "fnr": 0.4465,
+          "brier": 0.5102,
+          "ece": 0.5086,
+          "pr_auc": 0.4213
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 219,
+            "fp": 144,
+            "fn": 33,
+            "tn": 252,
+            "precision": 0.6033,
+            "recall": 0.869,
+            "recall_95ci": [
+              0.8218,
+              0.9052
+            ],
+            "f1": 0.7122,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.131,
+            "brier": 0.2156,
+            "ece": 0.1912,
+            "pr_auc": 0.7364
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.12
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 44,
+          "fp": 5,
+          "fn": 0,
+          "tn": 0,
+          "precision": 0.898,
+          "recall": 1.0,
+          "recall_95ci": [
+            0.9197,
+            1.0
+          ],
+          "f1": 0.9462,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0,
+          "brier": 0.0828,
+          "ece": 0.1145,
+          "pr_auc": 0.9908
+        }
+      }
+    },
+    {
+      "strategy": "HEAD_TAIL",
+      "content_tokens": 128,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 844,
+          "fp": 1762,
+          "fn": 679,
+          "tn": 325,
+          "precision": 0.3239,
+          "recall": 0.5542,
+          "recall_95ci": [
+            0.5291,
+            0.579
+          ],
+          "f1": 0.4088,
+          "fpr": 0.8443,
+          "fpr_95ci": [
+            0.8281,
+            0.8592
+          ],
+          "fnr": 0.4458,
+          "brier": 0.5568,
+          "ece": 0.5587,
+          "pr_auc": 0.4198
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.901,
+            "fpr_95ci": [
+              0.8273,
+              0.9453
+            ],
+            "fnr": null,
+            "brier": 0.6537,
+            "ece": 0.7927,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 164,
+            "fp": 1581,
+            "fn": 13,
+            "tn": 302,
+            "precision": 0.094,
+            "recall": 0.9266,
+            "recall_95ci": [
+              0.8784,
+              0.9566
+            ],
+            "f1": 0.1707,
+            "fpr": 0.8396,
+            "fpr_95ci": [
+              0.8224,
+              0.8555
+            ],
+            "fnr": 0.0734,
+            "brier": 0.6233,
+            "ece": 0.7003,
+            "pr_auc": 0.1568
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 90,
+            "fn": 0,
+            "tn": 13,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8738,
+            "fpr_95ci": [
+              0.796,
+              0.9247
+            ],
+            "fnr": null,
+            "brier": 0.7546,
+            "ece": 0.8267,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 680,
+            "fp": 0,
+            "fn": 666,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5052,
+            "recall_95ci": [
+              0.4785,
+              0.5319
+            ],
+            "f1": 0.6713,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4948,
+            "brier": 0.4327,
+            "ece": 0.5114,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 5.78
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 315,
+          "fp": 1417,
+          "fn": 133,
+          "tn": 225,
+          "precision": 0.1819,
+          "recall": 0.7031,
+          "recall_95ci": [
+            0.6592,
+            0.7436
+          ],
+          "f1": 0.289,
+          "fpr": 0.863,
+          "fpr_95ci": [
+            0.8455,
+            0.8788
+          ],
+          "fnr": 0.2969,
+          "brier": 0.589,
+          "ece": 0.6267,
+          "pr_auc": 0.2754
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2031,
+          "fp": 1816,
+          "fn": 1737,
+          "tn": 312,
+          "precision": 0.5279,
+          "recall": 0.539,
+          "recall_95ci": [
+            0.5231,
+            0.5549
+          ],
+          "f1": 0.5334,
+          "fpr": 0.8534,
+          "fpr_95ci": [
+            0.8377,
+            0.8678
+          ],
+          "fnr": 0.461,
+          "brier": 0.495,
+          "ece": 0.4753,
+          "pr_auc": 0.583
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 80,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8696,
+            "fpr_95ci": [
+              0.7857,
+              0.9238
+            ],
+            "fnr": null,
+            "brier": 0.5814,
+            "ece": 0.738,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 153,
+            "fp": 1648,
+            "fn": 19,
+            "tn": 290,
+            "precision": 0.085,
+            "recall": 0.8895,
+            "recall_95ci": [
+              0.8339,
+              0.9281
+            ],
+            "f1": 0.1551,
+            "fpr": 0.8504,
+            "fpr_95ci": [
+              0.8338,
+              0.8655
+            ],
+            "fnr": 0.1105,
+            "brier": 0.63,
+            "ece": 0.7081,
+            "pr_auc": 0.1367
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.7906,
+            "ece": 0.8527,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 1878,
+            "fp": 0,
+            "fn": 1718,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5222,
+            "recall_95ci": [
+              0.5059,
+              0.5385
+            ],
+            "f1": 0.6862,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4778,
+            "brier": 0.4056,
+            "ece": 0.5001,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 9.31
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1055,
+          "fp": 1477,
+          "fn": 654,
+          "tn": 221,
+          "precision": 0.4167,
+          "recall": 0.6173,
+          "recall_95ci": [
+            0.594,
+            0.6401
+          ],
+          "f1": 0.4975,
+          "fpr": 0.8698,
+          "fpr_95ci": [
+            0.853,
+            0.885
+          ],
+          "fnr": 0.3827,
+          "brier": 0.4949,
+          "ece": 0.4631,
+          "pr_auc": 0.4307
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2157,
+            "ece": 0.1916,
+            "pr_auc": 0.7389
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.11
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.0842,
+          "ece": 0.1223,
+          "pr_auc": 0.9948
+        }
+      }
+    },
+    {
+      "strategy": "HEAD_TAIL",
+      "content_tokens": 256,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 848,
+          "fp": 1859,
+          "fn": 675,
+          "tn": 228,
+          "precision": 0.3133,
+          "recall": 0.5568,
+          "recall_95ci": [
+            0.5317,
+            0.5816
+          ],
+          "f1": 0.4009,
+          "fpr": 0.8908,
+          "fpr_95ci": [
+            0.8766,
+            0.9034
+          ],
+          "fnr": 0.4432,
+          "brier": 0.5826,
+          "ece": 0.5896,
+          "pr_auc": 0.4065
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 100,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9901,
+            "fpr_95ci": [
+              0.946,
+              0.9983
+            ],
+            "fnr": null,
+            "brier": 0.7882,
+            "ece": 0.8846,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 162,
+            "fp": 1668,
+            "fn": 15,
+            "tn": 215,
+            "precision": 0.0885,
+            "recall": 0.9153,
+            "recall_95ci": [
+              0.8649,
+              0.948
+            ],
+            "f1": 0.1614,
+            "fpr": 0.8858,
+            "fpr_95ci": [
+              0.8707,
+              0.8994
+            ],
+            "fnr": 0.0847,
+            "brier": 0.6701,
+            "ece": 0.7382,
+            "pr_auc": 0.1626
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8835,
+            "fpr_95ci": [
+              0.8073,
+              0.9321
+            ],
+            "fnr": null,
+            "brier": 0.7572,
+            "ece": 0.8288,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 686,
+            "fp": 0,
+            "fn": 660,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5097,
+            "recall_95ci": [
+              0.483,
+              0.5363
+            ],
+            "f1": 0.6752,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4903,
+            "brier": 0.42,
+            "ece": 0.5022,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 14.24
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 319,
+          "fp": 1514,
+          "fn": 129,
+          "tn": 128,
+          "precision": 0.174,
+          "recall": 0.7121,
+          "recall_95ci": [
+            0.6685,
+            0.752
+          ],
+          "f1": 0.2797,
+          "fpr": 0.922,
+          "fpr_95ci": [
+            0.9081,
+            0.9341
+          ],
+          "fnr": 0.2879,
+          "brier": 0.6336,
+          "ece": 0.665,
+          "pr_auc": 0.25
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2147,
+          "fp": 1921,
+          "fn": 1621,
+          "tn": 207,
+          "precision": 0.5278,
+          "recall": 0.5698,
+          "recall_95ci": [
+            0.5539,
+            0.5855
+          ],
+          "f1": 0.548,
+          "fpr": 0.9027,
+          "fpr_95ci": [
+            0.8894,
+            0.9146
+          ],
+          "fnr": 0.4302,
+          "brier": 0.4934,
+          "ece": 0.4904,
+          "pr_auc": 0.577
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 92,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9599,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.771,
+            "ece": 0.8758,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 158,
+            "fp": 1741,
+            "fn": 14,
+            "tn": 197,
+            "precision": 0.0832,
+            "recall": 0.9186,
+            "recall_95ci": [
+              0.868,
+              0.9509
+            ],
+            "f1": 0.1526,
+            "fpr": 0.8983,
+            "fpr_95ci": [
+              0.8841,
+              0.911
+            ],
+            "fnr": 0.0814,
+            "brier": 0.674,
+            "ece": 0.7459,
+            "pr_auc": 0.1361
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.7929,
+            "ece": 0.8539,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 1989,
+            "fp": 0,
+            "fn": 1607,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5531,
+            "recall_95ci": [
+              0.5368,
+              0.5693
+            ],
+            "f1": 0.7123,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4469,
+            "brier": 0.3722,
+            "ece": 0.4687,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 14.1
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1171,
+          "fp": 1582,
+          "fn": 538,
+          "tn": 116,
+          "precision": 0.4254,
+          "recall": 0.6852,
+          "recall_95ci": [
+            0.6628,
+            0.7068
+          ],
+          "f1": 0.5249,
+          "fpr": 0.9317,
+          "fpr_95ci": [
+            0.9187,
+            0.9427
+          ],
+          "fnr": 0.3148,
+          "brier": 0.4921,
+          "ece": 0.4961,
+          "pr_auc": 0.4297
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2155,
+            "ece": 0.1919,
+            "pr_auc": 0.7397
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.06
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.0809,
+          "ece": 0.1225,
+          "pr_auc": 0.9953
+        }
+      }
+    },
+    {
+      "strategy": "HEAD_TAIL",
+      "content_tokens": 510,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 862,
+          "fp": 1873,
+          "fn": 661,
+          "tn": 214,
+          "precision": 0.3152,
+          "recall": 0.566,
+          "recall_95ci": [
+            0.541,
+            0.5907
+          ],
+          "f1": 0.4049,
+          "fpr": 0.8975,
+          "fpr_95ci": [
+            0.8837,
+            0.9098
+          ],
+          "fnr": 0.434,
+          "brier": 0.596,
+          "ece": 0.5972,
+          "pr_auc": 0.3913
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 100,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9901,
+            "fpr_95ci": [
+              0.946,
+              0.9983
+            ],
+            "fnr": null,
+            "brier": 0.8275,
+            "ece": 0.9065,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 163,
+            "fp": 1682,
+            "fn": 14,
+            "tn": 201,
+            "precision": 0.0883,
+            "recall": 0.9209,
+            "recall_95ci": [
+              0.8716,
+              0.9523
+            ],
+            "f1": 0.1612,
+            "fpr": 0.8933,
+            "fpr_95ci": [
+              0.8785,
+              0.9064
+            ],
+            "fnr": 0.0791,
+            "brier": 0.6966,
+            "ece": 0.759,
+            "pr_auc": 0.1922
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8835,
+            "fpr_95ci": [
+              0.8073,
+              0.9321
+            ],
+            "fnr": null,
+            "brier": 0.7572,
+            "ece": 0.8287,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 699,
+            "fp": 0,
+            "fn": 647,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5193,
+            "recall_95ci": [
+              0.4926,
+              0.5459
+            ],
+            "f1": 0.6836,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4807,
+            "brier": 0.4122,
+            "ece": 0.4956,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 3610,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 16.76
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 333,
+          "fp": 1528,
+          "fn": 115,
+          "tn": 114,
+          "precision": 0.1789,
+          "recall": 0.7433,
+          "recall_95ci": [
+            0.7009,
+            0.7816
+          ],
+          "f1": 0.2884,
+          "fpr": 0.9306,
+          "fpr_95ci": [
+            0.9172,
+            0.9419
+          ],
+          "fnr": 0.2567,
+          "brier": 0.6567,
+          "ece": 0.679,
+          "pr_auc": 0.2422
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2230,
+          "fp": 1938,
+          "fn": 1538,
+          "tn": 190,
+          "precision": 0.535,
+          "recall": 0.5918,
+          "recall_95ci": [
+            0.576,
+            0.6074
+          ],
+          "f1": 0.562,
+          "fpr": 0.9107,
+          "fpr_95ci": [
+            0.8978,
+            0.9221
+          ],
+          "fnr": 0.4082,
+          "brier": 0.4941,
+          "ece": 0.4964,
+          "pr_auc": 0.5614
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 1,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9891,
+            "fpr_95ci": [
+              0.941,
+              0.9981
+            ],
+            "fnr": null,
+            "brier": 0.8122,
+            "ece": 0.8982,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 158,
+            "fp": 1759,
+            "fn": 14,
+            "tn": 179,
+            "precision": 0.0824,
+            "recall": 0.9186,
+            "recall_95ci": [
+              0.868,
+              0.9509
+            ],
+            "f1": 0.1513,
+            "fpr": 0.9076,
+            "fpr_95ci": [
+              0.8939,
+              0.9197
+            ],
+            "fnr": 0.0814,
+            "brier": 0.7018,
+            "ece": 0.7656,
+            "pr_auc": 0.1619
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 88,
+            "fn": 0,
+            "tn": 10,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.898,
+            "fpr_95ci": [
+              0.8223,
+              0.9436
+            ],
+            "fnr": null,
+            "brier": 0.7921,
+            "ece": 0.8527,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 2072,
+            "fp": 0,
+            "fn": 1524,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5762,
+            "recall_95ci": [
+              0.56,
+              0.5923
+            ],
+            "f1": 0.7311,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4238,
+            "brier": 0.356,
+            "ece": 0.4562,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 5896,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 20.45
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1254,
+          "fp": 1599,
+          "fn": 455,
+          "tn": 99,
+          "precision": 0.4395,
+          "recall": 0.7338,
+          "recall_95ci": [
+            0.7123,
+            0.7542
+          ],
+          "f1": 0.5498,
+          "fpr": 0.9417,
+          "fpr_95ci": [
+            0.9295,
+            0.9519
+          ],
+          "fnr": 0.2662,
+          "brier": 0.4933,
+          "ece": 0.4996,
+          "pr_auc": 0.4094
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2155,
+            "ece": 0.1919,
+            "pr_auc": 0.7393
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1637,
+          "windows_per_input": 1.0,
+          "uncached_seconds": 0.04
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.081,
+          "ece": 0.1233,
+          "pr_auc": 0.9953
+        }
+      }
+    },
+    {
+      "strategy": "SLIDING_MAX",
+      "content_tokens": 94,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 920,
+          "fp": 1960,
+          "fn": 603,
+          "tn": 127,
+          "precision": 0.3194,
+          "recall": 0.6041,
+          "recall_95ci": [
+            0.5793,
+            0.6283
+          ],
+          "f1": 0.4179,
+          "fpr": 0.9391,
+          "fpr_95ci": [
+            0.9281,
+            0.9486
+          ],
+          "fnr": 0.3959,
+          "brier": 0.6369,
+          "ece": 0.6376,
+          "pr_auc": 0.3549
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 101,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9634,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.9071,
+            "ece": 0.952,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 167,
+            "fp": 1768,
+            "fn": 10,
+            "tn": 115,
+            "precision": 0.0863,
+            "recall": 0.9435,
+            "recall_95ci": [
+              0.8991,
+              0.969
+            ],
+            "f1": 0.1581,
+            "fpr": 0.9389,
+            "fpr_95ci": [
+              0.9272,
+              0.9489
+            ],
+            "fnr": 0.0565,
+            "brier": 0.7779,
+            "ece": 0.8171,
+            "pr_auc": 0.2011
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8835,
+            "fpr_95ci": [
+              0.8073,
+              0.9321
+            ],
+            "fnr": null,
+            "brier": 0.7751,
+            "ece": 0.843,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 753,
+            "fp": 0,
+            "fn": 593,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5594,
+            "recall_95ci": [
+              0.5328,
+              0.5858
+            ],
+            "f1": 0.7175,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4406,
+            "brier": 0.3903,
+            "ece": 0.4642,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 31416,
+          "windows_per_input": 8.702,
+          "uncached_seconds": 68.75
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 391,
+          "fp": 1615,
+          "fn": 57,
+          "tn": 27,
+          "precision": 0.1949,
+          "recall": 0.8728,
+          "recall_95ci": [
+            0.8387,
+            0.9005
+          ],
+          "f1": 0.3187,
+          "fpr": 0.9836,
+          "fpr_95ci": [
+            0.9762,
+            0.9887
+          ],
+          "fnr": 0.1272,
+          "brier": 0.7274,
+          "ece": 0.7419,
+          "pr_auc": 0.2408
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2504,
+          "fp": 2010,
+          "fn": 1264,
+          "tn": 118,
+          "precision": 0.5547,
+          "recall": 0.6645,
+          "recall_95ci": [
+            0.6493,
+            0.6794
+          ],
+          "f1": 0.6047,
+          "fpr": 0.9445,
+          "fpr_95ci": [
+            0.934,
+            0.9535
+          ],
+          "fnr": 0.3355,
+          "brier": 0.4904,
+          "ece": 0.4873,
+          "pr_auc": 0.5689
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 92,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9599,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.9066,
+            "ece": 0.9519,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 164,
+            "fp": 1828,
+            "fn": 8,
+            "tn": 110,
+            "precision": 0.0823,
+            "recall": 0.9535,
+            "recall_95ci": [
+              0.9109,
+              0.9762
+            ],
+            "f1": 0.1516,
+            "fpr": 0.9432,
+            "fpr_95ci": [
+              0.932,
+              0.9527
+            ],
+            "fnr": 0.0465,
+            "brier": 0.7798,
+            "ece": 0.822,
+            "pr_auc": 0.1957
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 90,
+            "fn": 0,
+            "tn": 8,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9184,
+            "fpr_95ci": [
+              0.8471,
+              0.9581
+            ],
+            "fnr": null,
+            "brier": 0.8102,
+            "ece": 0.8693,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 2340,
+            "fp": 0,
+            "fn": 1256,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.6507,
+            "recall_95ci": [
+              0.635,
+              0.6661
+            ],
+            "f1": 0.7884,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.3493,
+            "brier": 0.3013,
+            "ece": 0.3729,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 41467,
+          "windows_per_input": 7.033,
+          "uncached_seconds": 62.93
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1528,
+          "fp": 1671,
+          "fn": 181,
+          "tn": 27,
+          "precision": 0.4776,
+          "recall": 0.8941,
+          "recall_95ci": [
+            0.8786,
+            0.9078
+          ],
+          "f1": 0.6227,
+          "fpr": 0.9841,
+          "fpr_95ci": [
+            0.977,
+            0.989
+          ],
+          "fnr": 0.1059,
+          "brier": 0.4869,
+          "ece": 0.4839,
+          "pr_auc": 0.4797
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2158,
+            "ece": 0.1924,
+            "pr_auc": 0.743
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1719,
+          "windows_per_input": 1.05,
+          "uncached_seconds": 0.11
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.0848,
+          "ece": 0.1323,
+          "pr_auc": 0.9957
+        }
+      }
+    },
+    {
+      "strategy": "SLIDING_MAX",
+      "content_tokens": 256,
+      "DEV": {
+        "pooled": {
+          "n": 3610,
+          "positive": 1523,
+          "negative": 2087,
+          "tp": 894,
+          "fp": 1925,
+          "fn": 629,
+          "tn": 162,
+          "precision": 0.3171,
+          "recall": 0.587,
+          "recall_95ci": [
+            0.5621,
+            0.6115
+          ],
+          "f1": 0.4118,
+          "fpr": 0.9224,
+          "fpr_95ci": [
+            0.9101,
+            0.9331
+          ],
+          "fnr": 0.413,
+          "brier": 0.6118,
+          "ece": 0.6119,
+          "pr_auc": 0.3875
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 101,
+            "positive": 0,
+            "negative": 101,
+            "tp": 0,
+            "fp": 101,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9634,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.8473,
+            "ece": 0.9192,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2060,
+            "positive": 177,
+            "negative": 1883,
+            "tp": 166,
+            "fp": 1733,
+            "fn": 11,
+            "tn": 150,
+            "precision": 0.0874,
+            "recall": 0.9379,
+            "recall_95ci": [
+              0.8922,
+              0.9649
+            ],
+            "f1": 0.1599,
+            "fpr": 0.9203,
+            "fpr_95ci": [
+              0.9072,
+              0.9317
+            ],
+            "fnr": 0.0621,
+            "brier": 0.7296,
+            "ece": 0.7852,
+            "pr_auc": 0.1749
+          },
+          "security_docs": {
+            "n": 103,
+            "positive": 0,
+            "negative": 103,
+            "tp": 0,
+            "fp": 91,
+            "fn": 0,
+            "tn": 12,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.8835,
+            "fpr_95ci": [
+              0.8073,
+              0.9321
+            ],
+            "fnr": null,
+            "brier": 0.7574,
+            "ece": 0.8288,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 1346,
+            "positive": 1346,
+            "negative": 0,
+            "tp": 728,
+            "fp": 0,
+            "fn": 618,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.5409,
+            "recall_95ci": [
+              0.5142,
+              0.5673
+            ],
+            "f1": 0.702,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.4591,
+            "brier": 0.4028,
+            "ece": 0.4853,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 12001,
+          "windows_per_input": 3.324,
+          "uncached_seconds": 53.19
+        },
+        "long_inputs_over_94": {
+          "n": 2090,
+          "positive": 448,
+          "negative": 1642,
+          "tp": 365,
+          "fp": 1580,
+          "fn": 83,
+          "tn": 62,
+          "precision": 0.1877,
+          "recall": 0.8147,
+          "recall_95ci": [
+            0.7761,
+            0.848
+          ],
+          "f1": 0.3051,
+          "fpr": 0.9622,
+          "fpr_95ci": [
+            0.9519,
+            0.9704
+          ],
+          "fnr": 0.1853,
+          "brier": 0.6841,
+          "ece": 0.7012,
+          "pr_auc": 0.2342
+        }
+      },
+      "TEST": {
+        "pooled": {
+          "n": 5896,
+          "positive": 3768,
+          "negative": 2128,
+          "tp": 2373,
+          "fp": 1971,
+          "fn": 1395,
+          "tn": 157,
+          "precision": 0.5463,
+          "recall": 0.6298,
+          "recall_95ci": [
+            0.6142,
+            0.6451
+          ],
+          "f1": 0.5851,
+          "fpr": 0.9262,
+          "fpr_95ci": [
+            0.9143,
+            0.9366
+          ],
+          "fnr": 0.3702,
+          "brier": 0.4886,
+          "ece": 0.4895,
+          "pr_auc": 0.5674
+        },
+        "per_source": {
+          "arxiv_abstracts": {
+            "n": 92,
+            "positive": 0,
+            "negative": 92,
+            "tp": 0,
+            "fp": 92,
+            "fn": 0,
+            "tn": 0,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 1.0,
+            "fpr_95ci": [
+              0.9599,
+              1.0
+            ],
+            "fnr": null,
+            "brier": 0.834,
+            "ece": 0.9123,
+            "pr_auc": null
+          },
+          "jailbreakllms": {
+            "n": 2110,
+            "positive": 172,
+            "negative": 1938,
+            "tp": 163,
+            "fp": 1790,
+            "fn": 9,
+            "tn": 148,
+            "precision": 0.0835,
+            "recall": 0.9477,
+            "recall_95ci": [
+              0.9036,
+              0.9722
+            ],
+            "f1": 0.1534,
+            "fpr": 0.9236,
+            "fpr_95ci": [
+              0.911,
+              0.9346
+            ],
+            "fnr": 0.0523,
+            "brier": 0.7327,
+            "ece": 0.7893,
+            "pr_auc": 0.1594
+          },
+          "security_docs": {
+            "n": 98,
+            "positive": 0,
+            "negative": 98,
+            "tp": 0,
+            "fp": 89,
+            "fn": 0,
+            "tn": 9,
+            "precision": 0.0,
+            "recall": null,
+            "recall_95ci": null,
+            "f1": 0.0,
+            "fpr": 0.9082,
+            "fpr_95ci": [
+              0.8346,
+              0.9509
+            ],
+            "fnr": null,
+            "brier": 0.7945,
+            "ece": 0.8558,
+            "pr_auc": null
+          },
+          "tensor_trust": {
+            "n": 3596,
+            "positive": 3596,
+            "negative": 0,
+            "tp": 2210,
+            "fp": 0,
+            "fn": 1386,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.6146,
+            "recall_95ci": [
+              0.5985,
+              0.6303
+            ],
+            "f1": 0.7613,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.3854,
+            "brier": 0.3283,
+            "ece": 0.4206,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 16041,
+          "windows_per_input": 2.721,
+          "uncached_seconds": 54.51
+        },
+        "long_inputs_over_94": {
+          "n": 3407,
+          "positive": 1709,
+          "negative": 1698,
+          "tp": 1397,
+          "fp": 1632,
+          "fn": 312,
+          "tn": 66,
+          "precision": 0.4612,
+          "recall": 0.8174,
+          "recall_95ci": [
+            0.7984,
+            0.835
+          ],
+          "f1": 0.5897,
+          "fpr": 0.9611,
+          "fpr_95ci": [
+            0.9508,
+            0.9693
+          ],
+          "fnr": 0.1826,
+          "brier": 0.4838,
+          "ece": 0.4878,
+          "pr_auc": 0.4324
+        }
+      },
+      "OOD_TEST": {
+        "pooled": null,
+        "per_source": {
+          "deepset": {
+            "n": 648,
+            "positive": 252,
+            "negative": 396,
+            "tp": 218,
+            "fp": 144,
+            "fn": 34,
+            "tn": 252,
+            "precision": 0.6022,
+            "recall": 0.8651,
+            "recall_95ci": [
+              0.8174,
+              0.9018
+            ],
+            "f1": 0.7101,
+            "fpr": 0.3636,
+            "fpr_95ci": [
+              0.3178,
+              0.4121
+            ],
+            "fnr": 0.1349,
+            "brier": 0.2155,
+            "ece": 0.1919,
+            "pr_auc": 0.7395
+          },
+          "gandalf": {
+            "n": 989,
+            "positive": 989,
+            "negative": 0,
+            "tp": 714,
+            "fp": 0,
+            "fn": 275,
+            "tn": 0,
+            "precision": 1.0,
+            "recall": 0.7219,
+            "recall_95ci": [
+              0.6932,
+              0.749
+            ],
+            "f1": 0.8385,
+            "fpr": null,
+            "fpr_95ci": null,
+            "fnr": 0.2781,
+            "brier": 0.2306,
+            "ece": 0.2998,
+            "pr_auc": null,
+            "note": "attack-only set: precision/FPR/PR-AUC undefined"
+          }
+        },
+        "cost": {
+          "model_windows": 1640,
+          "windows_per_input": 1.002,
+          "uncached_seconds": 0.1
+        },
+        "long_inputs_over_94": {
+          "n": 49,
+          "positive": 44,
+          "negative": 5,
+          "tp": 43,
+          "fp": 5,
+          "fn": 1,
+          "tn": 0,
+          "precision": 0.8958,
+          "recall": 0.9773,
+          "recall_95ci": [
+            0.8819,
+            0.996
+          ],
+          "f1": 0.9348,
+          "fpr": 1.0,
+          "fpr_95ci": [
+            0.5655,
+            1.0
+          ],
+          "fnr": 0.0227,
+          "brier": 0.0809,
+          "ece": 0.1229,
+          "pr_auc": 0.9953
+        }
+      }
+    }
+  ],
+  "512": "not run: BERT has 512 positions including [CLS]/[SEP], so 512 content tokens do not fit; 510 is the native maximum (max_length=512).",
+  "dev_best_by_f1": "TAIL/94",
+  "note": "V2 was trained at 94 content tokens; longer contexts are a distribution shift for the same weights, not a retrained model. dev_best_by_f1 is a DEV observation, not a V5 choice."
+}

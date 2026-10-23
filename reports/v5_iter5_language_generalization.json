@@ -1,0 +1,137 @@
+{
+  "note": "deepset German/English split by stopword guess (*). MASSIVE dev is the fresh OOD benign set (real, en crowd / de,tr professional localization). Synthetic rows are never tested. There is no real Turkish/German attack test source; synthetic Turkish/German results are not language test results.",
+  "per_run": {
+    "S0_s42": {
+      "deepset_attack_recall_german*": 0.0964,
+      "deepset_attack_recall_english*": 0.2895,
+      "massive_dev_benign_fpr": {
+        "de": 0.1573,
+        "en": 0.2617,
+        "tr": 0.1886
+      },
+      "deepset_fpr": 0.0556,
+      "deepset_pr_auc": 0.6511
+    },
+    "S0_s43": {
+      "deepset_attack_recall_german*": 0.1205,
+      "deepset_attack_recall_english*": 0.3816,
+      "massive_dev_benign_fpr": {
+        "de": 0.1935,
+        "en": 0.427,
+        "tr": 0.2528
+      },
+      "deepset_fpr": 0.0808,
+      "deepset_pr_auc": 0.6725
+    },
+    "S0_s44": {
+      "deepset_attack_recall_german*": 0.1446,
+      "deepset_attack_recall_english*": 0.3553,
+      "massive_dev_benign_fpr": {
+        "de": 0.1754,
+        "en": 0.3286,
+        "tr": 0.2416
+      },
+      "deepset_fpr": 0.0732,
+      "deepset_pr_auc": 0.6878
+    },
+    "S1_tr_s42": {
+      "deepset_attack_recall_german*": 0.1325,
+      "deepset_attack_recall_english*": 0.3947,
+      "massive_dev_benign_fpr": {
+        "de": 0.2661,
+        "en": 0.4462,
+        "tr": 0.6911
+      },
+      "deepset_fpr": 0.1086,
+      "deepset_pr_auc": 0.6606
+    },
+    "S2_de_s42": {
+      "deepset_attack_recall_german*": 0.4096,
+      "deepset_attack_recall_english*": 0.3026,
+      "massive_dev_benign_fpr": {
+        "de": 0.626,
+        "en": 0.1876,
+        "tr": 0.0968
+      },
+      "deepset_fpr": 0.0985,
+      "deepset_pr_auc": 0.661
+    },
+    "S3_tr_de_s42": {
+      "deepset_attack_recall_german*": 0.5301,
+      "deepset_attack_recall_english*": 0.3355,
+      "massive_dev_benign_fpr": {
+        "de": 0.8075,
+        "en": 0.3631,
+        "tr": 0.6381
+      },
+      "deepset_fpr": 0.1439,
+      "deepset_pr_auc": 0.6633
+    },
+    "S4_tr_de_benign_s42": {
+      "deepset_attack_recall_german*": 0.4578,
+      "deepset_attack_recall_english*": 0.3158,
+      "massive_dev_benign_fpr": {
+        "de": 0.5161,
+        "en": 0.3144,
+        "tr": 0.3598
+      },
+      "deepset_fpr": 0.0833,
+      "deepset_pr_auc": 0.6831
+    },
+    "S5_de_debenign_s42": {
+      "deepset_attack_recall_german*": 0.4819,
+      "deepset_attack_recall_english*": 0.3355,
+      "massive_dev_benign_fpr": {
+        "de": 0.5282,
+        "en": 0.3824,
+        "tr": 0.1835
+      },
+      "deepset_fpr": 0.1136,
+      "deepset_pr_auc": 0.6877
+    },
+    "S2_de_s43": {
+      "deepset_attack_recall_german*": 0.494,
+      "deepset_attack_recall_english*": 0.3487,
+      "massive_dev_benign_fpr": {
+        "de": 0.7248,
+        "en": 0.3215,
+        "tr": 0.2192
+      },
+      "deepset_fpr": 0.1288,
+      "deepset_pr_auc": 0.6686
+    },
+    "S2_de_s44": {
+      "deepset_attack_recall_german*": 0.4699,
+      "deepset_attack_recall_english*": 0.3092,
+      "massive_dev_benign_fpr": {
+        "de": 0.6996,
+        "en": 0.3073,
+        "tr": 0.1264
+      },
+      "deepset_fpr": 0.1162,
+      "deepset_pr_auc": 0.6827
+    },
+    "S1_tr_s43": {
+      "deepset_attack_recall_german*": 0.1205,
+      "deepset_attack_recall_english*": 0.3553,
+      "massive_dev_benign_fpr": {
+        "de": 0.1835,
+        "en": 0.3205,
+        "tr": 0.6157
+      },
+      "deepset_fpr": 0.0783,
+      "deepset_pr_auc": 0.6609
+    },
+    "S1_tr_s44": {
+      "deepset_attack_recall_german*": 0.2048,
+      "deepset_attack_recall_english*": 0.3684,
+      "massive_dev_benign_fpr": {
+        "de": 0.3125,
+        "en": 0.3966,
+        "tr": 0.6035
+      },
+      "deepset_fpr": 0.0606,
+      "deepset_pr_auc": 0.7039
+    }
+  }
+}

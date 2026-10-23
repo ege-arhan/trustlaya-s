@@ -1,0 +1,263 @@
+{
+  "total_rows": 10000,
+  "unique_exact_texts": 2682,
+  "unique_normalized_texts": 143,
+  "exact_duplicates_all_rows": 7318,
+  "normalized_duplicates_all_rows": 9857,
+  "splits": {
+    "train": {
+      "rows": 6972,
+      "exact_duplicates_within_split": 5066,
+      "normalized_duplicates_within_split": 6872,
+      "languages": {
+        "en": 3029,
+        "tr": 3943
+      },
+      "categories": {
+        "AGENT_RISK": 609,
+        "BENIGN": 641,
+        "DANGEROUS": 602,
+        "DATA_GOVERNANCE": 641,
+        "MULTI_RISK": 637,
+        "OVERSIGHT_RISK": 656,
+        "PII": 633,
+        "PRIVACY_RISK": 663,
+        "PROMPT_INJECTION": 634,
+        "SECRET": 620,
+        "SECURITY_RISK": 636
+      },
+      "labels_positive": {
+        "pii": 1270,
+        "secret": 798,
+        "prompt_injection": 714,
+        "dangerous_instruction": 602,
+        "privacy_risk": 1300,
+        "security_risk": 3738,
+        "ethics_risk": 1265,
+        "oversight_risk": 1265,
+        "data_governance_risk": 641
+      },
+      "families": 77,
+      "template_families": {
+        "AGENT_RISK-0": 87,
+        "AGENT_RISK-1": 76,
+        "AGENT_RISK-2": 83,
+        "AGENT_RISK-3": 90,
+        "AGENT_RISK-4": 82,
+        "AGENT_RISK-5": 84,
+        "AGENT_RISK-6": 107,
+        "BENIGN-0": 93,
+        "BENIGN-1": 87,
+        "BENIGN-2": 93,
+        "BENIGN-3": 66,
+        "BENIGN-4": 78,
+        "BENIGN-5": 104,
+        "BENIGN-6": 120,
+        "DANGEROUS-0": 83,
+        "DANGEROUS-1": 81,
+        "DANGEROUS-2": 88,
+        "DANGEROUS-3": 71,
+        "DANGEROUS-4": 82,
+        "DANGEROUS-5": 92,
+        "DANGEROUS-6": 105,
+        "DATA_GOVERNANCE-0": 92,
+        "DATA_GOVERNANCE-1": 92,
+        "DATA_GOVERNANCE-2": 94,
+        "DATA_GOVERNANCE-3": 80,
+        "DATA_GOVERNANCE-4": 99,
+        "DATA_GOVERNANCE-5": 97,
+        "DATA_GOVERNANCE-6": 87,
+        "MULTI_RISK-0": 102,
+        "MULTI_RISK-1": 88,
+        "MULTI_RISK-2": 91,
+        "MULTI_RISK-3": 80,
+        "MULTI_RISK-4": 87,
+        "MULTI_RISK-5": 97,
+        "MULTI_RISK-6": 92,
+        "OVERSIGHT_RISK-0": 92,
+        "OVERSIGHT_RISK-1": 105,
+        "OVERSIGHT_RISK-2": 105,
+        "OVERSIGHT_RISK-3": 75,
+        "OVERSIGHT_RISK-4": 98,
+        "OVERSIGHT_RISK-5": 85,
+        "OVERSIGHT_RISK-6": 96,
+        "PII-0": 80,
+        "PII-1": 80,
+        "PII-2": 94,
+        "PII-3": 100,
+        "PII-4": 83,
+        "PII-5": 101,
+        "PII-6": 95,
+        "PRIVACY_RISK-0": 107,
+        "PRIVACY_RISK-1": 85,
+        "PRIVACY_RISK-2": 104,
+        "PRIVACY_RISK-3": 92,
+        "PRIVACY_RISK-4": 104,
+        "PRIVACY_RISK-5": 78,
+        "PRIVACY_RISK-6": 93,
+        "PROMPT_INJECTION-0": 100,
+        "PROMPT_INJECTION-1": 93,
+        "PROMPT_INJECTION-2": 104,
+        "PROMPT_INJECTION-3": 75,
+        "PROMPT_INJECTION-4": 85,
+        "PROMPT_INJECTION-5": 103,
+        "PROMPT_INJECTION-6": 74,
+        "SECRET-0": 97,
+        "SECRET-1": 97,
+        "SECRET-2": 70,
+        "SECRET-3": 98,
+        "SECRET-4": 95,
+        "SECRET-5": 73,
+        "SECRET-6": 90,
+        "SECURITY_RISK-0": 94,
+        "SECURITY_RISK-1": 93,
+        "SECURITY_RISK-2": 96,
+        "SECURITY_RISK-3": 90,
+        "SECURITY_RISK-4": 99,
+        "SECURITY_RISK-5": 76,
+        "SECURITY_RISK-6": 88
+      }
+    },
+    "val": {
+      "rows": 1053,
+      "exact_duplicates_within_split": 856,
+      "normalized_duplicates_within_split": 1038,
+      "languages": {
+        "en": 1053
+      },
+      "categories": {
+        "AGENT_RISK": 103,
+        "BENIGN": 97,
+        "DANGEROUS": 111,
+        "DATA_GOVERNANCE": 97,
+        "MULTI_RISK": 96,
+        "OVERSIGHT_RISK": 81,
+        "PII": 96,
+        "PRIVACY_RISK": 101,
+        "PROMPT_INJECTION": 93,
+        "SECRET": 88,
+        "SECURITY_RISK": 90
+      },
+      "labels_positive": {
+        "pii": 192,
+        "secret": 88,
+        "prompt_injection": 93,
+        "dangerous_instruction": 111,
+        "privacy_risk": 197,
+        "security_risk": 581,
+        "ethics_risk": 212,
+        "oversight_risk": 184,
+        "data_governance_risk": 97
+      },
+      "families": 11,
+      "template_families": {
+        "AGENT_RISK-7": 103,
+        "BENIGN-7": 97,
+        "DANGEROUS-7": 111,
+        "DATA_GOVERNANCE-7": 97,
+        "MULTI_RISK-7": 96,
+        "OVERSIGHT_RISK-7": 81,
+        "PII-7": 96,
+        "PRIVACY_RISK-7": 101,
+        "PROMPT_INJECTION-7": 93,
+        "SECRET-7": 88,
+        "SECURITY_RISK-7": 90
+      }
+    },
+    "test": {
+      "rows": 1975,
+      "exact_duplicates_within_split": 1396,
+      "normalized_duplicates_within_split": 1947,
+      "languages": {
+        "mixed": 1975
+      },
+      "categories": {
+        "AGENT_RISK": 197,
+        "BENIGN": 172,
+        "DANGEROUS": 196,
+        "DATA_GOVERNANCE": 171,
+        "MULTI_RISK": 176,
+        "OVERSIGHT_RISK": 172,
+        "PII": 180,
+        "PRIVACY_RISK": 145,
+        "PROMPT_INJECTION": 182,
+        "SECRET": 201,
+        "SECURITY_RISK": 183
+      },
+      "labels_positive": {
+        "pii": 356,
+        "secret": 201,
+        "prompt_injection": 279,
+        "dangerous_instruction": 196,
+        "privacy_risk": 321,
+        "security_risk": 1135,
+        "ethics_risk": 341,
+        "oversight_risk": 369,
+        "data_governance_risk": 171
+      },
+      "families": 22,
+      "template_families": {
+        "AGENT_RISK-8": 101,
+        "AGENT_RISK-9": 96,
+        "BENIGN-8": 87,
+        "BENIGN-9": 85,
+        "DANGEROUS-8": 97,
+        "DANGEROUS-9": 99,
+        "DATA_GOVERNANCE-8": 80,
+        "DATA_GOVERNANCE-9": 91,
+        "MULTI_RISK-8": 97,
+        "MULTI_RISK-9": 79,
+        "OVERSIGHT_RISK-8": 98,
+        "OVERSIGHT_RISK-9": 74,
+        "PII-8": 95,
+        "PII-9": 85,
+        "PRIVACY_RISK-8": 68,
+        "PRIVACY_RISK-9": 77,
+        "PROMPT_INJECTION-8": 83,
+        "PROMPT_INJECTION-9": 99,
+        "SECRET-8": 81,
+        "SECRET-9": 120,
+        "SECURITY_RISK-8": 96,
+        "SECURITY_RISK-9": 87
+      }
+    }
+  },
+  "cross_split": {
+    "train-val": {
+      "exact_overlap": 0,
+      "normalized_overlap": 0,
+      "family_overlap": 0
+    },
+    "train-test": {
+      "exact_overlap": 0,
+      "normalized_overlap": 0,
+      "family_overlap": 0
+    },
+    "val-test": {
+      "exact_overlap": 0,
+      "normalized_overlap": 0,
+      "family_overlap": 0
+    }
+  },
+  "near_duplicate_proxy": {
+    "train": {
+      "rows_cosine_ge_0_80_to_other_split": 0,
+      "rows_cosine_ge_0_90_to_other_split": 0,
+      "rows_token_jaccard_ge_0_80_to_nearest_cosine_match": 0,
+      "max_cross_split_cosine": 0.5724006375011467
+    },
+    "val": {
+      "rows_cosine_ge_0_80_to_other_split": 0,
+      "rows_cosine_ge_0_90_to_other_split": 0,
+      "rows_token_jaccard_ge_0_80_to_nearest_cosine_match": 0,
+      "max_cross_split_cosine": 0.6515136726287929
+    },
+    "test": {
+      "rows_cosine_ge_0_80_to_other_split": 0,
+      "rows_cosine_ge_0_90_to_other_split": 0,
+      "rows_token_jaccard_ge_0_80_to_nearest_cosine_match": 0,
+      "max_cross_split_cosine": 0.6515136726287929
+    }
+  },
+  "method": "Lowercase, replace emails and digit runs, collapse whitespace; character TF-IDF cosine (3-5 grams) and token Jaccard on normalized prototypes. Threshold counts are row counts, not independent examples. This does not prove or disprove semantic paraphrase leakage."
+}

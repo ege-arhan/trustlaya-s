@@ -1,0 +1,244 @@
+{
+  "source": "neuralchemy/Prompt-injection-dataset",
+  "revision": "7d70432dfcf47a821612cbf9d34e9d9e3ad20e75",
+  "file": "core/test-00000-of-00001.parquet",
+  "file_sha256": "fb5432035fdd8453d61f6593bfe78ee2970403c5ea59959b642a6708e2bef670",
+  "license": "Apache-2.0; source-level terms may vary",
+  "scope": "Broad prompt injection and jailbreak versus benign, not strict tool-return injection",
+  "interpretation_warning": "HarmBench positives include standalone harmful requests without instruction override; their injection-head false negatives are not adjudicated prompt-injection misses.",
+  "rows": 942,
+  "label_counts": {
+    "0": 390,
+    "1": 552
+  },
+  "excluded_exact_or_normalized_training_overlap": 0,
+  "excluded_label_counts": {},
+  "source_counts": {
+    "original": 19,
+    "wildguard_judgecomp": 43,
+    "harmbench": 16,
+    "harmbench_benign": 22,
+    "hackaprompt": 310,
+    "neuralchemy_v1": 532
+  },
+  "category_counts": {
+    "benign": 381,
+    "direct_injection": 314,
+    "encoding_obfuscation": 1,
+    "indirect_injection": 1,
+    "jailbreak": 50,
+    "many_shot": 1,
+    "persona_replacement": 3,
+    "system_extraction": 2,
+    "adversarial": 79,
+    "prompt_injection": 4,
+    "response_manipulation": 4,
+    "edge_case": 9,
+    "token_smuggling": 7,
+    "context_confusion": 6,
+    "control": 5,
+    "encoding": 30,
+    "training_extraction": 10,
+    "agent_manipulation": 8,
+    "payload_injection": 2,
+    "system_manipulation": 4,
+    "prompt_extraction": 3,
+    "multi_turn": 4,
+    "rag_poisoning": 4,
+    "instruction_override": 4,
+    "output_manipulation": 5,
+    "token_injection": 1
+  },
+  "models": {
+    "released_v2": {
+      "threshold": 0.5,
+      "accuracy": 0.6602972399150743,
+      "precision": 0.8647798742138365,
+      "recall": 0.49818840579710144,
+      "f1": 0.632183908045977,
+      "false_positive_rate": 0.11025641025641025,
+      "false_negative_rate": 0.5018115942028986,
+      "confusion_matrix_tn_fp_fn_tp": [
+        347,
+        43,
+        277,
+        275
+      ],
+      "by_source": {
+        "hackaprompt": {
+          "n": 310,
+          "positive": 310,
+          "f1": 0.7575150300601202,
+          "false_positive_rate": null,
+          "false_negative_rate": 0.3903225806451613,
+          "confusion_matrix_tn_fp_fn_tp": [
+            0,
+            0,
+            121,
+            189
+          ]
+        },
+        "harmbench": {
+          "n": 16,
+          "positive": 16,
+          "f1": 0.72,
+          "false_positive_rate": null,
+          "false_negative_rate": 0.4375,
+          "confusion_matrix_tn_fp_fn_tp": [
+            0,
+            0,
+            7,
+            9
+          ]
+        },
+        "harmbench_benign": {
+          "n": 22,
+          "positive": 0,
+          "f1": 0.0,
+          "false_positive_rate": 0.5,
+          "false_negative_rate": null,
+          "confusion_matrix_tn_fp_fn_tp": [
+            11,
+            11,
+            0,
+            0
+          ]
+        },
+        "neuralchemy_v1": {
+          "n": 532,
+          "positive": 200,
+          "f1": 0.4044943820224719,
+          "false_positive_rate": 0.0391566265060241,
+          "false_negative_rate": 0.73,
+          "confusion_matrix_tn_fp_fn_tp": [
+            319,
+            13,
+            146,
+            54
+          ]
+        },
+        "original": {
+          "n": 19,
+          "positive": 13,
+          "f1": 0.7586206896551724,
+          "false_positive_rate": 0.8333333333333334,
+          "false_negative_rate": 0.15384615384615385,
+          "confusion_matrix_tn_fp_fn_tp": [
+            1,
+            5,
+            2,
+            11
+          ]
+        },
+        "wildguard_judgecomp": {
+          "n": 43,
+          "positive": 13,
+          "f1": 0.6153846153846154,
+          "false_positive_rate": 0.4666666666666667,
+          "false_negative_rate": 0.07692307692307693,
+          "confusion_matrix_tn_fp_fn_tp": [
+            16,
+            14,
+            1,
+            12
+          ]
+        }
+      }
+    },
+    "agentic_candidate": {
+      "threshold": 0.65,
+      "accuracy": 0.7940552016985138,
+      "precision": 0.9031531531531531,
+      "recall": 0.7264492753623188,
+      "f1": 0.8052208835341366,
+      "false_positive_rate": 0.11025641025641025,
+      "false_negative_rate": 0.27355072463768115,
+      "confusion_matrix_tn_fp_fn_tp": [
+        347,
+        43,
+        151,
+        401
+      ],
+      "by_source": {
+        "hackaprompt": {
+          "n": 310,
+          "positive": 310,
+          "f1": 0.8235294117647058,
+          "false_positive_rate": null,
+          "false_negative_rate": 0.3,
+          "confusion_matrix_tn_fp_fn_tp": [
+            0,
+            0,
+            93,
+            217
+          ]
+        },
+        "harmbench": {
+          "n": 16,
+          "positive": 16,
+          "f1": 0.11764705882352941,
+          "false_positive_rate": null,
+          "false_negative_rate": 0.9375,
+          "confusion_matrix_tn_fp_fn_tp": [
+            0,
+            0,
+            15,
+            1
+          ]
+        },
+        "harmbench_benign": {
+          "n": 22,
+          "positive": 0,
+          "f1": 0.0,
+          "false_positive_rate": 0.18181818181818182,
+          "false_negative_rate": null,
+          "confusion_matrix_tn_fp_fn_tp": [
+            18,
+            4,
+            0,
+            0
+          ]
+        },
+        "neuralchemy_v1": {
+          "n": 532,
+          "positive": 200,
+          "f1": 0.8324873096446701,
+          "false_positive_rate": 0.09036144578313253,
+          "false_negative_rate": 0.18,
+          "confusion_matrix_tn_fp_fn_tp": [
+            302,
+            30,
+            36,
+            164
+          ]
+        },
+        "original": {
+          "n": 19,
+          "positive": 13,
+          "f1": 0.88,
+          "false_positive_rate": 0.16666666666666666,
+          "false_negative_rate": 0.15384615384615385,
+          "confusion_matrix_tn_fp_fn_tp": [
+            5,
+            1,
+            2,
+            11
+          ]
+        },
+        "wildguard_judgecomp": {
+          "n": 43,
+          "positive": 13,
+          "f1": 0.5517241379310345,
+          "false_positive_rate": 0.26666666666666666,
+          "false_negative_rate": 0.38461538461538464,
+          "confusion_matrix_tn_fp_fn_tp": [
+            22,
+            8,
+            5,
+            8
+          ]
+        }
+      }
+    }
+  }
+}

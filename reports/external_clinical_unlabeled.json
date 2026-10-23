@@ -1,0 +1,11 @@
+{
+  "dataset": "Glaucoma_Med_Dataset Deidentified_Notes",
+  "source_revision": "15e67ea86ed0678425ec0948032f3fe9f77f30db",
+  "documents": 480,
+  "windows": 7179,
+  "pii_raw_flagged_documents": 478,
+  "pii_raw_flagged_windows": 4678,
+  "any_evidence_windows": 18,
+  "gold_phi_available": false,
+  "interpretation": "Unlabeled flag rates only. De-identified clinical notes may contain surrogate or residual identifiers; FPR, recall and F1 are undefined."
+}

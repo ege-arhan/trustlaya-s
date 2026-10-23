@@ -1,0 +1,791 @@
+{
+  "note": "Describe seed and batching variance for V5 recipes. No model or threshold is selected here.",
+  "runs": {
+    "E6data_random_s42": {
+      "checkpoint_sha256": "26468821df242d2f5e873daf2b943dd6787e95cfefa037d8cfacfee2dbe048cb",
+      "threshold_iteration2_rule": 0.73,
+      "threshold_class_balanced_posthoc": 0.61,
+      "temperature": 0.8935,
+      "metrics": {
+        "tensor_trust_recall": 0.9483,
+        "jailbreakllms_recall": 0.3488,
+        "jailbreakllms_fpr": 0.0124,
+        "security_docs_fpr": 0.0,
+        "arxiv_abstracts_fpr": 0.0,
+        "dolly_fpr": 0.09,
+        "oasst2_fpr": 0.0945,
+        "aya_fpr": 0.0942,
+        "deepset_fpr": 0.1768,
+        "deepset_recall": 0.2976,
+        "deepset_pr_auc": 0.5096,
+        "gandalf_recall": 0.9676,
+        "massive_fpr": 0.3892,
+        "massive_fpr_en": 0.3303,
+        "massive_fpr_de": 0.4086,
+        "massive_fpr_tr": 0.4284,
+        "test1_ece_raw": 0.1261,
+        "test1_ece_calibrated": 0.1206
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.4444,
+        "deepset_fpr": 0.3712,
+        "massive_fpr": 0.7018,
+        "jailbreakllms_recall": 0.5523,
+        "jailbreakllms_fpr": 0.0351,
+        "tensor_trust_recall": 0.9697
+      }
+    },
+    "E6data_random_s43": {
+      "checkpoint_sha256": "eb139ab18dae2624e5506ccd61520cf254cf545cb11cae9f6f1e90fa23ebdfaa",
+      "threshold_iteration2_rule": 0.73,
+      "threshold_class_balanced_posthoc": 0.67,
+      "temperature": 0.8802,
+      "metrics": {
+        "tensor_trust_recall": 0.9472,
+        "jailbreakllms_recall": 0.4593,
+        "jailbreakllms_fpr": 0.0196,
+        "security_docs_fpr": 0.0,
+        "arxiv_abstracts_fpr": 0.0,
+        "dolly_fpr": 0.0567,
+        "oasst2_fpr": 0.0858,
+        "aya_fpr": 0.0684,
+        "deepset_fpr": 0.101,
+        "deepset_recall": 0.2024,
+        "deepset_pr_auc": 0.5165,
+        "gandalf_recall": 0.9545,
+        "massive_fpr": 0.1964,
+        "massive_fpr_en": 0.2788,
+        "massive_fpr_de": 0.1576,
+        "massive_fpr_tr": 0.1532,
+        "test1_ece_raw": 0.1094,
+        "test1_ece_calibrated": 0.1022
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.2619,
+        "deepset_fpr": 0.1843,
+        "massive_fpr": 0.3475,
+        "jailbreakllms_recall": 0.5349,
+        "jailbreakllms_fpr": 0.0253,
+        "tensor_trust_recall": 0.9608
+      }
+    },
+    "E6data_random_s44": {
+      "checkpoint_sha256": "66bde2c907876378920664a66b2aa6e7b193733a1e05d0a90d9323ceaee143e8",
+      "threshold_iteration2_rule": 0.79,
+      "threshold_class_balanced_posthoc": 0.68,
+      "temperature": 0.9347,
+      "metrics": {
+        "tensor_trust_recall": 0.8963,
+        "jailbreakllms_recall": 0.3779,
+        "jailbreakllms_fpr": 0.0108,
+        "security_docs_fpr": 0.0,
+        "arxiv_abstracts_fpr": 0.0,
+        "dolly_fpr": 0.0417,
+        "oasst2_fpr": 0.0712,
+        "aya_fpr": 0.0276,
+        "deepset_fpr": 0.0833,
+        "deepset_recall": 0.2381,
+        "deepset_pr_auc": 0.5039,
+        "gandalf_recall": 0.9151,
+        "massive_fpr": 0.1793,
+        "massive_fpr_en": 0.2525,
+        "massive_fpr_de": 0.25,
+        "massive_fpr_tr": 0.0353,
+        "test1_ece_raw": 0.1218,
+        "test1_ece_calibrated": 0.1196
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.4008,
+        "deepset_fpr": 0.2904,
+        "massive_fpr": 0.5188,
+        "jailbreakllms_recall": 0.5465,
+        "jailbreakllms_fpr": 0.0356,
+        "tensor_trust_recall": 0.9555
+      }
+    },
+    "E6data_grouped_s42": {
+      "checkpoint_sha256": "c116ca7735fa9fe498492a89e06440ee5979e92dfc228593c5a24e603561fac5",
+      "threshold_iteration2_rule": 0.73,
+      "threshold_class_balanced_posthoc": 0.63,
+      "temperature": 0.8802,
+      "metrics": {
+        "tensor_trust_recall": 0.9099,
+        "jailbreakllms_recall": 0.3314,
+        "jailbreakllms_fpr": 0.0103,
+        "security_docs_fpr": 0.0,
+        "arxiv_abstracts_fpr": 0.0,
+        "dolly_fpr": 0.065,
+        "oasst2_fpr": 0.077,
+        "aya_fpr": 0.0907,
+        "deepset_fpr": 0.149,
+        "deepset_recall": 0.25,
+        "deepset_pr_auc": 0.5094,
+        "gandalf_recall": 0.9525,
+        "massive_fpr": 0.2945,
+        "massive_fpr_en": 0.2293,
+        "massive_fpr_de": 0.3253,
+        "massive_fpr_tr": 0.3286,
+        "test1_ece_raw": 0.1191,
+        "test1_ece_calibrated": 0.1107
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.377,
+        "deepset_fpr": 0.3258,
+        "massive_fpr": 0.6471,
+        "jailbreakllms_recall": 0.4942,
+        "jailbreakllms_fpr": 0.0248,
+        "tensor_trust_recall": 0.9636
+      }
+    },
+    "E6data_grouped_s43": {
+      "checkpoint_sha256": "778d1e1231dc31690de076b425a9792075647850e524dfca7de4d84bd06c30f6",
+      "threshold_iteration2_rule": 0.73,
+      "threshold_class_balanced_posthoc": 0.64,
+      "temperature": 0.8802,
+      "metrics": {
+        "tensor_trust_recall": 0.9182,
+        "jailbreakllms_recall": 0.4419,
+        "jailbreakllms_fpr": 0.0165,
+        "security_docs_fpr": 0.0,
+        "arxiv_abstracts_fpr": 0.0,
+        "dolly_fpr": 0.045,
+        "oasst2_fpr": 0.0698,
+        "aya_fpr": 0.0853,
+        "deepset_fpr": 0.0985,
+        "deepset_recall": 0.2063,
+        "deepset_pr_auc": 0.5117,
+        "gandalf_recall": 0.9323,
+        "massive_fpr": 0.1981,
+        "massive_fpr_en": 0.2253,
+        "massive_fpr_de": 0.1767,
+        "massive_fpr_tr": 0.1925,
+        "test1_ece_raw": 0.1084,
+        "test1_ece_calibrated": 0.1011
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.3056,
+        "deepset_fpr": 0.2323,
+        "massive_fpr": 0.4355,
+        "jailbreakllms_recall": 0.5814,
+        "jailbreakllms_fpr": 0.0299,
+        "tensor_trust_recall": 0.9602
+      }
+    },
+    "E6data_grouped_s44": {
+      "checkpoint_sha256": "60f8458f06e847651759e5cf080a16dca1b979b6a691ed31dd6b67e6005f36f2",
+      "threshold_iteration2_rule": 0.64,
+      "threshold_class_balanced_posthoc": 0.59,
+      "temperature": 0.5126,
+      "metrics": {
+        "tensor_trust_recall": 0.9049,
+        "jailbreakllms_recall": 0.4593,
+        "jailbreakllms_fpr": 0.0232,
+        "security_docs_fpr": 0.0,
+        "arxiv_abstracts_fpr": 0.0,
+        "dolly_fpr": 0.0733,
+        "oasst2_fpr": 0.077,
+        "aya_fpr": 0.0613,
+        "deepset_fpr": 0.1692,
+        "deepset_recall": 0.1984,
+        "deepset_pr_auc": 0.4312,
+        "gandalf_recall": 0.8837,
+        "massive_fpr": 0.4214,
+        "massive_fpr_en": 0.5737,
+        "massive_fpr_de": 0.4006,
+        "massive_fpr_tr": 0.2903,
+        "test1_ece_raw": 0.1442,
+        "test1_ece_calibrated": 0.0797
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.2381,
+        "deepset_fpr": 0.2096,
+        "massive_fpr": 0.5907,
+        "jailbreakllms_recall": 0.5233,
+        "jailbreakllms_fpr": 0.033,
+        "tensor_trust_recall": 0.943
+      }
+    },
+    "A4data_grouped_s42": {
+      "checkpoint_sha256": "69995a93efbe9a207d13d9a57031a793cfe9dee0362fa76501341e670cd08ab1",
+      "threshold_iteration2_rule": 0.41,
+      "threshold_class_balanced_posthoc": 0.22,
+      "temperature": 0.6819,
+      "metrics": {
+        "tensor_trust_recall": 0.9819,
+        "jailbreakllms_recall": 0.7267,
+        "jailbreakllms_fpr": 0.1202,
+        "security_docs_fpr": 0.0102,
+        "arxiv_abstracts_fpr": 0.0109,
+        "dolly_fpr": 0.005,
+        "oasst2_fpr": 0.0349,
+        "aya_fpr": 0.0098,
+        "deepset_fpr": 0.0581,
+        "deepset_recall": 0.2143,
+        "deepset_pr_auc": 0.6337,
+        "gandalf_recall": 0.9636,
+        "massive_fpr": 0.1981,
+        "massive_fpr_en": 0.2909,
+        "massive_fpr_de": 0.1034,
+        "massive_fpr_tr": 0.2006,
+        "test1_ece_raw": 0.0486,
+        "test1_ece_calibrated": 0.0173
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.3452,
+        "deepset_fpr": 0.1389,
+        "massive_fpr": 0.4416,
+        "jailbreakllms_recall": 0.8605,
+        "jailbreakllms_fpr": 0.2291,
+        "tensor_trust_recall": 0.9925
+      }
+    },
+    "A4data_grouped_s43": {
+      "checkpoint_sha256": "f9524a672b2a624859639ee0d2d213e9b2c95abf6ff9704289543f58c0c1b19d",
+      "threshold_iteration2_rule": 0.37,
+      "threshold_class_balanced_posthoc": 0.23,
+      "temperature": 0.735,
+      "metrics": {
+        "tensor_trust_recall": 0.9841,
+        "jailbreakllms_recall": 0.8256,
+        "jailbreakllms_fpr": 0.1662,
+        "security_docs_fpr": 0.0204,
+        "arxiv_abstracts_fpr": 0.0109,
+        "dolly_fpr": 0.0083,
+        "oasst2_fpr": 0.0363,
+        "aya_fpr": 0.0116,
+        "deepset_fpr": 0.0758,
+        "deepset_recall": 0.2222,
+        "deepset_pr_auc": 0.6081,
+        "gandalf_recall": 0.9626,
+        "massive_fpr": 0.1756,
+        "massive_fpr_en": 0.2727,
+        "massive_fpr_de": 0.1185,
+        "massive_fpr_tr": 0.1361,
+        "test1_ece_raw": 0.0433,
+        "test1_ece_calibrated": 0.0205
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.2976,
+        "deepset_fpr": 0.1187,
+        "massive_fpr": 0.3203,
+        "jailbreakllms_recall": 0.8721,
+        "jailbreakllms_fpr": 0.2441,
+        "tensor_trust_recall": 0.9903
+      }
+    },
+    "A4data_grouped_s44": {
+      "checkpoint_sha256": "1cb28ce012dd5ef10445da6277e7f7158c1699cb61a6f37d07734a7e2f51fc26",
+      "threshold_iteration2_rule": 0.44,
+      "threshold_class_balanced_posthoc": 0.23,
+      "temperature": 0.7805,
+      "metrics": {
+        "tensor_trust_recall": 0.9844,
+        "jailbreakllms_recall": 0.7907,
+        "jailbreakllms_fpr": 0.1465,
+        "security_docs_fpr": 0.0408,
+        "arxiv_abstracts_fpr": 0.0109,
+        "dolly_fpr": 0.0067,
+        "oasst2_fpr": 0.0334,
+        "aya_fpr": 0.0089,
+        "deepset_fpr": 0.0682,
+        "deepset_recall": 0.2698,
+        "deepset_pr_auc": 0.6355,
+        "gandalf_recall": 0.9636,
+        "massive_fpr": 0.182,
+        "massive_fpr_en": 0.2949,
+        "massive_fpr_de": 0.1576,
+        "massive_fpr_tr": 0.0938,
+        "test1_ece_raw": 0.0449,
+        "test1_ece_calibrated": 0.0273
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.377,
+        "deepset_fpr": 0.1414,
+        "massive_fpr": 0.403,
+        "jailbreakllms_recall": 0.8779,
+        "jailbreakllms_fpr": 0.2368,
+        "tensor_trust_recall": 0.9917
+      }
+    },
+    "A4data_random_s42": {
+      "checkpoint_sha256": "d3f5c30185c5275a2f6d405940ff4fa185aa92bad85be4b6af8d3cbbe7b8d17c",
+      "threshold_iteration2_rule": 0.39,
+      "threshold_class_balanced_posthoc": 0.21,
+      "temperature": 0.7027,
+      "metrics": {
+        "tensor_trust_recall": 0.9833,
+        "jailbreakllms_recall": 0.75,
+        "jailbreakllms_fpr": 0.1434,
+        "security_docs_fpr": 0.0204,
+        "arxiv_abstracts_fpr": 0.0109,
+        "dolly_fpr": 0.0083,
+        "oasst2_fpr": 0.032,
+        "aya_fpr": 0.0107,
+        "deepset_fpr": 0.0404,
+        "deepset_recall": 0.2421,
+        "deepset_pr_auc": 0.6535,
+        "gandalf_recall": 0.9717,
+        "massive_fpr": 0.1911,
+        "massive_fpr_en": 0.2808,
+        "massive_fpr_de": 0.1355,
+        "massive_fpr_tr": 0.1573,
+        "test1_ece_raw": 0.0462,
+        "test1_ece_calibrated": 0.0167
+      },
+      "posthoc_class_balanced": {
+        "deepset_recall": 0.3452,
+        "deepset_fpr": 0.1212,
+        "massive_fpr": 0.4231,
+        "jailbreakllms_recall": 0.8488,
+        "jailbreakllms_fpr": 0.2482,
+        "tensor_trust_recall": 0.9925
+      }
+    }
+  },
+  "configs": {
+    "E6data_random": {
+      "seeds": 3,
+      "tensor_trust_recall": {
+        "mean": 0.9306,
+        "sd": 0.0297,
+        "min": 0.8963,
+        "max": 0.9483
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.3953,
+        "sd": 0.0573,
+        "min": 0.3488,
+        "max": 0.4593
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.0143,
+        "sd": 0.0047,
+        "min": 0.0108,
+        "max": 0.0196
+      },
+      "security_docs_fpr": {
+        "mean": 0.0,
+        "sd": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "arxiv_abstracts_fpr": {
+        "mean": 0.0,
+        "sd": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "dolly_fpr": {
+        "mean": 0.0628,
+        "sd": 0.0247,
+        "min": 0.0417,
+        "max": 0.09
+      },
+      "oasst2_fpr": {
+        "mean": 0.0838,
+        "sd": 0.0118,
+        "min": 0.0712,
+        "max": 0.0945
+      },
+      "aya_fpr": {
+        "mean": 0.0634,
+        "sd": 0.0336,
+        "min": 0.0276,
+        "max": 0.0942
+      },
+      "deepset_fpr": {
+        "mean": 0.1204,
+        "sd": 0.0497,
+        "min": 0.0833,
+        "max": 0.1768
+      },
+      "deepset_recall": {
+        "mean": 0.246,
+        "sd": 0.0481,
+        "min": 0.2024,
+        "max": 0.2976
+      },
+      "deepset_pr_auc": {
+        "mean": 0.51,
+        "sd": 0.0063,
+        "min": 0.5039,
+        "max": 0.5165
+      },
+      "gandalf_recall": {
+        "mean": 0.9457,
+        "sd": 0.0273,
+        "min": 0.9151,
+        "max": 0.9676
+      },
+      "massive_fpr": {
+        "mean": 0.255,
+        "sd": 0.1166,
+        "min": 0.1793,
+        "max": 0.3892
+      },
+      "massive_fpr_en": {
+        "mean": 0.2872,
+        "sd": 0.0396,
+        "min": 0.2525,
+        "max": 0.3303
+      },
+      "massive_fpr_de": {
+        "mean": 0.2721,
+        "sd": 0.1269,
+        "min": 0.1576,
+        "max": 0.4086
+      },
+      "massive_fpr_tr": {
+        "mean": 0.2056,
+        "sd": 0.2017,
+        "min": 0.0353,
+        "max": 0.4284
+      },
+      "test1_ece_raw": {
+        "mean": 0.1191,
+        "sd": 0.0087,
+        "min": 0.1094,
+        "max": 0.1261
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.1141,
+        "sd": 0.0103,
+        "min": 0.1022,
+        "max": 0.1206
+      }
+    },
+    "E6data_grouped": {
+      "seeds": 3,
+      "tensor_trust_recall": {
+        "mean": 0.911,
+        "sd": 0.0067,
+        "min": 0.9049,
+        "max": 0.9182
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.4109,
+        "sd": 0.0694,
+        "min": 0.3314,
+        "max": 0.4593
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.0167,
+        "sd": 0.0065,
+        "min": 0.0103,
+        "max": 0.0232
+      },
+      "security_docs_fpr": {
+        "mean": 0.0,
+        "sd": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "arxiv_abstracts_fpr": {
+        "mean": 0.0,
+        "sd": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "dolly_fpr": {
+        "mean": 0.0611,
+        "sd": 0.0145,
+        "min": 0.045,
+        "max": 0.0733
+      },
+      "oasst2_fpr": {
+        "mean": 0.0746,
+        "sd": 0.0042,
+        "min": 0.0698,
+        "max": 0.077
+      },
+      "aya_fpr": {
+        "mean": 0.0791,
+        "sd": 0.0156,
+        "min": 0.0613,
+        "max": 0.0907
+      },
+      "deepset_fpr": {
+        "mean": 0.1389,
+        "sd": 0.0364,
+        "min": 0.0985,
+        "max": 0.1692
+      },
+      "deepset_recall": {
+        "mean": 0.2182,
+        "sd": 0.0278,
+        "min": 0.1984,
+        "max": 0.25
+      },
+      "deepset_pr_auc": {
+        "mean": 0.4841,
+        "sd": 0.0458,
+        "min": 0.4312,
+        "max": 0.5117
+      },
+      "gandalf_recall": {
+        "mean": 0.9228,
+        "sd": 0.0354,
+        "min": 0.8837,
+        "max": 0.9525
+      },
+      "massive_fpr": {
+        "mean": 0.3047,
+        "sd": 0.112,
+        "min": 0.1981,
+        "max": 0.4214
+      },
+      "massive_fpr_en": {
+        "mean": 0.3428,
+        "sd": 0.2,
+        "min": 0.2253,
+        "max": 0.5737
+      },
+      "massive_fpr_de": {
+        "mean": 0.3009,
+        "sd": 0.1139,
+        "min": 0.1767,
+        "max": 0.4006
+      },
+      "massive_fpr_tr": {
+        "mean": 0.2705,
+        "sd": 0.0702,
+        "min": 0.1925,
+        "max": 0.3286
+      },
+      "test1_ece_raw": {
+        "mean": 0.1239,
+        "sd": 0.0184,
+        "min": 0.1084,
+        "max": 0.1442
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.0972,
+        "sd": 0.0159,
+        "min": 0.0797,
+        "max": 0.1107
+      }
+    },
+    "A4data_grouped": {
+      "seeds": 3,
+      "tensor_trust_recall": {
+        "mean": 0.9835,
+        "sd": 0.0014,
+        "min": 0.9819,
+        "max": 0.9844
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.781,
+        "sd": 0.0502,
+        "min": 0.7267,
+        "max": 0.8256
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1443,
+        "sd": 0.0231,
+        "min": 0.1202,
+        "max": 0.1662
+      },
+      "security_docs_fpr": {
+        "mean": 0.0238,
+        "sd": 0.0156,
+        "min": 0.0102,
+        "max": 0.0408
+      },
+      "arxiv_abstracts_fpr": {
+        "mean": 0.0109,
+        "sd": 0.0,
+        "min": 0.0109,
+        "max": 0.0109
+      },
+      "dolly_fpr": {
+        "mean": 0.0067,
+        "sd": 0.0017,
+        "min": 0.005,
+        "max": 0.0083
+      },
+      "oasst2_fpr": {
+        "mean": 0.0349,
+        "sd": 0.0015,
+        "min": 0.0334,
+        "max": 0.0363
+      },
+      "aya_fpr": {
+        "mean": 0.0101,
+        "sd": 0.0014,
+        "min": 0.0089,
+        "max": 0.0116
+      },
+      "deepset_fpr": {
+        "mean": 0.0674,
+        "sd": 0.0089,
+        "min": 0.0581,
+        "max": 0.0758
+      },
+      "deepset_recall": {
+        "mean": 0.2354,
+        "sd": 0.03,
+        "min": 0.2143,
+        "max": 0.2698
+      },
+      "deepset_pr_auc": {
+        "mean": 0.6258,
+        "sd": 0.0153,
+        "min": 0.6081,
+        "max": 0.6355
+      },
+      "gandalf_recall": {
+        "mean": 0.9633,
+        "sd": 0.0006,
+        "min": 0.9626,
+        "max": 0.9636
+      },
+      "massive_fpr": {
+        "mean": 0.1852,
+        "sd": 0.0116,
+        "min": 0.1756,
+        "max": 0.1981
+      },
+      "massive_fpr_en": {
+        "mean": 0.2862,
+        "sd": 0.0118,
+        "min": 0.2727,
+        "max": 0.2949
+      },
+      "massive_fpr_de": {
+        "mean": 0.1265,
+        "sd": 0.028,
+        "min": 0.1034,
+        "max": 0.1576
+      },
+      "massive_fpr_tr": {
+        "mean": 0.1435,
+        "sd": 0.0538,
+        "min": 0.0938,
+        "max": 0.2006
+      },
+      "test1_ece_raw": {
+        "mean": 0.0456,
+        "sd": 0.0027,
+        "min": 0.0433,
+        "max": 0.0486
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.0217,
+        "sd": 0.0051,
+        "min": 0.0173,
+        "max": 0.0273
+      }
+    },
+    "A4data_random": {
+      "seeds": 1,
+      "tensor_trust_recall": {
+        "mean": 0.9833,
+        "sd": null,
+        "min": 0.9833,
+        "max": 0.9833
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.75,
+        "sd": null,
+        "min": 0.75,
+        "max": 0.75
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1434,
+        "sd": null,
+        "min": 0.1434,
+        "max": 0.1434
+      },
+      "security_docs_fpr": {
+        "mean": 0.0204,
+        "sd": null,
+        "min": 0.0204,
+        "max": 0.0204
+      },
+      "arxiv_abstracts_fpr": {
+        "mean": 0.0109,
+        "sd": null,
+        "min": 0.0109,
+        "max": 0.0109
+      },
+      "dolly_fpr": {
+        "mean": 0.0083,
+        "sd": null,
+        "min": 0.0083,
+        "max": 0.0083
+      },
+      "oasst2_fpr": {
+        "mean": 0.032,
+        "sd": null,
+        "min": 0.032,
+        "max": 0.032
+      },
+      "aya_fpr": {
+        "mean": 0.0107,
+        "sd": null,
+        "min": 0.0107,
+        "max": 0.0107
+      },
+      "deepset_fpr": {
+        "mean": 0.0404,
+        "sd": null,
+        "min": 0.0404,
+        "max": 0.0404
+      },
+      "deepset_recall": {
+        "mean": 0.2421,
+        "sd": null,
+        "min": 0.2421,
+        "max": 0.2421
+      },
+      "deepset_pr_auc": {
+        "mean": 0.6535,
+        "sd": null,
+        "min": 0.6535,
+        "max": 0.6535
+      },
+      "gandalf_recall": {
+        "mean": 0.9717,
+        "sd": null,
+        "min": 0.9717,
+        "max": 0.9717
+      },
+      "massive_fpr": {
+        "mean": 0.1911,
+        "sd": null,
+        "min": 0.1911,
+        "max": 0.1911
+      },
+      "massive_fpr_en": {
+        "mean": 0.2808,
+        "sd": null,
+        "min": 0.2808,
+        "max": 0.2808
+      },
+      "massive_fpr_de": {
+        "mean": 0.1355,
+        "sd": null,
+        "min": 0.1355,
+        "max": 0.1355
+      },
+      "massive_fpr_tr": {
+        "mean": 0.1573,
+        "sd": null,
+        "min": 0.1573,
+        "max": 0.1573
+      },
+      "test1_ece_raw": {
+        "mean": 0.0462,
+        "sd": null,
+        "min": 0.0462,
+        "max": 0.0462
+      },
+      "test1_ece_calibrated": {
+        "mean": 0.0167,
+        "sd": null,
+        "min": 0.0167,
+        "max": 0.0167
+      }
+    }
+  }
+}

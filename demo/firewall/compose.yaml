@@ -1,0 +1,78 @@
+# Real V2 ONNX firewall demo. Run through scripts/run_firewall_demo.py, which
+# builds the image, generates one-off keys and verifies the target database.
+#
+#   agent --agent_net--> gateway (V2 + policy + authorization)
+#   gateway --control_net--> adapter (only holder of the target key)
+#   adapter --target_net--> target (SQLite record.write API)
+#
+# Every network is internal: no container has an outbound route.
+x-service: &service
+  image: trustedge-firewall:dev
+  pull_policy: never
+  read_only: true
+  working_dir: /app
+
+services:
+  agent:
+    <<: *service
+    command: ["sleep", "infinity"]
+    volumes: ["./agent.py:/app/agent.py:ro"]
+    environment:
+      TRUSTLAYA_SHARED_KEY: ${TRUSTLAYA_SHARED_KEY}
+    networks: [agent_net]
+
+  gateway:
+    <<: *service
+    command: ["python", "scripts/serve_api.py", "--host", "0.0.0.0",
+              "--model-dir", "/app/models/v2", "--onnx", "/app/models/v2/trustlaya_s.onnx",
+              "--tool-rules", "/app/configs/tools.json", "--audit-log", "/audit/audit.jsonl"]
+    volumes:
+      - ../../src/trustlaya:/app/src/trustlaya:ro
+      - ../../scripts/serve_api.py:/app/scripts/serve_api.py:ro
+      - ../../configs/guarded_tools.firewall.json:/app/configs/tools.json:ro
+      - ../../models/exported/v2/trustlaya_s.onnx:/app/models/v2/trustlaya_s.onnx:ro
+      - ../../models/trustlaya-s-v2/tokenizer.json:/app/models/v2/tokenizer.json:ro
+      - ../../models/trustlaya-s-v2/tokenizer_config.json:/app/models/v2/tokenizer_config.json:ro
+      - ../../models/trustlaya-s-v2/special_tokens_map.json:/app/models/v2/special_tokens_map.json:ro
+      - ../../models/trustlaya-s-v2/vocab.txt:/app/models/v2/vocab.txt:ro
+      - ../../models/trustlaya-s-v2/calibration.json:/app/models/v2/calibration.json:ro
+      - ../../models/trustlaya-s-v2/policy.yaml:/app/models/v2/policy.yaml:ro
+    tmpfs: [/audit, /tmp]
+    environment:
+      TRUSTLAYA_SHARED_KEY: ${TRUSTLAYA_SHARED_KEY}
+      TRUSTEDGE_ADAPTER_URL: http://adapter:8766
+      TRUSTEDGE_ADAPTER_KEY: ${TRUSTEDGE_ADAPTER_KEY}
+      TRUSTEDGE_ADAPTER_TIMEOUT: "5"
+    networks: [agent_net, control_net]
+
+  adapter:
+    <<: *service
+    command: ["python", "scripts/serve_adapter.py"]
+    volumes:
+      - ../../src/trustlaya:/app/src/trustlaya:ro
+      - ../../scripts/serve_adapter.py:/app/scripts/serve_adapter.py:ro
+      - ../../configs/guarded_tools.firewall.json:/app/configs/tools.json:ro
+    environment:
+      TRUSTLAYA_TOOL_RULES: /app/configs/tools.json
+      TRUSTLAYA_GATEWAY_URL: http://gateway:8765
+      TRUSTLAYA_SHARED_KEY: ${TRUSTLAYA_SHARED_KEY}
+      TRUSTEDGE_ADAPTER_HOST: 0.0.0.0
+      TRUSTEDGE_ADAPTER_KEY: ${TRUSTEDGE_ADAPTER_KEY}
+      TRUSTEDGE_TARGET_URL: http://target:8767/records
+      TRUSTEDGE_TARGET_KEY: ${TRUSTEDGE_TARGET_KEY}
+    networks: [control_net, target_net]
+
+  target:
+    <<: *service
+    command: ["python", "protected_api.py"]
+    volumes: ["./protected_api.py:/app/protected_api.py:ro"]
+    tmpfs: [/data]
+    environment:
+      TRUSTEDGE_TARGET_KEY: ${TRUSTEDGE_TARGET_KEY}
+      TARGET_DB: /data/records.sqlite
+    networks: [target_net]
+
+networks:
+  agent_net: {internal: true}
+  control_net: {internal: true}
+  target_net: {internal: true}

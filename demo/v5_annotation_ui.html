@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İnsan GOLD Anotasyonu</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#17212b;background:#f3f5f7}
+body{margin:0}main{max-width:960px;margin:30px auto;padding:0 18px}h1{font-size:1.6rem}
+.card{background:white;border:1px solid #d8e0e5;border-radius:12px;padding:20px;margin:14px 0;box-shadow:0 2px 12px #1525350a}
+button,select,input,textarea{font:inherit}button{padding:9px 13px;border:1px solid #8c9baa;border-radius:7px;background:white;cursor:pointer}
+button.primary{background:#175e85;color:white;border-color:#175e85}
+button:disabled{opacity:.5}label.choice{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;margin:4px;border:1px solid #cad5dd;border-radius:7px}
+label.choice:has(input:checked){background:#e0f2fc;border-color:#175e85}
+textarea{width:100%;box-sizing:border-box;min-height:68px}#text{white-space:pre-wrap;overflow-wrap:anywhere;max-height:43vh;overflow:auto;line-height:1.5}
+.muted{color:#586a78}.error{color:#b02b2b}.ok{color:#176236}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.hidden{display:none}.small{font-size:.9rem}kbd{background:#e7ebef;padding:2px 5px;border-radius:4px}
+table{border-collapse:collapse}td,th{border:1px solid #ccd5dc;padding:5px 9px}
+</style></head><body><main>
+<h1>İnsan GOLD Anotasyonu</h1>
+<p class="muted">Kör, yerel inceleme · Model tahminleri gösterilmez · Veriler bu bilgisayarda kalır</p>
+<section id="login" class="card">
+<h2>Oturum aç</h2><p>A, B, yönetici ve hakem hesapları birbirinden ayrıdır.</p>
+<div class="row"><label>Görev <select id="role"><option value="A">İncelemeci A</option><option value="B">İncelemeci B</option><option value="ADMIN">Yönetici</option><option value="ADJUDICATOR">Hakem</option></select></label>
+<label>Parola <input id="password" type="password" autocomplete="current-password"></label><button class="primary" id="loginButton">Giriş</button></div>
+<p id="loginStatus" role="status"></p></section>
+<section id="review" class="hidden">
+<div class="card"><div class="row"><strong id="progress"></strong><span id="remaining" class="muted"></span></div>
+<div class="small muted">Paket SHA256: <code id="checksum"></code></div></div>
+<article class="card"><h2 id="exampleId"></h2><div id="text"></div><p id="note" class="muted small"></p></article>
+<section class="card"><h2>Birincil değerlendirme</h2><div id="intentOptions"></div>
+<details><summary>Bu ne demek?</summary><p>Saldırı: mevcut asistana kuralları aşma, korumalı bilgi çıkarma veya izinsiz eylem yaptırma girişimi. Zararsız güvenlik: saldırıları anlatır ya da alıntılar, mevcut asistana uygulatmaz. Normal: olağan istek. Karar verilemiyor: bağlam yetmez; hakeme gider.</p></details>
+<div id="attackFields" class="hidden"><h3>Saldırı türü</h3><div id="attackOptions"></div>
+<details><summary>Bu ne demek?</summary><p>Doğrudan talimat aşma: asistana doğrudan yöneltilmiş kural aşma. Dolaylı enjeksiyon: belge/araç çıktısı gibi ikincil içerikte yönlendirme. Veri sızdırma: korumalı veriyi dışarı çıkarma isteği.</p></details>
+<label>Saldırının konumu (isteğe bağlı) <select id="location">
+<option value="">Belirtilmedi</option><option value="ATTACK_AT_BEGINNING">Başta</option>
+<option value="ATTACK_IN_MIDDLE">Ortada</option><option value="ATTACK_AT_END">Sonda</option>
+<option value="MULTIPLE_ATTACK_SEGMENTS">Birden fazla bölümde</option>
+<option value="DISTRIBUTED_CONTEXT">Metne dağılmış</option></select></label></div>
+<div id="benignFields" class="hidden"><h3>Güvenlik içeriği türü</h3><div id="benignOptions"></div>
+<details><summary>Bu ne demek?</summary><p>Güvenlik analizi: savunma, araştırma veya açıklama. Alıntılanmış saldırı örneği: saldırı ifadesi aktarılsa da mevcut asistana yöneltilmiyor.</p></details></div>
+<h3>Ek işaretler</h3><div id="flags"></div><details><summary>Bu ne demek?</summary>
+<p>Kişisel veri: bir kişiyi belirleyebilen bilgi. Gizli bilgi: parola, anahtar ya da erişim bilgisi. Gizlenmiş içerik: kodlama veya yazım değişikliği ile saklanan ifade.</p></details>
+<p><label>Dil <select id="language"><option value="undetermined">Belirlenemedi</option><option value="tr">Türkçe</option><option value="en">İngilizce</option><option value="mixed">Karışık</option><option value="other">Diğer</option></select></label></p>
+<label>İsteğe bağlı kısa gerekçe<textarea id="reason" maxlength="1000"></textarea></label>
+<p id="saveStatus" role="status"></p></section>
+<div class="card"><div class="row"><button id="prev">← Önceki</button><button id="skip">Atla</button>
+<button id="unresolved">Karar verilemiyor</button><button class="primary" id="next">Kaydet ve sonraki →</button></div>
+<p class="small muted">Kısayollar: <kbd>1</kbd> saldırı · <kbd>2</kbd> zararsız güvenlik · <kbd>3</kbd> normal · <kbd>A</kbd>/<kbd>S</kbd>/<kbd>D</kbd> saldırı türü · <kbd>P</kbd>/<kbd>G</kbd>/<kbd>O</kbd> ek işaret · <kbd>Boşluk</kbd> belirsiz · <kbd>Enter</kbd> kaydet ve sonraki · <kbd>←</kbd> önceki</p></div></section>
+<section id="admin" class="hidden"><div class="card"><h2>İlerleme ve uyum</h2><div id="dashboard"></div><button id="refresh">Yenile</button>
+<button id="export">Yerel dışa aktarım</button><p id="exportStatus"></p></div></section>
+<section id="adjudication" class="hidden"><div class="card"><h2>Hakem incelemesi</h2><p id="pendingCount"></p>
+<label>İncelenecek örnek <select id="pending"></select></label><button id="loadPending">Göster</button>
+<article id="adjudicationBody"></article></div></section>
+</main><script>
+const names={ATTACK:"Saldırı",BENIGN_DUAL_USE:"Zararsız güvenlik / çift kullanımlı içerik",NORMAL:"Normal içerik",UNRESOLVED:"Karar verilemiyor / hakem gerekiyor",
+DIRECT_OVERRIDE:"Doğrudan talimat aşma",INDIRECT_INJECTION:"Dolaylı enjeksiyon",DATA_EXFILTRATION:"Veri sızdırma",
+SECURITY_ANALYSIS:"Güvenlik analizi",QUOTED_REFERENCE:"Alıntılanmış saldırı örneği"};
+const fields=["contains_pii","contains_secret","obfuscated"];
+const flagNames=["Kişisel veri içeriyor","Gizli bilgi içeriyor","Gizlenmiş/obfuske içerik"];
+let role="",csrf="",index=0,current=null,form={},opened=Date.now(),revision=0,saveQueue=Promise.resolve();
+const el=id=>document.getElementById(id);
+async function api(path,body){
+ const options=body===undefined?{}:{method:"POST",headers:{"Content-Type":"application/json","X-CSRF-Token":csrf},body:JSON.stringify(body)};
+ const response=await fetch(path,options);let data=await response.json();
+ if(!response.ok)throw Error(data.error||"İşlem başarısız");return data;
+}
+function choices(container,key,values){
+ el(container).innerHTML="";
+ for(const value of values){let label=document.createElement("label");label.className="choice";
+ let input=document.createElement("input");input.type="radio";input.name=key;input.value=value;
+ input.checked=form[key]===value;input.onchange=()=>{form[key]=value;
+ if(key==="intent"){form.attack_vector=null;form.benign_type=null;form.attack_location=null;renderForm();}
+ autosave();};label.append(input,document.createTextNode(names[value]));el(container).append(label);}
+}
+function renderForm(){
+ choices("intentOptions","intent",["ATTACK","BENIGN_DUAL_USE","NORMAL","UNRESOLVED"]);
+ el("attackFields").classList.toggle("hidden",form.intent!=="ATTACK");
+ el("benignFields").classList.toggle("hidden",form.intent!=="BENIGN_DUAL_USE");
+ if(form.intent==="ATTACK")choices("attackOptions","attack_vector",["DIRECT_OVERRIDE","INDIRECT_INJECTION","DATA_EXFILTRATION"]);
+ if(form.intent==="BENIGN_DUAL_USE")choices("benignOptions","benign_type",["SECURITY_ANALYSIS","QUOTED_REFERENCE"]);
+ el("flags").innerHTML="";
+ fields.forEach((key,i)=>{let label=document.createElement("label");label.className="choice";
+ let box=document.createElement("input");box.type="checkbox";box.checked=!!form[key];
+ box.onchange=()=>{form[key]=box.checked;autosave();};
+ label.append(box,document.createTextNode(flagNames[i]));el("flags").append(label);});
+ el("language").value=form.language||"undetermined";el("location").value=form.attack_location||"";
+ el("reason").value=form.reason||"";
+}
+function snapshot(){return JSON.parse(JSON.stringify(form));}
+function autosave(submitted=false){
+ const seq=++revision,payload=snapshot(),id=current.sample_id;
+ el("saveStatus").textContent="Kaydediliyor…";el("saveStatus").className="muted";
+ const task=async()=>{try{let out=await api("/api/annotation",{sample_id:id,annotation:payload,submitted,duration_ms:Date.now()-opened});
+ if(seq===revision&&id===current.sample_id){el("saveStatus").textContent=submitted?"Tamamlandı ve kaydedildi":"Taslak kaydedildi";el("saveStatus").className="ok";current.completed=out.completed;}}
+ catch(err){if(seq===revision&&id===current.sample_id){el("saveStatus").textContent=err.message;el("saveStatus").className="error";}throw err;}};
+ saveQueue=saveQueue.catch(()=>{}).then(task);return saveQueue;
+}
+async function load(i){
+ if(i<0||i>=600)return;
+ clearTimeout(reasonTimer);await saveQueue.catch(()=>{});
+ index=i;current=await api("/api/example?index="+i);form={...current.annotation};opened=Date.now();
+ el("progress").textContent=`Örnek ${i+1} / ${current.total} · %${Math.round(current.completed/current.total*100)} tamamlandı`;
+ el("remaining").textContent=`${current.total-current.completed} örnek kaldı`;
+ el("checksum").textContent=current.checksum;el("exampleId").textContent=current.sample_id;
+ el("text").textContent=current.text;el("note").textContent=current.note;renderForm();
+ el("saveStatus").textContent=current.submitted?"Bu örnek tamamlandı":"Henüz tamamlanmadı";
+}
+async function submitNext(){
+ try{await autosave(true);if(index<599)await load(index+1);}catch(_){}
+}
+const shortcuts={"1":["intent","ATTACK"],"2":["intent","BENIGN_DUAL_USE"],"3":["intent","NORMAL"],
+ "a":["attack_vector","DIRECT_OVERRIDE"],"s":["attack_vector","INDIRECT_INJECTION"],"d":["attack_vector","DATA_EXFILTRATION"],
+ "p":["contains_pii"],"g":["contains_secret"],"o":["obfuscated"]," ":["intent","UNRESOLVED"]};
+function shortcut(event){
+ if(el("review").classList.contains("hidden")||["TEXTAREA","INPUT","SELECT"].includes(document.activeElement.tagName))return;
+ if(event.key==="ArrowLeft"){event.preventDefault();move("previous",index-1);return;}
+ if(event.key==="Enter"){event.preventDefault();submitNext();return;}
+ const item=shortcuts[event.key.toLowerCase()];if(!item)return;
+ event.preventDefault();let[key,value]=item;
+ if(key==="attack_vector"&&form.intent!=="ATTACK")return;
+ if(key==="intent"){form.intent=value;form.attack_vector=null;form.benign_type=null;form.attack_location=null;}
+ else if(value)form[key]=value;else form[key]=!form[key];
+ renderForm();autosave().catch(()=>{});
+}
+document.addEventListener("keydown",shortcut);
+el("language").onchange=()=>{form.language=el("language").value;autosave().catch(()=>{});};
+el("location").onchange=()=>{form.attack_location=el("location").value||null;autosave().catch(()=>{});};
+let reasonTimer;el("reason").oninput=()=>{form.reason=el("reason").value;clearTimeout(reasonTimer);reasonTimer=setTimeout(()=>{reasonTimer=null;autosave().catch(()=>{});},450);};
+async function move(action,to){
+ if(to<0||to>=600)return;
+ try{if(reasonTimer){clearTimeout(reasonTimer);reasonTimer=null;await autosave();}
+ await api("/api/navigation",{sample_id:current.sample_id,action,duration_ms:Date.now()-opened});await load(to);}
+ catch(err){el("saveStatus").textContent=err.message;el("saveStatus").className="error";}
+}
+el("prev").onclick=()=>move("previous",index-1);el("skip").onclick=()=>move("skip",index+1);
+el("unresolved").onclick=()=>{form.intent="UNRESOLVED";form.attack_vector=null;form.benign_type=null;form.attack_location=null;renderForm();autosave(true).then(()=>load(index+1)).catch(()=>{});};
+el("next").onclick=submitNext;
+async function dashboard(){
+ const d=await api("/api/dashboard");
+ el("dashboard").innerHTML="";
+ const lines=[`Toplam: ${d.total}`,`A tamamlandı: ${d.a_completed}`,`B tamamlandı: ${d.b_completed}`,
+ `Çift inceleme: ${d.both_completed}`,`Tam uyum: ${d.exact_agreement===null?"Henüz yok":(100*d.exact_agreement).toFixed(1)+"%"}`,
+ `Krippendorff alfa: ${d.alpha_nominal===null?"Hesaplanamıyor":d.alpha_nominal.toFixed(3)}`,
+ `Anlaşmazlık: ${d.disagreement_count}`,`Belirsiz: ${d.unresolved_ids.length}`,
+ `Hakem bekleyen: ${d.pending_ids.length}`,`GOLD hazır: ${d.gold_ready?"Evet":"Hayır"}`];
+ for(const line of lines){let p=document.createElement("p");p.textContent=line;el("dashboard").append(p);}
+ let h=document.createElement("h3");h.textContent="Sınıf dağılımı";el("dashboard").append(h);
+ const labels=["ATTACK","BENIGN_DUAL_USE","NORMAL","UNRESOLVED"];
+ let table=document.createElement("table"),head=document.createElement("tr");
+ for(const cell of ["Karar","A","B"]){let th=document.createElement("th");th.textContent=cell;head.append(th);}table.append(head);
+ for(const key of labels){let tr=document.createElement("tr");
+ for(const value of [names[key],d.distribution.A[key]||0,d.distribution.B[key]||0]){let td=document.createElement("td");td.textContent=value;tr.append(td);}table.append(tr);}el("dashboard").append(table);
+ h=document.createElement("h3");h.textContent="A/B karar matrisi";el("dashboard").append(h);
+ table=document.createElement("table");head=document.createElement("tr");
+ for(const value of ["A ↓ / B →",...labels.map(x=>names[x])]){let th=document.createElement("th");th.textContent=value;head.append(th);}table.append(head);
+ for(const a of labels){let tr=document.createElement("tr");
+ for(const value of [names[a],...labels.map(b=>d.matrix[a][b]||0)]){let td=document.createElement("td");td.textContent=value;tr.append(td);}table.append(tr);}el("dashboard").append(table);
+ el("pending").innerHTML="";for(const id of d.pending_ids){let o=document.createElement("option");o.value=id;o.textContent=id;el("pending").append(o);}
+ el("pendingCount").textContent=`${d.pending_ids.length} örnek hakem bekliyor.`;
+}
+el("refresh").onclick=()=>dashboard().catch(err=>alert(err.message));
+el("export").onclick=async()=>{try{let x=await api("/api/export",{});el("exportStatus").textContent=x.files.join(", ")+" · GOLD: "+(x.gold_ready?"hazır":"bekliyor");}catch(err){el("exportStatus").textContent=err.message;}};
+el("loadPending").onclick=async()=>{
+ try{let d=await api("/api/adjudication?sample_id="+encodeURIComponent(el("pending").value));
+ const body=el("adjudicationBody");body.replaceChildren();
+ const describe=x=>[names[x.intent],x.attack_vector?names[x.attack_vector]:null,
+ x.benign_type?names[x.benign_type]:null,`Dil: ${{tr:"Türkçe",en:"İngilizce",mixed:"Karışık",other:"Diğer",undetermined:"Belirlenemedi"}[x.language]}`,
+ ...fields.filter(k=>x[k]).map(k=>flagNames[fields.indexOf(k)]),x.reason?`Gerekçe: ${x.reason}`:null].filter(Boolean).join(" · ");
+ for(const [heading,content] of [["Metin",d.text],["A kararı",describe(d.A)],["B kararı",describe(d.B)]]){
+ let h=document.createElement("h3"),p=document.createElement("pre");h.textContent=heading;p.textContent=content;p.style.whiteSpace="pre-wrap";body.append(h,p);}
+ let box=document.createElement("div"),title=document.createElement("h3");title.textContent="Son GOLD kararı";box.append(title);
+ const select=(name,values)=>{let s=document.createElement("select");s.id="adj_"+name;
+ for(const [v,label] of values){let o=document.createElement("option");o.value=v;o.textContent=label;s.append(o);}box.append(s);return s;};
+ let intent=select("intent",[["","Birincil kararı seçin"],...["ATTACK","BENIGN_DUAL_USE","NORMAL"].map(x=>[x,names[x]])]);
+ let vector=select("vector",[["","Alt tür"],...["DIRECT_OVERRIDE","INDIRECT_INJECTION","DATA_EXFILTRATION"].map(x=>[x,names[x]])]);
+ let benign=select("benign",[["","Alt tür"],...["SECURITY_ANALYSIS","QUOTED_REFERENCE"].map(x=>[x,names[x]])]);
+ let language=select("language",[["undetermined","Dil belirsiz"],["tr","Türkçe"],["en","İngilizce"],["mixed","Karışık"],["other","Diğer"]]);
+ const checks=fields.map((x,i)=>{let l=document.createElement("label"),c=document.createElement("input");c.type="checkbox";l.append(c,document.createTextNode(flagNames[i]));box.append(l);return c;});
+ let reason=document.createElement("textarea");reason.placeholder="Hakem gerekçesi (isteğe bağlı)";box.append(reason);
+ let save=document.createElement("button");save.textContent="GOLD kararını kaydet";save.className="primary";
+ save.onclick=async()=>{try{await api("/api/adjudication",{sample_id:d.sample_id,annotation:{
+ intent:intent.value||null,attack_vector:intent.value==="ATTACK"?vector.value||null:null,
+ benign_type:intent.value==="BENIGN_DUAL_USE"?benign.value||null:null,
+ language:language.value,attack_location:null,contains_pii:checks[0].checked,
+ contains_secret:checks[1].checked,obfuscated:checks[2].checked,reason:reason.value},
+ duration_ms:0});await dashboard();body.textContent="Hakem kararı kaydedildi.";}catch(err){alert(err.message);}};
+ box.append(save);body.append(box);
+ }catch(err){alert(err.message);}
+};
+el("loginButton").onclick=async()=>{
+ try{let r=await api("/api/login",{role:el("role").value,password:el("password").value});
+ role=r.role;csrf=r.csrf;el("password").value="";el("login").classList.add("hidden");
+ if(role==="A"||role==="B"){el("review").classList.remove("hidden");let me=await api("/api/me");await load(me.resume_index);}
+ else{el("admin").classList.remove("hidden");if(role==="ADJUDICATOR"){el("export").hidden=true;el("adjudication").classList.remove("hidden");}await dashboard();}
+ }catch(err){el("loginStatus").textContent=err.message;el("loginStatus").className="error";}
+};
+</script></body></html>

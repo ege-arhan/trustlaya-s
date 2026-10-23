@@ -1,0 +1,66 @@
+{
+  "source": "Bordair/bordair-multimodal",
+  "revision": "398e3f875ffd32ec2e6817a95feebfcbae41643a",
+  "license": "MIT",
+  "file_sha256": "263fcbfa1e5191794fe423f490c7cabed08e87854ec5a8c5436f3376638cabea",
+  "source_rows": {
+    "castle_bypasses": 855,
+    "castle_attempts": 12350,
+    "champion_attempts": 25
+  },
+  "sample_rows": {
+    "castle_attempts": 1000,
+    "castle_bypasses": 855,
+    "champion_attempts": 25
+  },
+  "selection": "All bypasses and champion attempts; 1,000 seeded castle attempts.",
+  "label_warning": "Human game attempts are attack-intent labels, not per-string adjudicated prompt-injection labels. There are no benign controls here. Detection rates are not recall, accuracy or F1.",
+  "models": {
+    "released_v2": {
+      "operating_threshold": 0.5,
+      "by_source": {
+        "castle_attempts": {
+          "n": 1000,
+          "mean_score": 0.654756980120221,
+          "fraction_ge_0_5": 0.658,
+          "fraction_ge_operating_threshold": 0.658
+        },
+        "castle_bypasses": {
+          "n": 855,
+          "mean_score": 0.7134191807610237,
+          "fraction_ge_0_5": 0.7134502923976608,
+          "fraction_ge_operating_threshold": 0.7134502923976608
+        },
+        "champion_attempts": {
+          "n": 25,
+          "mean_score": 0.5977969097761094,
+          "fraction_ge_0_5": 0.6,
+          "fraction_ge_operating_threshold": 0.6
+        }
+      }
+    },
+    "agentic_candidate": {
+      "operating_threshold": 0.65,
+      "by_source": {
+        "castle_attempts": {
+          "n": 1000,
+          "mean_score": 0.5112541600625005,
+          "fraction_ge_0_5": 0.547,
+          "fraction_ge_operating_threshold": 0.401
+        },
+        "castle_bypasses": {
+          "n": 855,
+          "mean_score": 0.4883536315499957,
+          "fraction_ge_0_5": 0.5076023391812865,
+          "fraction_ge_operating_threshold": 0.36374269005847953
+        },
+        "champion_attempts": {
+          "n": 25,
+          "mean_score": 0.4390518982615322,
+          "fraction_ge_0_5": 0.44,
+          "fraction_ge_operating_threshold": 0.4
+        }
+      }
+    }
+  }
+}

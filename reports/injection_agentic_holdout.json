@@ -1,0 +1,255 @@
+{
+  "agentic_source": "3nesdeniz/agentic-prompt-injection-5k",
+  "agentic_revision": "e658d94dcafc133e3a4483f9f9aa13507f3848c4",
+  "agentic_license": "CC-BY-4.0",
+  "agentic_attribution": "Enes Deniz",
+  "promptwall_source": "cyberec/promptwall-injection-dataset",
+  "promptwall_revision": "ff1840ff2e36a8037fd5d851c88d04d3d08b028f",
+  "promptwall_license": "MIT",
+  "agentic_test_sha256": "7becda4542ee2d844d854b6e07195630e14b52c51f0bee4bdbb27eb9ed93d964",
+  "agentic_exact_training_overlap_excluded": 0,
+  "promptwall_sha256": {
+    "attacks.jsonl": "13cf52a1b34b3a351ab0e2c60645524e6dc667403fcb81c00ce504345f0fa808",
+    "safe.jsonl": "4ce1d121ecf755ecd9cf5d97ee5c34d616ec1e47fe5c4dbb97cd9eb806b20a7b"
+  },
+  "promptwall_exact_training_overlap_excluded": {
+    "attacks.jsonl": 0,
+    "safe.jsonl": 5
+  },
+  "scope": "Agentic5K is paired synthetic attack/benign data with scenario-isolated source splits. PromptWall has broad attack/jailbreak labels and generic safe controls, not matched tool-return benign data. Neither measures agent execution. All variants and thresholds were frozen before loading these test files.",
+  "selection_note": "No parameter, threshold or model selection uses these tests. Once inspected, they are not fresh for further tuning.",
+  "results": {
+    "agentic_paired_test": {
+      "released_v2": {
+        "n": 545,
+        "positive": 280,
+        "threshold": 0.5,
+        "f1": 0.628032345013477,
+        "precision": 0.5043290043290043,
+        "recall": 0.8321428571428572,
+        "false_positive_rate": 0.8641509433962264,
+        "false_negative_rate": 0.16785714285714284,
+        "confusion_matrix": [
+          [
+            36,
+            229
+          ],
+          [
+            47,
+            233
+          ]
+        ],
+        "calibration": {
+          "ece": 0.4823483556406487,
+          "brier": 0.4918860197067261,
+          "nll": 4.5949835777282715
+        },
+        "family_recall": {
+          "memory_trust_boundary": 1.0,
+          "rag_document_embedded": 0.6666666666666666,
+          "approval_authority_escalation": 0.8095238095238095,
+          "tool_function_abuse": 0.9464285714285714
+        },
+        "benign_fpr": 0.8641509433962264
+      },
+      "bpi_head": {
+        "n": 545,
+        "positive": 280,
+        "threshold": 0.5500000000000002,
+        "f1": 0.7496617050067659,
+        "precision": 0.6034858387799564,
+        "recall": 0.9892857142857143,
+        "false_positive_rate": 0.6867924528301886,
+        "false_negative_rate": 0.010714285714285714,
+        "confusion_matrix": [
+          [
+            83,
+            182
+          ],
+          [
+            3,
+            277
+          ]
+        ],
+        "calibration": {
+          "ece": 0.28867029364502755,
+          "brier": 0.2877404987812042,
+          "nll": 1.030583143234253
+        },
+        "family_recall": {
+          "memory_trust_boundary": 0.9821428571428571,
+          "rag_document_embedded": 0.9761904761904762,
+          "approval_authority_escalation": 1.0,
+          "tool_function_abuse": 1.0
+        },
+        "benign_fpr": 0.6867924528301886
+      },
+      "joint_head": {
+        "n": 545,
+        "positive": 280,
+        "threshold": 0.49999999999999994,
+        "f1": 0.7339449541284404,
+        "precision": 0.5797101449275363,
+        "recall": 1.0,
+        "false_positive_rate": 0.7660377358490567,
+        "false_negative_rate": 0.0,
+        "confusion_matrix": [
+          [
+            62,
+            203
+          ],
+          [
+            0,
+            280
+          ]
+        ],
+        "calibration": {
+          "ece": 0.3093909071126116,
+          "brier": 0.2971092164516449,
+          "nll": 1.092790961265564
+        },
+        "family_recall": {
+          "memory_trust_boundary": 1.0,
+          "rag_document_embedded": 1.0,
+          "approval_authority_escalation": 1.0,
+          "tool_function_abuse": 1.0
+        },
+        "benign_fpr": 0.7660377358490567
+      },
+      "agentic_head": {
+        "n": 545,
+        "positive": 280,
+        "threshold": 0.6499999999999999,
+        "f1": 0.87248322147651,
+        "precision": 0.8227848101265823,
+        "recall": 0.9285714285714286,
+        "false_positive_rate": 0.21132075471698114,
+        "false_negative_rate": 0.07142857142857142,
+        "confusion_matrix": [
+          [
+            209,
+            56
+          ],
+          [
+            20,
+            260
+          ]
+        ],
+        "calibration": {
+          "ece": 0.15897780937065775,
+          "brier": 0.12199649959802628,
+          "nll": 0.3787004053592682
+        },
+        "family_recall": {
+          "memory_trust_boundary": 0.8571428571428571,
+          "rag_document_embedded": 0.9523809523809523,
+          "approval_authority_escalation": 0.9166666666666666,
+          "tool_function_abuse": 0.9821428571428571
+        },
+        "benign_fpr": 0.21132075471698114
+      }
+    },
+    "promptwall_broad_test": {
+      "released_v2": {
+        "n": 495,
+        "positive": 430,
+        "threshold": 0.5,
+        "f1": 0.8227513227513228,
+        "precision": 0.9539877300613497,
+        "recall": 0.7232558139534884,
+        "false_positive_rate": 0.23076923076923078,
+        "false_negative_rate": 0.27674418604651163,
+        "confusion_matrix": [
+          [
+            50,
+            15
+          ],
+          [
+            119,
+            311
+          ]
+        ],
+        "calibration": {
+          "ece": 0.2488685048589803,
+          "brier": 0.24312478303909302,
+          "nll": 2.0137784481048584
+        }
+      },
+      "bpi_head": {
+        "n": 495,
+        "positive": 430,
+        "threshold": 0.5500000000000002,
+        "f1": 0.91,
+        "precision": 0.9837837837837838,
+        "recall": 0.8465116279069768,
+        "false_positive_rate": 0.09230769230769231,
+        "false_negative_rate": 0.15348837209302327,
+        "confusion_matrix": [
+          [
+            59,
+            6
+          ],
+          [
+            66,
+            364
+          ]
+        ],
+        "calibration": {
+          "ece": 0.15865709598016256,
+          "brier": 0.09392517805099487,
+          "nll": 0.3035901188850403
+        }
+      },
+      "joint_head": {
+        "n": 495,
+        "positive": 430,
+        "threshold": 0.49999999999999994,
+        "f1": 0.9207920792079208,
+        "precision": 0.9841269841269841,
+        "recall": 0.8651162790697674,
+        "false_positive_rate": 0.09230769230769231,
+        "false_negative_rate": 0.13488372093023257,
+        "confusion_matrix": [
+          [
+            59,
+            6
+          ],
+          [
+            58,
+            372
+          ]
+        ],
+        "calibration": {
+          "ece": 0.15390866377738993,
+          "brier": 0.09740032255649567,
+          "nll": 0.3535231947898865
+        }
+      },
+      "agentic_head": {
+        "n": 495,
+        "positive": 430,
+        "threshold": 0.6499999999999999,
+        "f1": 0.8174386920980926,
+        "precision": 0.9868421052631579,
+        "recall": 0.6976744186046512,
+        "false_positive_rate": 0.06153846153846154,
+        "false_negative_rate": 0.3023255813953488,
+        "confusion_matrix": [
+          [
+            61,
+            4
+          ],
+          [
+            130,
+            300
+          ]
+        ],
+        "calibration": {
+          "ece": 0.22205134921453218,
+          "brier": 0.14094658195972443,
+          "nll": 0.4733942151069641
+        }
+      }
+    }
+  }
+}

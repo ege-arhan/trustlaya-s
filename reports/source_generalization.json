@@ -1,0 +1,273 @@
+{
+  "status": "V5 not trained; only the frozen V2 baseline is measured on each test set.",
+  "experiments": {
+    "A": {
+      "sources": {
+        "train": [
+          "jailbreakllms",
+          "tensor_trust"
+        ],
+        "dev": [
+          "jailbreakllms",
+          "tensor_trust"
+        ],
+        "test": [
+          "deepset",
+          "gandalf"
+        ]
+      },
+      "note": "Test on independent sources never used for training.",
+      "sizes": {
+        "train": 17007,
+        "dev": 3406,
+        "test": 1637
+      },
+      "train_label_counts": {
+        "jailbreakllms/ATTACK": 966,
+        "jailbreakllms/BENIGN": 8989,
+        "tensor_trust/ATTACK": 7052
+      },
+      "v2_baseline_test": {
+        "deepset": {
+          "n": 648,
+          "positive": 252,
+          "negative": 396,
+          "tp": 218,
+          "fp": 144,
+          "fn": 34,
+          "tn": 252,
+          "precision": 0.6022,
+          "recall": 0.8651,
+          "recall_95ci": [
+            0.8174,
+            0.9018
+          ],
+          "f1": 0.7101,
+          "fpr": 0.3636,
+          "fpr_95ci": [
+            0.3178,
+            0.4121
+          ],
+          "fnr": 0.1349,
+          "brier": 0.2159,
+          "ece": 0.1911,
+          "pr_auc": 0.7357
+        },
+        "gandalf": {
+          "n": 989,
+          "positive": 989,
+          "negative": 0,
+          "tp": 714,
+          "fp": 0,
+          "fn": 275,
+          "tn": 0,
+          "precision": 1.0,
+          "recall": 0.7219,
+          "recall_95ci": [
+            0.6932,
+            0.749
+          ],
+          "f1": 0.8385,
+          "fpr": null,
+          "fpr_95ci": null,
+          "fnr": 0.2781,
+          "brier": 0.2306,
+          "ece": 0.2998,
+          "pr_auc": null,
+          "note": "attack-only set: precision/FPR/PR-AUC undefined"
+        }
+      },
+      "v5_result": null
+    },
+    "B": {
+      "sources": {
+        "train": [
+          "jailbreakllms"
+        ],
+        "dev": [
+          "jailbreakllms"
+        ],
+        "test": [
+          "tensor_trust"
+        ]
+      },
+      "note": "Tensor Trust TEST split is attack-only: recall is defined, FPR is not.",
+      "sizes": {
+        "train": 9955,
+        "dev": 2060,
+        "test": 3596
+      },
+      "train_label_counts": {
+        "jailbreakllms/ATTACK": 966,
+        "jailbreakllms/BENIGN": 8989
+      },
+      "v2_baseline_test": {
+        "tensor_trust": {
+          "n": 3596,
+          "positive": 3596,
+          "negative": 0,
+          "tp": 1593,
+          "fp": 0,
+          "fn": 2003,
+          "tn": 0,
+          "precision": 1.0,
+          "recall": 0.443,
+          "recall_95ci": [
+            0.4268,
+            0.4593
+          ],
+          "f1": 0.614,
+          "fpr": null,
+          "fpr_95ci": null,
+          "fnr": 0.557,
+          "brier": 0.4614,
+          "ece": 0.5435,
+          "pr_auc": null,
+          "note": "attack-only set: precision/FPR/PR-AUC undefined"
+        }
+      },
+      "v5_result": null
+    },
+    "C": {
+      "sources": {
+        "train": [
+          "arxiv_abstracts",
+          "security_docs",
+          "tensor_trust"
+        ],
+        "dev": [
+          "arxiv_abstracts",
+          "security_docs",
+          "tensor_trust"
+        ],
+        "test": [
+          "jailbreakllms"
+        ]
+      },
+      "note": "Tensor Trust has no benign rows; negatives come from public security prose.",
+      "sizes": {
+        "train": 7947,
+        "dev": 1550,
+        "test": 2110
+      },
+      "train_label_counts": {
+        "arxiv_abstracts/BENIGN": 392,
+        "security_docs/BENIGN": 503,
+        "tensor_trust/ATTACK": 7052
+      },
+      "v2_baseline_test": {
+        "jailbreakllms": {
+          "n": 2110,
+          "positive": 172,
+          "negative": 1938,
+          "tp": 155,
+          "fp": 1696,
+          "fn": 17,
+          "tn": 242,
+          "precision": 0.0837,
+          "recall": 0.9012,
+          "recall_95ci": [
+            0.8474,
+            0.9374
+          ],
+          "f1": 0.1532,
+          "fpr": 0.8751,
+          "fpr_95ci": [
+            0.8597,
+            0.8891
+          ],
+          "fnr": 0.0988,
+          "brier": 0.6666,
+          "ece": 0.7343,
+          "pr_auc": 0.1512
+        }
+      },
+      "v5_result": null
+    },
+    "D": {
+      "sources": {
+        "train": [
+          "arxiv_abstracts",
+          "jailbreakllms",
+          "security_docs",
+          "tensor_trust"
+        ],
+        "dev": [
+          "arxiv_abstracts",
+          "jailbreakllms",
+          "security_docs",
+          "tensor_trust"
+        ],
+        "test": [
+          "deepset",
+          "gandalf",
+          "jailbreakbench"
+        ]
+      },
+      "note": "JailbreakBench measures harmful requests, a different task; reported separately.",
+      "sizes": {
+        "train": 17902,
+        "dev": 3610,
+        "test": 1837
+      },
+      "train_label_counts": {
+        "arxiv_abstracts/BENIGN": 392,
+        "jailbreakllms/ATTACK": 966,
+        "jailbreakllms/BENIGN": 8989,
+        "security_docs/BENIGN": 503,
+        "tensor_trust/ATTACK": 7052
+      },
+      "v2_baseline_test": {
+        "deepset": {
+          "n": 648,
+          "positive": 252,
+          "negative": 396,
+          "tp": 218,
+          "fp": 144,
+          "fn": 34,
+          "tn": 252,
+          "precision": 0.6022,
+          "recall": 0.8651,
+          "recall_95ci": [
+            0.8174,
+            0.9018
+          ],
+          "f1": 0.7101,
+          "fpr": 0.3636,
+          "fpr_95ci": [
+            0.3178,
+            0.4121
+          ],
+          "fnr": 0.1349,
+          "brier": 0.2159,
+          "ece": 0.1911,
+          "pr_auc": 0.7357
+        },
+        "gandalf": {
+          "n": 989,
+          "positive": 989,
+          "negative": 0,
+          "tp": 714,
+          "fp": 0,
+          "fn": 275,
+          "tn": 0,
+          "precision": 1.0,
+          "recall": 0.7219,
+          "recall_95ci": [
+            0.6932,
+            0.749
+          ],
+          "f1": 0.8385,
+          "fpr": null,
+          "fpr_95ci": null,
+          "fnr": 0.2781,
+          "brier": 0.2306,
+          "ece": 0.2998,
+          "pr_auc": null,
+          "note": "attack-only set: precision/FPR/PR-AUC undefined"
+        }
+      },
+      "v5_result": null
+    }
+  }
+}

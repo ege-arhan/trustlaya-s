@@ -41,7 +41,7 @@ python3 -m venv .venv
 
 ## Training and evaluation
 
-Backbone: [YTU CE Cosmos Turkish medium BERT](https://huggingface.co/ytu-ce-cosmos/turkish-medium-bert-uncased), MIT. Weak teacher signal: [convaiinnovations/laya](https://huggingface.co/convaiinnovations/laya), Apache-2.0, on 128 examples. The teacher is not ground truth. [Published synthetic dataset](https://huggingface.co/datasets/xzwq/TrustLaya-S-synthetic): 10,000 controlled examples, family-disjoint 6,972/1,053/1,975 train/validation/test split. Text is truncated to 96 tokens. Agent permissions are processed by policy, not the encoder.
+Backbone: [YTU CE Cosmos Turkish medium BERT](https://huggingface.co/ytu-ce-cosmos/turkish-medium-bert-uncased), MIT. Weak teacher signal: [convaiinnovations/laya-multilingual](https://huggingface.co/convaiinnovations/laya-multilingual), Apache-2.0, on 128 examples. The teacher is not ground truth. [Published synthetic dataset](https://huggingface.co/datasets/ege-arhan/TrustLaya-S-synthetic): 10,000 controlled examples, family-disjoint 6,972/1,053/1,975 train/validation/test split. Text is truncated to 96 tokens. Agent permissions are processed by policy, not the encoder.
 
 Synthetic test (1,975): mean task accuracy **0.907**, macro F1 **0.663**, PII F1 **1.000**, security-risk F1 **0.777**, prompt-injection F1 **0.555**, data-governance F1 **0.000**. ECE **0.093** and Brier **0.083** are measured on synthetic test. Per-task details: [evaluation report](https://github.com/ege-arhan/trustlaya-s/blob/main/reports/evaluation.json). These numbers do not estimate production performance.
 

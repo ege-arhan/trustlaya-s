@@ -1,0 +1,43 @@
+{
+  "train_rows": 34693,
+  "train_by_source_language_label": {
+    "arxiv_abstracts/en/BENIGN": 392,
+    "aya/de/BENIGN": 143,
+    "aya/en/BENIGN": 2382,
+    "aya/tr/BENIGN": 2861,
+    "dolly/en/BENIGN": 3000,
+    "hackaprompt/en/ATTACK": 5000,
+    "jailbreakllms/undetermined/ATTACK": 966,
+    "jailbreakllms/undetermined/BENIGN": 8989,
+    "oasst2/de/BENIGN": 401,
+    "oasst2/en/BENIGN": 3000,
+    "oasst2/tr/BENIGN": 4,
+    "security_docs/en/BENIGN": 503,
+    "tensor_trust/undetermined/ATTACK": 7052
+  },
+  "class_balance": {
+    "ATTACK": 13018,
+    "BENIGN": 21675
+  },
+  "expected_sampling_mass": {
+    "arxiv_abstracts/BENIGN": 0.0333,
+    "aya/BENIGN": 0.1333,
+    "dolly/BENIGN": 0.1333,
+    "hackaprompt/ATTACK": 0.1667,
+    "jailbreakllms/ATTACK": 0.1667,
+    "jailbreakllms/BENIGN": 0.0333,
+    "oasst2/BENIGN": 0.1333,
+    "security_docs/BENIGN": 0.0333,
+    "tensor_trust/ATTACK": 0.1667
+  },
+  "kish_effective_sample_size": 17281.7,
+  "samples_per_epoch": 34693,
+  "new_benign_length_buckets": {
+    "<=32": 8618,
+    "33-64": 1921,
+    "95-256": 520,
+    "65-94": 604,
+    "257+": 128
+  },
+  "distinct_training_rows_seen": 27330
+}

@@ -1,0 +1,56 @@
+{
+  "tokenizer": "ytu-ce-cosmos/turkish-medium-bert-uncased (V2 tokenizer)",
+  "tokenizer_sha256": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f",
+  "normalization": "trustlaya.utils.normalize (Turkish I->\u0131, lowercase)",
+  "turkish_source": {
+    "dataset": "Overfit-GM/turkish-toxic-language",
+    "revision": "5723921eb712daaf200735ec40eef4f538faa88c",
+    "file_sha256": "436aa9250d21d0617cb0aafdf77cad9c1aa85642d2b3fd1cd9d1aedab2d3fbc6",
+    "license": "Apache-2.0",
+    "rows_used": 3000,
+    "selection": "non-Jigsaw rows (Jigsaw rows are machine translations), seed 42"
+  },
+  "groups": {
+    "tensor_trust (English-dominant)": {
+      "n": 11994,
+      "median_words": 16.0,
+      "median_tokens": 39.0,
+      "expansion_ratio_mean": 1.913,
+      "expansion_ratio_median": 2.069,
+      "expansion_ratio_p95": 6.938,
+      "truncation_rate_94": 0.3237,
+      "truncation_rate_510": 0.0928
+    },
+    "jailbreakllms (English-dominant)": {
+      "n": 14125,
+      "median_words": 144,
+      "median_tokens": 307,
+      "expansion_ratio_mean": 2.217,
+      "expansion_ratio_median": 2.115,
+      "expansion_ratio_p95": 2.914,
+      "truncation_rate_94": 0.8287,
+      "truncation_rate_510": 0.3593
+    },
+    "turkish_toxic_language native Turkish (non-Jigsaw)": {
+      "n": 3000,
+      "median_words": 13.0,
+      "median_tokens": 18.0,
+      "expansion_ratio_mean": 1.426,
+      "expansion_ratio_median": 1.4,
+      "expansion_ratio_p95": 2.0,
+      "truncation_rate_94": 0.0007,
+      "truncation_rate_510": 0.0003
+    },
+    "project Turkish benchmark (researcher-authored synthetic)": {
+      "n": 11,
+      "median_words": 7,
+      "median_tokens": 11,
+      "expansion_ratio_mean": 1.835,
+      "expansion_ratio_median": 1.364,
+      "expansion_ratio_p95": 4.925,
+      "truncation_rate_94": 0.0,
+      "truncation_rate_510": 0.0
+    }
+  },
+  "note": "Token counts exclude [CLS]/[SEP]; V2 reads 94 content tokens."
+}

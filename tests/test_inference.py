@@ -14,8 +14,13 @@ def test_json_and_action():
     json.dumps(x);assert x['action']=='REDACT' and isinstance(x['evidence'],list) and isinstance(x['abstain'],bool)
 def test_onnx():
     if not (ROOT/'models/exported/trustlaya.onnx').exists(): pytest.skip('export first')
-    x=Analyzer('onnx').analyze('Merhaba')
+    analyzer=Analyzer('onnx')
+    x=analyzer.analyze('Merhaba')
     assert x['action'] in {'ALLOW','REDACT','REVIEW','BLOCK'}
+    tool=analyzer.analyze('Merhaba', {'agent':True,'untrusted_tool_output':True,
+                                    'network':True,'human_approval':False})
+    assert tool['action']=='REVIEW'
+    assert tool['policy_reason']=='untrusted_tool_output_privileged_agent'
 
 def test_exported_onnx_valid():
     if not (ROOT/'models/exported/trustlaya.onnx').exists(): pytest.skip('export first')

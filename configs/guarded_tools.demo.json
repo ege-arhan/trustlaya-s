@@ -1,0 +1,35 @@
+{
+  "tools": [
+    {
+      "name": "external_api",
+      "operation": "send",
+      "target": "demo://sink",
+      "permissions": {
+        "shell": false,
+        "filesystem": false,
+        "network": true,
+        "database": false,
+        "email": false,
+        "external_api": true,
+        "credential_access": false
+      },
+      "agents": ["demo-agent"]
+    },
+    {
+      "name": "shell",
+      "operation": "run",
+      "target": "demo://shell",
+      "permissions": {
+        "shell": true,
+        "filesystem": false,
+        "network": true,
+        "database": false,
+        "email": false,
+        "external_api": false,
+        "credential_access": false
+      },
+      "agents": ["demo-agent"],
+      "untrusted_tool_output": true
+    }
+  ]
+}

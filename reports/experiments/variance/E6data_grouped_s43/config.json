@@ -1,0 +1,32 @@
+{
+  "run_id": "E6data_grouped_s43",
+  "languages": [],
+  "sampling": "BALANCED_SOURCE",
+  "new_weight": 1,
+  "batching": "grouped",
+  "seed": 43,
+  "context": 510,
+  "loss": "FOCAL",
+  "focal": {
+    "gamma": 2.0,
+    "alpha": 0.25
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "lr": 2e-05,
+    "weight_decay": 0.01,
+    "batch_size": 16,
+    "epochs": 3,
+    "warmup_fraction": 0.1,
+    "schedule": "linear warmup + linear decay",
+    "grad_clip": 1.0,
+    "init": "models/base (ytu-ce-cosmos/turkish-medium-bert-uncased), not V2",
+    "precision": "fp32",
+    "reading": "HEAD truncation",
+    "epoch_selection": "lowest DEV loss (shared DEV)",
+    "batching": "length-grouped, chunks of 50 batches"
+  },
+  "plan": "reports/benign_repair_plan.md",
+  "tokenizer_sha256": "d1982e608b0883c5840b3dc9a735af3fbc45f3b75417dea44fa3efab3854346f",
+  "backbone_sha256": "c625c4b284fbcb92127283d186a0620d7615f58d9f2dcbe377dd1f17e073b458"
+}

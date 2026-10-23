@@ -1,0 +1,23 @@
+{
+  "threshold": 0.71,
+  "temperature": 0.8541,
+  "dev_macro_group_accuracy": 0.8865,
+  "dev_attack_recall": {
+    "tensor_trust": 0.9227,
+    "jailbreakllms": 0.4746
+  },
+  "dev_benign_fpr": {
+    "jailbreakllms": 0.0234,
+    "security_docs": 0.0,
+    "arxiv_abstracts": 0.0,
+    "dolly": 0.1217,
+    "oasst2": 0.1183,
+    "aya": 0.0417
+  },
+  "dev_mean_benign_fpr": 0.0509,
+  "dev_mean_attack_recall": 0.6986,
+  "dev_pr_auc": 0.9355,
+  "dev_ece_calibrated": 0.1024,
+  "REGRESSION": true,
+  "checkpoint_sha256": "3a52dc36b770969c44d55fd998acb5ccd23b0fc53fc742ca931f1c9614427bbe"
+}

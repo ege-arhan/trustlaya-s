@@ -1,0 +1,104 @@
+{
+  "frozen_at": "2026-09-26T19:24:37.714983+00:00",
+  "selection_rules": {
+    "threshold": "per experiment, on DEV only: maximize DEV macro group accuracy over the (source,label) groups TT/ATTACK, JLL/ATTACK, JLL/BENIGN, security_docs/BENIGN, arxiv/BENIGN; grid 0.01..0.99",
+    "candidate": "highest DEV macro group accuracy at its DEV threshold; tie-break DEV PR-AUC",
+    "calibration": "temperature scaling fitted on DEV only for every experiment; raw and calibrated reported",
+    "test": "TEST1 (pool TEST) and TEST2 (OOD) run once, after selection is frozen, for all experiments"
+  },
+  "status_rules": {
+    "generalization_failure": "at the frozen threshold, on TEST1+TEST2 attack sources (tensor_trust, jailbreakllms, deepset, gandalf): min recall < 0.5 while max recall >= 0.8; or any benign source (jailbreakllms, security_docs, arxiv_abstracts, deepset) FPR > 0.20",
+    "beats_v2": "candidate TEST1 JailbreakLLMs F1 and deepset F1 both above frozen V2, and Tensor Trust and Gandalf recall both above frozen V2, with every benign-source FPR below V2's",
+    "NO_GO": "candidate does not beat V2 (rule beats_v2)",
+    "EXPERIMENTAL": "beats V2 but generalization_failure",
+    "PROMISING": "beats V2, no generalization_failure, but max benign FPR > 0.05 or calibrated TEST ECE > 0.10",
+    "READY_FOR_EXTERNAL_VALIDATION": "beats V2, no generalization_failure, max benign FPR <= 0.05, calibrated TEST ECE <= 0.10",
+    "never": "PRODUCTION READY is not a possible outcome of this script"
+  },
+  "dev_selected_candidate": "E6_mixed_balanced_focal_510",
+  "experiments": {
+    "E1_tt_ce_94": {
+      "threshold": 0.99,
+      "dev_macro_group_accuracy": 0.8211,
+      "dev_macro_group_accuracy_at_0.5": 0.8118,
+      "temperature": 6.2933,
+      "temperature_at_search_bound": false,
+      "dev_pr_auc": 0.8942,
+      "checkpoint_sha256": "b4657e7025db3f72b1938f5b8f98968b8561888f651d33a8dbadb5463e29e010"
+    },
+    "E2_jll_ce_94": {
+      "threshold": 0.43,
+      "dev_macro_group_accuracy": 0.6621,
+      "dev_macro_group_accuracy_at_0.5": 0.6595,
+      "temperature": 7.3129,
+      "temperature_at_search_bound": false,
+      "dev_pr_auc": 0.6058,
+      "checkpoint_sha256": "aecfccb0cf8d7e8ade9ca5e87069d2ebb6cd9ec485f91cca7f008e4328a95ff5"
+    },
+    "E3_mixed_natural_ce_94": {
+      "threshold": 0.12,
+      "dev_macro_group_accuracy": 0.8763,
+      "dev_macro_group_accuracy_at_0.5": 0.8532,
+      "temperature": 1.1533,
+      "temperature_at_search_bound": false,
+      "dev_pr_auc": 0.9764,
+      "checkpoint_sha256": "a7c9e4c33e877d2555782f4c73db5e719e7c3d0aff15981795002a0c938a8ffe"
+    },
+    "E4_mixed_balanced_ce_94": {
+      "threshold": 0.05,
+      "dev_macro_group_accuracy": 0.9083,
+      "dev_macro_group_accuracy_at_0.5": 0.8936,
+      "temperature": 1.7561,
+      "temperature_at_search_bound": false,
+      "dev_pr_auc": 0.9659,
+      "checkpoint_sha256": "6b8027de33271cb84e45f82a822f60a81385f1b769f09889877774ea1424965d"
+    },
+    "E5_mixed_natural_focal_510": {
+      "threshold": 0.26,
+      "dev_macro_group_accuracy": 0.911,
+      "dev_macro_group_accuracy_at_0.5": 0.8445,
+      "temperature": 0.5868,
+      "temperature_at_search_bound": false,
+      "dev_pr_auc": 0.9853,
+      "checkpoint_sha256": "114c3573d9591201daa3150814a1e5acdb337db61349db44ba41f945e3eb4ebf"
+    },
+    "E6_mixed_balanced_focal_510": {
+      "threshold": 0.34,
+      "dev_macro_group_accuracy": 0.9248,
+      "dev_macro_group_accuracy_at_0.5": 0.9023,
+      "temperature": 0.6326,
+      "temperature_at_search_bound": false,
+      "dev_pr_auc": 0.9782,
+      "checkpoint_sha256": "26468821df242d2f5e873daf2b943dd6787e95cfefa037d8cfacfee2dbe048cb"
+    },
+    "E7_mixed_balanced_ce_256": {
+      "threshold": 0.01,
+      "dev_macro_group_accuracy": 0.913,
+      "dev_macro_group_accuracy_at_0.5": 0.8999,
+      "temperature": 1.8648,
+      "temperature_at_search_bound": false,
+      "dev_pr_auc": 0.9751,
+      "checkpoint_sha256": "8b85d05b4f1786b9dd9fbadb073ce94992a440c9ca4d1749372e3d6790663455"
+    },
+    "E8_mixed_balanced_ce_510": {
+      "threshold": 0.01,
+      "dev_macro_group_accuracy": 0.9199,
+      "dev_macro_group_accuracy_at_0.5": 0.9098,
+      "temperature": 1.9217,
+      "temperature_at_search_bound": false,
+      "dev_pr_auc": 0.9745,
+      "checkpoint_sha256": "267983de0445593c9362cc7daa1bba516aaa827c33539553666911b3d907753a"
+    }
+  },
+  "selection_files_sha256": {
+    "E1_tt_ce_94": "1070146aea77c8aab4eabbc8b449388585a2d5c9ae366caea59128a625e468ef",
+    "E2_jll_ce_94": "8b6580e8db48c251b6e7d2903146d2c0a3dc1dd0f5f011f3258ae04cf70902e6",
+    "E3_mixed_natural_ce_94": "196cab587c9e50edabbb1164e8ccb8340680334bca79b66f1c4bd3f5623b790a",
+    "E4_mixed_balanced_ce_94": "105f67c3287994dffef0b0b7d2276b897d133c02da9cb528beeaa18c500a8bad",
+    "E5_mixed_natural_focal_510": "4f3621b7c4c41568a2245e3a6dbc5dde7aeddc7d2e1884b4683bde9df0657b44",
+    "E6_mixed_balanced_focal_510": "bff2ca1b1e4e202f18c6c0be8aee454d43741eb51268bb94cbd08be6c7a7d972",
+    "E7_mixed_balanced_ce_256": "4fbf1636fe1e36c1a930c51c7f80355af80b6f3c1d674f7d0db50a0e8a5caed8",
+    "E8_mixed_balanced_ce_510": "a7e3d9e928c247784ffcb778ce35c469711edec5c590357981611094f6e750f2"
+  },
+  "test_scored_before_lock": false
+}

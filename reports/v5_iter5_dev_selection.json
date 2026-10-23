@@ -1,0 +1,45 @@
+{
+  "frozen_at": "2026-09-27T11:24:41.844316+00:00",
+  "rule": "DEV class-balanced accuracy at T1, tie DEV PR-AUC",
+  "runs_seed42": {
+    "S1_tr": {
+      "threshold": 0.21,
+      "temperature": 0.6421,
+      "dev_class_balanced_accuracy": 0.945,
+      "dev_pr_auc": 0.986,
+      "checkpoint_sha256": "f02b5c19ea9919d9add71baf5ecf1d461d08225da85a435df80c2a08069fbcb3"
+    },
+    "S2_de": {
+      "threshold": 0.41,
+      "temperature": 0.6717,
+      "dev_class_balanced_accuracy": 0.9455,
+      "dev_pr_auc": 0.9858,
+      "checkpoint_sha256": "3d6f2810778ab1be01e5efa43a0fab929c94999da2f69d51b6fc285568cadf7f"
+    },
+    "S3_tr_de": {
+      "threshold": 0.23,
+      "temperature": 0.6518,
+      "dev_class_balanced_accuracy": 0.9413,
+      "dev_pr_auc": 0.9856,
+      "checkpoint_sha256": "667bfa30ed9af3755741c5f160653d54b5c1a347479591e805e6c11b96ba6aa6"
+    },
+    "S4_tr_de_benign": {
+      "threshold": 0.29,
+      "temperature": 0.6922,
+      "dev_class_balanced_accuracy": 0.9433,
+      "dev_pr_auc": 0.9856,
+      "checkpoint_sha256": "65870ab068a05d8b251a046f104503a91faf834da34f8cf195d8acf1e3d38315"
+    },
+    "S5_de_debenign": {
+      "threshold": 0.29,
+      "temperature": 0.6231,
+      "dev_class_balanced_accuracy": 0.9433,
+      "dev_pr_auc": 0.986,
+      "checkpoint_sha256": "c3c2ac8a9170c0aaa6234ad298ffe203f993d3f636eddaa29744ba78b204fc77"
+    }
+  },
+  "top2_for_seeds_43_44": [
+    "S2_de",
+    "S1_tr"
+  ]
+}

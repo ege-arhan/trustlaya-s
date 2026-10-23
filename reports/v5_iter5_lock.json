@@ -1,0 +1,90 @@
+{
+  "frozen_at": "2026-09-27T15:42:01.870974+00:00",
+  "plan_sha256": "feac2ee81ce3ea6c795a62b03e0ee19e4cb56014debeaa86aa6e256988ab8f32",
+  "runs": {
+    "S0_s42": {
+      "threshold": 0.37,
+      "temperature": 0.6617,
+      "dev_class_balanced_accuracy": 0.9471,
+      "dev_pr_auc": 0.985,
+      "checkpoint_sha256": "617c678ad82bc3062cbdc9c7e62b5a5c957b49d08e22439b778780aa44097134"
+    },
+    "S0_s43": {
+      "threshold": 0.24,
+      "temperature": 0.6717,
+      "dev_class_balanced_accuracy": 0.9455,
+      "dev_pr_auc": 0.9858,
+      "checkpoint_sha256": "d89341018065cc739022cce5ea36263ad8c8a0ec23446f1fa945681f3e480331"
+    },
+    "S0_s44": {
+      "threshold": 0.3,
+      "temperature": 0.6717,
+      "dev_class_balanced_accuracy": 0.9427,
+      "dev_pr_auc": 0.985,
+      "checkpoint_sha256": "7b054caaf3be2755d5ee6dbc3750c44f98854ce52191e6318052f45061267113"
+    },
+    "S1_tr_s42": {
+      "threshold": 0.21,
+      "temperature": 0.6421,
+      "dev_class_balanced_accuracy": 0.945,
+      "dev_pr_auc": 0.986,
+      "checkpoint_sha256": "f02b5c19ea9919d9add71baf5ecf1d461d08225da85a435df80c2a08069fbcb3"
+    },
+    "S2_de_s42": {
+      "threshold": 0.41,
+      "temperature": 0.6717,
+      "dev_class_balanced_accuracy": 0.9455,
+      "dev_pr_auc": 0.9858,
+      "checkpoint_sha256": "3d6f2810778ab1be01e5efa43a0fab929c94999da2f69d51b6fc285568cadf7f"
+    },
+    "S3_tr_de_s42": {
+      "threshold": 0.23,
+      "temperature": 0.6518,
+      "dev_class_balanced_accuracy": 0.9413,
+      "dev_pr_auc": 0.9856,
+      "checkpoint_sha256": "667bfa30ed9af3755741c5f160653d54b5c1a347479591e805e6c11b96ba6aa6"
+    },
+    "S4_tr_de_benign_s42": {
+      "threshold": 0.29,
+      "temperature": 0.6922,
+      "dev_class_balanced_accuracy": 0.9433,
+      "dev_pr_auc": 0.9856,
+      "checkpoint_sha256": "65870ab068a05d8b251a046f104503a91faf834da34f8cf195d8acf1e3d38315"
+    },
+    "S5_de_debenign_s42": {
+      "threshold": 0.29,
+      "temperature": 0.6231,
+      "dev_class_balanced_accuracy": 0.9433,
+      "dev_pr_auc": 0.986,
+      "checkpoint_sha256": "c3c2ac8a9170c0aaa6234ad298ffe203f993d3f636eddaa29744ba78b204fc77"
+    },
+    "S2_de_s43": {
+      "threshold": 0.27,
+      "temperature": 0.6819,
+      "dev_class_balanced_accuracy": 0.946,
+      "dev_pr_auc": 0.9854,
+      "checkpoint_sha256": "d96df474f12049d1c23152e4e5bc63a0c32c162a33e141e2dc73e5f3f68000ef"
+    },
+    "S2_de_s44": {
+      "threshold": 0.34,
+      "temperature": 0.6617,
+      "dev_class_balanced_accuracy": 0.9418,
+      "dev_pr_auc": 0.985,
+      "checkpoint_sha256": "3456db1f92abdd15882124eb2c4d35c9ff830e7cdd3fa3cb9ea62ba9f2ae4697"
+    },
+    "S1_tr_s43": {
+      "threshold": 0.25,
+      "temperature": 0.6421,
+      "dev_class_balanced_accuracy": 0.944,
+      "dev_pr_auc": 0.9852,
+      "checkpoint_sha256": "7fa39aec584249e50b3d5a783bc9931a2bb2fbe9c3db482510940c564e332edf"
+    },
+    "S1_tr_s44": {
+      "threshold": 0.28,
+      "temperature": 0.6518,
+      "dev_class_balanced_accuracy": 0.9432,
+      "dev_pr_auc": 0.9863,
+      "checkpoint_sha256": "c10cf390dbab954152713934a08e3c15de6cf84785123e39fddd4919373b2492"
+    }
+  }
+}

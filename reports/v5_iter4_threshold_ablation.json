@@ -1,0 +1,4483 @@
+{
+  "doc": "V5 iteration 4: threshold strategies T1-T4 on existing checkpoints (DEV selects, TEST reports).\n\nNo training. Models: iteration-3 H1 (A4 data + HackAPrompt) and the A4 control, seeds 42-44.\nStrategy choice uses DEV only, with a criterion fixed before scoring:\n  maximize the worst DEV stratum score, where strata are\n  attack recall for length buckets <=32, 33-64, 65-94, 95-256, 257+ and for question-form attacks,\n  and benign accuracy (1 - FPR) for each language en / de / tr.\nTEST sets (deepset, Gandalf, MASSIVE test/dev, TEST1) were scored in earlier iterations and are\nreused for reporting only. deepset language is a stopword guess (marked *).\n\nStrategies:\n  T1 global threshold, class-balanced DEV accuracy (the iteration-3 rule)\n  T2 T1 subject to DEV recall >= 0.95 on attacks of <= 94 tokens\n  T3 global threshold, objective = mean(attack-group accuracy, language-balanced benign accuracy)\n  T4 DEV temperature scaling, then threshold 0.5 on calibrated probability\n\nRun: .venv/bin/python scripts/threshold_ablation_v5_iter4.py",
+  "dev_strata_sizes": {
+    "attack_len_<=32": 1113,
+    "attack_question": 190,
+    "attack_len_95-256": 309,
+    "attack_len_33-64": 547,
+    "attack_len_65-94": 225,
+    "attack_len_257+": 329,
+    "benign_lang_en?": 1883,
+    "benign_lang_en": 1898,
+    "benign_lang_de": 124,
+    "benign_lang_tr": 602
+  },
+  "models": {
+    "H1_s42": {
+      "thresholds": {
+        "T1": 0.37,
+        "T2": 0.37,
+        "T3": 0.16,
+        "T4": 0.5
+      },
+      "temperature": 0.6617,
+      "strategies": {
+        "T1": {
+          "threshold": 0.37,
+          "dev_strata": {
+            "attack_len_<=32": 0.9632,
+            "attack_question": 0.8895,
+            "attack_len_95-256": 0.9612,
+            "attack_len_33-64": 0.9744,
+            "attack_len_65-94": 0.9778,
+            "attack_len_257+": 0.9574,
+            "benign_lang_en?": 0.8131,
+            "benign_lang_en": 0.9816,
+            "benign_lang_de": 1.0,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.8895,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.008,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0083,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.999,
+              "fpr": null,
+              "f1": 0.9995,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 0.9989
+            },
+            "jailbreakllms": {
+              "recall": 0.8023,
+              "fpr": 0.1615,
+              "f1": 0.443,
+              "precision": 0.306,
+              "pr_auc": 0.5734,
+              "attack_recall_question": 0.5,
+              "attack_recall_non_question": 0.8171
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.032,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0,
+              "f1": null,
+              "precision": null,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9839,
+              "fpr": null,
+              "f1": 0.9919,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9344,
+              "attack_recall_non_question": 0.9865
+            },
+            "deepset": {
+              "recall": 0.254,
+              "fpr": 0.0556,
+              "f1": 0.3787,
+              "precision": 0.7442,
+              "pr_auc": 0.6511,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.0964,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.2895,
+                  "fpr": 0.0056
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.7059,
+                  "fpr": 0.25
+                }
+              },
+              "attack_recall_question": 0.0846,
+              "attack_recall_non_question": 0.4344
+            },
+            "gandalf": {
+              "recall": 0.9717,
+              "fpr": null,
+              "f1": 0.9856,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.2186,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.1657
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.2879
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.2026
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.2024,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.1573
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.2617
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.1886
+                }
+              }
+            }
+          }
+        },
+        "T2": {
+          "threshold": 0.37,
+          "dev_strata": {
+            "attack_len_<=32": 0.9632,
+            "attack_question": 0.8895,
+            "attack_len_95-256": 0.9612,
+            "attack_len_33-64": 0.9744,
+            "attack_len_65-94": 0.9778,
+            "attack_len_257+": 0.9574,
+            "benign_lang_en?": 0.8131,
+            "benign_lang_en": 0.9816,
+            "benign_lang_de": 1.0,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.8895,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.008,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0083,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.999,
+              "fpr": null,
+              "f1": 0.9995,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 0.9989
+            },
+            "jailbreakllms": {
+              "recall": 0.8023,
+              "fpr": 0.1615,
+              "f1": 0.443,
+              "precision": 0.306,
+              "pr_auc": 0.5734,
+              "attack_recall_question": 0.5,
+              "attack_recall_non_question": 0.8171
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.032,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0,
+              "f1": null,
+              "precision": null,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9839,
+              "fpr": null,
+              "f1": 0.9919,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9344,
+              "attack_recall_non_question": 0.9865
+            },
+            "deepset": {
+              "recall": 0.254,
+              "fpr": 0.0556,
+              "f1": 0.3787,
+              "precision": 0.7442,
+              "pr_auc": 0.6511,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.0964,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.2895,
+                  "fpr": 0.0056
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.7059,
+                  "fpr": 0.25
+                }
+              },
+              "attack_recall_question": 0.0846,
+              "attack_recall_non_question": 0.4344
+            },
+            "gandalf": {
+              "recall": 0.9717,
+              "fpr": null,
+              "f1": 0.9856,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.2186,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.1657
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.2879
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.2026
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.2024,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.1573
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.2617
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.1886
+                }
+              }
+            }
+          }
+        },
+        "T3": {
+          "threshold": 0.16,
+          "dev_strata": {
+            "attack_len_<=32": 0.9847,
+            "attack_question": 0.9526,
+            "attack_len_95-256": 0.9806,
+            "attack_len_33-64": 0.989,
+            "attack_len_65-94": 0.9867,
+            "attack_len_257+": 0.9878,
+            "benign_lang_en?": 0.5985,
+            "benign_lang_en": 0.9415,
+            "benign_lang_de": 0.9597,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.9415,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0326,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0276,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0333,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 1.0,
+              "fpr": null,
+              "f1": 1.0,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 1.0
+            },
+            "jailbreakllms": {
+              "recall": 0.907,
+              "fpr": 0.3731,
+              "f1": 0.2969,
+              "precision": 0.1775,
+              "pr_auc": 0.5734,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.9146
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.1032,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.051,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.993,
+              "fpr": null,
+              "f1": 0.9965,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9672,
+              "attack_recall_non_question": 0.9944
+            },
+            "deepset": {
+              "recall": 0.4048,
+              "fpr": 0.1439,
+              "f1": 0.4964,
+              "precision": 0.6415,
+              "pr_auc": 0.6511,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.241,
+                  "fpr": 0.0076
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.4539,
+                  "fpr": 0.0447
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.7647,
+                  "fpr": 0.5714
+                }
+              },
+              "attack_recall_question": 0.1923,
+              "attack_recall_non_question": 0.6311
+            },
+            "gandalf": {
+              "recall": 0.9909,
+              "fpr": null,
+              "f1": 0.9954,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.5692,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.5482
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.6232
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.5363
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.5279,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.5151
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.5639
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.5046
+                }
+              }
+            }
+          }
+        },
+        "T4": {
+          "threshold": 0.5,
+          "dev_strata": {
+            "attack_len_<=32": 0.9551,
+            "attack_question": 0.8526,
+            "attack_len_95-256": 0.9417,
+            "attack_len_33-64": 0.9671,
+            "attack_len_65-94": 0.9644,
+            "attack_len_257+": 0.9271,
+            "benign_lang_en?": 0.8895,
+            "benign_lang_en": 0.9868,
+            "benign_lang_de": 1.0,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.8526,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0027,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0033,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.997,
+              "fpr": null,
+              "f1": 0.9985,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 0.9968
+            },
+            "jailbreakllms": {
+              "recall": 0.7267,
+              "fpr": 0.1032,
+              "f1": 0.503,
+              "precision": 0.3846,
+              "pr_auc": 0.5734,
+              "attack_recall_question": 0.5,
+              "attack_recall_non_question": 0.7378
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.016,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0,
+              "f1": null,
+              "precision": null,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9803,
+              "fpr": null,
+              "f1": 0.99,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9071,
+              "attack_recall_non_question": 0.9842
+            },
+            "deepset": {
+              "recall": 0.2302,
+              "fpr": 0.0328,
+              "f1": 0.3591,
+              "precision": 0.8169,
+              "pr_auc": 0.6511,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.0843,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.2566,
+                  "fpr": 0.0056
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.7059,
+                  "fpr": 0.1429
+                }
+              },
+              "attack_recall_question": 0.0846,
+              "attack_recall_non_question": 0.3852
+            },
+            "gandalf": {
+              "recall": 0.9626,
+              "fpr": null,
+              "f1": 0.9809,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.1175,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.0763
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.1808
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0958
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.1125,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0837
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.1744
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.0795
+                }
+              }
+            }
+          }
+        }
+      },
+      "dev_selected_strategy": "T3"
+    },
+    "H1_s43": {
+      "thresholds": {
+        "T1": 0.24,
+        "T2": 0.24,
+        "T3": 0.22,
+        "T4": 0.5
+      },
+      "temperature": 0.6717,
+      "strategies": {
+        "T1": {
+          "threshold": 0.24,
+          "dev_strata": {
+            "attack_len_<=32": 0.982,
+            "attack_question": 0.9421,
+            "attack_len_95-256": 0.9806,
+            "attack_len_33-64": 0.9799,
+            "attack_len_65-94": 0.9733,
+            "attack_len_257+": 0.9544,
+            "benign_lang_en?": 0.7732,
+            "benign_lang_en": 0.9668,
+            "benign_lang_de": 0.9919,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.9421,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0196,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.025,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 1.0,
+              "fpr": null,
+              "f1": 1.0,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 1.0
+            },
+            "jailbreakllms": {
+              "recall": 0.8256,
+              "fpr": 0.2069,
+              "f1": 0.3972,
+              "precision": 0.2615,
+              "pr_auc": 0.548,
+              "attack_recall_question": 0.375,
+              "attack_recall_non_question": 0.8476
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0625,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0204,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9897,
+              "fpr": null,
+              "f1": 0.9948,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9617,
+              "attack_recall_non_question": 0.9912
+            },
+            "deepset": {
+              "recall": 0.3254,
+              "fpr": 0.0808,
+              "f1": 0.4481,
+              "precision": 0.7193,
+              "pr_auc": 0.6725,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.1205,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.3816,
+                  "fpr": 0.0223
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.3333
+                }
+              },
+              "attack_recall_question": 0.1308,
+              "attack_recall_non_question": 0.5328
+            },
+            "gandalf": {
+              "recall": 0.9869,
+              "fpr": null,
+              "f1": 0.9934,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.3036,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.1948
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.4586
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.2581
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.291,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.1935
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.427
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.2528
+                }
+              }
+            }
+          }
+        },
+        "T2": {
+          "threshold": 0.24,
+          "dev_strata": {
+            "attack_len_<=32": 0.982,
+            "attack_question": 0.9421,
+            "attack_len_95-256": 0.9806,
+            "attack_len_33-64": 0.9799,
+            "attack_len_65-94": 0.9733,
+            "attack_len_257+": 0.9544,
+            "benign_lang_en?": 0.7732,
+            "benign_lang_en": 0.9668,
+            "benign_lang_de": 0.9919,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.9421,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0196,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.025,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 1.0,
+              "fpr": null,
+              "f1": 1.0,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 1.0
+            },
+            "jailbreakllms": {
+              "recall": 0.8256,
+              "fpr": 0.2069,
+              "f1": 0.3972,
+              "precision": 0.2615,
+              "pr_auc": 0.548,
+              "attack_recall_question": 0.375,
+              "attack_recall_non_question": 0.8476
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0625,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0204,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9897,
+              "fpr": null,
+              "f1": 0.9948,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9617,
+              "attack_recall_non_question": 0.9912
+            },
+            "deepset": {
+              "recall": 0.3254,
+              "fpr": 0.0808,
+              "f1": 0.4481,
+              "precision": 0.7193,
+              "pr_auc": 0.6725,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.1205,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.3816,
+                  "fpr": 0.0223
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.3333
+                }
+              },
+              "attack_recall_question": 0.1308,
+              "attack_recall_non_question": 0.5328
+            },
+            "gandalf": {
+              "recall": 0.9869,
+              "fpr": null,
+              "f1": 0.9934,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.3036,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.1948
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.4586
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.2581
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.291,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.1935
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.427
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.2528
+                }
+              }
+            }
+          }
+        },
+        "T3": {
+          "threshold": 0.22,
+          "dev_strata": {
+            "attack_len_<=32": 0.9829,
+            "attack_question": 0.9474,
+            "attack_len_95-256": 0.9806,
+            "attack_len_33-64": 0.9799,
+            "attack_len_65-94": 0.9778,
+            "attack_len_257+": 0.9574,
+            "benign_lang_en?": 0.7594,
+            "benign_lang_en": 0.9636,
+            "benign_lang_de": 0.9919,
+            "benign_lang_tr": 0.9983
+          },
+          "dev_worst_stratum": 0.9474,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0204,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0283,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 1.0,
+              "fpr": null,
+              "f1": 1.0,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 1.0
+            },
+            "jailbreakllms": {
+              "recall": 0.8372,
+              "fpr": 0.2219,
+              "f1": 0.3861,
+              "precision": 0.2509,
+              "pr_auc": 0.548,
+              "attack_recall_question": 0.375,
+              "attack_recall_non_question": 0.8598
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0698,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0306,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9903,
+              "fpr": null,
+              "f1": 0.9951,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9617,
+              "attack_recall_non_question": 0.9918
+            },
+            "deepset": {
+              "recall": 0.3532,
+              "fpr": 0.0859,
+              "f1": 0.4747,
+              "precision": 0.7236,
+              "pr_auc": 0.6725,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.1687,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.4013,
+                  "fpr": 0.0223
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.3571
+                }
+              },
+              "attack_recall_question": 0.1692,
+              "attack_recall_non_question": 0.5492
+            },
+            "gandalf": {
+              "recall": 0.9879,
+              "fpr": null,
+              "f1": 0.9939,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.3388,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.2299
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.4949
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.2923
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.318,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.2137
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.4493
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.2915
+                }
+              }
+            }
+          }
+        },
+        "T4": {
+          "threshold": 0.5,
+          "dev_strata": {
+            "attack_len_<=32": 0.9542,
+            "attack_question": 0.8421,
+            "attack_len_95-256": 0.9385,
+            "attack_len_33-64": 0.9726,
+            "attack_len_65-94": 0.9733,
+            "attack_len_257+": 0.8875,
+            "benign_lang_en?": 0.9129,
+            "benign_lang_en": 0.991,
+            "benign_lang_de": 1.0,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.8421,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0036,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.005,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.995,
+              "fpr": null,
+              "f1": 0.9975,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 0.9946
+            },
+            "jailbreakllms": {
+              "recall": 0.7035,
+              "fpr": 0.0815,
+              "f1": 0.5366,
+              "precision": 0.4337,
+              "pr_auc": 0.548,
+              "attack_recall_question": 0.375,
+              "attack_recall_non_question": 0.7195
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0218,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0102,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9808,
+              "fpr": null,
+              "f1": 0.9903,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9126,
+              "attack_recall_non_question": 0.9845
+            },
+            "deepset": {
+              "recall": 0.2262,
+              "fpr": 0.0177,
+              "f1": 0.3608,
+              "precision": 0.8906,
+              "pr_auc": 0.6725,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.0723,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.2566,
+                  "fpr": 0.0056
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.7059,
+                  "fpr": 0.0714
+                }
+              },
+              "attack_recall_question": 0.0769,
+              "attack_recall_non_question": 0.3852
+            },
+            "gandalf": {
+              "recall": 0.9596,
+              "fpr": null,
+              "f1": 0.9794,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.1051,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.0512
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.2111
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0534
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.1031,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0504
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.2039
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.055
+                }
+              }
+            }
+          }
+        }
+      },
+      "dev_selected_strategy": "T3"
+    },
+    "H1_s44": {
+      "thresholds": {
+        "T1": 0.3,
+        "T2": 0.3,
+        "T3": 0.18,
+        "T4": 0.5
+      },
+      "temperature": 0.6717,
+      "strategies": {
+        "T1": {
+          "threshold": 0.3,
+          "dev_strata": {
+            "attack_len_<=32": 0.9775,
+            "attack_question": 0.9158,
+            "attack_len_95-256": 0.9612,
+            "attack_len_33-64": 0.9799,
+            "attack_len_65-94": 0.9689,
+            "attack_len_257+": 0.9514,
+            "benign_lang_en?": 0.7775,
+            "benign_lang_en": 0.9768,
+            "benign_lang_de": 0.9919,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.9158,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0142,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0117,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.998,
+              "fpr": null,
+              "f1": 0.999,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9855,
+              "attack_recall_non_question": 0.9989
+            },
+            "jailbreakllms": {
+              "recall": 0.8547,
+              "fpr": 0.1971,
+              "f1": 0.4194,
+              "precision": 0.2779,
+              "pr_auc": 0.5737,
+              "attack_recall_question": 0.625,
+              "attack_recall_non_question": 0.8659
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.061,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0102,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9897,
+              "fpr": null,
+              "f1": 0.9948,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9508,
+              "attack_recall_non_question": 0.9918
+            },
+            "deepset": {
+              "recall": 0.3175,
+              "fpr": 0.0732,
+              "f1": 0.4432,
+              "precision": 0.7339,
+              "pr_auc": 0.6878,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.1446,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.3553,
+                  "fpr": 0.0391
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.2619
+                }
+              },
+              "attack_recall_question": 0.1692,
+              "attack_recall_non_question": 0.4754
+            },
+            "gandalf": {
+              "recall": 0.9747,
+              "fpr": null,
+              "f1": 0.9872,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.2639,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.1968
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.3495
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.246
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.2484,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.1754
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.3286
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.2416
+                }
+              }
+            }
+          }
+        },
+        "T2": {
+          "threshold": 0.3,
+          "dev_strata": {
+            "attack_len_<=32": 0.9775,
+            "attack_question": 0.9158,
+            "attack_len_95-256": 0.9612,
+            "attack_len_33-64": 0.9799,
+            "attack_len_65-94": 0.9689,
+            "attack_len_257+": 0.9514,
+            "benign_lang_en?": 0.7775,
+            "benign_lang_en": 0.9768,
+            "benign_lang_de": 0.9919,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.9158,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0142,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0117,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.998,
+              "fpr": null,
+              "f1": 0.999,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9855,
+              "attack_recall_non_question": 0.9989
+            },
+            "jailbreakllms": {
+              "recall": 0.8547,
+              "fpr": 0.1971,
+              "f1": 0.4194,
+              "precision": 0.2779,
+              "pr_auc": 0.5737,
+              "attack_recall_question": 0.625,
+              "attack_recall_non_question": 0.8659
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.061,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0102,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9897,
+              "fpr": null,
+              "f1": 0.9948,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9508,
+              "attack_recall_non_question": 0.9918
+            },
+            "deepset": {
+              "recall": 0.3175,
+              "fpr": 0.0732,
+              "f1": 0.4432,
+              "precision": 0.7339,
+              "pr_auc": 0.6878,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.1446,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.3553,
+                  "fpr": 0.0391
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.2619
+                }
+              },
+              "attack_recall_question": 0.1692,
+              "attack_recall_non_question": 0.4754
+            },
+            "gandalf": {
+              "recall": 0.9747,
+              "fpr": null,
+              "f1": 0.9872,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.2639,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.1968
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.3495
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.246
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.2484,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.1754
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.3286
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.2416
+                }
+              }
+            }
+          }
+        },
+        "T3": {
+          "threshold": 0.18,
+          "dev_strata": {
+            "attack_len_<=32": 0.9892,
+            "attack_question": 0.9526,
+            "attack_len_95-256": 0.9773,
+            "attack_len_33-64": 0.9909,
+            "attack_len_65-94": 0.9733,
+            "attack_len_257+": 0.9726,
+            "benign_lang_en?": 0.6819,
+            "benign_lang_en": 0.9489,
+            "benign_lang_de": 0.9758,
+            "benign_lang_tr": 0.9983
+          },
+          "dev_worst_stratum": 0.9489,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0284,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0333,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 1.0,
+              "fpr": null,
+              "f1": 1.0,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 1.0,
+              "attack_recall_non_question": 1.0
+            },
+            "jailbreakllms": {
+              "recall": 0.9012,
+              "fpr": 0.2993,
+              "f1": 0.3418,
+              "precision": 0.2109,
+              "pr_auc": 0.5737,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.9085
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.1032,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0408,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9928,
+              "fpr": null,
+              "f1": 0.9964,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9617,
+              "attack_recall_non_question": 0.9944
+            },
+            "deepset": {
+              "recall": 0.3929,
+              "fpr": 0.1439,
+              "f1": 0.4853,
+              "precision": 0.6346,
+              "pr_auc": 0.6878,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.2169,
+                  "fpr": 0.0076
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.4342,
+                  "fpr": 0.0726
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8824,
+                  "fpr": 0.5119
+                }
+              },
+              "attack_recall_question": 0.2308,
+              "attack_recall_non_question": 0.5656
+            },
+            "gandalf": {
+              "recall": 0.9848,
+              "fpr": null,
+              "f1": 0.9924,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.4614,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.4187
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.501
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.4647
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.4383,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.3982
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.4655
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.4516
+                }
+              }
+            }
+          }
+        },
+        "T4": {
+          "threshold": 0.5,
+          "dev_strata": {
+            "attack_len_<=32": 0.9587,
+            "attack_question": 0.8684,
+            "attack_len_95-256": 0.9385,
+            "attack_len_33-64": 0.9726,
+            "attack_len_65-94": 0.96,
+            "attack_len_257+": 0.921,
+            "benign_lang_en?": 0.8667,
+            "benign_lang_en": 0.9868,
+            "benign_lang_de": 1.0,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.8684,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0044,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0033,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.997,
+              "fpr": null,
+              "f1": 0.9985,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9855,
+              "attack_recall_non_question": 0.9979
+            },
+            "jailbreakllms": {
+              "recall": 0.7674,
+              "fpr": 0.1259,
+              "f1": 0.4818,
+              "precision": 0.3511,
+              "pr_auc": 0.5737,
+              "attack_recall_question": 0.5,
+              "attack_recall_non_question": 0.7805
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0218,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0,
+              "f1": null,
+              "precision": null,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9811,
+              "fpr": null,
+              "f1": 0.9905,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.929,
+              "attack_recall_non_question": 0.9839
+            },
+            "deepset": {
+              "recall": 0.2183,
+              "fpr": 0.0202,
+              "f1": 0.3492,
+              "precision": 0.873,
+              "pr_auc": 0.6878,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.0723,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.25,
+                  "fpr": 0.0056
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.6471,
+                  "fpr": 0.0833
+                }
+              },
+              "attack_recall_question": 0.0923,
+              "attack_recall_non_question": 0.3525
+            },
+            "gandalf": {
+              "recall": 0.9474,
+              "fpr": null,
+              "f1": 0.973,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.1128,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.0552
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.204
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0796
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.1149,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0605
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.1927
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.0917
+                }
+              }
+            }
+          }
+        }
+      },
+      "dev_selected_strategy": "T3"
+    },
+    "A4_s42": {
+      "thresholds": {
+        "T1": 0.15,
+        "T2": 0.12,
+        "T3": 0.14,
+        "T4": 0.5
+      },
+      "temperature": 0.8541,
+      "strategies": {
+        "T1": {
+          "threshold": 0.15,
+          "dev_strata": {
+            "attack_len_<=32": 0.9623,
+            "attack_question": 0.8526,
+            "attack_len_95-256": 0.9256,
+            "attack_len_33-64": 0.9232,
+            "attack_len_65-94": 0.8933,
+            "attack_len_257+": 0.9787,
+            "benign_lang_en?": 0.683,
+            "benign_lang_en": 0.9236,
+            "benign_lang_de": 0.9597,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.8526,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0364,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0417,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.887,
+              "fpr": null,
+              "f1": 0.9401,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.6522,
+              "attack_recall_non_question": 0.9044
+            },
+            "jailbreakllms": {
+              "recall": 0.8837,
+              "fpr": 0.2982,
+              "f1": 0.337,
+              "precision": 0.2082,
+              "pr_auc": 0.5537,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.8902
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0306,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.995,
+              "fpr": null,
+              "f1": 0.9975,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9672,
+              "attack_recall_non_question": 0.9965
+            },
+            "deepset": {
+              "recall": 0.4365,
+              "fpr": 0.1919,
+              "f1": 0.5023,
+              "precision": 0.5914,
+              "pr_auc": 0.6337,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.2892,
+                  "fpr": 0.0152
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.4737,
+                  "fpr": 0.1061
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.6548
+                }
+              },
+              "attack_recall_question": 0.2,
+              "attack_recall_non_question": 0.6885
+            },
+            "gandalf": {
+              "recall": 0.9889,
+              "fpr": null,
+              "f1": 0.9944,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.6125,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.6024
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.6455
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.5897
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.5853,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.5746
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.6085
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.5729
+                }
+              }
+            }
+          }
+        },
+        "T2": {
+          "threshold": 0.12,
+          "dev_strata": {
+            "attack_len_<=32": 0.9668,
+            "attack_question": 0.8632,
+            "attack_len_95-256": 0.9385,
+            "attack_len_33-64": 0.9397,
+            "attack_len_65-94": 0.9111,
+            "attack_len_257+": 0.9818,
+            "benign_lang_en?": 0.6267,
+            "benign_lang_en": 0.9057,
+            "benign_lang_de": 0.9032,
+            "benign_lang_tr": 0.9917
+          },
+          "dev_worst_stratum": 0.8632,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0533,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.07,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.905,
+              "fpr": null,
+              "f1": 0.9501,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.7101,
+              "attack_recall_non_question": 0.9194
+            },
+            "jailbreakllms": {
+              "recall": 0.8953,
+              "fpr": 0.3385,
+              "f1": 0.3136,
+              "precision": 0.1901,
+              "pr_auc": 0.5537,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.9024
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.1599,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0816,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9964,
+              "fpr": null,
+              "f1": 0.9982,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9781,
+              "attack_recall_non_question": 0.9974
+            },
+            "deepset": {
+              "recall": 0.5238,
+              "fpr": 0.2298,
+              "f1": 0.5558,
+              "precision": 0.5919,
+              "pr_auc": 0.6337,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.4458,
+                  "fpr": 0.0303
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.5329,
+                  "fpr": 0.1341
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.75
+                }
+              },
+              "attack_recall_question": 0.2846,
+              "attack_recall_non_question": 0.7787
+            },
+            "gandalf": {
+              "recall": 0.9929,
+              "fpr": null,
+              "f1": 0.9964,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.7011,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.7349
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.7182
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.6502
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.6786,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.7097
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.6876
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.6381
+                }
+              }
+            }
+          }
+        },
+        "T3": {
+          "threshold": 0.14,
+          "dev_strata": {
+            "attack_len_<=32": 0.9632,
+            "attack_question": 0.8632,
+            "attack_len_95-256": 0.932,
+            "attack_len_33-64": 0.9269,
+            "attack_len_65-94": 0.8978,
+            "attack_len_257+": 0.9787,
+            "benign_lang_en?": 0.666,
+            "benign_lang_en": 0.9199,
+            "benign_lang_de": 0.9597,
+            "benign_lang_tr": 0.9983
+          },
+          "dev_worst_stratum": 0.8632,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0391,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0483,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.893,
+              "fpr": null,
+              "f1": 0.9435,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.6812,
+              "attack_recall_non_question": 0.9087
+            },
+            "jailbreakllms": {
+              "recall": 0.8895,
+              "fpr": 0.3122,
+              "f1": 0.329,
+              "precision": 0.2018,
+              "pr_auc": 0.5537,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.8963
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.1279,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.051,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9956,
+              "fpr": null,
+              "f1": 0.9978,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9672,
+              "attack_recall_non_question": 0.9971
+            },
+            "deepset": {
+              "recall": 0.4643,
+              "fpr": 0.1995,
+              "f1": 0.5223,
+              "precision": 0.5969,
+              "pr_auc": 0.6337,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.3614,
+                  "fpr": 0.0152
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.4803,
+                  "fpr": 0.1117
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.6786
+                }
+              },
+              "attack_recall_question": 0.2308,
+              "attack_recall_non_question": 0.7131
+            },
+            "gandalf": {
+              "recall": 0.9909,
+              "fpr": null,
+              "f1": 0.9954,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.6407,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.6476
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.6707
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.6038
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.6188,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.631
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.6318
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.5933
+                }
+              }
+            }
+          }
+        },
+        "T4": {
+          "threshold": 0.5,
+          "dev_strata": {
+            "attack_len_<=32": 0.8814,
+            "attack_question": 0.6632,
+            "attack_len_95-256": 0.7832,
+            "attack_len_33-64": 0.7715,
+            "attack_len_65-94": 0.7111,
+            "attack_len_257+": 0.8693,
+            "benign_lang_en?": 0.8954,
+            "benign_lang_en": 0.9868,
+            "benign_lang_de": 1.0,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.6632,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0071,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.005,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.692,
+              "fpr": null,
+              "f1": 0.818,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.3913,
+              "attack_recall_non_question": 0.7143
+            },
+            "jailbreakllms": {
+              "recall": 0.6744,
+              "fpr": 0.0913,
+              "f1": 0.4989,
+              "precision": 0.3959,
+              "pr_auc": 0.5537,
+              "attack_recall_question": 0.375,
+              "attack_recall_non_question": 0.689
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0189,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0,
+              "f1": null,
+              "precision": null,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9783,
+              "fpr": null,
+              "f1": 0.989,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.929,
+              "attack_recall_non_question": 0.981
+            },
+            "deepset": {
+              "recall": 0.1984,
+              "fpr": 0.0379,
+              "f1": 0.3155,
+              "precision": 0.7692,
+              "pr_auc": 0.6337,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.0482,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.2368,
+                  "fpr": 0.0056
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.5882,
+                  "fpr": 0.1667
+                }
+              },
+              "attack_recall_question": 0.0692,
+              "attack_recall_non_question": 0.3361
+            },
+            "gandalf": {
+              "recall": 0.9525,
+              "fpr": null,
+              "f1": 0.9757,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.1377,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.0663
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.2242
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.123
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.1308,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0605
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.212
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.1203
+                }
+              }
+            }
+          }
+        }
+      },
+      "dev_selected_strategy": "T2"
+    },
+    "A4_s43": {
+      "thresholds": {
+        "T1": 0.2,
+        "T2": 0.11,
+        "T3": 0.14,
+        "T4": 0.5
+      },
+      "temperature": 0.907,
+      "strategies": {
+        "T1": {
+          "threshold": 0.2,
+          "dev_strata": {
+            "attack_len_<=32": 0.9488,
+            "attack_question": 0.8,
+            "attack_len_95-256": 0.9094,
+            "attack_len_33-64": 0.8867,
+            "attack_len_65-94": 0.8622,
+            "attack_len_257+": 0.9514,
+            "benign_lang_en?": 0.7127,
+            "benign_lang_en": 0.9579,
+            "benign_lang_de": 0.9758,
+            "benign_lang_tr": 0.9983
+          },
+          "dev_worst_stratum": 0.8,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0222,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0183,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.848,
+              "fpr": null,
+              "f1": 0.9177,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.5507,
+              "attack_recall_non_question": 0.87
+            },
+            "jailbreakllms": {
+              "recall": 0.8837,
+              "fpr": 0.2616,
+              "f1": 0.3658,
+              "precision": 0.2307,
+              "pr_auc": 0.5099,
+              "attack_recall_question": 0.625,
+              "attack_recall_non_question": 0.8963
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0712,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0408,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9925,
+              "fpr": null,
+              "f1": 0.9962,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9617,
+              "attack_recall_non_question": 0.9941
+            },
+            "deepset": {
+              "recall": 0.3333,
+              "fpr": 0.1389,
+              "f1": 0.4297,
+              "precision": 0.6043,
+              "pr_auc": 0.6081,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.1687,
+                  "fpr": 0.0076
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.375,
+                  "fpr": 0.0503
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.7647,
+                  "fpr": 0.5357
+                }
+              },
+              "attack_recall_question": 0.1308,
+              "attack_recall_non_question": 0.5492
+            },
+            "gandalf": {
+              "recall": 0.9828,
+              "fpr": null,
+              "f1": 0.9913,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.3737,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.2982
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.4545
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.369
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.3484,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.2812
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.4209
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.3435
+                }
+              }
+            }
+          }
+        },
+        "T2": {
+          "threshold": 0.11,
+          "dev_strata": {
+            "attack_len_<=32": 0.9748,
+            "attack_question": 0.8632,
+            "attack_len_95-256": 0.9482,
+            "attack_len_33-64": 0.9324,
+            "attack_len_65-94": 0.9378,
+            "attack_len_257+": 0.9818,
+            "benign_lang_en?": 0.6139,
+            "benign_lang_en": 0.911,
+            "benign_lang_de": 0.9032,
+            "benign_lang_tr": 0.9817
+          },
+          "dev_worst_stratum": 0.8632,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0435,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0489,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0567,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.9,
+              "fpr": null,
+              "f1": 0.9474,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.6957,
+              "attack_recall_non_question": 0.9151
+            },
+            "jailbreakllms": {
+              "recall": 0.9186,
+              "fpr": 0.37,
+              "f1": 0.3018,
+              "precision": 0.1806,
+              "pr_auc": 0.5099,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.9268
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.1468,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0918,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9967,
+              "fpr": null,
+              "f1": 0.9983,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9781,
+              "attack_recall_non_question": 0.9977
+            },
+            "deepset": {
+              "recall": 0.4524,
+              "fpr": 0.202,
+              "f1": 0.5112,
+              "precision": 0.5876,
+              "pr_auc": 0.6081,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.3012,
+                  "fpr": 0.0379
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.4868,
+                  "fpr": 0.1006
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8824,
+                  "fpr": 0.6786
+                }
+              },
+              "attack_recall_question": 0.2538,
+              "attack_recall_non_question": 0.6639
+            },
+            "gandalf": {
+              "recall": 0.9939,
+              "fpr": null,
+              "f1": 0.997,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.5856,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.5412
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.6232
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.5927
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.5532,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.5212
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.5669
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.5719
+                }
+              }
+            }
+          }
+        },
+        "T3": {
+          "threshold": 0.14,
+          "dev_strata": {
+            "attack_len_<=32": 0.9677,
+            "attack_question": 0.8421,
+            "attack_len_95-256": 0.9256,
+            "attack_len_33-64": 0.9122,
+            "attack_len_65-94": 0.9022,
+            "attack_len_257+": 0.9666,
+            "benign_lang_en?": 0.6553,
+            "benign_lang_en": 0.9336,
+            "benign_lang_de": 0.9435,
+            "benign_lang_tr": 0.995
+          },
+          "dev_worst_stratum": 0.8421,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0435,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0329,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0383,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.875,
+              "fpr": null,
+              "f1": 0.9333,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.6087,
+              "attack_recall_non_question": 0.8947
+            },
+            "jailbreakllms": {
+              "recall": 0.907,
+              "fpr": 0.324,
+              "f1": 0.3264,
+              "precision": 0.199,
+              "pr_auc": 0.5099,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.9146
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.1047,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.051,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9939,
+              "fpr": null,
+              "f1": 0.9969,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9672,
+              "attack_recall_non_question": 0.9953
+            },
+            "deepset": {
+              "recall": 0.4008,
+              "fpr": 0.1717,
+              "f1": 0.4798,
+              "precision": 0.5976,
+              "pr_auc": 0.6081,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.2651,
+                  "fpr": 0.0227
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.4276,
+                  "fpr": 0.0615
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.6429
+                }
+              },
+              "attack_recall_question": 0.2,
+              "attack_recall_non_question": 0.6148
+            },
+            "gandalf": {
+              "recall": 0.9919,
+              "fpr": null,
+              "f1": 0.9959,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.5003,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.4347
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.5586
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.5081
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.4762,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.4244
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.5193
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.4852
+                }
+              }
+            }
+          }
+        },
+        "T4": {
+          "threshold": 0.5,
+          "dev_strata": {
+            "attack_len_<=32": 0.876,
+            "attack_question": 0.6526,
+            "attack_len_95-256": 0.8026,
+            "attack_len_33-64": 0.7678,
+            "attack_len_65-94": 0.7022,
+            "attack_len_257+": 0.8936,
+            "benign_lang_en?": 0.8694,
+            "benign_lang_en": 0.9879,
+            "benign_lang_de": 0.9919,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.6526,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.008,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0033,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.694,
+              "fpr": null,
+              "f1": 0.8194,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.3478,
+              "attack_recall_non_question": 0.7197
+            },
+            "jailbreakllms": {
+              "recall": 0.75,
+              "fpr": 0.1187,
+              "f1": 0.4859,
+              "precision": 0.3593,
+              "pr_auc": 0.5099,
+              "attack_recall_question": 0.5,
+              "attack_recall_non_question": 0.7622
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0203,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0204,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9755,
+              "fpr": null,
+              "f1": 0.9876,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.929,
+              "attack_recall_non_question": 0.978
+            },
+            "deepset": {
+              "recall": 0.2024,
+              "fpr": 0.0455,
+              "f1": 0.3178,
+              "precision": 0.7391,
+              "pr_auc": 0.6081,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.0361,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.2434,
+                  "fpr": 0.0056
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.6471,
+                  "fpr": 0.2024
+                }
+              },
+              "attack_recall_question": 0.0769,
+              "attack_recall_non_question": 0.3361
+            },
+            "gandalf": {
+              "recall": 0.9444,
+              "fpr": null,
+              "f1": 0.9714,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.1064,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.0622
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.1879
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0696
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.1078,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0675
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.1876
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.0683
+                }
+              }
+            }
+          }
+        }
+      },
+      "dev_selected_strategy": "T2"
+    },
+    "A4_s44": {
+      "thresholds": {
+        "T1": 0.23,
+        "T2": 0.12,
+        "T3": 0.16,
+        "T4": 0.5
+      },
+      "temperature": 0.9347,
+      "strategies": {
+        "T1": {
+          "threshold": 0.23,
+          "dev_strata": {
+            "attack_len_<=32": 0.9434,
+            "attack_question": 0.8,
+            "attack_len_95-256": 0.9159,
+            "attack_len_33-64": 0.8848,
+            "attack_len_65-94": 0.8489,
+            "attack_len_257+": 0.9514,
+            "benign_lang_en?": 0.7461,
+            "benign_lang_en": 0.9568,
+            "benign_lang_de": 0.9435,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.8,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.0196,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.02,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.847,
+              "fpr": null,
+              "f1": 0.9172,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.5507,
+              "attack_recall_non_question": 0.869
+            },
+            "jailbreakllms": {
+              "recall": 0.8779,
+              "fpr": 0.2368,
+              "f1": 0.3862,
+              "precision": 0.2475,
+              "pr_auc": 0.5107,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.8841
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0683,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0408,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9917,
+              "fpr": null,
+              "f1": 0.9958,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9617,
+              "attack_recall_non_question": 0.9933
+            },
+            "deepset": {
+              "recall": 0.377,
+              "fpr": 0.1414,
+              "f1": 0.4715,
+              "precision": 0.6291,
+              "pr_auc": 0.6355,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.253,
+                  "fpr": 0.0076
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.3947,
+                  "fpr": 0.0615
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8235,
+                  "fpr": 0.5238
+                }
+              },
+              "attack_recall_question": 0.1615,
+              "attack_recall_non_question": 0.6066
+            },
+            "gandalf": {
+              "recall": 0.9838,
+              "fpr": null,
+              "f1": 0.9918,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.403,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.4588
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.4566
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.2933
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.3893,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.4466
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.4351
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.2854
+                }
+              }
+            }
+          }
+        },
+        "T2": {
+          "threshold": 0.12,
+          "dev_strata": {
+            "attack_len_<=32": 0.9686,
+            "attack_question": 0.8579,
+            "attack_len_95-256": 0.945,
+            "attack_len_33-64": 0.9397,
+            "attack_len_65-94": 0.9156,
+            "attack_len_257+": 0.9757,
+            "benign_lang_en?": 0.6415,
+            "benign_lang_en": 0.9089,
+            "benign_lang_de": 0.879,
+            "benign_lang_tr": 0.9867
+          },
+          "dev_worst_stratum": 0.8579,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.056,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.065,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.904,
+              "fpr": null,
+              "f1": 0.9496,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.6812,
+              "attack_recall_non_question": 0.9205
+            },
+            "jailbreakllms": {
+              "recall": 0.907,
+              "fpr": 0.3457,
+              "f1": 0.3126,
+              "precision": 0.1889,
+              "pr_auc": 0.5107,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.9146
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.1439,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0612,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9956,
+              "fpr": null,
+              "f1": 0.9978,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9727,
+              "attack_recall_non_question": 0.9968
+            },
+            "deepset": {
+              "recall": 0.5397,
+              "fpr": 0.2298,
+              "f1": 0.5678,
+              "precision": 0.5991,
+              "pr_auc": 0.6355,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.506,
+                  "fpr": 0.0758
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.5197,
+                  "fpr": 0.1173
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8824,
+                  "fpr": 0.7143
+                }
+              },
+              "attack_recall_question": 0.3231,
+              "attack_recall_non_question": 0.7705
+            },
+            "gandalf": {
+              "recall": 0.9939,
+              "fpr": null,
+              "f1": 0.997,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.6347,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.7329
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.6333
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.5373
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.6117,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.7107
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.6034
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.5199
+                }
+              }
+            }
+          }
+        },
+        "T3": {
+          "threshold": 0.16,
+          "dev_strata": {
+            "attack_len_<=32": 0.956,
+            "attack_question": 0.8421,
+            "attack_len_95-256": 0.9256,
+            "attack_len_33-64": 0.9159,
+            "attack_len_65-94": 0.8978,
+            "attack_len_257+": 0.9605,
+            "benign_lang_en?": 0.6814,
+            "benign_lang_en": 0.9326,
+            "benign_lang_de": 0.9194,
+            "benign_lang_tr": 0.995
+          },
+          "dev_worst_stratum": 0.8421,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0217,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.04,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.0417,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.879,
+              "fpr": null,
+              "f1": 0.9356,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.5942,
+              "attack_recall_non_question": 0.9001
+            },
+            "jailbreakllms": {
+              "recall": 0.9012,
+              "fpr": 0.2915,
+              "f1": 0.3475,
+              "precision": 0.2153,
+              "pr_auc": 0.5107,
+              "attack_recall_question": 0.75,
+              "attack_recall_non_question": 0.9085
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.1061,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.051,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.995,
+              "fpr": null,
+              "f1": 0.9975,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.9727,
+              "attack_recall_non_question": 0.9962
+            },
+            "deepset": {
+              "recall": 0.4802,
+              "fpr": 0.1818,
+              "f1": 0.5438,
+              "precision": 0.6269,
+              "pr_auc": 0.6355,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.4096,
+                  "fpr": 0.0379
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.4737,
+                  "fpr": 0.0838
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.8824,
+                  "fpr": 0.619
+                }
+              },
+              "attack_recall_question": 0.2538,
+              "attack_recall_non_question": 0.7213
+            },
+            "gandalf": {
+              "recall": 0.9919,
+              "fpr": null,
+              "f1": 0.9959,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.54,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.6205
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.5657
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.4335
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.5086,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.6048
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.5152
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.4047
+                }
+              }
+            }
+          }
+        },
+        "T4": {
+          "threshold": 0.5,
+          "dev_strata": {
+            "attack_len_<=32": 0.8868,
+            "attack_question": 0.6947,
+            "attack_len_95-256": 0.7929,
+            "attack_len_33-64": 0.7934,
+            "attack_len_65-94": 0.7289,
+            "attack_len_257+": 0.8997,
+            "benign_lang_en?": 0.8577,
+            "benign_lang_en": 0.9831,
+            "benign_lang_de": 1.0,
+            "benign_lang_tr": 1.0
+          },
+          "dev_worst_stratum": 0.6947,
+          "test": {
+            "arxiv_abstracts": {
+              "recall": null,
+              "fpr": 0.0109,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "aya": {
+              "recall": null,
+              "fpr": 0.008,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "dolly": {
+              "recall": null,
+              "fpr": 0.005,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "hackaprompt": {
+              "recall": 0.699,
+              "fpr": null,
+              "f1": 0.8228,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.4203,
+              "attack_recall_non_question": 0.7197
+            },
+            "jailbreakllms": {
+              "recall": 0.7616,
+              "fpr": 0.128,
+              "f1": 0.4755,
+              "precision": 0.3456,
+              "pr_auc": 0.5107,
+              "attack_recall_question": 0.375,
+              "attack_recall_non_question": 0.7805
+            },
+            "oasst2": {
+              "recall": null,
+              "fpr": 0.0233,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "security_docs": {
+              "recall": null,
+              "fpr": 0.0204,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null
+            },
+            "tensor_trust": {
+              "recall": 0.9819,
+              "fpr": null,
+              "f1": 0.9909,
+              "precision": 1.0,
+              "pr_auc": null,
+              "attack_recall_question": 0.929,
+              "attack_recall_non_question": 0.9848
+            },
+            "deepset": {
+              "recall": 0.2222,
+              "fpr": 0.0581,
+              "f1": 0.3384,
+              "precision": 0.7089,
+              "pr_auc": 0.6355,
+              "by_language": {
+                "de*": {
+                  "n": 215,
+                  "recall": 0.0843,
+                  "fpr": 0.0
+                },
+                "en*": {
+                  "n": 331,
+                  "recall": 0.2434,
+                  "fpr": 0.0112
+                },
+                "tr*": {
+                  "n": 1,
+                  "recall": null,
+                  "fpr": 0.0
+                },
+                "unknown*": {
+                  "n": 101,
+                  "recall": 0.7059,
+                  "fpr": 0.25
+                }
+              },
+              "attack_recall_question": 0.0769,
+              "attack_recall_non_question": 0.377
+            },
+            "gandalf": {
+              "recall": 0.9545,
+              "fpr": null,
+              "f1": 0.9767,
+              "precision": 1.0,
+              "pr_auc": null
+            },
+            "massive": {
+              "recall": null,
+              "fpr": 0.1461,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 996,
+                  "recall": null,
+                  "fpr": 0.1215
+                },
+                "en": {
+                  "n": 990,
+                  "recall": null,
+                  "fpr": 0.2495
+                },
+                "tr": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.0675
+                }
+              }
+            },
+            "massive_dev": {
+              "recall": null,
+              "fpr": 0.145,
+              "f1": 0.0,
+              "precision": 0.0,
+              "pr_auc": null,
+              "by_language": {
+                "de": {
+                  "n": 992,
+                  "recall": null,
+                  "fpr": 0.126
+                },
+                "en": {
+                  "n": 986,
+                  "recall": null,
+                  "fpr": 0.2424
+                },
+                "tr": {
+                  "n": 981,
+                  "recall": null,
+                  "fpr": 0.0663
+                }
+              }
+            }
+          }
+        }
+      },
+      "dev_selected_strategy": "T2"
+    }
+  },
+  "summary_mean_over_seeds": {
+    "H1_T1": {
+      "dev_worst_stratum": {
+        "mean": 0.9158,
+        "sd": 0.0263
+      },
+      "deepset_recall": {
+        "mean": 0.299,
+        "sd": 0.0391
+      },
+      "deepset_fpr": {
+        "mean": 0.0699,
+        "sd": 0.0129
+      },
+      "deepset_de_recall": {
+        "mean": 0.1205,
+        "sd": 0.0241
+      },
+      "deepset_question_recall": {
+        "mean": 0.1282,
+        "sd": 0.0424
+      },
+      "gandalf_recall": {
+        "mean": 0.9778,
+        "sd": 0.0081
+      },
+      "massive_dev_fpr": {
+        "mean": 0.2473,
+        "sd": 0.0443
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9878,
+        "sd": 0.0033
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8275,
+        "sd": 0.0263
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1885,
+        "sd": 0.0239
+      },
+      "hackaprompt_recall": {
+        "mean": 0.999,
+        "sd": 0.001
+      },
+      "security_docs_fpr": {
+        "mean": 0.0102,
+        "sd": 0.0102
+      }
+    },
+    "H1_T2": {
+      "dev_worst_stratum": {
+        "mean": 0.9158,
+        "sd": 0.0263
+      },
+      "deepset_recall": {
+        "mean": 0.299,
+        "sd": 0.0391
+      },
+      "deepset_fpr": {
+        "mean": 0.0699,
+        "sd": 0.0129
+      },
+      "deepset_de_recall": {
+        "mean": 0.1205,
+        "sd": 0.0241
+      },
+      "deepset_question_recall": {
+        "mean": 0.1282,
+        "sd": 0.0424
+      },
+      "gandalf_recall": {
+        "mean": 0.9778,
+        "sd": 0.0081
+      },
+      "massive_dev_fpr": {
+        "mean": 0.2473,
+        "sd": 0.0443
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9878,
+        "sd": 0.0033
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8275,
+        "sd": 0.0263
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1885,
+        "sd": 0.0239
+      },
+      "hackaprompt_recall": {
+        "mean": 0.999,
+        "sd": 0.001
+      },
+      "security_docs_fpr": {
+        "mean": 0.0102,
+        "sd": 0.0102
+      }
+    },
+    "H1_T3": {
+      "dev_worst_stratum": {
+        "mean": 0.9459,
+        "sd": 0.0039
+      },
+      "deepset_recall": {
+        "mean": 0.3836,
+        "sd": 0.027
+      },
+      "deepset_fpr": {
+        "mean": 0.1246,
+        "sd": 0.0335
+      },
+      "deepset_de_recall": {
+        "mean": 0.2089,
+        "sd": 0.0368
+      },
+      "deepset_question_recall": {
+        "mean": 0.1974,
+        "sd": 0.0311
+      },
+      "gandalf_recall": {
+        "mean": 0.9879,
+        "sd": 0.0031
+      },
+      "massive_dev_fpr": {
+        "mean": 0.4281,
+        "sd": 0.1053
+      },
+      "tensor_trust_recall": {
+        "mean": 0.992,
+        "sd": 0.0015
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8818,
+        "sd": 0.0387
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.2981,
+        "sd": 0.0756
+      },
+      "hackaprompt_recall": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "security_docs_fpr": {
+        "mean": 0.0408,
+        "sd": 0.0102
+      }
+    },
+    "H1_T4": {
+      "dev_worst_stratum": {
+        "mean": 0.8544,
+        "sd": 0.0132
+      },
+      "deepset_recall": {
+        "mean": 0.2249,
+        "sd": 0.0061
+      },
+      "deepset_fpr": {
+        "mean": 0.0236,
+        "sd": 0.0081
+      },
+      "deepset_de_recall": {
+        "mean": 0.0763,
+        "sd": 0.0069
+      },
+      "deepset_question_recall": {
+        "mean": 0.0846,
+        "sd": 0.0077
+      },
+      "gandalf_recall": {
+        "mean": 0.9565,
+        "sd": 0.0081
+      },
+      "massive_dev_fpr": {
+        "mean": 0.1102,
+        "sd": 0.0062
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9807,
+        "sd": 0.0004
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.7325,
+        "sd": 0.0323
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1035,
+        "sd": 0.0222
+      },
+      "hackaprompt_recall": {
+        "mean": 0.9963,
+        "sd": 0.0012
+      },
+      "security_docs_fpr": {
+        "mean": 0.0034,
+        "sd": 0.0059
+      }
+    },
+    "A4_T1": {
+      "dev_worst_stratum": {
+        "mean": 0.8175,
+        "sd": 0.0304
+      },
+      "deepset_recall": {
+        "mean": 0.3823,
+        "sd": 0.0518
+      },
+      "deepset_fpr": {
+        "mean": 0.1574,
+        "sd": 0.0299
+      },
+      "deepset_de_recall": {
+        "mean": 0.237,
+        "sd": 0.0618
+      },
+      "deepset_question_recall": {
+        "mean": 0.1641,
+        "sd": 0.0347
+      },
+      "gandalf_recall": {
+        "mean": 0.9852,
+        "sd": 0.0033
+      },
+      "massive_dev_fpr": {
+        "mean": 0.441,
+        "sd": 0.1266
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9931,
+        "sd": 0.0017
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8818,
+        "sd": 0.0033
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.2655,
+        "sd": 0.0309
+      },
+      "hackaprompt_recall": {
+        "mean": 0.8607,
+        "sd": 0.0228
+      },
+      "security_docs_fpr": {
+        "mean": 0.0374,
+        "sd": 0.0059
+      }
+    },
+    "A4_T2": {
+      "dev_worst_stratum": {
+        "mean": 0.8614,
+        "sd": 0.0031
+      },
+      "deepset_recall": {
+        "mean": 0.5053,
+        "sd": 0.0465
+      },
+      "deepset_fpr": {
+        "mean": 0.2205,
+        "sd": 0.0161
+      },
+      "deepset_de_recall": {
+        "mean": 0.4177,
+        "sd": 0.1053
+      },
+      "deepset_question_recall": {
+        "mean": 0.2872,
+        "sd": 0.0347
+      },
+      "gandalf_recall": {
+        "mean": 0.9936,
+        "sd": 0.0006
+      },
+      "massive_dev_fpr": {
+        "mean": 0.6145,
+        "sd": 0.0627
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9962,
+        "sd": 0.0006
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.907,
+        "sd": 0.0117
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.3514,
+        "sd": 0.0165
+      },
+      "hackaprompt_recall": {
+        "mean": 0.903,
+        "sd": 0.0026
+      },
+      "security_docs_fpr": {
+        "mean": 0.0782,
+        "sd": 0.0156
+      }
+    },
+    "A4_T3": {
+      "dev_worst_stratum": {
+        "mean": 0.8491,
+        "sd": 0.0122
+      },
+      "deepset_recall": {
+        "mean": 0.4484,
+        "sd": 0.042
+      },
+      "deepset_fpr": {
+        "mean": 0.1843,
+        "sd": 0.0141
+      },
+      "deepset_de_recall": {
+        "mean": 0.3454,
+        "sd": 0.0736
+      },
+      "deepset_question_recall": {
+        "mean": 0.2282,
+        "sd": 0.027
+      },
+      "gandalf_recall": {
+        "mean": 0.9916,
+        "sd": 0.0006
+      },
+      "massive_dev_fpr": {
+        "mean": 0.5345,
+        "sd": 0.0748
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9948,
+        "sd": 0.0009
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.8992,
+        "sd": 0.0089
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.3092,
+        "sd": 0.0165
+      },
+      "hackaprompt_recall": {
+        "mean": 0.8823,
+        "sd": 0.0095
+      },
+      "security_docs_fpr": {
+        "mean": 0.051,
+        "sd": 0.0
+      }
+    },
+    "A4_T4": {
+      "dev_worst_stratum": {
+        "mean": 0.6702,
+        "sd": 0.0219
+      },
+      "deepset_recall": {
+        "mean": 0.2077,
+        "sd": 0.0127
+      },
+      "deepset_fpr": {
+        "mean": 0.0472,
+        "sd": 0.0102
+      },
+      "deepset_de_recall": {
+        "mean": 0.0562,
+        "sd": 0.0251
+      },
+      "deepset_question_recall": {
+        "mean": 0.0743,
+        "sd": 0.0044
+      },
+      "gandalf_recall": {
+        "mean": 0.9505,
+        "sd": 0.0053
+      },
+      "massive_dev_fpr": {
+        "mean": 0.1279,
+        "sd": 0.0188
+      },
+      "tensor_trust_recall": {
+        "mean": 0.9786,
+        "sd": 0.0032
+      },
+      "jailbreakllms_recall": {
+        "mean": 0.7287,
+        "sd": 0.0474
+      },
+      "jailbreakllms_fpr": {
+        "mean": 0.1127,
+        "sd": 0.0191
+      },
+      "hackaprompt_recall": {
+        "mean": 0.695,
+        "sd": 0.0036
+      },
+      "security_docs_fpr": {
+        "mean": 0.0136,
+        "sd": 0.0118
+      }
+    }
+  },
+  "dev_selected_strategy_by_model": {
+    "H1_s42": "T3",
+    "H1_s43": "T3",
+    "H1_s44": "T3",
+    "A4_s42": "T2",
+    "A4_s43": "T2",
+    "A4_s44": "T2"
+  }
+}

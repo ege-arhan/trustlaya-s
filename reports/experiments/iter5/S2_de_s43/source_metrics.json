@@ -1,0 +1,185 @@
+{
+  "DEV_threshold_0.5": {
+    "arxiv_abstracts": {
+      "n": 101,
+      "positive": 0,
+      "negative": 101,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 101,
+      "precision": null,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": null,
+      "fpr": 0.0,
+      "fpr_95ci": [
+        -0.0,
+        0.0366
+      ],
+      "fnr": null,
+      "brier": 0.0023,
+      "ece": 0.0265,
+      "pr_auc": null
+    },
+    "aya": {
+      "n": 1127,
+      "positive": 0,
+      "negative": 1127,
+      "tp": 0,
+      "fp": 8,
+      "fn": 0,
+      "tn": 1119,
+      "precision": 0.0,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": 0.0,
+      "fpr": 0.0071,
+      "fpr_95ci": [
+        0.0036,
+        0.0139
+      ],
+      "fnr": null,
+      "brier": 0.0083,
+      "ece": 0.0441,
+      "pr_auc": null
+    },
+    "dolly": {
+      "n": 600,
+      "positive": 0,
+      "negative": 600,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 600,
+      "precision": null,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": null,
+      "fpr": 0.0,
+      "fpr_95ci": [
+        0.0,
+        0.0064
+      ],
+      "fnr": null,
+      "brier": 0.0029,
+      "ece": 0.0338,
+      "pr_auc": null
+    },
+    "hackaprompt": {
+      "n": 1000,
+      "positive": 1000,
+      "negative": 0,
+      "tp": 996,
+      "fp": 0,
+      "fn": 4,
+      "tn": 0,
+      "precision": 1.0,
+      "recall": 0.996,
+      "recall_95ci": [
+        0.9898,
+        0.9984
+      ],
+      "f1": 0.998,
+      "fpr": null,
+      "fpr_95ci": null,
+      "fnr": 0.004,
+      "brier": 0.0044,
+      "ece": 0.0321,
+      "pr_auc": null,
+      "note": "attack-only set: precision/FPR/PR-AUC undefined"
+    },
+    "jailbreakllms": {
+      "n": 2060,
+      "positive": 177,
+      "negative": 1883,
+      "tp": 122,
+      "fp": 189,
+      "fn": 55,
+      "tn": 1694,
+      "precision": 0.3923,
+      "recall": 0.6893,
+      "recall_95ci": [
+        0.6177,
+        0.7528
+      ],
+      "f1": 0.5,
+      "fpr": 0.1004,
+      "fpr_95ci": [
+        0.0876,
+        0.1148
+      ],
+      "fnr": 0.3107,
+      "brier": 0.0869,
+      "ece": 0.128,
+      "pr_auc": 0.5193
+    },
+    "oasst2": {
+      "n": 693,
+      "positive": 0,
+      "negative": 693,
+      "tp": 0,
+      "fp": 15,
+      "fn": 0,
+      "tn": 678,
+      "precision": 0.0,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": 0.0,
+      "fpr": 0.0216,
+      "fpr_95ci": [
+        0.0132,
+        0.0354
+      ],
+      "fnr": null,
+      "brier": 0.017,
+      "ece": 0.0688,
+      "pr_auc": null
+    },
+    "security_docs": {
+      "n": 103,
+      "positive": 0,
+      "negative": 103,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 103,
+      "precision": null,
+      "recall": null,
+      "recall_95ci": null,
+      "f1": null,
+      "fpr": 0.0,
+      "fpr_95ci": [
+        0.0,
+        0.036
+      ],
+      "fnr": null,
+      "brier": 0.0059,
+      "ece": 0.0427,
+      "pr_auc": null
+    },
+    "tensor_trust": {
+      "n": 1346,
+      "positive": 1346,
+      "negative": 0,
+      "tp": 1274,
+      "fp": 0,
+      "fn": 72,
+      "tn": 0,
+      "precision": 1.0,
+      "recall": 0.9465,
+      "recall_95ci": [
+        0.9332,
+        0.9573
+      ],
+      "f1": 0.9725,
+      "fpr": null,
+      "fpr_95ci": null,
+      "fnr": 0.0535,
+      "brier": 0.0415,
+      "ece": 0.1051,
+      "pr_auc": null,
+      "note": "attack-only set: precision/FPR/PR-AUC undefined"
+    }
+  }
+}

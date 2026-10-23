@@ -1,0 +1,425 @@
+{
+  "model": "E6_mixed_balanced_focal_510",
+  "threshold": 0.34,
+  "note": "E6 frozen; deepset used for analysis only",
+  "language_id_heuristic_accuracy_on_dev": {
+    "en": 0.943,
+    "de": 0.847,
+    "tr": 0.578
+  },
+  "H1_H2_new_dev_benign_language_x_length": {
+    "de/257+": {
+      "n": 1,
+      "fpr": 0.0,
+      "mean_score": 0.2944,
+      "median_score": 0.2944
+    },
+    "de/33-64": {
+      "n": 42,
+      "fpr": 0.7619,
+      "mean_score": 0.4856,
+      "median_score": 0.4969
+    },
+    "de/65-94": {
+      "n": 9,
+      "fpr": 0.8889,
+      "mean_score": 0.5343,
+      "median_score": 0.5841
+    },
+    "de/95-256": {
+      "n": 9,
+      "fpr": 0.2222,
+      "mean_score": 0.2488,
+      "median_score": 0.2229
+    },
+    "de/<=32": {
+      "n": 63,
+      "fpr": 0.9048,
+      "mean_score": 0.6211,
+      "median_score": 0.682
+    },
+    "de/all": {
+      "n": 124,
+      "fpr": 0.7984,
+      "mean_score": 0.5393,
+      "median_score": 0.5851
+    },
+    "en/257+": {
+      "n": 15,
+      "fpr": 0.2,
+      "mean_score": 0.1804,
+      "median_score": 0.1153
+    },
+    "en/33-64": {
+      "n": 350,
+      "fpr": 0.12,
+      "mean_score": 0.1497,
+      "median_score": 0.0858
+    },
+    "en/65-94": {
+      "n": 91,
+      "fpr": 0.0549,
+      "mean_score": 0.1159,
+      "median_score": 0.0681
+    },
+    "en/95-256": {
+      "n": 81,
+      "fpr": 0.0617,
+      "mean_score": 0.1166,
+      "median_score": 0.0657
+    },
+    "en/<=32": {
+      "n": 1157,
+      "fpr": 0.5073,
+      "mean_score": 0.3816,
+      "median_score": 0.3441
+    },
+    "en/all": {
+      "n": 1694,
+      "fpr": 0.379,
+      "mean_score": 0.305,
+      "median_score": 0.2411
+    },
+    "tr/257+": {
+      "n": 4,
+      "fpr": 1.0,
+      "mean_score": 0.4823,
+      "median_score": 0.4852
+    },
+    "tr/33-64": {
+      "n": 33,
+      "fpr": 0.9091,
+      "mean_score": 0.4874,
+      "median_score": 0.4958
+    },
+    "tr/65-94": {
+      "n": 30,
+      "fpr": 1.0,
+      "mean_score": 0.5216,
+      "median_score": 0.529
+    },
+    "tr/95-256": {
+      "n": 19,
+      "fpr": 0.9474,
+      "mean_score": 0.5049,
+      "median_score": 0.5241
+    },
+    "tr/<=32": {
+      "n": 516,
+      "fpr": 0.9826,
+      "mean_score": 0.6063,
+      "median_score": 0.6207
+    },
+    "tr/all": {
+      "n": 602,
+      "fpr": 0.9784,
+      "mean_score": 0.5916,
+      "median_score": 0.6059
+    }
+  },
+  "H1_H2_deepset_benign_heuristic_language_x_length": {
+    "de/33-64": {
+      "n": 27,
+      "fpr": 0.7407,
+      "mean_score": 0.4079,
+      "median_score": 0.4059
+    },
+    "de/65-94": {
+      "n": 15,
+      "fpr": 0.8,
+      "mean_score": 0.4322,
+      "median_score": 0.4446
+    },
+    "de/95-256": {
+      "n": 5,
+      "fpr": 0.4,
+      "mean_score": 0.2919,
+      "median_score": 0.2494
+    },
+    "de/<=32": {
+      "n": 85,
+      "fpr": 0.9765,
+      "mean_score": 0.6157,
+      "median_score": 0.6222
+    },
+    "de/all": {
+      "n": 132,
+      "fpr": 0.8864,
+      "mean_score": 0.54,
+      "median_score": 0.5515
+    },
+    "en/33-64": {
+      "n": 29,
+      "fpr": 0.0345,
+      "mean_score": 0.0871,
+      "median_score": 0.0533
+    },
+    "en/65-94": {
+      "n": 5,
+      "fpr": 0.0,
+      "mean_score": 0.0324,
+      "median_score": 0.0274
+    },
+    "en/<=32": {
+      "n": 145,
+      "fpr": 0.6414,
+      "mean_score": 0.4577,
+      "median_score": 0.4925
+    },
+    "en/all": {
+      "n": 179,
+      "fpr": 0.5251,
+      "mean_score": 0.3858,
+      "median_score": 0.386
+    },
+    "tr/<=32": {
+      "n": 1,
+      "fpr": 1.0,
+      "mean_score": 0.7123,
+      "median_score": 0.7123
+    },
+    "tr/all": {
+      "n": 1,
+      "fpr": 1.0,
+      "mean_score": 0.7123,
+      "median_score": 0.7123
+    },
+    "unknown/<=32": {
+      "n": 84,
+      "fpr": 0.8095,
+      "mean_score": 0.5743,
+      "median_score": 0.6291
+    },
+    "unknown/all": {
+      "n": 84,
+      "fpr": 0.8095,
+      "mean_score": 0.5743,
+      "median_score": 0.6291
+    }
+  },
+  "H4_source_shift_english_le_94_tokens": {
+    "aya": {
+      "n": 475,
+      "fpr": 0.3853,
+      "mean_score": 0.3008,
+      "median_score": 0.2414
+    },
+    "deepset (heuristic en)": {
+      "n": 179,
+      "fpr": 0.5251,
+      "mean_score": 0.3858,
+      "median_score": 0.386
+    },
+    "dolly": {
+      "n": 593,
+      "fpr": 0.4688,
+      "mean_score": 0.3656,
+      "median_score": 0.3197
+    },
+    "jailbreakllms": {
+      "n": 365,
+      "fpr": 0.1233,
+      "mean_score": 0.1422,
+      "median_score": 0.0424
+    },
+    "oasst2": {
+      "n": 530,
+      "fpr": 0.3264,
+      "mean_score": 0.2732,
+      "median_score": 0.1859
+    },
+    "security_docs": {
+      "n": 80,
+      "fpr": 0.0,
+      "mean_score": 0.0391,
+      "median_score": 0.0235
+    }
+  },
+  "H3_security_vocabulary": {
+    "ignore": {
+      "with_keyword": {
+        "n": 148,
+        "fpr": 0.1351,
+        "mean_score": 0.1333,
+        "median_score": 0.0457
+      },
+      "keyword_deleted": {
+        "n": 148,
+        "fpr": 0.1284,
+        "mean_score": 0.1242,
+        "median_score": 0.0382
+      }
+    },
+    "bypass": {
+      "with_keyword": {
+        "n": 23,
+        "fpr": 0.1739,
+        "mean_score": 0.1592,
+        "median_score": 0.0268
+      },
+      "keyword_deleted": {
+        "n": 23,
+        "fpr": 0.1739,
+        "mean_score": 0.1533,
+        "median_score": 0.0243
+      }
+    },
+    "override": {
+      "with_keyword": {
+        "n": 4,
+        "fpr": 0.5,
+        "mean_score": 0.3536,
+        "median_score": 0.2869
+      },
+      "keyword_deleted": {
+        "n": 4,
+        "fpr": 0.5,
+        "mean_score": 0.3644,
+        "median_score": 0.3013
+      }
+    },
+    "system": {
+      "with_keyword": {
+        "n": 223,
+        "fpr": 0.1704,
+        "mean_score": 0.1797,
+        "median_score": 0.1023
+      },
+      "keyword_deleted": {
+        "n": 223,
+        "fpr": 0.1883,
+        "mean_score": 0.1844,
+        "median_score": 0.1156
+      }
+    },
+    "admin": {
+      "with_keyword": {
+        "n": 9,
+        "fpr": 0.1111,
+        "mean_score": 0.1603,
+        "median_score": 0.1008
+      },
+      "keyword_deleted": {
+        "n": 9,
+        "fpr": 0.2222,
+        "mean_score": 0.1601,
+        "median_score": 0.0757
+      }
+    },
+    "developer": {
+      "with_keyword": {
+        "n": 57,
+        "fpr": 0.0526,
+        "mean_score": 0.0792,
+        "median_score": 0.035
+      },
+      "keyword_deleted": {
+        "n": 57,
+        "fpr": 0.0526,
+        "mean_score": 0.0823,
+        "median_score": 0.0415
+      }
+    },
+    "instruction": {
+      "with_keyword": {
+        "n": 287,
+        "fpr": 0.101,
+        "mean_score": 0.1275,
+        "median_score": 0.0544
+      },
+      "keyword_deleted": {
+        "n": 287,
+        "fpr": 0.0906,
+        "mean_score": 0.1187,
+        "median_score": 0.051
+      }
+    },
+    "prompt": {
+      "with_keyword": {
+        "n": 952,
+        "fpr": 0.0714,
+        "mean_score": 0.0996,
+        "median_score": 0.0342
+      },
+      "keyword_deleted": {
+        "n": 952,
+        "fpr": 0.0851,
+        "mean_score": 0.1163,
+        "median_score": 0.048
+      }
+    },
+    "jailbreak": {
+      "with_keyword": {
+        "n": 63,
+        "fpr": 0.0317,
+        "mean_score": 0.0523,
+        "median_score": 0.0165
+      },
+      "keyword_deleted": {
+        "n": 63,
+        "fpr": 0.0476,
+        "mean_score": 0.0504,
+        "median_score": 0.0164
+      }
+    },
+    "security": {
+      "with_keyword": {
+        "n": 70,
+        "fpr": 0.0571,
+        "mean_score": 0.0804,
+        "median_score": 0.0258
+      },
+      "keyword_deleted": {
+        "n": 70,
+        "fpr": 0.0429,
+        "mean_score": 0.0696,
+        "median_score": 0.0233
+      }
+    },
+    "password": {
+      "with_keyword": {
+        "n": 7,
+        "fpr": 0.4286,
+        "mean_score": 0.3041,
+        "median_score": 0.1801
+      },
+      "keyword_deleted": {
+        "n": 7,
+        "fpr": 0.4286,
+        "mean_score": 0.2435,
+        "median_score": 0.1983
+      }
+    },
+    "token": {
+      "with_keyword": {
+        "n": 44,
+        "fpr": 0.1818,
+        "mean_score": 0.1512,
+        "median_score": 0.0581
+      },
+      "keyword_deleted": {
+        "n": 44,
+        "fpr": 0.2045,
+        "mean_score": 0.1609,
+        "median_score": 0.0628
+      }
+    },
+    "api_key": {
+      "with_keyword": null
+    },
+    "no_keyword": {
+      "with_keyword": {
+        "n": 3274,
+        "fpr": 0.4371,
+        "mean_score": 0.3264,
+        "median_score": 0.2716
+      }
+    }
+  },
+  "H5_deepset_benign_form_counts": {
+    "n": 396,
+    "question_mark": 279,
+    "imperative_start": 3,
+    "attack_cue": 0
+  }
+}

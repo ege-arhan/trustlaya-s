@@ -1,0 +1,24 @@
+{
+  "method": "normalized exact; HashingVectorizer char 4-5 gram cosine >=0.85",
+  "train_dev": {
+    "left_n": 2173,
+    "right_n": 445,
+    "exact_unique": 0,
+    "near_left_rows_cosine_gte_0.85": 0,
+    "near_left_ids": []
+  },
+  "dev_test": {
+    "left_n": 445,
+    "right_n": 5761,
+    "exact_unique": 0,
+    "near_left_rows_cosine_gte_0.85": 0,
+    "near_left_ids": []
+  },
+  "train_test": {
+    "left_n": 2173,
+    "right_n": 5761,
+    "exact_unique": 0,
+    "near_left_rows_cosine_gte_0.85": 0,
+    "near_left_ids": []
+  }
+}

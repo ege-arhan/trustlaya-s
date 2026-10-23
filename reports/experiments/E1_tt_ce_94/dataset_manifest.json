@@ -1,0 +1,31 @@
+{
+  "train_rows": 7947,
+  "train_by_source_label": {
+    "arxiv_abstracts/BENIGN": 392,
+    "security_docs/BENIGN": 503,
+    "tensor_trust/ATTACK": 7052
+  },
+  "class_balance": {
+    "ATTACK": 7052.0,
+    "BENIGN": 895.0
+  },
+  "sampling": "NATURAL",
+  "samples_per_epoch": 7947,
+  "expected_sampling_mass": {
+    "tensor_trust/ATTACK": 0.8874,
+    "security_docs/BENIGN": 0.0633,
+    "arxiv_abstracts/BENIGN": 0.0493
+  },
+  "kish_effective_sample_size": 7947,
+  "train_sample_ids_sha256": "4d03801cd5b9c4048ae573b5559d830cf0b72981a83d51d495ed4c14107b3f19",
+  "dev_rows": 3610,
+  "dev_sample_ids_sha256": "1b32b7f06f05680453e57fcfc2db7c77475b221119f158e471f46645c5229ac1",
+  "v5_manifest_sha256": "6eca817413b0ebe33f42b30a1e2160726845bf25ed6afa9b428f47aebb286260  data/v5_manifest.json\n2d9f1633c7c6db2d7d10e12132627f0627a97c9c7b39684bb4de2911cf8ab983  data/dataset_lineage.json\nd0edfd20aaa1a564c495f9c08bf60850f79788ac549ab366ff6e76afe349130c  data/label_mapping.json\n",
+  "tokenizer_stats": {
+    "language": "English-dominant; 0 Turkish rows in these sources",
+    "median_tokens": 40.0,
+    "expansion_ratio": 2.098,
+    "truncation_rate_at_context": 0.3205
+  },
+  "distinct_training_rows_seen": 7947
+}

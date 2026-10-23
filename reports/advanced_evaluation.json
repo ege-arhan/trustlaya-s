@@ -1,0 +1,211 @@
+{
+  "candidate": "/Users/egearhany/trustlaya/models/trustlaya-s-v2",
+  "dataset": "original 1975-row synthetic mixed-only test",
+  "threshold_origin": "PII threshold selected on separate Turkish privacy dev scenarios",
+  "mean_task_accuracy": 0.9065541490857947,
+  "macro_f1": 0.6631675712855586,
+  "tasks": {
+    "pii": {
+      "threshold": 0.8,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "confusion_matrix": [
+        [
+          1619,
+          0
+        ],
+        [
+          0,
+          356
+        ]
+      ]
+    },
+    "secret": {
+      "threshold": 0.5,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "confusion_matrix": [
+        [
+          1774,
+          0
+        ],
+        [
+          0,
+          201
+        ]
+      ]
+    },
+    "prompt_injection": {
+      "threshold": 0.5,
+      "f1": 0.5548780487804879,
+      "precision": 0.4827586206896552,
+      "recall": 0.6523297491039427,
+      "false_positive_rate": 0.11497641509433962,
+      "false_negative_rate": 0.34767025089605735,
+      "confusion_matrix": [
+        [
+          1501,
+          195
+        ],
+        [
+          97,
+          182
+        ]
+      ]
+    },
+    "dangerous_instruction": {
+      "threshold": 0.5,
+      "f1": 0.6621160409556314,
+      "precision": 1.0,
+      "recall": 0.49489795918367346,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.5051020408163265,
+      "confusion_matrix": [
+        [
+          1779,
+          0
+        ],
+        [
+          99,
+          97
+        ]
+      ]
+    },
+    "privacy_risk": {
+      "threshold": 0.5,
+      "f1": 0.5316455696202531,
+      "precision": 0.6336206896551724,
+      "recall": 0.45794392523364486,
+      "false_positive_rate": 0.051390568319226115,
+      "false_negative_rate": 0.5420560747663551,
+      "confusion_matrix": [
+        [
+          1569,
+          85
+        ],
+        [
+          174,
+          147
+        ]
+      ]
+    },
+    "security_risk": {
+      "threshold": 0.5,
+      "f1": 0.7769461077844312,
+      "precision": 0.675341574495771,
+      "recall": 0.9145374449339208,
+      "false_positive_rate": 0.594047619047619,
+      "false_negative_rate": 0.08546255506607929,
+      "confusion_matrix": [
+        [
+          341,
+          499
+        ],
+        [
+          97,
+          1038
+        ]
+      ]
+    },
+    "ethics_risk": {
+      "threshold": 0.5,
+      "f1": 0.4429223744292237,
+      "precision": 1.0,
+      "recall": 0.2844574780058651,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.7155425219941349,
+      "confusion_matrix": [
+        [
+          1634,
+          0
+        ],
+        [
+          244,
+          97
+        ]
+      ]
+    },
+    "oversight_risk": {
+      "threshold": 0.5,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "confusion_matrix": [
+        [
+          1606,
+          0
+        ],
+        [
+          0,
+          369
+        ]
+      ]
+    },
+    "data_governance_risk": {
+      "threshold": 0.5,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 1.0,
+      "confusion_matrix": [
+        [
+          1804,
+          0
+        ],
+        [
+          171,
+          0
+        ]
+      ]
+    }
+  },
+  "confidence_distribution": {
+    "min": 0.5252,
+    "median": 0.9988,
+    "max": 0.9999,
+    "bins": {
+      "0.0-0.1": 0,
+      "0.1-0.2": 0,
+      "0.2-0.3": 0,
+      "0.3-0.4": 0,
+      "0.4-0.5": 0,
+      "0.5-0.6": 4,
+      "0.6-0.7": 15,
+      "0.7-0.8": 24,
+      "0.8-0.9": 39,
+      "0.9-1.0": 1893
+    }
+  },
+  "abstention_rate": 0.0020253164556962027,
+  "selective_prediction": {
+    "0.5": {
+      "coverage": 1.0,
+      "action_error_on_covered": 0.3635443037974684
+    },
+    "0.6": {
+      "coverage": 0.9979746835443037,
+      "action_error_on_covered": 0.36428209030948755
+    },
+    "0.7": {
+      "coverage": 0.990379746835443,
+      "action_error_on_covered": 0.36707566462167684
+    },
+    "0.8": {
+      "coverage": 0.9782278481012658,
+      "action_error_on_covered": 0.37163561076604557
+    },
+    "0.9": {
+      "coverage": 0.9584810126582278,
+      "action_error_on_covered": 0.37929212889593233
+    }
+  }
+}

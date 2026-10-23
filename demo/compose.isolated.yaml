@@ -1,0 +1,44 @@
+services:
+  agent:
+    image: python:3.12-slim
+    command: ["sleep", "infinity"]
+    volumes: ["../:/app:ro"]
+    working_dir: /app
+    environment:
+      PYTHONPATH: /app/src
+      TRUSTLAYA_SHARED_KEY: ${TRUSTLAYA_SHARED_KEY}
+    networks: [agent_net]
+  gateway:
+    image: python:3.12-slim
+    command: ["python", "demo/isolated_service.py", "gateway"]
+    volumes: ["../:/app:ro"]
+    working_dir: /app
+    environment:
+      PYTHONPATH: /app/src
+      TRUSTLAYA_SHARED_KEY: ${TRUSTLAYA_SHARED_KEY}
+      TRUSTEDGE_ADAPTER_KEY: ${TRUSTEDGE_ADAPTER_KEY}
+    networks: [agent_net, target_net]
+  adapter:
+    image: python:3.12-slim
+    command: ["python", "demo/isolated_service.py", "adapter"]
+    volumes: ["../:/app:ro"]
+    working_dir: /app
+    environment:
+      PYTHONPATH: /app/src
+      TRUSTLAYA_SHARED_KEY: ${TRUSTLAYA_SHARED_KEY}
+      TRUSTEDGE_ADAPTER_KEY: ${TRUSTEDGE_ADAPTER_KEY}
+      TRUSTEDGE_TARGET_KEY: ${TRUSTEDGE_TARGET_KEY}
+    networks: [target_net]
+  target:
+    image: python:3.12-slim
+    command: ["python", "demo/isolated_service.py", "target"]
+    volumes: ["../:/app:ro"]
+    working_dir: /app
+    environment:
+      TRUSTEDGE_TARGET_KEY: ${TRUSTEDGE_TARGET_KEY}
+    networks: [target_net]
+networks:
+  agent_net:
+    internal: true
+  target_net:
+    internal: true

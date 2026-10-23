@@ -5,3 +5,27 @@ Risk score is not a legal or ethical verdict. Probabilities are task-model outpu
 The dataset is generated from a small number of controlled templates, so held-out template families do not simulate open-world distribution shift. The Turkish-first encoder has limited English pretraining; mixed-language performance was not separately established. Teacher output is often wrong on these specialized tasks and is weakly weighted. Confidence is categorical decision sharpness, not calibrated probability of correctness. Severity and action heads are trained on generated labels. PII/secret evidence rules cover listed formats only and may miss variants or create false positives in real data. Agent permission risk is policy-only. Arduino UNO Q deployment is documented but untested. INT8 quantization changes some final actions and is experimental.
 
 Independent diagnostics: Turkish PII hybrid F1 was 0.880 on a separate synthetic/curated set, but many name/account-number spans were missed by rules. On a separate multilingual secret benchmark, model-only secret false-positive rate was 0.949. The deterministic policy routes unverified secret scores to REVIEW, but excessive reviews remain a blocker for production deployment. Prompt-injection false positives on a separate hard benign set were 0.242. Dataset labels, scopes and license restrictions are detailed in `docs/external_evaluation.md`.
+
+## Advanced candidate
+
+V2 improves the PII head on separate Turkish synthetic sources, but PII false-positive rate is still 0.316 at its selected threshold on the independent benchmark. The frozen encoder and remaining heads retain v1 weaknesses: synthetic test injection F1 0.555; data-governance recall zero; independent model-only secret false positives remain severe. An encoded prompt-injection variant missed every positive in the small adversarial suite. The 33-case language smoke suite is too small for a general-language claim.
+
+The original synthetic validation set contains English examples only, and most temperatures were fitted and evaluated there. The current `confidence` is poorly related to correctness; higher confidence selection did not reduce observed action error. Abstention is therefore a policy fail-safe, not a demonstrated selective classifier. Risk fusion weights and agent/session flags are explicit deterministic rules; their scores are not calibrated probabilities. The v2 PII training source and independent test source are both synthetic. The latter has now been inspected. The local API has no authentication or TLS. INT8 changes policy decisions in 5.1% of a 256-case test. No UNO Q device testing was performed.
+
+On a separate 182-case agentic injection benchmark, tool-result text F1 was 0.484, false-negative rate 0.620 and false-positive rate 0.675. Sliding windows improved F1 to 0.592 but left FPR unchanged. This is a serious out-of-domain failure, not a production gate. The benchmark's execution outcomes were not tested; only text detection was measured.
+
+Experimental BPI-trained injection heads improved some Turkish/English diagnostics but worsened the mixed-only legacy test and raised benign agent-tool-output false-positive rate to 0.800. BPI labels include broader jailbreak/adversarial content, so those scores do not establish strict prompt-injection detection. These candidates are not promoted.
+
+A later agentic-data candidate improved a paired synthetic scenario test, yet still missed 20 of 280 attacks and flagged 56 of 265 benign examples. On a different broad attack corpus its recall declined, and the previously inspected agent tool-output false-positive rate stayed 0.800. It remains an opt-in research artifact only.
+# Frozen v2 external evaluation (2026-09-25)
+
+The [independent external report](../reports/external_real_world_benchmark.md)
+found low transfer to narrow direct-identifier detection in ECHR legal text
+(TAB F1 0.107, recall 0.096) and a high false-positive rate on
+community-collected jailbreak prompts (FPR 0.900 at the unchanged 0.50 raw
+score threshold). These are different tasks; no combined score is meaningful.
+The clinical note corpus has no PHI gold, and SecretBench/i2b2 access was not
+available. The reported clinical flag rate is not a false-positive rate.
+Neither these scores nor internally calibrated outputs establish production
+readiness. See the [baseline provenance notes](../reports/external_baselines.md)
+before interpreting model comparisons.
