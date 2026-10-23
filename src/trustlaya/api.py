@@ -267,4 +267,8 @@ def make_server(host="127.0.0.1", port=8765, analyzer=None, audit_path=None,
             # HTTP access logs are disabled; optional audit_record contains no raw input.
             pass
 
-    return ThreadingHTTPServer((host, port), Handler)
+    server = ThreadingHTTPServer((host, port), Handler)
+    # ponytail: 16-way concurrent clients overflow default backlog (5) and get
+    # dropped connections; raise if load grows beyond this.
+    server.request_queue_size = 128
+    return server
